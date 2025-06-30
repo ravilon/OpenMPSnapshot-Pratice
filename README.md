@@ -6,22 +6,36 @@ The content of this repository has been made available to assist in the reproduc
 ## SBLP 2024
 ```
 @inproceedings{OpenMPSnapshotSBLP2024,
-author = {Void, Null},
-title = {A Snapshot of OpenMP Projects on GitHub}, year = {2024},
-publisher = {Association for Computing Machinery},
-address = {Curitiba, Brazil},
-note = {Submitted}
+ author = {Cristian Quevedo and Marcos Oliveira Jr. and André Du Bois and Gerson Cavalheiro},
+ title = { A Snapshot of OpenMP Projects on GitHub},
+ booktitle = {Anais do XXVIII Simpósio Brasileiro de Linguagens de Programação},
+ location = {Curitiba/PR},
+ year = {2024},
+ keywords = {},
+ issn = {0000-0000},
+ pages = {102--105},
+ publisher = {SBC},
+ address = {Porto Alegre, RS, Brasil},
+ doi = {10.5753/sblp.2024.3695},
+ url = {https://sol.sbc.org.br/index.php/sblp/article/view/30264}
 }
 ```
 ## SSCAD 2024
 ```
 @inproceedings{OpenMPEmpiricalStudySBLP2024,
-author = {Void, Null},
-title = {An Empirical Study of OpenMP Directive Usage in Open-Source Projects on GitHub},
-year = {2024},
-publisher = {Association for Computing Machinery},
-address = {Curitiba, Brazil},
-note = {Submitted}
+ author = {Cristian Quevedo and Simone Cavalheiro and Marcos Oliveira Jr. and André Du Bois and Gerson Cavalheiro},
+ title = { An Empirical Study of OpenMP Directive Usage in Open-Source Projects on GitHub},
+ booktitle = {Anais do XXV Simpósio em Sistemas Computacionais de Alto Desempenho},
+ location = {São Carlos/SP},
+ year = {2024},
+ keywords = {},
+ issn = {0000-0000},
+ pages = {144--155},
+ publisher = {SBC},
+ address = {Porto Alegre, RS, Brasil},
+ doi = {10.5753/sscad.2024.244777},
+ url = {https://sol.sbc.org.br/index.php/sscad/article/view/30993}
+}
 }
 ```
 
