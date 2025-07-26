@@ -5,6 +5,12 @@ import time
 from datetime import datetime
 import os
 import logging
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Get the path to the current file's directory and point to .env
+env_path = Path(__file__).resolve().parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Captura a entrada do usuário
 user_input = int(input("Digite 0 para C ou 1 para C++: "))
@@ -24,7 +30,7 @@ logger = logging.getLogger()
 logger.addHandler(logging.StreamHandler())
 
 # Token de autenticacao
-g = Github("INSIRA AQUI SEU TOKEN DE ACESSO PESSOAL")
+g = Github(os.getenv("GITHUBAPIKEY"))
 
 # Lista para armazenar os dados dos repositórios
 repos_list = []
