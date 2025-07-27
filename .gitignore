@@ -1,3 +1,6 @@
+# Temp Folder
+temp/
+tcc_dados/
 # Virtual environment
 venv/
 
@@ -23,3 +26,20 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
+
+# Ignora todos os arquivos dentro de Jul2026
+Jul2026/**
+
+# Não ignora subpastas (necessário para que as exceções funcionem)
+!Jul2026/**/
+# Permite apenas os arquivos com extensões desejadas
+!Jul2026/**/*.c
+!Jul2026/**/*.h
+!Jul2026/**/*.C
+!Jul2026/**/*.H
+!Jul2026/**/*.cpp
+!Jul2026/**/*.hpp
+!Jul2026/**/*.cxx
+!Jul2026/**/*.hxx
+!Jul2026/**/*.inl
+
