@@ -8,8 +8,6 @@ import logging
 from dotenv import load_dotenv
 from pathlib import Path
 
-
-MAX_REPOS = 500; 
 # Get the path to the current file's directory and point to .env
 env_path = Path(__file__).resolve().parent / '.env'
 load_dotenv(dotenv_path=env_path)
@@ -128,8 +126,6 @@ for repo in repos:
     j += 1
     print("[Repositorio: " + str(j) + "]\n[id: " + str(id) + "]\n[descricao: " + str(description) + "]")
     logging.info("[Repositorio: " + str(j) + "]\n[id: " + str(id) + "]\n[descricao: " + str(description) + "]")
-    if j >= MAX_REPOS:
-        break
 tempo_final = time.time()
 # Calcula e imprime o tempo de execucao
 tempo_total = tempo_final - tempo_inicial
