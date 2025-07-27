@@ -43,3 +43,7 @@ Jul2026/**
 !Jul2026/**/*.hxx
 !Jul2026/**/*.inl
 
+# Permite log.txt e repos_openmp.csv
+!Jul2026/RepC/log.txt
+!Jul2026/RepC/repos_openmp.csv
+
