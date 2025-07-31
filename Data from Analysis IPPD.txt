@@ -1,0 +1,53 @@
+Data from Analysis IPPD
+
+Command: awk -f AWK/CountingClausesAtomic.awk Jul2026/RepC/*/*.* Jul2026/RepCPP/*/*.*
+Retuned: 
+Update & write & read & compare & capture & hint\\ 
+940 & 215 & 207 & 13 & 200 & 0\\
+Default: 724
+Total: 1575
+
+Command: grep -E "^#pragma omp critical[ \t]*(\(.+\))" Jul2026/RepC*/*/*.* | wc -l
+Returned: 233
+
+Command: awk -f AWK/casosCritical.awk Jul2026/RepC*/*/*.* 
+Returned: 
+Total de Incrementos: 44
+Total de Atribuições Compostas: 127
+Total de Leituras ou Escritas Simples: 307
+Total de While em Bloco: 4
+Total de For em Bloco: 25
+Total de If em Bloco: 27
+
+Command: awk -f AWK/contaScheduleFor.awk Jul2026/RepC*/*/*.*
+Returned: 
+static: 556
+dynamic: 154
+guided: 66
+auto: 26
+runtime: 153
+static_chunk: 213
+dynamic_chunk: 228
+guided_chunk: 125
+auto_chunk: 0
+runtime_chunk: 0
+total: 1563
+parallel for & & 653/405 & 246/680 & 86/135 & 248/0 & 164/0 & 83\\
+for & & 556/213 & 154/228 & 66/125 & 26/0 & 153/0 & 42\\
+
+Command: grep -E "^#pragma omp parallel for" Jul2026/RepC*/*/*.* | grep -v schedule  | wc -l
+Retuned: 5729
+
+Command: grep -E "^#pragma omp  for" Jul2026/RepC*/*/*.* | grep -v schedule  | wc -l
+Returned: 3
+
+Command: awk -f AWK/unbalancedLoop.awk Jul2026/RepC*/*/*.*
+Returned: 
+None & static & dynamic & guided & auto & runtime \\
+1722 & 313 & 396 & 123 & 24 & 89\\
+
+Command: awk -f AWK/closeParallelFor.awk Jul2026/RepC*/*/*.* | wc -l
+Returned: 493
+
+
+
