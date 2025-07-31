@@ -30,32 +30,32 @@ namespace asio {
 namespace detail {
 
 class null_thread
-  : private noncopyable
+: private noncopyable
 {
 public:
-  // Constructor.
-  template <typename Function>
-  null_thread(Function, unsigned int = 0)
-  {
-    boost::asio::detail::throw_error(
-        boost::asio::error::operation_not_supported, "thread");
-  }
+// Constructor.
+template <typename Function>
+null_thread(Function, unsigned int = 0)
+{
+boost::asio::detail::throw_error(
+boost::asio::error::operation_not_supported, "thread");
+}
 
-  // Destructor.
-  ~null_thread()
-  {
-  }
+// Destructor.
+~null_thread()
+{
+}
 
-  // Wait for the thread to exit.
-  void join()
-  {
-  }
+// Wait for the thread to exit.
+void join()
+{
+}
 
-  // Get number of CPUs.
-  static std::size_t hardware_concurrency()
-  {
-    return 1;
-  }
+// Get number of CPUs.
+static std::size_t hardware_concurrency()
+{
+return 1;
+}
 };
 
 } // namespace detail

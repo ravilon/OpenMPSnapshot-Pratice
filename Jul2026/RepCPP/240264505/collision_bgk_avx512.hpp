@@ -1,12 +1,12 @@
 #ifndef LBT_COLLISION_BGK_AVX512
 #define LBT_COLLISION_BGK_AVX512
 
-/**
- * \file     collision_bgk_avx512.hpp
+/**
+ * \file     collision_bgk_avx512.hpp
  * \mainpage BGK collision operator with AVX512 intrinsics
  * \author   Tobit Flatscher (github.com/2b-t)
  *
- * \warning  Requires AVX512 and cache-aligned arrays
+ * \warning  Requires AVX512 and cache-aligned arrays
 */
 
 #include <algorithm>

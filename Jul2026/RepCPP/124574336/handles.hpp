@@ -1,10 +1,10 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_HANDLES_HPP_INCLUDED_
 #define BOOST_WINAPI_HANDLES_HPP_INCLUDED_
@@ -23,19 +23,19 @@ CloseHandle(boost::winapi::HANDLE_ handle);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 DuplicateHandle(
-    boost::winapi::HANDLE_ hSourceProcessHandle,
-    boost::winapi::HANDLE_ hSourceHandle,
-    boost::winapi::HANDLE_ hTargetProcessHandle,
-    boost::winapi::HANDLE_* lpTargetHandle,
-    boost::winapi::DWORD_ dwDesiredAccess,
-    boost::winapi::BOOL_ bInheritHandle,
-    boost::winapi::DWORD_ dwOptions);
+boost::winapi::HANDLE_ hSourceProcessHandle,
+boost::winapi::HANDLE_ hSourceHandle,
+boost::winapi::HANDLE_ hTargetProcessHandle,
+boost::winapi::HANDLE_* lpTargetHandle,
+boost::winapi::DWORD_ dwDesiredAccess,
+boost::winapi::BOOL_ bInheritHandle,
+boost::winapi::DWORD_ dwOptions);
 
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_WIN10
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 CompareObjectHandles(
-    boost::winapi::HANDLE_ hFirstObjectHandle,
-    boost::winapi::HANDLE_ hSecondObjectHandle);
+boost::winapi::HANDLE_ hFirstObjectHandle,
+boost::winapi::HANDLE_ hSecondObjectHandle);
 #endif
 } // extern "C"
 #endif

@@ -1,9 +1,9 @@
 /*
- * Copyright 2020 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2020 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_GET_PROC_ADDRESS_HPP_INCLUDED_
 #define BOOST_WINAPI_GET_PROC_ADDRESS_HPP_INCLUDED_
@@ -66,9 +66,9 @@ using ::GetProcAddressW;
 BOOST_FORCEINLINE FARPROC_ get_proc_address(HMODULE_ hModule, LPCSTR_ lpProcName)
 {
 #if !defined(UNDER_CE)
-    return ::GetProcAddress(hModule, lpProcName);
+return ::GetProcAddress(hModule, lpProcName);
 #else
-    return ::GetProcAddressA(hModule, lpProcName);
+return ::GetProcAddressA(hModule, lpProcName);
 #endif
 }
 

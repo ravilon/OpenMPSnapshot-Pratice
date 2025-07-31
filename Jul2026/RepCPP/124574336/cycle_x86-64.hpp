@@ -34,21 +34,21 @@ cycle_type cycles()
 inline
 cycle_type cycles()
 {
-    boost::uint32_t lo, hi;
+boost::uint32_t lo, hi;
 
-    __asm__ __volatile__ (
-        "xorl %%eax, %%eax\n"
-        "cpuid\n"
-        ::: "%rax", "%rbx", "%rcx", "%rdx"
-    );
-    __asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi) );
-    __asm__ __volatile__ (
-        "xorl %%eax, %%eax\n"
-        "cpuid\n"
-        ::: "%rax", "%rbx", "%rcx", "%rdx"
-    );
+__asm__ __volatile__ (
+"xorl %%eax, %%eax\n"
+"cpuid\n"
+::: "%rax", "%rbx", "%rcx", "%rdx"
+);
+__asm__ __volatile__ ("rdtsc" : "=a" (lo), "=d" (hi) );
+__asm__ __volatile__ (
+"xorl %%eax, %%eax\n"
+"cpuid\n"
+::: "%rax", "%rbx", "%rcx", "%rdx"
+);
 
-    return ( cycle_type)hi << 32 | lo; 
+return ( cycle_type)hi << 32 | lo; 
 }
 #else
 # error "this compiler is not supported"
@@ -56,24 +56,24 @@ cycle_type cycles()
 
 struct cycle_overhead
 {
-    cycle_type operator()()
-    {
-        cycle_type start( cycles() );
-        return cycles() - start;
-    }
+cycle_type operator()()
+{
+cycle_type start( cycles() );
+return cycles() - start;
+}
 };
 
 inline
 cycle_type overhead_cycle()
 {
-    std::size_t iterations( 10);
-    std::vector< cycle_type >  overhead( iterations, 0);
-    for ( std::size_t i( 0); i < iterations; ++i)
-        std::generate(
-            overhead.begin(), overhead.end(),
-            cycle_overhead() );
-    BOOST_ASSERT( overhead.begin() != overhead.end() );
-    return std::accumulate( overhead.begin(), overhead.end(), 0) / iterations;
+std::size_t iterations( 10);
+std::vector< cycle_type >  overhead( iterations, 0);
+for ( std::size_t i( 0); i < iterations; ++i)
+std::generate(
+overhead.begin(), overhead.end(),
+cycle_overhead() );
+BOOST_ASSERT( overhead.begin() != overhead.end() );
+return std::accumulate( overhead.begin(), overhead.end(), 0) / iterations;
 }
 
 #endif // CYCLE_X86_64_H

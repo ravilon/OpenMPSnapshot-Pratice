@@ -30,49 +30,49 @@ namespace asio {
 namespace detail {
 
 class io_uring_operation
-  : public operation
+: public operation
 {
 public:
-  // The error code to be passed to the completion handler.
-  boost::system::error_code ec_;
+// The error code to be passed to the completion handler.
+boost::system::error_code ec_;
 
-  // The number of bytes transferred, to be passed to the completion handler.
-  std::size_t bytes_transferred_;
+// The number of bytes transferred, to be passed to the completion handler.
+std::size_t bytes_transferred_;
 
-  // The operation key used for targeted cancellation.
-  void* cancellation_key_;
+// The operation key used for targeted cancellation.
+void* cancellation_key_;
 
-  // Prepare the operation.
-  void prepare(::io_uring_sqe* sqe)
-  {
-    return prepare_func_(this, sqe);
-  }
+// Prepare the operation.
+void prepare(::io_uring_sqe* sqe)
+{
+return prepare_func_(this, sqe);
+}
 
-  // Perform actions associated with the operation. Returns true when complete.
-  bool perform(bool after_completion)
-  {
-    return perform_func_(this, after_completion);
-  }
+// Perform actions associated with the operation. Returns true when complete.
+bool perform(bool after_completion)
+{
+return perform_func_(this, after_completion);
+}
 
 protected:
-  typedef void (*prepare_func_type)(io_uring_operation*, ::io_uring_sqe*);
-  typedef bool (*perform_func_type)(io_uring_operation*, bool);
+typedef void (*prepare_func_type)(io_uring_operation*, ::io_uring_sqe*);
+typedef bool (*perform_func_type)(io_uring_operation*, bool);
 
-  io_uring_operation(const boost::system::error_code& success_ec,
-      prepare_func_type prepare_func, perform_func_type perform_func,
-      func_type complete_func)
-    : operation(complete_func),
-      ec_(success_ec),
-      bytes_transferred_(0),
-      cancellation_key_(0),
-      prepare_func_(prepare_func),
-      perform_func_(perform_func)
-  {
-  }
+io_uring_operation(const boost::system::error_code& success_ec,
+prepare_func_type prepare_func, perform_func_type perform_func,
+func_type complete_func)
+: operation(complete_func),
+ec_(success_ec),
+bytes_transferred_(0),
+cancellation_key_(0),
+prepare_func_(prepare_func),
+perform_func_(perform_func)
+{
+}
 
 private:
-  prepare_func_type prepare_func_;
-  perform_func_type perform_func_;
+prepare_func_type prepare_func_;
+perform_func_type perform_func_;
 };
 
 } // namespace detail

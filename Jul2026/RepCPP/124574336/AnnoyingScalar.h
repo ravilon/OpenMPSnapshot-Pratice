@@ -19,8 +19,8 @@
 #ifndef EIGEN_TEST_ANNOYING_SCALAR_DONT_THROW
 struct my_exception
 {
-  my_exception() {}
-  ~my_exception() {}
+my_exception() {}
+~my_exception() {}
 };
 #endif
 
@@ -30,72 +30,72 @@ struct my_exception
 
 class AnnoyingScalar
 {
-  public:
-    AnnoyingScalar()                { init(); *v = 0;  }
-    AnnoyingScalar(long double _v)  { init(); *v = _v; }
-    AnnoyingScalar(double _v)       { init(); *v = _v; }
-    AnnoyingScalar(float _v)        { init(); *v = _v; }
-    AnnoyingScalar(int _v)          { init(); *v = _v; }
-    AnnoyingScalar(long _v)         { init(); *v = _v; }
-    #if EIGEN_HAS_CXX11
-    AnnoyingScalar(long long _v)    { init(); *v = _v; }
-    #endif
-    AnnoyingScalar(const AnnoyingScalar& other) { init(); *v = *(other.v); }
-    ~AnnoyingScalar() {
-      if(v!=&data)
-        delete v;
-      instances--;
-    }
+public:
+AnnoyingScalar()                { init(); *v = 0;  }
+AnnoyingScalar(long double _v)  { init(); *v = _v; }
+AnnoyingScalar(double _v)       { init(); *v = _v; }
+AnnoyingScalar(float _v)        { init(); *v = _v; }
+AnnoyingScalar(int _v)          { init(); *v = _v; }
+AnnoyingScalar(long _v)         { init(); *v = _v; }
+#if EIGEN_HAS_CXX11
+AnnoyingScalar(long long _v)    { init(); *v = _v; }
+#endif
+AnnoyingScalar(const AnnoyingScalar& other) { init(); *v = *(other.v); }
+~AnnoyingScalar() {
+if(v!=&data)
+delete v;
+instances--;
+}
 
-    void init() {
-      if(internal::random<bool>())
-        v = new float;
-      else
-        v = &data;
-      instances++;
-    }
+void init() {
+if(internal::random<bool>())
+v = new float;
+else
+v = &data;
+instances++;
+}
 
-    AnnoyingScalar operator+(const AnnoyingScalar& other) const
-    {
-      #ifndef EIGEN_TEST_ANNOYING_SCALAR_DONT_THROW
-      countdown--;
-      if(countdown<=0 && !dont_throw)
-        throw my_exception();
-      #endif
-      return AnnoyingScalar(*v+*other.v);
-    }
-
-    AnnoyingScalar operator-() const
-    { return AnnoyingScalar(-*v); }
-    
-    AnnoyingScalar operator-(const AnnoyingScalar& other) const
-    { return AnnoyingScalar(*v-*other.v); }
-    
-    AnnoyingScalar operator*(const AnnoyingScalar& other) const
-    { return AnnoyingScalar((*v)*(*other.v)); }
-
-    AnnoyingScalar operator/(const AnnoyingScalar& other) const
-    { return AnnoyingScalar((*v)/(*other.v)); }
-
-    AnnoyingScalar& operator+=(const AnnoyingScalar& other) { *v += *other.v; return *this; }
-    AnnoyingScalar& operator-=(const AnnoyingScalar& other) { *v -= *other.v; return *this; }
-    AnnoyingScalar& operator*=(const AnnoyingScalar& other) { *v *= *other.v; return *this; }
-    AnnoyingScalar& operator/=(const AnnoyingScalar& other) { *v /= *other.v; return *this; }
-    AnnoyingScalar& operator= (const AnnoyingScalar& other) { *v  = *other.v; return *this; }
-
-    bool operator==(const AnnoyingScalar& other) const { return *v == *other.v; }
-    bool operator!=(const AnnoyingScalar& other) const { return *v != *other.v; }
-    bool operator<=(const AnnoyingScalar& other) const { return *v <= *other.v; }
-    bool operator< (const AnnoyingScalar& other) const { return *v <  *other.v; }
-    bool operator>=(const AnnoyingScalar& other) const { return *v >= *other.v; }
-    bool operator> (const AnnoyingScalar& other) const { return *v >  *other.v; }
-  
-    float* v;
-    float data;
-    static int instances;
+AnnoyingScalar operator+(const AnnoyingScalar& other) const
+{
 #ifndef EIGEN_TEST_ANNOYING_SCALAR_DONT_THROW
-    static int countdown;
-    static bool dont_throw;
+countdown--;
+if(countdown<=0 && !dont_throw)
+throw my_exception();
+#endif
+return AnnoyingScalar(*v+*other.v);
+}
+
+AnnoyingScalar operator-() const
+{ return AnnoyingScalar(-*v); }
+
+AnnoyingScalar operator-(const AnnoyingScalar& other) const
+{ return AnnoyingScalar(*v-*other.v); }
+
+AnnoyingScalar operator*(const AnnoyingScalar& other) const
+{ return AnnoyingScalar((*v)*(*other.v)); }
+
+AnnoyingScalar operator/(const AnnoyingScalar& other) const
+{ return AnnoyingScalar((*v)/(*other.v)); }
+
+AnnoyingScalar& operator+=(const AnnoyingScalar& other) { *v += *other.v; return *this; }
+AnnoyingScalar& operator-=(const AnnoyingScalar& other) { *v -= *other.v; return *this; }
+AnnoyingScalar& operator*=(const AnnoyingScalar& other) { *v *= *other.v; return *this; }
+AnnoyingScalar& operator/=(const AnnoyingScalar& other) { *v /= *other.v; return *this; }
+AnnoyingScalar& operator= (const AnnoyingScalar& other) { *v  = *other.v; return *this; }
+
+bool operator==(const AnnoyingScalar& other) const { return *v == *other.v; }
+bool operator!=(const AnnoyingScalar& other) const { return *v != *other.v; }
+bool operator<=(const AnnoyingScalar& other) const { return *v <= *other.v; }
+bool operator< (const AnnoyingScalar& other) const { return *v <  *other.v; }
+bool operator>=(const AnnoyingScalar& other) const { return *v >= *other.v; }
+bool operator> (const AnnoyingScalar& other) const { return *v >  *other.v; }
+
+float* v;
+float data;
+static int instances;
+#ifndef EIGEN_TEST_ANNOYING_SCALAR_DONT_THROW
+static int countdown;
+static bool dont_throw;
 #endif
 };
 
@@ -110,8 +110,8 @@ AnnoyingScalar acos(const AnnoyingScalar &x) { return std::acos(*x.v); }
 AnnoyingScalar atan2(const AnnoyingScalar &y,const AnnoyingScalar &x) { return std::atan2(*y.v,*x.v); }
 
 std::ostream& operator<<(std::ostream& stream,const AnnoyingScalar& x) {
-  stream << (*(x.v));
-  return stream;
+stream << (*(x.v));
+return stream;
 }
 
 int AnnoyingScalar::instances = 0;
@@ -125,13 +125,13 @@ namespace Eigen {
 template<>
 struct NumTraits<AnnoyingScalar> : NumTraits<float>
 {
-  enum {
-    RequireInitialization = 1,
-  };
-  typedef AnnoyingScalar Real;
-  typedef AnnoyingScalar Nested;
-  typedef AnnoyingScalar Literal;
-  typedef AnnoyingScalar NonInteger;
+enum {
+RequireInitialization = 1,
+};
+typedef AnnoyingScalar Real;
+typedef AnnoyingScalar Nested;
+typedef AnnoyingScalar Literal;
+typedef AnnoyingScalar NonInteger;
 };
 
 template<> inline AnnoyingScalar test_precision<AnnoyingScalar>() { return test_precision<float>(); }
@@ -140,13 +140,13 @@ namespace numext {
 template<>
 EIGEN_DEVICE_FUNC EIGEN_ALWAYS_INLINE
 bool (isfinite)(const AnnoyingScalar& x) {
-  return (numext::isfinite)(*x.v);
+return (numext::isfinite)(*x.v);
 }
 }
 
 namespace internal {
-  template<> EIGEN_STRONG_INLINE double cast(const AnnoyingScalar& x) { return double(*x.v); }
-  template<> EIGEN_STRONG_INLINE float  cast(const AnnoyingScalar& x) { return *x.v; }
+template<> EIGEN_STRONG_INLINE double cast(const AnnoyingScalar& x) { return double(*x.v); }
+template<> EIGEN_STRONG_INLINE float  cast(const AnnoyingScalar& x) { return *x.v; }
 }
 }  // namespace Eigen
 

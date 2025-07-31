@@ -1,9 +1,9 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_GET_CURRENT_PROCESS_ID_HPP_INCLUDED_
 #define BOOST_WINAPI_GET_CURRENT_PROCESS_ID_HPP_INCLUDED_

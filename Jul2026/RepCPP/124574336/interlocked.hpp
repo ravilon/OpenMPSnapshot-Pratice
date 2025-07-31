@@ -60,51 +60,51 @@
 # include <windows.h>
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-    InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
+InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-    InterlockedExchangePointer((void**)(dest), (void*)(exchange))
+InterlockedExchangePointer((void**)(dest), (void*)(exchange))
 
 #elif defined( BOOST_USE_INTRIN_H ) || defined( BOOST_INTERLOCKED_HAS_INTRIN_H )
 
 #include <intrin.h>
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    _InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    _InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    _InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+_InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    _InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+_InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    _InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+_InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 
 // Note: Though MSVC-12 defines _InterlockedCompareExchangePointer and _InterlockedExchangePointer in intrin.h, the latter
 //       is actually broken as it conflicts with winnt.h from Windows SDK 8.1.
 # if (defined(_MSC_VER) && _MSC_VER >= 1900) || \
-  (defined(_M_IA64) || defined(_M_AMD64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_ARM64))
+(defined(_M_IA64) || defined(_M_AMD64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_ARM64))
 
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-     _InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
+_InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-     _InterlockedExchangePointer((void**)(dest), (void*)(exchange))
+_InterlockedExchangePointer((void**)(dest), (void*)(exchange))
 
 # else
 
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-    ((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
+((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-    ((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
+((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
 
 # endif
 
@@ -119,15 +119,15 @@ extern "C" BOOST_INTERLOCKED_LONG32 __cdecl _InterlockedExchange( BOOST_INTERLOC
 extern "C" BOOST_INTERLOCKED_LONG32 __cdecl _InterlockedExchangeAdd( BOOST_INTERLOCKED_LONG32 volatile *, BOOST_INTERLOCKED_LONG32 );
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    _InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    _InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    _InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+_InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    _InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+_InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    _InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+_InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 
 #else // _WIN32_WCE >= 0x600
 
@@ -140,22 +140,22 @@ extern "C" BOOST_INTERLOCKED_LONG32 __cdecl InterlockedExchange( BOOST_INTERLOCK
 extern "C" BOOST_INTERLOCKED_LONG32 __cdecl InterlockedExchangeAdd( BOOST_INTERLOCKED_LONG32 *, BOOST_INTERLOCKED_LONG32 );
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 
 #endif // _WIN32_WCE >= 0x600
 
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-    ((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
+((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
 # define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-    ((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
+((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
 
 #elif defined( BOOST_MSVC ) || defined( BOOST_INTEL_WIN )
 
@@ -190,31 +190,31 @@ extern "C" void* BOOST_INTERLOCKED_CLRCALL_PURE_OR_CDECL _InterlockedExchangePoi
 #  endif
 
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-     _InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
+_InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-     _InterlockedExchangePointer((void**)(dest), (void*)(exchange))
+_InterlockedExchangePointer((void**)(dest), (void*)(exchange))
 
 # else
 
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-    ((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
+((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare)))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-    ((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
+((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange)))
 
 # endif
 
 # undef BOOST_INTERLOCKED_CLRCALL_PURE_OR_CDECL
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    _InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    _InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+_InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    _InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+_InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    _InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+_InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    _InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+_InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 
 #elif defined( WIN32 ) || defined( _WIN32 ) || defined( __WIN32__ )
 
@@ -242,26 +242,26 @@ extern "C" BOOST_INTERLOCKED_IMPORT void* __stdcall InterlockedExchangePointer( 
 } // namespace boost
 
 # define BOOST_INTERLOCKED_INCREMENT(dest) \
-    ::boost::detail::InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
+::boost::detail::InterlockedIncrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_DECREMENT(dest) \
-    ::boost::detail::InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
+::boost::detail::InterlockedDecrement((BOOST_INTERLOCKED_LONG32*)(dest))
 # define BOOST_INTERLOCKED_COMPARE_EXCHANGE(dest, exchange, compare) \
-    ::boost::detail::InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
+::boost::detail::InterlockedCompareExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange), (BOOST_INTERLOCKED_LONG32)(compare))
 # define BOOST_INTERLOCKED_EXCHANGE(dest, exchange) \
-    ::boost::detail::InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
+::boost::detail::InterlockedExchange((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(exchange))
 # define BOOST_INTERLOCKED_EXCHANGE_ADD(dest, add) \
-    ::boost::detail::InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
+::boost::detail::InterlockedExchangeAdd((BOOST_INTERLOCKED_LONG32*)(dest), (BOOST_INTERLOCKED_LONG32)(add))
 
 # if defined(_M_IA64) || defined(_M_AMD64) || defined(_M_ARM64)
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-     ::boost::detail::InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
+::boost::detail::InterlockedCompareExchangePointer((void**)(dest), (void*)(exchange), (void*)(compare))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-     ::boost::detail::InterlockedExchangePointer((void**)(dest), (void*)(exchange))
+::boost::detail::InterlockedExchangePointer((void**)(dest), (void*)(exchange))
 # else
 #  define BOOST_INTERLOCKED_COMPARE_EXCHANGE_POINTER(dest, exchange, compare) \
-    ((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32 volatile*)(dest),(BOOST_INTERLOCKED_LONG32)(exchange),(BOOST_INTERLOCKED_LONG32)(compare)))
+((void*)BOOST_INTERLOCKED_COMPARE_EXCHANGE((BOOST_INTERLOCKED_LONG32 volatile*)(dest),(BOOST_INTERLOCKED_LONG32)(exchange),(BOOST_INTERLOCKED_LONG32)(compare)))
 #  define BOOST_INTERLOCKED_EXCHANGE_POINTER(dest, exchange) \
-    ((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest),(BOOST_INTERLOCKED_LONG32)(exchange)))
+((void*)BOOST_INTERLOCKED_EXCHANGE((BOOST_INTERLOCKED_LONG32*)(dest),(BOOST_INTERLOCKED_LONG32)(exchange)))
 # endif
 
 #else

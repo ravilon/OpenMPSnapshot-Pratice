@@ -36,12 +36,12 @@ namespace detail {
 template< class Type >
 struct manage_bimap_key
 {
-    typedef -SetType- type;
+typedef -SetType- type;
 }
 \endcode
 
 See also bimap, bimap_core.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -51,23 +51,23 @@ struct manage_bimap_key
 
 typedef BOOST_DEDUCED_TYPENAME
 
-    mpl::eval_if< BOOST_DEDUCED_TYPENAME is_set_type_of< Type >::type,
-    // {
-            mpl::identity< Type >,
-    // }
-    // else
-    // {
-            // Default it to a set
-            mpl::identity< set_of< Type > >
-    // }
+mpl::eval_if< BOOST_DEDUCED_TYPENAME is_set_type_of< Type >::type,
+// {
+mpl::identity< Type >,
+// }
+// else
+// {
+// Default it to a set
+mpl::identity< set_of< Type > >
+// }
 
-    >::type set_type;
+>::type set_type;
 
-    // Returns set_type and evaluate the concept_checked_type
+// Returns set_type and evaluate the concept_checked_type
 
-    typedef BOOST_DEDUCED_TYPENAME mpl::if_c< true, set_type, 
-        BOOST_DEDUCED_TYPENAME set_type::lazy_concept_checked::type
-    >::type type;
+typedef BOOST_DEDUCED_TYPENAME mpl::if_c< true, set_type, 
+BOOST_DEDUCED_TYPENAME set_type::lazy_concept_checked::type
+>::type type;
 };
 
 

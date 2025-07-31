@@ -31,11 +31,11 @@ struct is_applicable_property_trait : false_type
 
 template <typename T, typename Property>
 struct is_applicable_property_trait<T, Property,
-  typename void_type<
-    typename enable_if<
-      !!Property::template is_applicable_property_v<T>
-    >::type
-  >::type> : true_type
+typename void_type<
+typename enable_if<
+!!Property::template is_applicable_property_v<T>
+>::type
+>::type> : true_type
 {
 };
 
@@ -45,7 +45,7 @@ struct is_applicable_property_trait<T, Property,
 
 template <typename T, typename Property, typename = void>
 struct is_applicable_property :
-  detail::is_applicable_property_trait<T, Property>
+detail::is_applicable_property_trait<T, Property>
 {
 };
 
@@ -53,7 +53,7 @@ struct is_applicable_property :
 
 template <typename T, typename Property>
 BOOST_ASIO_CONSTEXPR const bool is_applicable_property_v
-  = is_applicable_property<T, Property>::value;
+= is_applicable_property<T, Property>::value;
 
 #endif // defined(BOOST_ASIO_HAS_VARIABLE_TEMPLATES)
 

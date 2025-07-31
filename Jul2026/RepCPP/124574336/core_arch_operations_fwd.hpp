@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2020 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/core_arch_operations_fwd.hpp
- *
- * This header contains forward declaration of the \c core_arch_operations template.
- */
+* \file   atomic/detail/core_arch_operations_fwd.hpp
+*
+* This header contains forward declaration of the \c core_arch_operations template.
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_CORE_ARCH_OPERATIONS_FWD_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_CORE_ARCH_OPERATIONS_FWD_HPP_INCLUDED_

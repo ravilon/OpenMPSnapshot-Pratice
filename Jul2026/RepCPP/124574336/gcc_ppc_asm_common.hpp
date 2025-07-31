@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2021 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2021 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/gcc_ppc_asm_common.hpp
- *
- * This header contains basic utilities for gcc asm-based PowerPC backend.
- */
+* \file   atomic/detail/gcc_ppc_asm_common.hpp
+*
+* This header contains basic utilities for gcc asm-based PowerPC backend.
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_GCC_PPC_ASM_COMMON_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_GCC_PPC_ASM_COMMON_HPP_INCLUDED_

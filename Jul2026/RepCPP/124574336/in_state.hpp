@@ -15,18 +15,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 namespace boost { namespace spirit { namespace qi
 {
-    ///////////////////////////////////////////////////////////////////////////
-    // The following is a helper template allowing to use the in_state()[] as 
-    // a skip parser
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Skipper, typename String = char const*>
-    struct in_state_skipper
-      : proto::subscript<
-            typename proto::terminal<
-                terminal_ex<tag::in_state, fusion::vector1<String> > 
-            >::type
-          , Skipper
-        >::type {};
+///////////////////////////////////////////////////////////////////////////
+// The following is a helper template allowing to use the in_state()[] as 
+// a skip parser
+///////////////////////////////////////////////////////////////////////////
+template <typename Skipper, typename String = char const*>
+struct in_state_skipper
+: proto::subscript<
+typename proto::terminal<
+terminal_ex<tag::in_state, fusion::vector1<String> > 
+>::type
+, Skipper
+>::type {};
 }}}
 
 #endif

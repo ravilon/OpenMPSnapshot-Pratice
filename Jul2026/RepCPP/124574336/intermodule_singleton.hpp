@@ -23,9 +23,9 @@
 #include <boost/interprocess/detail/workaround.hpp>
 
 #ifdef BOOST_INTERPROCESS_WINDOWS
-   #include <boost/interprocess/detail/windows_intermodule_singleton.hpp>
+#include <boost/interprocess/detail/windows_intermodule_singleton.hpp>
 #else
-   #include <boost/interprocess/detail/portable_intermodule_singleton.hpp>
+#include <boost/interprocess/detail/portable_intermodule_singleton.hpp>
 #endif
 
 namespace boost{
@@ -37,11 +37,11 @@ namespace ipcdetail{
 //then the singleton will be initialized when loading the module.
 template<typename C, bool LazyInit = true, bool Phoenix = false>
 class intermodule_singleton
-   #ifdef BOOST_INTERPROCESS_WINDOWS
-   : public windows_intermodule_singleton<C, LazyInit, Phoenix>
-   #else
-   : public portable_intermodule_singleton<C, LazyInit, Phoenix>
-   #endif
+#ifdef BOOST_INTERPROCESS_WINDOWS
+: public windows_intermodule_singleton<C, LazyInit, Phoenix>
+#else
+: public portable_intermodule_singleton<C, LazyInit, Phoenix>
+#endif
 {};
 
 }  //namespace ipcdetail{

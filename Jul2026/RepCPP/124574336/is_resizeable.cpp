@@ -11,7 +11,7 @@
 
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-    #pragma warning(disable:4996)
+#pragma warning(disable:4996)
 #endif
 
 #define BOOST_TEST_MODULE odeint_nt2_resize
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_SUITE( nt2_is_resizeable )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( is_resizeable, T, fp_types )
 {
-  BOOST_STATIC_ASSERT(( boost::numeric::odeint::is_resizeable< nt2::table<T> >::value ));
+BOOST_STATIC_ASSERT(( boost::numeric::odeint::is_resizeable< nt2::table<T> >::value ));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

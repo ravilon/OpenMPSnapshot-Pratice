@@ -27,7 +27,7 @@
 template< class Type, class Tag >
 struct default_tagged
 {
-    typedef {TaggedType} type;
+typedef {TaggedType} type;
 };
 \endcode
 
@@ -35,7 +35,7 @@ If the type is not tagged, this metafunction returns a tagged type with the
 default tag. If it is tagged, the returns the type unchanged.
 
 See also tagged, overwrite_tagged.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -51,13 +51,13 @@ namespace support {
 template< class Type, class DefaultTag >
 struct default_tagged
 {
-    typedef tagged<Type,DefaultTag> type;
+typedef tagged<Type,DefaultTag> type;
 };
 
 template< class Type, class OldTag, class NewTag >
 struct default_tagged< tagged< Type, OldTag >, NewTag >
 {
-    typedef tagged<Type,OldTag> type;
+typedef tagged<Type,OldTag> type;
 };
 
 } // namespace support

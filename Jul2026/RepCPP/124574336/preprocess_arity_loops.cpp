@@ -29,9 +29,9 @@ timestamp file
 #   define BOOST_FT_PREPROCESSING_MODE
 
 #   define BOOST_FT_HEADER \
-        BOOST_PP_SEQ_CAT((arity)(BOOST_FT_MAX_ARITY)(_)(BOOST_FT_mfp)).hpp
-    #define BOOST_FT_OUT_FILE \
-        BOOST_PP_STRINGIZE(../../../BOOST_FT_al_path/BOOST_FT_HEADER)
+BOOST_PP_SEQ_CAT((arity)(BOOST_FT_MAX_ARITY)(_)(BOOST_FT_mfp)).hpp
+#define BOOST_FT_OUT_FILE \
+BOOST_PP_STRINGIZE(../../../BOOST_FT_al_path/BOOST_FT_HEADER)
 
 #   define BOOST_FT_al_path boost/function_types/detail/components_impl
 #   include __FILE__

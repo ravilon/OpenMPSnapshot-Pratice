@@ -1,4 +1,4 @@
-#pragma once
-
-#include "weights.h"
-#include "mpi_grid.h"
+#pragma once
+
+#include "weights.h"
+#include "mpi_grid.h"

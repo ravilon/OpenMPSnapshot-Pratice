@@ -35,116 +35,116 @@ namespace _bi
 
 template<class R, class F> struct result_traits
 {
-    typedef R type;
+typedef R type;
 };
 
 struct unspecified {};
 
 template<class F> struct result_traits<unspecified, F>
 {
-    typedef typename F::result_type type;
+typedef typename F::result_type type;
 };
 
 template<class F> struct result_traits< unspecified, reference_wrapper<F> >
 {
-    typedef typename F::result_type type;
+typedef typename F::result_type type;
 };
 
 #if BOOST_CXX_VERSION >= 201700L
 
 template<class T> struct result_traits< unspecified, std::plus<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::minus<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::multiplies<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::divides<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::modulus<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::negate<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::equal_to<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::not_equal_to<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::greater<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::less<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::greater_equal<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::less_equal<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::logical_and<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::logical_or<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::logical_not<T> >
 {
-    typedef bool type;
+typedef bool type;
 };
 
 template<class T> struct result_traits< unspecified, std::bit_and<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::bit_or<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::bit_xor<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 template<class T> struct result_traits< unspecified, std::bit_not<T> >
 {
-    typedef T type;
+typedef T type;
 };
 
 #endif

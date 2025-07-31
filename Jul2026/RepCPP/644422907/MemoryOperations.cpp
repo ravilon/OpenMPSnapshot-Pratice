@@ -1,60 +1,60 @@
-/*
-	This file is part of Task-Aware HIP and is licensed under the terms contained in the COPYING and COPYING.LESSER files.
-
-	Copyright (C) 2021-2023 Barcelona Supercomputing Center (BSC)
-*/
-
-#include <cassert>
-
-#include <TAHIP.h>
-
-#include "common/RequestManager.hpp"
-
-using namespace tahip;
-
-#pragma GCC visibility push(default)
-
-extern "C" {
-
-hipError_t
-tahipMemcpyAsync(
-	void *dst, const void *src, size_t sizeBytes,
-	enum hipMemcpyKind kind, hipStream_t stream,
-	tahipRequest *requestPtr)
-{
-	hipError_t eret;
-	eret = hipMemcpyAsync(dst, src, sizeBytes, kind, stream);
-	if (eret != hipSuccess)
-		return eret;
-
-	Request *request = RequestManager::generateRequest(stream, (requestPtr == nullptr));
-	assert(request != nullptr);
-
-	if (requestPtr != nullptr)
-		*requestPtr = request;
-
-	return hipSuccess;
-}
-
-hipError_t
-tahipMemsetAsync(
-	void *devPtr, int value, size_t sizeBytes, hipStream_t stream,
-	tahipRequest *requestPtr)
-{
-	hipError_t eret;
-	eret = hipMemsetAsync(devPtr, value, sizeBytes, stream);
-	if (eret != hipSuccess)
-		return eret;
-
-	Request *request = RequestManager::generateRequest(stream, (requestPtr == nullptr));
-	assert(request != nullptr);
-
-	if (requestPtr != nullptr)
-		*requestPtr = request;
-
-	return hipSuccess;
-}
-
-} // extern C
-
-#pragma GCC visibility pop
+/*
+	This file is part of Task-Aware HIP and is licensed under the terms contained in the COPYING and COPYING.LESSER files.
+
+	Copyright (C) 2021-2023 Barcelona Supercomputing Center (BSC)
+*/
+
+#include <cassert>
+
+#include <TAHIP.h>
+
+#include "common/RequestManager.hpp"
+
+using namespace tahip;
+
+#pragma GCC visibility push(default)
+
+extern "C" {
+
+hipError_t
+tahipMemcpyAsync(
+	void *dst, const void *src, size_t sizeBytes,
+	enum hipMemcpyKind kind, hipStream_t stream,
+	tahipRequest *requestPtr)
+{
+	hipError_t eret;
+	eret = hipMemcpyAsync(dst, src, sizeBytes, kind, stream);
+	if (eret != hipSuccess)
+		return eret;
+
+	Request *request = RequestManager::generateRequest(stream, (requestPtr == nullptr));
+	assert(request != nullptr);
+
+	if (requestPtr != nullptr)
+		*requestPtr = request;
+
+	return hipSuccess;
+}
+
+hipError_t
+tahipMemsetAsync(
+	void *devPtr, int value, size_t sizeBytes, hipStream_t stream,
+	tahipRequest *requestPtr)
+{
+	hipError_t eret;
+	eret = hipMemsetAsync(devPtr, value, sizeBytes, stream);
+	if (eret != hipSuccess)
+		return eret;
+
+	Request *request = RequestManager::generateRequest(stream, (requestPtr == nullptr));
+	assert(request != nullptr);
+
+	if (requestPtr != nullptr)
+		*requestPtr = request;
+
+	return hipSuccess;
+}
+
+} // extern C
+
+#pragma GCC visibility pop

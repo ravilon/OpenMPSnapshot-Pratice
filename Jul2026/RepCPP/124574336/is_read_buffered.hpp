@@ -44,12 +44,12 @@ class is_read_buffered
 {
 public:
 #if defined(GENERATING_DOCUMENTATION)
-  /// The value member is true only if the Stream type supports buffering of
-  /// read data.
-  static const bool value;
+/// The value member is true only if the Stream type supports buffering of
+/// read data.
+static const bool value;
 #else
-  BOOST_ASIO_STATIC_CONSTANT(bool,
-      value = sizeof(detail::is_read_buffered_helper((Stream*)0)) == 1);
+BOOST_ASIO_STATIC_CONSTANT(bool,
+value = sizeof(detail::is_read_buffered_helper((Stream*)0)) == 1);
 #endif
 };
 

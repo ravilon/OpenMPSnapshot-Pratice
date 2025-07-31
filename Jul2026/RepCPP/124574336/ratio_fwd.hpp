@@ -18,13 +18,13 @@ See http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2798.pdf.
 
 time2_demo contained this comment:
 
-    Much thanks to Andrei Alexandrescu,
-                   Walter Brown,
-                   Peter Dimov,
-                   Jeff Garland,
-                   Terry Golubiewski,
-                   Daniel Krugler,
-                   Anthony Williams.
+Much thanks to Andrei Alexandrescu,
+Walter Brown,
+Peter Dimov,
+Jeff Garland,
+Terry Golubiewski,
+Daniel Krugler,
+Anthony Williams.
 */
 
 // The way overflow is managed for ratio_less is taken from llvm/libcxx/include/ratio

@@ -38,43 +38,43 @@ class condition_variable;
 
 class BOOST_FIBERS_DECL recursive_timed_mutex {
 private:
-    friend class condition_variable;
+friend class condition_variable;
 
-    detail::spinlock            wait_queue_splk_{};
-    wait_queue                  wait_queue_{};
-    context                 *   owner_{ nullptr };
-    std::size_t                 count_{ 0 };
+detail::spinlock            wait_queue_splk_{};
+wait_queue                  wait_queue_{};
+context                 *   owner_{ nullptr };
+std::size_t                 count_{ 0 };
 
-    bool try_lock_until_( std::chrono::steady_clock::time_point const& timeout_time) noexcept;
+bool try_lock_until_( std::chrono::steady_clock::time_point const& timeout_time) noexcept;
 
 public:
-    recursive_timed_mutex() = default;
+recursive_timed_mutex() = default;
 
-    ~recursive_timed_mutex() {
-        BOOST_ASSERT( nullptr == owner_);
-        BOOST_ASSERT( 0 == count_);
-        BOOST_ASSERT( wait_queue_.empty() );
-    }
+~recursive_timed_mutex() {
+BOOST_ASSERT( nullptr == owner_);
+BOOST_ASSERT( 0 == count_);
+BOOST_ASSERT( wait_queue_.empty() );
+}
 
-    recursive_timed_mutex( recursive_timed_mutex const&) = delete;
-    recursive_timed_mutex & operator=( recursive_timed_mutex const&) = delete;
+recursive_timed_mutex( recursive_timed_mutex const&) = delete;
+recursive_timed_mutex & operator=( recursive_timed_mutex const&) = delete;
 
-    void lock();
+void lock();
 
-    bool try_lock() noexcept;
+bool try_lock() noexcept;
 
-    template< typename Clock, typename Duration >
-    bool try_lock_until( std::chrono::time_point< Clock, Duration > const& timeout_time_) {
-        std::chrono::steady_clock::time_point timeout_time = detail::convert( timeout_time_);
-        return try_lock_until_( timeout_time);
-    }
+template< typename Clock, typename Duration >
+bool try_lock_until( std::chrono::time_point< Clock, Duration > const& timeout_time_) {
+std::chrono::steady_clock::time_point timeout_time = detail::convert( timeout_time_);
+return try_lock_until_( timeout_time);
+}
 
-    template< typename Rep, typename Period >
-    bool try_lock_for( std::chrono::duration< Rep, Period > const& timeout_duration) {
-        return try_lock_until_( std::chrono::steady_clock::now() + timeout_duration);
-    }
+template< typename Rep, typename Period >
+bool try_lock_for( std::chrono::duration< Rep, Period > const& timeout_duration) {
+return try_lock_until_( std::chrono::steady_clock::now() + timeout_duration);
+}
 
-    void unlock();
+void unlock();
 };
 
 }}

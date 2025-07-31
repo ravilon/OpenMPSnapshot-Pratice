@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2020 Andrey Semashev
+*/
 /*!
- * \file   bit_operation_tools.hpp
- *
- * This file contains bit operation tools
- */
+* \file   bit_operation_tools.hpp
+*
+* This file contains bit operation tools
+*/
 
 #ifndef BOOST_ATOMIC_BIT_OPERATION_TOOLS_HPP_INCLUDED_
 #define BOOST_ATOMIC_BIT_OPERATION_TOOLS_HPP_INCLUDED_
@@ -36,38 +36,38 @@ namespace detail {
 BOOST_FORCEINLINE unsigned int count_trailing_zeros(unsigned int x)
 {
 #if defined(__GNUC__)
-    return __builtin_ctz(x);
+return __builtin_ctz(x);
 #elif defined(_MSC_VER)
-    unsigned long index;
-    _BitScanForward(&index, x);
-    return static_cast< unsigned int >(index);
+unsigned long index;
+_BitScanForward(&index, x);
+return static_cast< unsigned int >(index);
 #else
-    unsigned int index = 0u;
-    if ((x & 0xFFFF) == 0u)
-    {
-        x >>= 16;
-        index += 16u;
-    }
-    if ((x & 0xFF) == 0u)
-    {
-        x >>= 8;
-        index += 8u;
-    }
-    if ((x & 0xF) == 0u)
-    {
-        x >>= 4;
-        index += 4u;
-    }
-    if ((x & 0x3) == 0u)
-    {
-        x >>= 2;
-        index += 2u;
-    }
-    if ((x & 0x1) == 0u)
-    {
-        index += 1u;
-    }
-    return index;
+unsigned int index = 0u;
+if ((x & 0xFFFF) == 0u)
+{
+x >>= 16;
+index += 16u;
+}
+if ((x & 0xFF) == 0u)
+{
+x >>= 8;
+index += 8u;
+}
+if ((x & 0xF) == 0u)
+{
+x >>= 4;
+index += 4u;
+}
+if ((x & 0x3) == 0u)
+{
+x >>= 2;
+index += 2u;
+}
+if ((x & 0x1) == 0u)
+{
+index += 1u;
+}
+return index;
 #endif
 }
 

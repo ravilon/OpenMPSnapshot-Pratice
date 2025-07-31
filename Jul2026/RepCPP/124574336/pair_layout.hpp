@@ -41,25 +41,25 @@ struct mirror_layout {};
 template< class Layout >
 struct inverse_layout
 {
-    typedef {InverseLayout} type;
+typedef {InverseLayout} type;
 };
 \endcode
 
 See also normal_layout, mirror_layout.
-                                                                    **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
 template< class Layout >
 struct inverse_layout
 {
-    typedef normal_layout type;
+typedef normal_layout type;
 };
 
 template<>
 struct inverse_layout< normal_layout >
 {
-    typedef mirror_layout type;
+typedef mirror_layout type;
 };
 
 #endif // BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES

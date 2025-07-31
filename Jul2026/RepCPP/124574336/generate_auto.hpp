@@ -18,44 +18,44 @@
 
 namespace boost { namespace spirit { namespace karma { namespace detail
 {
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Expr>
-    struct generate_impl<Expr
-      , typename enable_if<
-            mpl::and_<
-                traits::meta_create_exists<karma::domain, Expr>
-              , mpl::not_<traits::matches<karma::domain, Expr> > >
-        >::type>
-    {
-        template <typename OutputIterator>
-        static bool call(
-            OutputIterator& sink
-          , Expr const& expr)
-        {
-            return karma::generate(sink, create_generator<Expr>(), expr);
-        }
-    };
+///////////////////////////////////////////////////////////////////////////
+template <typename Expr>
+struct generate_impl<Expr
+, typename enable_if<
+mpl::and_<
+traits::meta_create_exists<karma::domain, Expr>
+, mpl::not_<traits::matches<karma::domain, Expr> > >
+>::type>
+{
+template <typename OutputIterator>
+static bool call(
+OutputIterator& sink
+, Expr const& expr)
+{
+return karma::generate(sink, create_generator<Expr>(), expr);
+}
+};
 
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Expr>
-    struct generate_delimited_impl<Expr
-      , typename enable_if<
-            mpl::and_<
-                traits::meta_create_exists<karma::domain, Expr>
-              , mpl::not_<traits::matches<karma::domain, Expr> > >
-        >::type>
-    {
-        template <typename OutputIterator, typename Delimiter>
-        static bool call(
-            OutputIterator& sink
-          , Expr const& expr
-          , Delimiter const& delimiter
-          , BOOST_SCOPED_ENUM(delimit_flag) pre_delimit)
-        {
-            return karma::generate_delimited(
-                sink, create_generator<Expr>(), delimiter, pre_delimit, expr);
-        }
-    };
+///////////////////////////////////////////////////////////////////////////
+template <typename Expr>
+struct generate_delimited_impl<Expr
+, typename enable_if<
+mpl::and_<
+traits::meta_create_exists<karma::domain, Expr>
+, mpl::not_<traits::matches<karma::domain, Expr> > >
+>::type>
+{
+template <typename OutputIterator, typename Delimiter>
+static bool call(
+OutputIterator& sink
+, Expr const& expr
+, Delimiter const& delimiter
+, BOOST_SCOPED_ENUM(delimit_flag) pre_delimit)
+{
+return karma::generate_delimited(
+sink, create_generator<Expr>(), delimiter, pre_delimit, expr);
+}
+};
 
 }}}}
 

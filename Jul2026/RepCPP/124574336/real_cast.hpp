@@ -14,14 +14,14 @@
 
 namespace boost{ namespace math
 {
-  namespace tools
-  {
-    template <class To, class T>
-    inline constexpr To real_cast(T t) noexcept(BOOST_MATH_IS_FLOAT(T) && BOOST_MATH_IS_FLOAT(To))
-    {
-       return static_cast<To>(t);
-    }
-  } // namespace tools
+namespace tools
+{
+template <class To, class T>
+inline constexpr To real_cast(T t) noexcept(BOOST_MATH_IS_FLOAT(T) && BOOST_MATH_IS_FLOAT(To))
+{
+return static_cast<To>(t);
+}
+} // namespace tools
 } // namespace math
 } // namespace boost
 

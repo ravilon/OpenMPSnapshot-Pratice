@@ -37,62 +37,62 @@ namespace iterators {
 
 // poor man's tri-state
 struct tri_state {
-    enum state_enum {
-        is_false = false,
-        is_true = true,
-        is_indeterminant
-    } m_state;
-    // convert to bool
-    operator bool (){
-        BOOST_ASSERT(is_indeterminant != m_state);
-        return is_true == m_state ? true : false;
-    }
-    // assign from bool
-    tri_state & operator=(bool rhs) {
-        m_state = rhs ? is_true : is_false;
-        return *this;
-    }
-    tri_state(bool rhs) :
-        m_state(rhs ? is_true : is_false)
-    {}
-    tri_state(state_enum state) :
-        m_state(state)
-    {}
-    bool operator==(const tri_state & rhs) const {
-        return m_state == rhs.m_state;
-    }
-    bool operator!=(const tri_state & rhs) const {
-        return m_state != rhs.m_state;
-    }
+enum state_enum {
+is_false = false,
+is_true = true,
+is_indeterminant
+} m_state;
+// convert to bool
+operator bool (){
+BOOST_ASSERT(is_indeterminant != m_state);
+return is_true == m_state ? true : false;
+}
+// assign from bool
+tri_state & operator=(bool rhs) {
+m_state = rhs ? is_true : is_false;
+return *this;
+}
+tri_state(bool rhs) :
+m_state(rhs ? is_true : is_false)
+{}
+tri_state(state_enum state) :
+m_state(state)
+{}
+bool operator==(const tri_state & rhs) const {
+return m_state == rhs.m_state;
+}
+bool operator!=(const tri_state & rhs) const {
+return m_state != rhs.m_state;
+}
 };
 
 /////////1/////////2/////////3/////////4/////////5/////////6/////////7/////////8
 // implement functions common to dataflow iterators
 template<class Derived>
 class dataflow {
-    bool m_eoi;
+bool m_eoi;
 protected:
-    // test for iterator equality
-    tri_state equal(const Derived & rhs) const {
-        if(m_eoi && rhs.m_eoi)
-            return true;
-        if(m_eoi || rhs.m_eoi)
-            return false;
-        return tri_state(tri_state::is_indeterminant);
-    }
-    void eoi(bool tf){
-        m_eoi = tf;
-    }
-    bool eoi() const {
-        return m_eoi;
-    }
+// test for iterator equality
+tri_state equal(const Derived & rhs) const {
+if(m_eoi && rhs.m_eoi)
+return true;
+if(m_eoi || rhs.m_eoi)
+return false;
+return tri_state(tri_state::is_indeterminant);
+}
+void eoi(bool tf){
+m_eoi = tf;
+}
+bool eoi() const {
+return m_eoi;
+}
 public:
-    dataflow(bool tf) :
-        m_eoi(tf)
-    {}
-    dataflow() : // used for iterator end
-        m_eoi(true)
-    {}
+dataflow(bool tf) :
+m_eoi(tf)
+{}
+dataflow() : // used for iterator end
+m_eoi(true)
+{}
 };
 
 } // namespace iterators

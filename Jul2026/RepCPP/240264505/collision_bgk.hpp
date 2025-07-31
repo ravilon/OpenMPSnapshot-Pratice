@@ -1,10 +1,10 @@
 #ifndef LBT_COLLISION_BGK
 #define LBT_COLLISION_BGK
 
-/**
- * \file     collision_bgk.hpp
+/**
+ * \file     collision_bgk.hpp
  * \mainpage BGK collision operator
- * \author   Tobit Flatscher (github.com/2b-t)
+ * \author   Tobit Flatscher (github.com/2b-t)
 */
 
 #include <algorithm>

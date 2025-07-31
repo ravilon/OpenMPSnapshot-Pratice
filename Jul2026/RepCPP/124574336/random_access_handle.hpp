@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_WINDOWS_RANDOM_ACCESS_HANDLE) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/windows/basic_random_access_handle.hpp>
 
@@ -34,6 +34,6 @@ typedef basic_random_access_handle<> random_access_handle;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_WINDOWS_RANDOM_ACCESS_HANDLE)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_WINDOWS_RANDOM_ACCESS_HANDLE_HPP

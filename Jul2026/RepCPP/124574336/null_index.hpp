@@ -36,37 +36,37 @@ namespace interprocess {
 template <class MapConfig>
 class null_index
 {
-   #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
-   typedef typename MapConfig::
-      segment_manager_base    segment_manager_base;
-   #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
+typedef typename MapConfig::
+segment_manager_base    segment_manager_base;
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 
-   public:
-   typedef int * iterator;
-   typedef const int * const_iterator;
+public:
+typedef int * iterator;
+typedef const int * const_iterator;
 
-   //!begin() is equal
-   //!to end()
-   const_iterator begin() const
-   {  return const_iterator(0);  }
+//!begin() is equal
+//!to end()
+const_iterator begin() const
+{  return const_iterator(0);  }
 
-   //!begin() is equal
-   //!to end()
-   iterator begin()
-   {  return iterator(0);  }
+//!begin() is equal
+//!to end()
+iterator begin()
+{  return iterator(0);  }
 
-   //!begin() is equal
-   //!to end()
-   const_iterator end() const
-   {  return const_iterator(0);  }
+//!begin() is equal
+//!to end()
+const_iterator end() const
+{  return const_iterator(0);  }
 
-   //!begin() is equal
-   //!to end()
-   iterator end()
-   {  return iterator(0);  }
+//!begin() is equal
+//!to end()
+iterator end()
+{  return iterator(0);  }
 
-   //!Empty constructor
-   null_index(segment_manager_base *){}
+//!Empty constructor
+null_index(segment_manager_base *){}
 };
 
 }}   //namespace boost { namespace interprocess {

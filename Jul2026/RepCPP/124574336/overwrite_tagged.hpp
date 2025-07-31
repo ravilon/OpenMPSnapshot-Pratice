@@ -27,7 +27,7 @@
 template< class Type, class Tag >
 struct overwrite_tagged
 {
-    typedef {TaggedType} type;
+typedef {TaggedType} type;
 };
 \endcode
 
@@ -36,7 +36,7 @@ passed tag. If it is tagged it returns a new tagged type with the tag replaced
 by the one passed as a parameter.
 
 See also tagged, default_tagged.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -51,13 +51,13 @@ namespace support {
 template< class Type, class NewTag >
 struct overwrite_tagged
 {
-    typedef tagged<Type,NewTag> type;
+typedef tagged<Type,NewTag> type;
 };
 
 template< class Type, class OldTag, class NewTag >
 struct overwrite_tagged< tagged< Type, OldTag >, NewTag >
 {
-    typedef tagged<Type,NewTag> type;
+typedef tagged<Type,NewTag> type;
 };
 
 

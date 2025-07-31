@@ -37,7 +37,7 @@ template <class T> struct add_volatile<T&>{ typedef T& type; };
 
 #if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
-   template <class T> using add_volatile_t = typename add_volatile<T>::type;
+template <class T> using add_volatile_t = typename add_volatile<T>::type;
 
 #endif
 

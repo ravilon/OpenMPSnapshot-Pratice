@@ -32,15 +32,15 @@ namespace detail {
 template<class ConstReference>
 class equal_to_value
 {
-   ConstReference t_;
+ConstReference t_;
 
-   public:
-   equal_to_value(ConstReference t)
-      :  t_(t)
-   {}
+public:
+equal_to_value(ConstReference t)
+:  t_(t)
+{}
 
-   BOOST_INTRUSIVE_FORCEINLINE bool operator()(ConstReference t)const
-   {  return t_ == t;   }
+BOOST_INTRUSIVE_FORCEINLINE bool operator()(ConstReference t)const
+{  return t_ == t;   }
 };
 
 }  //namespace detail{

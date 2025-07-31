@@ -1,12 +1,12 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
-    Global application configuration of the Wave driver command
-    
-    http://www.boost.org/
+Boost.Wave: A Standard compliant C++ preprocessor library
+Global application configuration of the Wave driver command
 
-    Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
-    Software License, Version 1.0. (See accompanying file
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+http://www.boost.org/
+
+Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
+Software License, Version 1.0. (See accompanying file
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_CPP_CONFIG_HPP_F143F90A_A63F_4B27_AC41_9CA4F14F538D_INCLUDED)
@@ -24,10 +24,10 @@
 #if defined(BOOST_SPIRIT_DEBUG)
 
 #define BOOST_SPIRIT_DEBUG_FLAGS ( \
-        BOOST_SPIRIT_DEBUG_FLAGS_NODES | \
-        BOOST_SPIRIT_DEBUG_FLAGS_CLOSURES \
-    ) \
-    /**/
+BOOST_SPIRIT_DEBUG_FLAGS_NODES | \
+BOOST_SPIRIT_DEBUG_FLAGS_CLOSURES \
+) \
+/**/
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Debug flags for the Wave library, possible flags (defined in 
@@ -42,9 +42,9 @@
 //  #define BOOST_SPIRIT_DEBUG_FLAGS_PREDEF_MACROS_GRAMMAR  0x0040
 
 #define BOOST_SPIRIT_DEBUG_FLAGS_CPP ( 0 \
-        /* insert the required flags from above */ \
-    ) \
-    /**/
+/* insert the required flags from above */ \
+) \
+/**/
 #endif 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -25,7 +25,7 @@ namespace detail {
 
 template<typename T>
 inline type_index runtime_class_construct_type_id(T const*) {
-    return type_id<T>();
+return type_id<T>();
 }
 
 } // namespace detail
@@ -35,7 +35,7 @@ inline type_index runtime_class_construct_type_id(T const*) {
 /// @cond
 
 #define BOOST_TYPE_INDEX_CHECK_BASE_(r, data, Base) \
-    if(void const* ret_val = this->Base::boost_type_index_find_instance_(idx)) return ret_val;
+if(void const* ret_val = this->Base::boost_type_index_find_instance_(idx)) return ret_val;
 
 /// @endcond
 
@@ -83,8 +83,8 @@ inline type_index runtime_class_construct_type_id(T const*) {
 /// \param base_class_seq A Boost.Preprocessor sequence of the current class' direct bases, or
 /// BOOST_TYPE_INDEX_NO_BASE_CLASS if this class has no direct base classes.
 #define BOOST_TYPE_INDEX_REGISTER_RUNTIME_CLASS(base_class_seq)                                                          \
-    BOOST_TYPE_INDEX_REGISTER_CLASS                                                                                      \
-    BOOST_TYPE_INDEX_IMPLEMENT_RUNTIME_CAST(base_class_seq)
+BOOST_TYPE_INDEX_REGISTER_CLASS                                                                                      \
+BOOST_TYPE_INDEX_IMPLEMENT_RUNTIME_CAST(base_class_seq)
 
 /// \def BOOST_TYPE_INDEX_IMPLEMENT_RUNTIME_CAST
 /// \brief Macro used to make a class compatible with boost::typeindex::runtime_cast without including
@@ -123,12 +123,12 @@ inline type_index runtime_class_construct_type_id(T const*) {
 /// \param base_class_seq A Boost.Preprocessor sequence of the current class' direct bases, or
 /// BOOST_TYPE_INDEX_NO_BASE_CLASS if this class has no direct base classes.
 #define BOOST_TYPE_INDEX_IMPLEMENT_RUNTIME_CAST(base_class_seq)                                                          \
-    virtual void const* boost_type_index_find_instance_(boost::typeindex::type_index const& idx) const BOOST_NOEXCEPT {  \
-        if(idx == boost::typeindex::detail::runtime_class_construct_type_id(this))                                       \
-            return this;                                                                                                 \
-         BOOST_PP_SEQ_FOR_EACH(BOOST_TYPE_INDEX_CHECK_BASE_, _, base_class_seq)                                          \
-         return NULL;                                                                                                    \
-    }
+virtual void const* boost_type_index_find_instance_(boost::typeindex::type_index const& idx) const BOOST_NOEXCEPT {  \
+if(idx == boost::typeindex::detail::runtime_class_construct_type_id(this))                                       \
+return this;                                                                                                 \
+BOOST_PP_SEQ_FOR_EACH(BOOST_TYPE_INDEX_CHECK_BASE_, _, base_class_seq)                                          \
+return NULL;                                                                                                    \
+}
 
 /// \def BOOST_TYPE_INDEX_NO_BASE_CLASS
 /// \brief Instructs BOOST_TYPE_INDEX_REGISTER_RUNTIME_CLASS and BOOST_TYPE_INDEX_IMPLEMENT_RUNTIME_CAST

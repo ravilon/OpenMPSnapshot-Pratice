@@ -30,10 +30,10 @@ namespace ip {
 class resolver_query_base : public resolver_base
 {
 protected:
-  /// Protected destructor to prevent deletion through this type.
-  ~resolver_query_base()
-  {
-  }
+/// Protected destructor to prevent deletion through this type.
+~resolver_query_base()
+{
+}
 };
 
 } // namespace ip

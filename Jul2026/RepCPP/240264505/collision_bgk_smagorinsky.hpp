@@ -1,10 +1,10 @@
 #ifndef LBT_COLLISION_BGK_SMAGORINSKY
 #define LBT_COLLISION_BGK_SMAGORINSKY
 
-/**
- * \file     collision_bgk_smagorinsky.hpp
+/**
+ * \file     collision_bgk_smagorinsky.hpp
  * \mainpage BGK collision operator with Smagorinsky turbulence model
- * \author   Tobit Flatscher (github.com/2b-t)
+ * \author   Tobit Flatscher (github.com/2b-t)
 */
 
 #include <algorithm>

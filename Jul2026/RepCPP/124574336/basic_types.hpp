@@ -1,10 +1,10 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015-2018 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015-2018 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_BASIC_TYPES_HPP_INCLUDED_
 #define BOOST_WINAPI_BASIC_TYPES_HPP_INCLUDED_
@@ -249,21 +249,21 @@ typedef NTSTATUS_ *PNTSTATUS_;
 typedef ::HMODULE HMODULE_;
 
 typedef union BOOST_MAY_ALIAS _LARGE_INTEGER {
-    BOOST_WINAPI_DETAIL_EXTENSION struct {
-        DWORD_ LowPart;
-        LONG_ HighPart;
-    };
-    struct {
-        DWORD_ LowPart;
-        LONG_ HighPart;
-    } u;
-    LONGLONG_ QuadPart;
+BOOST_WINAPI_DETAIL_EXTENSION struct {
+DWORD_ LowPart;
+LONG_ HighPart;
+};
+struct {
+DWORD_ LowPart;
+LONG_ HighPart;
+} u;
+LONGLONG_ QuadPart;
 } LARGE_INTEGER_, *PLARGE_INTEGER_;
 
 typedef struct BOOST_MAY_ALIAS _SECURITY_ATTRIBUTES {
-    DWORD_  nLength;
-    LPVOID_ lpSecurityDescriptor;
-    BOOL_   bInheritHandle;
+DWORD_  nLength;
+LPVOID_ lpSecurityDescriptor;
+BOOL_   bInheritHandle;
 } SECURITY_ATTRIBUTES_, *PSECURITY_ATTRIBUTES_, *LPSECURITY_ATTRIBUTES_;
 
 }

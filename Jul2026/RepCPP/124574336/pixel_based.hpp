@@ -52,21 +52,21 @@ namespace boost { namespace gil {
 template <typename P>
 struct PixelBasedConcept
 {
-    void constraints()
-    {
-        using color_space_t = typename color_space_type<P>::type;
-        gil_function_requires<ColorSpaceConcept<color_space_t>>();
+void constraints()
+{
+using color_space_t = typename color_space_type<P>::type;
+gil_function_requires<ColorSpaceConcept<color_space_t>>();
 
-        using channel_mapping_t = typename channel_mapping_type<P>::type ;
-        gil_function_requires<ChannelMappingConcept<channel_mapping_t>>();
+using channel_mapping_t = typename channel_mapping_type<P>::type ;
+gil_function_requires<ChannelMappingConcept<channel_mapping_t>>();
 
-        static const bool planar = is_planar<P>::value;
-        ignore_unused_variable_warning(planar);
+static const bool planar = is_planar<P>::value;
+ignore_unused_variable_warning(planar);
 
-        // This is not part of the concept, but should still work
-        static const std::size_t nc = num_channels<P>::value;
-        ignore_unused_variable_warning(nc);
-    }
+// This is not part of the concept, but should still work
+static const std::size_t nc = num_channels<P>::value;
+ignore_unused_variable_warning(nc);
+}
 };
 
 /// \brief Concept for homogeneous pixel-based GIL constructs
@@ -82,13 +82,13 @@ struct PixelBasedConcept
 template <typename P>
 struct HomogeneousPixelBasedConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PixelBasedConcept<P>>();
+void constraints()
+{
+gil_function_requires<PixelBasedConcept<P>>();
 
-        using channel_t = typename channel_type<P>::type;
-        gil_function_requires<ChannelConcept<channel_t>>();
-    }
+using channel_t = typename channel_type<P>::type;
+gil_function_requires<ChannelConcept<channel_t>>();
+}
 };
 
 }} // namespace boost::gil

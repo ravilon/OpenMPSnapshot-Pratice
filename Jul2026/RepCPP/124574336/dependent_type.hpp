@@ -26,7 +26,7 @@ namespace detail {
 template <typename DependsOn, typename T>
 struct dependent_type
 {
-  typedef T type;
+typedef T type;
 };
 
 } // namespace detail

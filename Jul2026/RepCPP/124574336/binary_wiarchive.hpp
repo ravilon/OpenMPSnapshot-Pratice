@@ -29,21 +29,21 @@ namespace boost {
 namespace archive {
 
 class binary_wiarchive :
-    public binary_iarchive_impl<
-        binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
-    >
+public binary_iarchive_impl<
+binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
+>
 {
 public:
-    binary_wiarchive(std::wistream & is, unsigned int flags = 0) :
-        binary_iarchive_impl<
-            binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
-        >(is, flags)
-    {}
-    binary_wiarchive(std::wstreambuf & bsb, unsigned int flags = 0) :
-        binary_iarchive_impl<
-            binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
-        >(bsb, flags)
-    {}
+binary_wiarchive(std::wistream & is, unsigned int flags = 0) :
+binary_iarchive_impl<
+binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
+>(is, flags)
+{}
+binary_wiarchive(std::wstreambuf & bsb, unsigned int flags = 0) :
+binary_iarchive_impl<
+binary_wiarchive, std::wistream::char_type, std::wistream::traits_type
+>(bsb, flags)
+{}
 };
 
 } // namespace archive

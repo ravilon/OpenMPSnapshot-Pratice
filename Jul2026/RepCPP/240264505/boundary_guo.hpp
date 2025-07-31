@@ -1,10 +1,10 @@
 #ifndef LBT_BOUNDARY_GUO
 #define LBT_BOUNDARY_GUO
 
-/**
- * \file     boundary_guo.hpp
+/**
+ * \file     boundary_guo.hpp
  * \mainpage Very robust Guo interpolation boundary condition for pressure and velocity
- * \author   Tobit Flatscher (github.com/2b-t)
+ * \author   Tobit Flatscher (github.com/2b-t)
 */
 
 #include <array>

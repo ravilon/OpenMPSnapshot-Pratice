@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2018 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2018 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/type_traits/is_trivially_default_constructible.hpp
- *
- * This header defines \c is_trivially_default_constructible type trait
- */
+* \file   atomic/detail/type_traits/is_trivially_default_constructible.hpp
+*
+* This header defines \c is_trivially_default_constructible type trait
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_TYPE_TRAITS_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_TYPE_TRAITS_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE_HPP_INCLUDED_

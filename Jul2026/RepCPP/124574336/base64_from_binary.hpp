@@ -21,7 +21,7 @@
 #include <cstddef> // size_t
 #if defined(BOOST_NO_STDC_NAMESPACE)
 namespace std{
-    using ::size_t;
+using ::size_t;
 } // namespace std
 #endif
 
@@ -39,16 +39,16 @@ namespace detail {
 
 template<class CharType>
 struct from_6_bit {
-    typedef CharType result_type;
-    CharType operator()(CharType t) const{
-        static const char * lookup_table =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            "abcdefghijklmnopqrstuvwxyz"
-            "0123456789"
-            "+/";
-        BOOST_ASSERT(t < 64);
-        return lookup_table[static_cast<size_t>(t)];
-    }
+typedef CharType result_type;
+CharType operator()(CharType t) const{
+static const char * lookup_table =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"abcdefghijklmnopqrstuvwxyz"
+"0123456789"
+"+/";
+BOOST_ASSERT(t < 64);
+return lookup_table[static_cast<size_t>(t)];
+}
 };
 
 } // namespace detail
@@ -68,37 +68,37 @@ struct from_6_bit {
 
 //template<class Base, class CharType = typename Base::value_type>
 template<
-    class Base,
-    class CharType = typename boost::iterator_value<Base>::type
+class Base,
+class CharType = typename boost::iterator_value<Base>::type
 >
 class base64_from_binary :
-    public transform_iterator<
-        detail::from_6_bit<CharType>,
-        Base
-    >
+public transform_iterator<
+detail::from_6_bit<CharType>,
+Base
+>
 {
-    friend class boost::iterator_core_access;
-    typedef transform_iterator<
-        typename detail::from_6_bit<CharType>,
-        Base
-    > super_t;
+friend class boost::iterator_core_access;
+typedef transform_iterator<
+typename detail::from_6_bit<CharType>,
+Base
+> super_t;
 
 public:
-    // make composible buy using templated constructor
-    template<class T>
-    base64_from_binary(T start) :
-        super_t(
-            Base(static_cast< T >(start)),
-            detail::from_6_bit<CharType>()
-        )
-    {}
-    // intel 7.1 doesn't like default copy constructor
-    base64_from_binary(const base64_from_binary & rhs) :
-        super_t(
-            Base(rhs.base_reference()),
-            detail::from_6_bit<CharType>()
-        )
-    {}
+// make composible buy using templated constructor
+template<class T>
+base64_from_binary(T start) :
+super_t(
+Base(static_cast< T >(start)),
+detail::from_6_bit<CharType>()
+)
+{}
+// intel 7.1 doesn't like default copy constructor
+base64_from_binary(const base64_from_binary & rhs) :
+super_t(
+Base(rhs.base_reference()),
+detail::from_6_bit<CharType>()
+)
+{}
 //    base64_from_binary(){};
 };
 

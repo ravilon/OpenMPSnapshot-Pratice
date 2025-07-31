@@ -18,13 +18,13 @@
 
 namespace boost { namespace proto
 {
-    namespace detail
-    {
-        struct dont_care
-        {
-            BOOST_FORCEINLINE dont_care(...);
-        };
-    }
+namespace detail
+{
+struct dont_care
+{
+BOOST_FORCEINLINE dont_care(...);
+};
+}
 }}
 
 #if defined(_MSC_VER)

@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2014 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2014 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/int_sizes.hpp
- *
- * This header defines macros for testing buitin integer type sizes
- */
+* \file   atomic/detail/int_sizes.hpp
+*
+* This header defines macros for testing buitin integer type sizes
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_INT_SIZES_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_INT_SIZES_HPP_INCLUDED_
@@ -47,8 +47,8 @@
 #endif
 
 #if !defined(BOOST_ATOMIC_DETAIL_SIZEOF_SHORT) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_INT) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LLONG) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_POINTER)
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LLONG) ||\
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_POINTER)
 
 // Try to deduce sizes from limits
 #include <limits.h>
@@ -156,8 +156,8 @@
 #endif
 
 #if !defined(BOOST_ATOMIC_DETAIL_SIZEOF_SHORT) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_INT) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LLONG) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_WCHAR_T)
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LLONG) ||\
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_WCHAR_T)
 #error Boost.Atomic: Failed to determine builtin integer sizes, the target platform is not supported. Please, report to the developers (patches are welcome).
 #endif
 

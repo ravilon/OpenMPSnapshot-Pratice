@@ -22,7 +22,7 @@ struct requirement_;
 
 namespace detail
 {
-  template <void(*)()> struct instantiate {};
+template <void(*)()> struct instantiate {};
 }
 
 template <class Model>
@@ -32,7 +32,7 @@ struct requirement
 #   pragma GCC diagnostic push
 #   pragma GCC diagnostic ignored "-Wnonnull"
 #   endif
-    static void failed() { ((Model*)0)->~Model(); }
+static void failed() { ((Model*)0)->~Model(); }
 #   if defined(BOOST_GCC) && (BOOST_GCC >= 110000)
 #   pragma GCC diagnostic pop
 #   endif
@@ -47,7 +47,7 @@ struct requirement<failed ************ Model::************>
 #   pragma GCC diagnostic push
 #   pragma GCC diagnostic ignored "-Wnonnull"
 #   endif
-    static void failed() { ((Model*)0)->~Model(); }
+static void failed() { ((Model*)0)->~Model(); }
 #   if defined(BOOST_GCC) && (BOOST_GCC >= 110000)
 #   pragma GCC diagnostic pop
 #   endif
@@ -62,36 +62,36 @@ struct constraint
 #   pragma GCC diagnostic push
 #   pragma GCC diagnostic ignored "-Wnonnull"
 #   endif
-    static void failed() { ((Model*)0)->constraints(); }
+static void failed() { ((Model*)0)->constraints(); }
 #   if defined(BOOST_GCC) && (BOOST_GCC >= 110000)
 #   pragma GCC diagnostic pop
 #   endif
 };
-  
+
 template <class Model>
 struct requirement_<void(*)(Model)>
-  : boost::conditional<
-        concepts::not_satisfied<Model>::value
-      , constraint<Model>
-      , requirement<failed ************ Model::************>
-    >::type
+: boost::conditional<
+concepts::not_satisfied<Model>::value
+, constraint<Model>
+, requirement<failed ************ Model::************>
+>::type
 {};
-  
+
 # else
 
 // For GCC-2.x, these can't have exactly the same name
 template <class Model>
 struct requirement_<void(*)(Model)>
-    : requirement<failed ************ Model::************>
+: requirement<failed ************ Model::************>
 {};
-  
+
 # endif
 
 #  define BOOST_CONCEPT_ASSERT_FN( ModelFnPtr )             \
-    typedef ::boost::concepts::detail::instantiate<          \
-    &::boost::concepts::requirement_<ModelFnPtr>::failed>    \
-      BOOST_PP_CAT(boost_concept_check,__LINE__)             \
-      BOOST_ATTRIBUTE_UNUSED
+typedef ::boost::concepts::detail::instantiate<          \
+&::boost::concepts::requirement_<ModelFnPtr>::failed>    \
+BOOST_PP_CAT(boost_concept_check,__LINE__)             \
+BOOST_ATTRIBUTE_UNUSED
 
 }}
 

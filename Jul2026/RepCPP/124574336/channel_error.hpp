@@ -27,25 +27,25 @@ namespace error {
 
 enum channel_errors
 {
-  /// The channel was closed.
-  channel_closed = 1,
+/// The channel was closed.
+channel_closed = 1,
 
-  /// The channel was cancelled.
-  channel_cancelled = 2
+/// The channel was cancelled.
+channel_cancelled = 2
 };
 
 extern BOOST_ASIO_DECL
 const boost::system::error_category& get_channel_category();
 
 static const boost::system::error_category&
-  channel_category BOOST_ASIO_UNUSED_VARIABLE
-  = boost::asio::experimental::error::get_channel_category();
+channel_category BOOST_ASIO_UNUSED_VARIABLE
+= boost::asio::experimental::error::get_channel_category();
 
 } // namespace error
 namespace channel_errc {
-  // Simulates a scoped enum.
-  using error::channel_closed;
-  using error::channel_cancelled;
+// Simulates a scoped enum.
+using error::channel_closed;
+using error::channel_cancelled;
 } // namespace channel_errc
 } // namespace experimental
 } // namespace asio
@@ -55,9 +55,9 @@ namespace boost {
 namespace system {
 
 template<> struct is_error_code_enum<
-    boost::asio::experimental::error::channel_errors>
+boost::asio::experimental::error::channel_errors>
 {
-  static const bool value = true;
+static const bool value = true;
 };
 
 } // namespace system
@@ -70,8 +70,8 @@ namespace error {
 
 inline boost::system::error_code make_error_code(channel_errors e)
 {
-  return boost::system::error_code(
-      static_cast<int>(e), get_channel_category());
+return boost::system::error_code(
+static_cast<int>(e), get_channel_category());
 }
 
 } // namespace error

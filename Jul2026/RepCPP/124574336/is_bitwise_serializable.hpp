@@ -7,10 +7,10 @@
 //  Authors: Matthias Troyer
 
 /** @file is_bitwise_serializable.hpp
- *
- *  This header provides a traits class for determining whether a class
- * can be serialized (in a non-portable way) just by copying the bits.
- */
+*
+*  This header provides a traits class for determining whether a class
+* can be serialized (in a non-portable way) just by copying the bits.
+*/
 
 
 #ifndef BOOST_SERIALIZATION_IS_BITWISE_SERIALIZABLE_HPP
@@ -26,10 +26,10 @@
 
 namespace boost {
 namespace serialization {
-    template<class T>
-    struct is_bitwise_serializable
-     : public is_arithmetic< T >
-    {};
+template<class T>
+struct is_bitwise_serializable
+: public is_arithmetic< T >
+{};
 } // namespace serialization
 } // namespace boost
 

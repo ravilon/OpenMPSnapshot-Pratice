@@ -26,7 +26,7 @@
 
 namespace boost {
 namespace serialization {
-    class extended_type_info;
+class extended_type_info;
 }
 
 namespace archive {
@@ -36,28 +36,28 @@ class basic_serializer;
 
 class BOOST_SYMBOL_VISIBLE
 basic_serializer_map : public
-    boost::noncopyable
+boost::noncopyable
 {
-    struct type_info_pointer_compare
-    {
-        bool operator()(
-            const basic_serializer * lhs, const basic_serializer * rhs
-        ) const ;
-    };
-    typedef std::set<
-        const basic_serializer *,
-        type_info_pointer_compare
-    > map_type;
-    map_type m_map;
+struct type_info_pointer_compare
+{
+bool operator()(
+const basic_serializer * lhs, const basic_serializer * rhs
+) const ;
+};
+typedef std::set<
+const basic_serializer *,
+type_info_pointer_compare
+> map_type;
+map_type m_map;
 public:
-    BOOST_ARCHIVE_DECL bool insert(const basic_serializer * bs);
-    BOOST_ARCHIVE_DECL void erase(const basic_serializer * bs);
-    BOOST_ARCHIVE_DECL const basic_serializer * find(
-        const boost::serialization::extended_type_info & type_
-    ) const;
+BOOST_ARCHIVE_DECL bool insert(const basic_serializer * bs);
+BOOST_ARCHIVE_DECL void erase(const basic_serializer * bs);
+BOOST_ARCHIVE_DECL const basic_serializer * find(
+const boost::serialization::extended_type_info & type_
+) const;
 private:
-    // cw 8.3 requires this
-    basic_serializer_map& operator=(basic_serializer_map const&);
+// cw 8.3 requires this
+basic_serializer_map& operator=(basic_serializer_map const&);
 };
 
 } // namespace detail

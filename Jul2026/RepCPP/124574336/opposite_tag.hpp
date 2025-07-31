@@ -29,13 +29,13 @@
 template< class Tag, class Relation >
 struct opposite_tag
 {
-        typedef {OppositeTag} type;
+typedef {OppositeTag} type;
 };
 
 \endcode
 
 \ingroup relation_group
-                                                                    **/
+**/
 
 namespace boost {
 namespace bimaps {
@@ -46,9 +46,9 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    opossite_tag,
-    right_tag,
-    left_tag
+opossite_tag,
+right_tag,
+left_tag
 )
 
 } // namespace support

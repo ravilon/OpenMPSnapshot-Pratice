@@ -26,19 +26,19 @@ namespace intrusive {
 
 enum algo_types
 {
-   CircularListAlgorithms,
-   CircularSListAlgorithms,
-   LinearSListAlgorithms,
-   CommonSListAlgorithms,
-   BsTreeAlgorithms,
-   RbTreeAlgorithms,
-   AvlTreeAlgorithms,
-   SgTreeAlgorithms,
-   SplayTreeAlgorithms,
-   TreapAlgorithms,
-   UnorderedAlgorithms,
-   UnorderedCircularSlistAlgorithms,
-   AnyAlgorithm
+CircularListAlgorithms,
+CircularSListAlgorithms,
+LinearSListAlgorithms,
+CommonSListAlgorithms,
+BsTreeAlgorithms,
+RbTreeAlgorithms,
+AvlTreeAlgorithms,
+SgTreeAlgorithms,
+SplayTreeAlgorithms,
+TreapAlgorithms,
+UnorderedAlgorithms,
+UnorderedCircularSlistAlgorithms,
+AnyAlgorithm
 };
 
 template<algo_types AlgoType, class NodeTraits>

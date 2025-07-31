@@ -18,8 +18,8 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_IOCP) \
-  || defined(BOOST_ASIO_WINDOWS_RUNTIME) \
-  || defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
+|| defined(BOOST_ASIO_WINDOWS_RUNTIME) \
+|| defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 
 #include <boost/asio/detail/scheduler_operation.hpp>
 #include <boost/asio/detail/scheduler_task.hpp>
@@ -32,44 +32,44 @@ namespace asio {
 namespace detail {
 
 class null_reactor
-  : public execution_context_service_base<null_reactor>,
-    public scheduler_task
+: public execution_context_service_base<null_reactor>,
+public scheduler_task
 {
 public:
-  struct per_descriptor_data
-  {
-  };
+struct per_descriptor_data
+{
+};
 
-  // Constructor.
-  null_reactor(boost::asio::execution_context& ctx)
-    : execution_context_service_base<null_reactor>(ctx)
-  {
-  }
+// Constructor.
+null_reactor(boost::asio::execution_context& ctx)
+: execution_context_service_base<null_reactor>(ctx)
+{
+}
 
-  // Destructor.
-  ~null_reactor()
-  {
-  }
+// Destructor.
+~null_reactor()
+{
+}
 
-  // Initialise the task.
-  void init_task()
-  {
-  }
+// Initialise the task.
+void init_task()
+{
+}
 
-  // Destroy all user-defined handler objects owned by the service.
-  void shutdown()
-  {
-  }
+// Destroy all user-defined handler objects owned by the service.
+void shutdown()
+{
+}
 
-  // No-op because should never be called.
-  void run(long /*usec*/, op_queue<scheduler_operation>& /*ops*/)
-  {
-  }
+// No-op because should never be called.
+void run(long /*usec*/, op_queue<scheduler_operation>& /*ops*/)
+{
+}
 
-  // No-op.
-  void interrupt()
-  {
-  }
+// No-op.
+void interrupt()
+{
+}
 };
 
 } // namespace detail
@@ -79,7 +79,7 @@ public:
 #include <boost/asio/detail/pop_options.hpp>
 
 #endif // defined(BOOST_ASIO_HAS_IOCP)
-       //   || defined(BOOST_ASIO_WINDOWS_RUNTIME)
-       //   || defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
+//   || defined(BOOST_ASIO_WINDOWS_RUNTIME)
+//   || defined(BOOST_ASIO_HAS_IO_URING_AS_DEFAULT)
 
 #endif // BOOST_ASIO_DETAIL_NULL_REACTOR_HPP

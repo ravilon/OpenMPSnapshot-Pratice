@@ -43,34 +43,34 @@ namespace detail {
 
 template<typename T>
 struct imbue_impl
-    : mpl::if_<
-          is_custom<T>,
-          operations<T>,
-          imbue_impl<
-              BOOST_DEDUCED_TYPENAME
-              dispatch<
-                  T, streambuf_tag, localizable_tag, any_tag
-              >::type
-          >
-      >::type
-    { };
+: mpl::if_<
+is_custom<T>,
+operations<T>,
+imbue_impl<
+BOOST_DEDUCED_TYPENAME
+dispatch<
+T, streambuf_tag, localizable_tag, any_tag
+>::type
+>
+>::type
+{ };
 
 template<>
 struct imbue_impl<any_tag> {
-    template<typename T, typename Locale>
-    static void imbue(T&, const Locale&) { }
+template<typename T, typename Locale>
+static void imbue(T&, const Locale&) { }
 };
 
 template<>
 struct imbue_impl<streambuf_tag> {
-    template<typename T, typename Locale>
-    static void imbue(T& t, const Locale& loc) { t.pubimbue(loc); }
+template<typename T, typename Locale>
+static void imbue(T& t, const Locale& loc) { t.pubimbue(loc); }
 };
 
 template<>
 struct imbue_impl<localizable_tag> {
-    template<typename T, typename Locale>
-    static void imbue(T& t, const Locale& loc) { t.imbue(loc); }
+template<typename T, typename Locale>
+static void imbue(T& t, const Locale& loc) { t.imbue(loc); }
 };
 
 } // End namespace detail.

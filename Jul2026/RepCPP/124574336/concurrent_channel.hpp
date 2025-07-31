@@ -33,27 +33,27 @@ namespace detail {
 template <typename ExecutorOrSignature, typename = void>
 struct concurrent_channel_type
 {
-  template <typename... Signatures>
-  struct inner
-  {
-    typedef basic_concurrent_channel<any_io_executor, channel_traits<>,
-        ExecutorOrSignature, Signatures...> type;
-  };
+template <typename... Signatures>
+struct inner
+{
+typedef basic_concurrent_channel<any_io_executor, channel_traits<>,
+ExecutorOrSignature, Signatures...> type;
+};
 };
 
 template <typename ExecutorOrSignature>
 struct concurrent_channel_type<ExecutorOrSignature,
-    typename enable_if<
-      is_executor<ExecutorOrSignature>::value
-        || execution::is_executor<ExecutorOrSignature>::value
-    >::type>
+typename enable_if<
+is_executor<ExecutorOrSignature>::value
+|| execution::is_executor<ExecutorOrSignature>::value
+>::type>
 {
-  template <typename... Signatures>
-  struct inner
-  {
-    typedef basic_concurrent_channel<ExecutorOrSignature,
-        channel_traits<>, Signatures...> type;
-  };
+template <typename... Signatures>
+struct inner
+{
+typedef basic_concurrent_channel<ExecutorOrSignature,
+channel_traits<>, Signatures...> type;
+};
 };
 
 } // namespace detail
@@ -61,7 +61,7 @@ struct concurrent_channel_type<ExecutorOrSignature,
 /// Template type alias for common use of channel.
 template <typename ExecutorOrSignature, typename... Signatures>
 using concurrent_channel = typename detail::concurrent_channel_type<
-    ExecutorOrSignature>::template inner<Signatures...>::type;
+ExecutorOrSignature>::template inner<Signatures...>::type;
 
 } // namespace experimental
 } // namespace asio

@@ -1,13 +1,13 @@
-/**************************************************************************************
-* FILE: Task1(a+b).cpp
-* DESCRIPTION:
-* Matrix multiplication using both sequential and Parallel computing(OpenMP) Methods
-* AUTHOR:
-* Atul Singh      (216100191) ** Ujjwal Verma               (216100297)
-* Onkar Jadhav    (216100299) ** Ranjit Arahatholalu Nadish (216100180)
-* Sudhanva Kusuma Chandrashekhara   (216100181)
-**************************************************************************************/
-
+/**************************************************************************************
+* FILE: Task1(a+b).cpp
+* DESCRIPTION:
+* Matrix multiplication using both sequential and Parallel computing(OpenMP) Methods
+* AUTHOR:
+* Atul Singh      (216100191) ** Ujjwal Verma               (216100297)
+* Onkar Jadhav    (216100299) ** Ranjit Arahatholalu Nadish (216100180)
+* Sudhanva Kusuma Chandrashekhara   (216100181)
+**************************************************************************************/
+
 #include <iostream>
 #include <omp.h>
 
@@ -205,7 +205,7 @@ int main ()
 
                 default :   cout<<"Invalid selection... Press 0 to exit" << endl;
 
-            }
+            }
             if(count>=2)                                               //After 2 function call asking user to Exit
             {
                 cout<<endl<<"\nExit?? (y/n): ";
@@ -213,7 +213,7 @@ int main ()
                 if(ch=="y"||ch=="Y")
                     break;
                 else
-                    continue;
+                    continue;
             }
             count++;
         }while (select!=0);

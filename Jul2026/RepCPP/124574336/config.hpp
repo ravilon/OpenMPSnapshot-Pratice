@@ -1,10 +1,10 @@
 /*
- * Copyright 2013, 2017 Andrey Semashev
- * Copyright 2017 James E. King, III
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2013, 2017 Andrey Semashev
+* Copyright 2017 James E. King, III
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_CONFIG_HPP_INCLUDED_
 #define BOOST_WINAPI_CONFIG_HPP_INCLUDED_
@@ -197,17 +197,17 @@
 // right as it is seen in a number of places in the SDK.
 //
 #define BOOST_WINAPI_PARTITION_APP_SYSTEM \
-    ( \
-        ((BOOST_PLAT_WINDOWS_SDK_VERSION >= BOOST_WINAPI_WINDOWS_SDK_10_0) && (BOOST_WINAPI_PARTITION_APP || BOOST_WINAPI_PARTITION_SYSTEM)) || \
-        ((BOOST_PLAT_WINDOWS_SDK_VERSION < BOOST_WINAPI_WINDOWS_SDK_10_0) && BOOST_WINAPI_PARTITION_DESKTOP) \
-    )
+( \
+((BOOST_PLAT_WINDOWS_SDK_VERSION >= BOOST_WINAPI_WINDOWS_SDK_10_0) && (BOOST_WINAPI_PARTITION_APP || BOOST_WINAPI_PARTITION_SYSTEM)) || \
+((BOOST_PLAT_WINDOWS_SDK_VERSION < BOOST_WINAPI_WINDOWS_SDK_10_0) && BOOST_WINAPI_PARTITION_DESKTOP) \
+)
 
 // Simiarly, some other symbols were re-classified as DESKTOP or SYSTEM
 #define BOOST_WINAPI_PARTITION_DESKTOP_SYSTEM \
-    ( \
-        ((BOOST_PLAT_WINDOWS_SDK_VERSION >= BOOST_WINAPI_WINDOWS_SDK_10_0) && (BOOST_WINAPI_PARTITION_DESKTOP || BOOST_WINAPI_PARTITION_SYSTEM)) || \
-        ((BOOST_PLAT_WINDOWS_SDK_VERSION < BOOST_WINAPI_WINDOWS_SDK_10_0) && BOOST_WINAPI_PARTITION_DESKTOP) \
-    )
+( \
+((BOOST_PLAT_WINDOWS_SDK_VERSION >= BOOST_WINAPI_WINDOWS_SDK_10_0) && (BOOST_WINAPI_PARTITION_DESKTOP || BOOST_WINAPI_PARTITION_SYSTEM)) || \
+((BOOST_PLAT_WINDOWS_SDK_VERSION < BOOST_WINAPI_WINDOWS_SDK_10_0) && BOOST_WINAPI_PARTITION_DESKTOP) \
+)
 
 #if defined(BOOST_USE_WINDOWS_H) || defined(BOOST_WINAPI_DEFINE_VERSION_MACROS)
 // We have to define the version macros so that windows.h provides the necessary symbols

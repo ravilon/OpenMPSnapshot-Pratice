@@ -1,9 +1,9 @@
 /*
-  Copyright 2008 Intel Corporation
+Copyright 2008 Intel Corporation
 
-  Use, modification and distribution are subject to the Boost Software License,
-  Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
-  http://www.boost.org/LICENSE_1_0.txt).
+Use, modification and distribution are subject to the Boost Software License,
+Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+http://www.boost.org/LICENSE_1_0.txt).
 */
 #ifndef BOOST_POLYGON_GTL_HPP
 #define BOOST_POLYGON_GTL_HPP

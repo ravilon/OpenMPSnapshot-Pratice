@@ -35,111 +35,111 @@ namespace boost { namespace gil {
 ///
 template< typename Device >
 class scanline_reader< Device
-                     , jpeg_tag
-                     >
-    : public reader_backend< Device
-                           , jpeg_tag
-                           >
+, jpeg_tag
+>
+: public reader_backend< Device
+, jpeg_tag
+>
 {
 public:
 
-    using tag_t = jpeg_tag;
-    using backend_t = reader_backend<Device, tag_t>;
-    using this_t = scanline_reader<Device, tag_t>;
-    using iterator_t = scanline_read_iterator<this_t>;
+using tag_t = jpeg_tag;
+using backend_t = reader_backend<Device, tag_t>;
+using this_t = scanline_reader<Device, tag_t>;
+using iterator_t = scanline_read_iterator<this_t>;
 
 public:
-    scanline_reader( Device&                                device
-                   , const image_read_settings< jpeg_tag >& settings
-                   )
-    : reader_backend< Device
-                    , jpeg_tag
-                     >( device
-                      , settings
-                      )
-    {
-        initialize();
-    }
+scanline_reader( Device&                                device
+, const image_read_settings< jpeg_tag >& settings
+)
+: reader_backend< Device
+, jpeg_tag
+>( device
+, settings
+)
+{
+initialize();
+}
 
-    void read( byte_t* dst
-             , int
-             )
-    {
-        // Fire exception in case of error.
-        if( setjmp( this->_mark )) { this->raise_error(); }
+void read( byte_t* dst
+, int
+)
+{
+// Fire exception in case of error.
+if( setjmp( this->_mark )) { this->raise_error(); }
 
-        // read data
-        read_scanline( dst );
-    }
+// read data
+read_scanline( dst );
+}
 
-    /// Skip over a scanline.
-    void skip( byte_t* dst, int )
-    {
-        // Fire exception in case of error.
-        if( setjmp( this->_mark )) { this->raise_error(); }
+/// Skip over a scanline.
+void skip( byte_t* dst, int )
+{
+// Fire exception in case of error.
+if( setjmp( this->_mark )) { this->raise_error(); }
 
-        // read data
-        read_scanline( dst );
-    }
+// read data
+read_scanline( dst );
+}
 
-    iterator_t begin() { return iterator_t( *this ); }
-    iterator_t end()   { return iterator_t( *this, this->_info._height ); }
+iterator_t begin() { return iterator_t( *this ); }
+iterator_t end()   { return iterator_t( *this, this->_info._height ); }
 
 private:
 
-    void initialize()
-    {
-        this->get()->dct_method = this->_settings._dct_method;
+void initialize()
+{
+this->get()->dct_method = this->_settings._dct_method;
 
-        io_error_if( jpeg_start_decompress( this->get() ) == false
-                    , "Cannot start decompression." );
+io_error_if( jpeg_start_decompress( this->get() ) == false
+, "Cannot start decompression." );
 
-        switch( this->_info._color_space )
-        {
-            case JCS_GRAYSCALE:
-            {
-                this->_scanline_length = this->_info._width;
+switch( this->_info._color_space )
+{
+case JCS_GRAYSCALE:
+{
+this->_scanline_length = this->_info._width;
 
-                break;
-            }
+break;
+}
 
-            case JCS_RGB:
-            //!\todo add Y'CbCr? We loose image quality when reading JCS_YCbCr as JCS_RGB
-            case JCS_YCbCr:
-            {
-                this->_scanline_length = this->_info._width * num_channels< rgb8_view_t >::value;
+case JCS_RGB:
+//!\todo add Y'CbCr? We loose image quality when reading JCS_YCbCr as JCS_RGB
+case JCS_YCbCr:
+{
+this->_scanline_length = this->_info._width * num_channels< rgb8_view_t >::value;
 
-                break;
-            }
+break;
+}
 
 
-            case JCS_CMYK:
-            //!\todo add Y'CbCrK? We loose image quality when reading JCS_YCCK as JCS_CMYK
-            case JCS_YCCK:
-            {
-                this->get()->out_color_space = JCS_CMYK;
-                this->_scanline_length = this->_info._width * num_channels< cmyk8_view_t >::value;
+case JCS_CMYK:
+//!\todo add Y'CbCrK? We loose image quality when reading JCS_YCCK as JCS_CMYK
+case JCS_YCCK:
+{
+this->get()->out_color_space = JCS_CMYK;
+this->_scanline_length = this->_info._width * num_channels< cmyk8_view_t >::value;
 
-                break;
-            }
+break;
+}
 
-            default: { io_error( "Unsupported jpeg color space." ); }
-        }
-    }
+default: { io_error( "Unsupported jpeg color space." ); }
+}
+}
 
-    void read_scanline( byte_t* dst )
-    {
-        JSAMPLE *row_adr = reinterpret_cast< JSAMPLE* >( dst );
+void read_scanline( byte_t* dst )
+{
+JSAMPLE *row_adr = reinterpret_cast< JSAMPLE* >( dst );
 
-        // Read data.
-        io_error_if( jpeg_read_scanlines( this->get()
-                                        , &row_adr
-                                        , 1
-                                        ) != 1
-                    , "jpeg_read_scanlines: fail to read JPEG file"
-                    );
+// Read data.
+io_error_if( jpeg_read_scanlines( this->get()
+, &row_adr
+, 1
+) != 1
+, "jpeg_read_scanlines: fail to read JPEG file"
+);
 
-    }
+}
 };
 
 #if BOOST_WORKAROUND(BOOST_MSVC, >= 1400)

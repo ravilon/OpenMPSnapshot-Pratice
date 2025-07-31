@@ -29,79 +29,79 @@ template<bool isMutable>
 class buffers_pair
 {
 public:
-    // VFALCO: This type is public otherwise
-    //         asio::buffers_iterator won't compile.
-    using value_type = typename
-        std::conditional<isMutable,
-            net::mutable_buffer,
-            net::const_buffer>::type;
+// VFALCO: This type is public otherwise
+//         asio::buffers_iterator won't compile.
+using value_type = typename
+std::conditional<isMutable,
+net::mutable_buffer,
+net::const_buffer>::type;
 
-    using const_iterator = value_type const*;
+using const_iterator = value_type const*;
 
-    buffers_pair() = default;
+buffers_pair() = default;
 
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1910)
-    buffers_pair(buffers_pair const& other)
-        : buffers_pair(
-            *other.begin(), *(other.begin() + 1))
-    {
-    }
+buffers_pair(buffers_pair const& other)
+: buffers_pair(
+*other.begin(), *(other.begin() + 1))
+{
+}
 
-    buffers_pair&
-    operator=(buffers_pair const& other)
-    {
-        b_[0] = *other.begin();
-        b_[1] = *(other.begin() + 1);
-        return *this;
-    }
+buffers_pair&
+operator=(buffers_pair const& other)
+{
+b_[0] = *other.begin();
+b_[1] = *(other.begin() + 1);
+return *this;
+}
 #else
-    buffers_pair(buffers_pair const& other) = default;
-    buffers_pair& operator=(buffers_pair const& other) = default;
+buffers_pair(buffers_pair const& other) = default;
+buffers_pair& operator=(buffers_pair const& other) = default;
 #endif
 
-    template<
-        bool isMutable_ = isMutable,
-        class = typename std::enable_if<
-            ! isMutable_>::type>
-    buffers_pair(buffers_pair<true> const& other)
-        : buffers_pair(
-            *other.begin(), *(other.begin() + 1))
-    {
-    }
+template<
+bool isMutable_ = isMutable,
+class = typename std::enable_if<
+! isMutable_>::type>
+buffers_pair(buffers_pair<true> const& other)
+: buffers_pair(
+*other.begin(), *(other.begin() + 1))
+{
+}
 
-    template<
-        bool isMutable_ = isMutable,
-        class = typename std::enable_if<
-            ! isMutable_>::type>
-    buffers_pair&
-    operator=(buffers_pair<true> const& other)
-    {
-        b_[0] = *other.begin();
-        b_[1] = *(other.begin() + 1);
-        return *this;
-    }
+template<
+bool isMutable_ = isMutable,
+class = typename std::enable_if<
+! isMutable_>::type>
+buffers_pair&
+operator=(buffers_pair<true> const& other)
+{
+b_[0] = *other.begin();
+b_[1] = *(other.begin() + 1);
+return *this;
+}
 
-    buffers_pair(value_type b0, value_type b1)
-        : b_{b0, b1}
-    {
-    }
+buffers_pair(value_type b0, value_type b1)
+: b_{b0, b1}
+{
+}
 
-    const_iterator
-    begin() const noexcept
-    {
-        return &b_[0];
-    }
+const_iterator
+begin() const noexcept
+{
+return &b_[0];
+}
 
-    const_iterator
-    end() const noexcept
-    {
-        if(b_[1].size() > 0)
-            return &b_[2];
-        return &b_[1];
-    }
+const_iterator
+end() const noexcept
+{
+if(b_[1].size() > 0)
+return &b_[2];
+return &b_[1];
+}
 
 private:
-    value_type b_[2];
+value_type b_[2];
 };
 
 #if BOOST_WORKAROUND(BOOST_MSVC, < 1910)

@@ -32,25 +32,25 @@ BOOST_MOVE_FORCEINLINE T* iterator_to_pointer(T* i)
 
 template <class Iterator>
 BOOST_MOVE_FORCEINLINE typename boost::movelib::iterator_traits<Iterator>::pointer
-   iterator_to_pointer(const Iterator &i)
+iterator_to_pointer(const Iterator &i)
 {  return i.operator->();  }
 
 template <class Iterator>
 struct iterator_to_element_ptr
 {
-   typedef typename boost::movelib::iterator_traits<Iterator>::pointer  pointer;
-   typedef typename boost::movelib::pointer_element<pointer>::type      element_type;
-   typedef element_type* type;
+typedef typename boost::movelib::iterator_traits<Iterator>::pointer  pointer;
+typedef typename boost::movelib::pointer_element<pointer>::type      element_type;
+typedef element_type* type;
 };
 
 }  //namespace detail {
 
 template <class Iterator>
 BOOST_MOVE_FORCEINLINE typename boost::movelib::detail::iterator_to_element_ptr<Iterator>::type
-   iterator_to_raw_pointer(const Iterator &i)
+iterator_to_raw_pointer(const Iterator &i)
 {
-   return ::boost::movelib::to_raw_pointer
-      (  ::boost::movelib::detail::iterator_to_pointer(i)   );
+return ::boost::movelib::to_raw_pointer
+(  ::boost::movelib::detail::iterator_to_pointer(i)   );
 }
 
 }  //namespace movelib {

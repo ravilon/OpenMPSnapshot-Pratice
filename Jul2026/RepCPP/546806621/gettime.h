@@ -1,3 +1,3 @@
-#pragma once
-
-double getTime(void);
+#pragma once
+
+double getTime(void);

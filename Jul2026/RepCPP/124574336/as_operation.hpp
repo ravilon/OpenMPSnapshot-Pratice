@@ -33,52 +33,52 @@ namespace detail {
 template <typename Executor, typename Receiver>
 struct as_operation
 {
-  typename remove_cvref<Executor>::type ex_;
-  typename remove_cvref<Receiver>::type receiver_;
+typename remove_cvref<Executor>::type ex_;
+typename remove_cvref<Receiver>::type receiver_;
 #if !defined(BOOST_ASIO_HAS_MOVE)
-  boost::asio::detail::shared_ptr<boost::asio::detail::atomic_count> ref_count_;
+boost::asio::detail::shared_ptr<boost::asio::detail::atomic_count> ref_count_;
 #endif // !defined(BOOST_ASIO_HAS_MOVE)
 
-  template <typename E, typename R>
-  explicit as_operation(BOOST_ASIO_MOVE_ARG(E) e, BOOST_ASIO_MOVE_ARG(R) r)
-    : ex_(BOOST_ASIO_MOVE_CAST(E)(e)),
-      receiver_(BOOST_ASIO_MOVE_CAST(R)(r))
+template <typename E, typename R>
+explicit as_operation(BOOST_ASIO_MOVE_ARG(E) e, BOOST_ASIO_MOVE_ARG(R) r)
+: ex_(BOOST_ASIO_MOVE_CAST(E)(e)),
+receiver_(BOOST_ASIO_MOVE_CAST(R)(r))
 #if !defined(BOOST_ASIO_HAS_MOVE)
-      , ref_count_(new boost::asio::detail::atomic_count(1))
+, ref_count_(new boost::asio::detail::atomic_count(1))
 #endif // !defined(BOOST_ASIO_HAS_MOVE)
-  {
-  }
+{
+}
 
-  void start() BOOST_ASIO_NOEXCEPT
-  {
+void start() BOOST_ASIO_NOEXCEPT
+{
 #if !defined(BOOST_ASIO_NO_EXCEPTIONS)
-    try
-    {
+try
+{
 #endif // !defined(BOOST_ASIO_NO_EXCEPTIONS)
-      execution::execute(
-          BOOST_ASIO_MOVE_CAST(typename remove_cvref<Executor>::type)(ex_),
-          as_invocable<typename remove_cvref<Receiver>::type,
-              Executor>(receiver_
+execution::execute(
+BOOST_ASIO_MOVE_CAST(typename remove_cvref<Executor>::type)(ex_),
+as_invocable<typename remove_cvref<Receiver>::type,
+Executor>(receiver_
 #if !defined(BOOST_ASIO_HAS_MOVE)
-                , ref_count_
+, ref_count_
 #endif // !defined(BOOST_ASIO_HAS_MOVE)
-              ));
+));
 #if !defined(BOOST_ASIO_NO_EXCEPTIONS)
-    }
-    catch (...)
-    {
+}
+catch (...)
+{
 #if defined(BOOST_ASIO_HAS_STD_EXCEPTION_PTR)
-      execution::set_error(
-          BOOST_ASIO_MOVE_OR_LVALUE(
-            typename remove_cvref<Receiver>::type)(
-              receiver_),
-          std::current_exception());
+execution::set_error(
+BOOST_ASIO_MOVE_OR_LVALUE(
+typename remove_cvref<Receiver>::type)(
+receiver_),
+std::current_exception());
 #else // defined(BOOST_ASIO_HAS_STD_EXCEPTION_PTR)
-      std::terminate();
+std::terminate();
 #endif // defined(BOOST_ASIO_HAS_STD_EXCEPTION_PTR)
-    }
+}
 #endif // !defined(BOOST_ASIO_NO_EXCEPTIONS)
-  }
+}
 };
 
 } // namespace detail
@@ -89,11 +89,11 @@ namespace traits {
 
 template <typename Executor, typename Receiver>
 struct start_member<
-    boost::asio::execution::detail::as_operation<Executor, Receiver> >
+boost::asio::execution::detail::as_operation<Executor, Receiver> >
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_START_MEMBER_TRAIT)

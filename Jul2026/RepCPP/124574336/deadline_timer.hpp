@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_BOOST_DATE_TIME) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/detail/socket_types.hpp> // Must come before posix_time.
 #include <boost/asio/basic_deadline_timer.hpp>
@@ -35,6 +35,6 @@ typedef basic_deadline_timer<boost::posix_time::ptime> deadline_timer;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_BOOST_DATE_TIME)
-       // || defined(GENERATING_DOCUMENTATION)
+// || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_DEADLINE_TIMER_HPP

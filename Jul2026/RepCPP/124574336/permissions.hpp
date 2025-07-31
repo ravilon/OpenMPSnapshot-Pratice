@@ -48,7 +48,7 @@ namespace ipcdetail {
 template <int Dummy>
 struct unrestricted_permissions_holder
 {
-   static winapi::interprocess_all_access_security unrestricted;
+static winapi::interprocess_all_access_security unrestricted;
 };
 
 template<int Dummy>
@@ -65,62 +65,62 @@ winapi::interprocess_all_access_security unrestricted_permissions_holder<Dummy>:
 //!a SECURITY_ATTRIBUTES pointer in windows or ORed rwx chmod integer in UNIX.
 class permissions
 {
-   #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
 
-   #if defined(BOOST_INTERPROCESS_WINDOWS)
-   typedef void*  os_permissions_type;
-   #else
-   typedef ::mode_t    os_permissions_type;
-   #endif
-   os_permissions_type  m_perm;
+#if defined(BOOST_INTERPROCESS_WINDOWS)
+typedef void*  os_permissions_type;
+#else
+typedef ::mode_t    os_permissions_type;
+#endif
+os_permissions_type  m_perm;
 
-   #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 
-   public:
-   //!Constructs a permissions object from a user provided os-dependent
-   //!permissions.
-   permissions(os_permissions_type type) BOOST_NOEXCEPT
-      : m_perm(type)
-   {}
+public:
+//!Constructs a permissions object from a user provided os-dependent
+//!permissions.
+permissions(os_permissions_type type) BOOST_NOEXCEPT
+: m_perm(type)
+{}
 
-   //!Constructs a default permissions object:
-   //!A null security attributes pointer for windows or 0644
-   //!for UNIX.
-   permissions() BOOST_NOEXCEPT
-   {  set_default(); }
+//!Constructs a default permissions object:
+//!A null security attributes pointer for windows or 0644
+//!for UNIX.
+permissions() BOOST_NOEXCEPT
+{  set_default(); }
 
-   //!Sets permissions to default values:
-   //!A null security attributes pointer for windows or 0644
-   //!for UNIX.
-   void set_default() BOOST_NOEXCEPT
-   {
-      #if defined (BOOST_INTERPROCESS_WINDOWS)
-      m_perm = 0;
-      #else
-      m_perm = 0644;
-      #endif
-   }
+//!Sets permissions to default values:
+//!A null security attributes pointer for windows or 0644
+//!for UNIX.
+void set_default() BOOST_NOEXCEPT
+{
+#if defined (BOOST_INTERPROCESS_WINDOWS)
+m_perm = 0;
+#else
+m_perm = 0644;
+#endif
+}
 
-   //!Sets permissions to unrestricted access:
-   //!A null DACL for windows or 0666 for UNIX.
-   void set_unrestricted() BOOST_NOEXCEPT
-   {
-      #if defined (BOOST_INTERPROCESS_WINDOWS)
-      m_perm = &ipcdetail::unrestricted_permissions_holder<0>::unrestricted;
-      #else
-      m_perm = 0666;
-      #endif
-   }
+//!Sets permissions to unrestricted access:
+//!A null DACL for windows or 0666 for UNIX.
+void set_unrestricted() BOOST_NOEXCEPT
+{
+#if defined (BOOST_INTERPROCESS_WINDOWS)
+m_perm = &ipcdetail::unrestricted_permissions_holder<0>::unrestricted;
+#else
+m_perm = 0666;
+#endif
+}
 
-   //!Sets permissions from a user provided os-dependent
-   //!permissions.
-   void set_permissions(os_permissions_type perm) BOOST_NOEXCEPT
-   {  m_perm = perm; }
+//!Sets permissions from a user provided os-dependent
+//!permissions.
+void set_permissions(os_permissions_type perm) BOOST_NOEXCEPT
+{  m_perm = perm; }
 
-   //!Returns stored os-dependent
-   //!permissions
-   os_permissions_type get_permissions() const BOOST_NOEXCEPT
-   {  return m_perm; }
+//!Returns stored os-dependent
+//!permissions
+os_permissions_type get_permissions() const BOOST_NOEXCEPT
+{  return m_perm; }
 };
 
 }  //namespace interprocess {

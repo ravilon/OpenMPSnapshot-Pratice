@@ -32,32 +32,32 @@ namespace iterators {
 class base64_exception : public std::exception
 {
 public:
-    typedef enum {
-        invalid_code,       // attempt to encode a value > 6 bits
-        invalid_character,  // decode a value not in base64 char set
-        other_exception
-    } exception_code;
-    exception_code code;
+typedef enum {
+invalid_code,       // attempt to encode a value > 6 bits
+invalid_character,  // decode a value not in base64 char set
+other_exception
+} exception_code;
+exception_code code;
 
-    base64_exception(exception_code c = other_exception) : code(c)
-    {}
+base64_exception(exception_code c = other_exception) : code(c)
+{}
 
-    virtual const char *what( ) const throw( )
-    {
-        const char *msg = "unknown exception code";
-        switch(code){
-        case invalid_code:
-            msg = "attempt to encode a value > 6 bits";
-            break;
-        case invalid_character:
-            msg = "attempt to decode a value not in base64 char set";
-            break;
-        default:
-            BOOST_ASSERT(false);
-            break;
-        }
-        return msg;
-    }
+virtual const char *what( ) const throw( )
+{
+const char *msg = "unknown exception code";
+switch(code){
+case invalid_code:
+msg = "attempt to encode a value > 6 bits";
+break;
+case invalid_character:
+msg = "attempt to decode a value not in base64 char set";
+break;
+default:
+BOOST_ASSERT(false);
+break;
+}
+return msg;
+}
 };
 
 } // namespace iterators

@@ -1,10 +1,10 @@
 /* Copyright 2006-2014 Joaquin M Lopez Munoz.
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * See http://www.boost.org/libs/flyweight for library home page.
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* See http://www.boost.org/libs/flyweight for library home page.
+*/
 
 #ifndef BOOST_FLYWEIGHT_DETAIL_PERFECT_FWD_HPP
 #define BOOST_FLYWEIGHT_DETAIL_PERFECT_FWD_HPP
@@ -14,25 +14,25 @@
 #endif
 
 /* C++03-compatible implementation of perfect forwarding.
- * Usage:
- *
- *  # define NAME ...
- *  # define BODY(args) {...BOOST_FLYWEIGHT_FORWARD(args)...}
- *  BOOST_FLYWEIGHT_PERFECT_FWD(name,body)
- *
- * where NAME includes the return type and qualifiers (if any) and BODY(args)
- * is expected to fo the forwarding through BOOST_FLYWEIGHT_FORWARD(args).
- *
- * In compilers capable of perfect forwarding, the real thing is provided
- * (just one variadic args overload is generated). Otherwise the machinery
- * generates n+1 overloads, if rvalue refs are supported, or else 2^(n+1)-1
- * overloads accepting any combination of lvalue refs and const lvalue refs,
- * up to BOOST_FLYWEIGHT_LIMIT_PERFECT_FWD_ARGS args.
- *
- * BOOST_FLYWEIGHT_PERFECT_FWD_WITH_ARGS(name,body) is a variation omitting the
- * overloads with zero args --when perfect forwarding is available, this second
- * macro is exactly the same as the original. 
- */
+* Usage:
+*
+*  # define NAME ...
+*  # define BODY(args) {...BOOST_FLYWEIGHT_FORWARD(args)...}
+*  BOOST_FLYWEIGHT_PERFECT_FWD(name,body)
+*
+* where NAME includes the return type and qualifiers (if any) and BODY(args)
+* is expected to fo the forwarding through BOOST_FLYWEIGHT_FORWARD(args).
+*
+* In compilers capable of perfect forwarding, the real thing is provided
+* (just one variadic args overload is generated). Otherwise the machinery
+* generates n+1 overloads, if rvalue refs are supported, or else 2^(n+1)-1
+* overloads accepting any combination of lvalue refs and const lvalue refs,
+* up to BOOST_FLYWEIGHT_LIMIT_PERFECT_FWD_ARGS args.
+*
+* BOOST_FLYWEIGHT_PERFECT_FWD_WITH_ARGS(name,body) is a variation omitting the
+* overloads with zero args --when perfect forwarding is available, this second
+* macro is exactly the same as the original. 
+*/
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <boost/preprocessor/cat.hpp>
@@ -59,7 +59,7 @@ BOOST_PP_CAT(BOOST_FLYWEIGHT_FORWARD_,BOOST_PP_SEQ_HEAD(args))( \
 BOOST_PP_SEQ_HEAD(BOOST_PP_SEQ_TAIL(args)))
 
 #if defined(BOOST_NO_CXX11_RVALUE_REFERENCES)||\
-    defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
 #if !defined(BOOST_FLYWEIGHT_LIMIT_PERFECT_FWD_ARGS)
 #define BOOST_FLYWEIGHT_LIMIT_PERFECT_FWD_ARGS 5

@@ -30,7 +30,7 @@
 
 namespace boost {
 namespace serialization {
-    class extended_type_info;
+class extended_type_info;
 } // namespace serialization
 
 namespace archive {
@@ -40,19 +40,19 @@ class basic_oarchive;
 class basic_oserializer;
 
 class BOOST_SYMBOL_VISIBLE basic_pointer_oserializer :
-    public basic_serializer
+public basic_serializer
 {
 protected:
-    explicit BOOST_ARCHIVE_DECL basic_pointer_oserializer(
-        const boost::serialization::extended_type_info & type_
-    );
+explicit BOOST_ARCHIVE_DECL basic_pointer_oserializer(
+const boost::serialization::extended_type_info & type_
+);
 public:
-    virtual BOOST_ARCHIVE_DECL ~basic_pointer_oserializer();
-    virtual const basic_oserializer & get_basic_serializer() const = 0;
-    virtual void save_object_ptr(
-        basic_oarchive & ar,
-        const void * x
-    ) const = 0;
+virtual BOOST_ARCHIVE_DECL ~basic_pointer_oserializer();
+virtual const basic_oserializer & get_basic_serializer() const = 0;
+virtual void save_object_ptr(
+basic_oarchive & ar,
+const void * x
+) const = 0;
 };
 
 } // namespace detail

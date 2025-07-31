@@ -32,15 +32,15 @@
 #include <boost/assert.hpp>
 
 #if   !defined(BOOST_INTERPROCESS_FORCE_GENERIC_EMULATION) && defined(BOOST_INTERPROCESS_POSIX_PROCESS_SHARED)
-   #include <boost/interprocess/sync/posix/condition.hpp>
-   #define BOOST_INTERPROCESS_CONDITION_USE_POSIX
+#include <boost/interprocess/sync/posix/condition.hpp>
+#define BOOST_INTERPROCESS_CONDITION_USE_POSIX
 //Experimental...
 #elif !defined(BOOST_INTERPROCESS_FORCE_GENERIC_EMULATION) && defined (BOOST_INTERPROCESS_WINDOWS)
-   #include <boost/interprocess/sync/windows/condition.hpp>
-   #define BOOST_INTERPROCESS_CONDITION_USE_WINAPI
+#include <boost/interprocess/sync/windows/condition.hpp>
+#define BOOST_INTERPROCESS_CONDITION_USE_WINAPI
 #else
-   //spin_condition is used
-   #include <boost/interprocess/sync/spin/condition.hpp>
+//spin_condition is used
+#include <boost/interprocess/sync/spin/condition.hpp>
 #endif
 
 #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
@@ -62,110 +62,110 @@ class named_condition;
 //!functions.
 class interprocess_condition
 {
-   #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
-   //Non-copyable
-   interprocess_condition(const interprocess_condition &);
-   interprocess_condition &operator=(const interprocess_condition &);
-   friend class named_condition;
-   #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
+//Non-copyable
+interprocess_condition(const interprocess_condition &);
+interprocess_condition &operator=(const interprocess_condition &);
+friend class named_condition;
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 
-   public:
-   //!Constructs a interprocess_condition. On error throws interprocess_exception.
-   interprocess_condition()
-   {}
+public:
+//!Constructs a interprocess_condition. On error throws interprocess_exception.
+interprocess_condition()
+{}
 
-   //!Destroys *this
-   //!liberating system resources.
-   ~interprocess_condition()
-   {}
+//!Destroys *this
+//!liberating system resources.
+~interprocess_condition()
+{}
 
-   //!If there is a thread waiting on *this, change that
-   //!thread's state to ready. Otherwise there is no effect.
-   void notify_one()
-   {  m_condition.notify_one();  }
+//!If there is a thread waiting on *this, change that
+//!thread's state to ready. Otherwise there is no effect.
+void notify_one()
+{  m_condition.notify_one();  }
 
-   //!Change the state of all threads waiting on *this to ready.
-   //!If there are no waiting threads, notify_all() has no effect.
-   void notify_all()
-   {  m_condition.notify_all();  }
+//!Change the state of all threads waiting on *this to ready.
+//!If there are no waiting threads, notify_all() has no effect.
+void notify_all()
+{  m_condition.notify_all();  }
 
-   //!Releases the lock on the interprocess_mutex object associated with lock, blocks
-   //!the current thread of execution until readied by a call to
-   //!this->notify_one() or this->notify_all(), and then reacquires the lock.
-   template <typename L>
-   void wait(L& lock)
-   {
-      ipcdetail::internal_mutex_lock<L> internal_lock(lock);
-      m_condition.wait(internal_lock);
-   }
+//!Releases the lock on the interprocess_mutex object associated with lock, blocks
+//!the current thread of execution until readied by a call to
+//!this->notify_one() or this->notify_all(), and then reacquires the lock.
+template <typename L>
+void wait(L& lock)
+{
+ipcdetail::internal_mutex_lock<L> internal_lock(lock);
+m_condition.wait(internal_lock);
+}
 
-   //!The same as:
-   //!while (!pred()) wait(lock)
-   template <typename L, typename Pr>
-   void wait(L& lock, Pr pred)
-   {
-      ipcdetail::internal_mutex_lock<L> internal_lock(lock);
-      m_condition.wait(internal_lock, pred);
-   }
+//!The same as:
+//!while (!pred()) wait(lock)
+template <typename L, typename Pr>
+void wait(L& lock, Pr pred)
+{
+ipcdetail::internal_mutex_lock<L> internal_lock(lock);
+m_condition.wait(internal_lock, pred);
+}
 
-   //!Releases the lock on the interprocess_mutex object associated with lock, blocks
-   //!the current thread of execution until readied by a call to
-   //!this->notify_one() or this->notify_all(), or until time abs_time is reached,
-   //!and then reacquires the lock.
-   //!Returns: false if time abs_time is reached, otherwise true.
-   template <typename L, class TimePoint>
-   bool timed_wait(L& lock, const TimePoint &abs_time)
-   {
-      ipcdetail::internal_mutex_lock<L> internal_lock(lock);
-      return m_condition.timed_wait(internal_lock, abs_time);
-   }
+//!Releases the lock on the interprocess_mutex object associated with lock, blocks
+//!the current thread of execution until readied by a call to
+//!this->notify_one() or this->notify_all(), or until time abs_time is reached,
+//!and then reacquires the lock.
+//!Returns: false if time abs_time is reached, otherwise true.
+template <typename L, class TimePoint>
+bool timed_wait(L& lock, const TimePoint &abs_time)
+{
+ipcdetail::internal_mutex_lock<L> internal_lock(lock);
+return m_condition.timed_wait(internal_lock, abs_time);
+}
 
-   //!The same as:   while (!pred()) {
-   //!                  if (!timed_wait(lock, abs_time)) return pred();
-   //!               } return true;
-   template <typename L, class TimePoint, typename Pr>
-   bool timed_wait(L& lock, const TimePoint &abs_time, Pr pred)
-   {
-      ipcdetail::internal_mutex_lock<L> internal_lock(lock);
-      return m_condition.timed_wait(internal_lock, abs_time, pred);
-   }
+//!The same as:   while (!pred()) {
+//!                  if (!timed_wait(lock, abs_time)) return pred();
+//!               } return true;
+template <typename L, class TimePoint, typename Pr>
+bool timed_wait(L& lock, const TimePoint &abs_time, Pr pred)
+{
+ipcdetail::internal_mutex_lock<L> internal_lock(lock);
+return m_condition.timed_wait(internal_lock, abs_time, pred);
+}
 
-   //!Same as `timed_wait`, but this function is modeled after the
-   //!standard library interface.
-   template <typename L, class TimePoint>
-   cv_status wait_until(L& lock, const TimePoint &abs_time)
-   {  return this->timed_wait(lock, abs_time) ? cv_status::no_timeout : cv_status::timeout; }
+//!Same as `timed_wait`, but this function is modeled after the
+//!standard library interface.
+template <typename L, class TimePoint>
+cv_status wait_until(L& lock, const TimePoint &abs_time)
+{  return this->timed_wait(lock, abs_time) ? cv_status::no_timeout : cv_status::timeout; }
 
-   //!Same as `timed_wait`, but this function is modeled after the
-   //!standard library interface.
-   template <typename L, class TimePoint, typename Pr>
-   bool wait_until(L& lock, const TimePoint &abs_time, Pr pred)
-   {  return this->timed_wait(lock, abs_time, pred); }
+//!Same as `timed_wait`, but this function is modeled after the
+//!standard library interface.
+template <typename L, class TimePoint, typename Pr>
+bool wait_until(L& lock, const TimePoint &abs_time, Pr pred)
+{  return this->timed_wait(lock, abs_time, pred); }
 
-   //!Same as `timed_wait`, but this function is modeled after the
-   //!standard library interface and uses relative timeouts.
-   template <typename L, class Duration>
-   cv_status wait_for(L& lock, const Duration &dur)
-   {  return this->wait_until(lock, ipcdetail::duration_to_ustime(dur)); }
+//!Same as `timed_wait`, but this function is modeled after the
+//!standard library interface and uses relative timeouts.
+template <typename L, class Duration>
+cv_status wait_for(L& lock, const Duration &dur)
+{  return this->wait_until(lock, ipcdetail::duration_to_ustime(dur)); }
 
-   //!Same as `timed_wait`, but this function is modeled after the
-   //!standard library interface and uses relative timeouts
-   template <typename L, class Duration, typename Pr>
-   bool wait_for(L& lock, const Duration &dur, Pr pred)
-   {  return this->wait_until(lock, ipcdetail::duration_to_ustime(dur), pred); }
+//!Same as `timed_wait`, but this function is modeled after the
+//!standard library interface and uses relative timeouts
+template <typename L, class Duration, typename Pr>
+bool wait_for(L& lock, const Duration &dur, Pr pred)
+{  return this->wait_until(lock, ipcdetail::duration_to_ustime(dur), pred); }
 
-   #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
 
-   private:
-   #if defined(BOOST_INTERPROCESS_CONDITION_USE_POSIX)
-      ipcdetail::posix_condition m_condition;
-   #elif defined(BOOST_INTERPROCESS_CONDITION_USE_WINAPI)
-      ipcdetail::winapi_condition m_condition;
-   #else
-      ipcdetail::spin_condition m_condition;
-   #endif
+private:
+#if defined(BOOST_INTERPROCESS_CONDITION_USE_POSIX)
+ipcdetail::posix_condition m_condition;
+#elif defined(BOOST_INTERPROCESS_CONDITION_USE_WINAPI)
+ipcdetail::winapi_condition m_condition;
+#else
+ipcdetail::spin_condition m_condition;
+#endif
 
-   #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 };
 
 }  //namespace interprocess

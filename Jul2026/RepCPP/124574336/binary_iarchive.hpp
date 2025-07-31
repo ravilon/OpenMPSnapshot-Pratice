@@ -32,26 +32,26 @@ namespace archive {
 // via inhertance, derived from binary_iarchive_impl instead.  This will
 // preserve correct static polymorphism.
 class BOOST_SYMBOL_VISIBLE binary_iarchive :
-    public binary_iarchive_impl<
-        boost::archive::binary_iarchive,
-        std::istream::char_type,
-        std::istream::traits_type
-    >{
+public binary_iarchive_impl<
+boost::archive::binary_iarchive,
+std::istream::char_type,
+std::istream::traits_type
+>{
 public:
-    binary_iarchive(std::istream & is, unsigned int flags = 0) :
-        binary_iarchive_impl<
-            binary_iarchive, std::istream::char_type, std::istream::traits_type
-        >(is, flags)
-    {
-        init(flags);
-    }
-    binary_iarchive(std::streambuf & bsb, unsigned int flags = 0) :
-        binary_iarchive_impl<
-            binary_iarchive, std::istream::char_type, std::istream::traits_type
-        >(bsb, flags)
-    {
-        init(flags);
-    }
+binary_iarchive(std::istream & is, unsigned int flags = 0) :
+binary_iarchive_impl<
+binary_iarchive, std::istream::char_type, std::istream::traits_type
+>(is, flags)
+{
+init(flags);
+}
+binary_iarchive(std::streambuf & bsb, unsigned int flags = 0) :
+binary_iarchive_impl<
+binary_iarchive, std::istream::char_type, std::istream::traits_type
+>(bsb, flags)
+{
+init(flags);
+}
 };
 
 } // namespace archive

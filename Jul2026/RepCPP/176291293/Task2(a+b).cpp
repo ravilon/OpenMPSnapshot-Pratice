@@ -1,13 +1,13 @@
-/**************************************************************************************************
-* FILE: Task2(a+b).cpp
-* DESCRIPTION:
-* Matrix multiplication and Summation using both sequential and Parallel computing(OpenMP) Methods
-* AUTHOR:
-* Atul Singh      (216100191) ** Ujjwal Verma               (216100297)
-* Onkar Jadhav    (216100299) ** Ranjit Arahatholalu Nadish (216100180)
-* Sudhanva Kusuma Chandrashekhara   (216100181)
-**************************************************************************************************/
-
+/**************************************************************************************************
+* FILE: Task2(a+b).cpp
+* DESCRIPTION:
+* Matrix multiplication and Summation using both sequential and Parallel computing(OpenMP) Methods
+* AUTHOR:
+* Atul Singh      (216100191) ** Ujjwal Verma               (216100297)
+* Onkar Jadhav    (216100299) ** Ranjit Arahatholalu Nadish (216100180)
+* Sudhanva Kusuma Chandrashekhara   (216100181)
+**************************************************************************************************/
+
 #include <iostream>
 #include <omp.h>
 
@@ -152,14 +152,14 @@ void paramultisum(int n, int m, int p)					                //Parallel Matrix mul
                 cout<<"Enter element C"<<i+1<<j+1<<" : ";
                 cin>>c[i][j];                                           //Storing elements in matrix c
             }
-        }
+        }
 
     cout<<endl<<"\nMax number of threads used: "<<omp_get_max_threads();//Output the maximum number of threads
 
     #pragma omp parallel                                                //Output the number of threads available
     threads=omp_get_num_threads();
 
-    cout<<endl<<"\nNumber of threads: "<<threads<<endl;
+    cout<<endl<<"\nNumber of threads: "<<threads<<endl;
 
     # pragma omp parallel private (j,k) shared(a,b,c,multi)		        //Each thread allocates a private copy of j and k from storage, within the private execution of each thread
 	{															        //a,b,c and multi are shared among all threads, modifications on which are updated to the global instance
@@ -249,7 +249,7 @@ int main ()
 {
     int r1, c1, r2, c2, row3, col3;
     int select,count=1;
-    string ch;
+    string ch;
 
     cout<<endl<<"\t\t\t Multiplication and Summation ";
     cout<<endl<<"\nEnter rows and columns for first matrix: ";			//User values for dimensions of the matrix a
@@ -277,7 +277,7 @@ int main ()
 
 
     do
-        {
+        {
             cout<<endl<<endl<<"Select your option:";                    //Choosing between sequential and parallel program
             cout<<endl<<"1. Sequential Multiplication and Summation"<<"\t 2.Parallely Multiplication and Summation (OpenMP)"<<endl<<"\nElse Press 0 to exit"<<endl<<"Choose : ";
             cin>>select;
@@ -301,7 +301,7 @@ int main ()
 
                 default : cout<<"Invalid selection" << endl;
 
-            }
+            }
             if(count>=2)                                               //After 2 function call asking user to Exit
             {
                 cout<<endl<<"\nExit?? (y/n): ";

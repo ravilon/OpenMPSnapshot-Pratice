@@ -1,6 +1,6 @@
-int
-main (void)
-{
-#pragma acc parallel
-  ;
-}
+int
+main (void)
+{
+#pragma acc parallel
+;
+}

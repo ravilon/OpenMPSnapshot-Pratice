@@ -42,56 +42,56 @@ namespace serialization {
 
 namespace detail
 {
-    // get the base type for a given derived type
-    // preserving the const-ness
-    template<class B, class D>
-    struct base_cast
-    {
-        typedef typename
-        mpl::if_<
-            is_const<D>,
-            const B,
-            B
-        >::type type;
-        BOOST_STATIC_ASSERT(is_const<type>::value == is_const<D>::value);
-    };
+// get the base type for a given derived type
+// preserving the const-ness
+template<class B, class D>
+struct base_cast
+{
+typedef typename
+mpl::if_<
+is_const<D>,
+const B,
+B
+>::type type;
+BOOST_STATIC_ASSERT(is_const<type>::value == is_const<D>::value);
+};
 
-    // only register void casts if the types are polymorphic
-    template<class Base, class Derived>
-    struct base_register
-    {
-        struct polymorphic {
-            static void const * invoke(){
-                Base const * const b = 0;
-                Derived const * const d = 0;
-                return & void_cast_register(d, b);
-            }
-        };
-        struct non_polymorphic {
-            static void const * invoke(){
-                return 0;
-            }
-        };
-        static void const * invoke(){
-            typedef typename mpl::eval_if<
-                is_polymorphic<Base>,
-                mpl::identity<polymorphic>,
-                mpl::identity<non_polymorphic>
-            >::type type;
-            return type::invoke();
-        }
-    };
+// only register void casts if the types are polymorphic
+template<class Base, class Derived>
+struct base_register
+{
+struct polymorphic {
+static void const * invoke(){
+Base const * const b = 0;
+Derived const * const d = 0;
+return & void_cast_register(d, b);
+}
+};
+struct non_polymorphic {
+static void const * invoke(){
+return 0;
+}
+};
+static void const * invoke(){
+typedef typename mpl::eval_if<
+is_polymorphic<Base>,
+mpl::identity<polymorphic>,
+mpl::identity<non_polymorphic>
+>::type type;
+return type::invoke();
+}
+};
 
 } // namespace detail
 template<class Base, class Derived>
 typename detail::base_cast<Base, Derived>::type &
 base_object(Derived &d)
 {
-    BOOST_STATIC_ASSERT(( is_base_and_derived<Base,Derived>::value));
-    BOOST_STATIC_ASSERT(! is_pointer<Derived>::value);
-    typedef typename detail::base_cast<Base, Derived>::type type;
-    detail::base_register<type, Derived>::invoke();
-    return access::cast_reference<type, Derived>(d);
+BOOST_STATIC_ASSERT(( is_base_and_derived<Base,Derived>::value));
+BOOST_STATIC_ASSERT(! is_pointer<Derived>::value);
+typedef typename detail::base_cast<Base, Derived>::type type;
+detail::base_register<type, Derived>::invoke();
+return access::cast_reference<type, Derived>(d);
 }
 
 } // namespace serialization

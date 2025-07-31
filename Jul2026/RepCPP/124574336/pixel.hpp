@@ -62,31 +62,31 @@ namespace boost { namespace gil {
 template <typename P>
 struct PixelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<ColorBaseConcept<P>>();
-        gil_function_requires<PixelBasedConcept<P>>();
+void constraints()
+{
+gil_function_requires<ColorBaseConcept<P>>();
+gil_function_requires<PixelBasedConcept<P>>();
 
-        static_assert(is_pixel<P>::value, "");
-        static const bool is_mutable = P::is_mutable;
-        ignore_unused_variable_warning(is_mutable);
+static_assert(is_pixel<P>::value, "");
+static const bool is_mutable = P::is_mutable;
+ignore_unused_variable_warning(is_mutable);
 
-        using value_type = typename P::value_type;
-        // TODO: Is the cyclic dependency intentional? --mloskot
-        // gil_function_requires<PixelValueConcept<value_type>>();
+using value_type = typename P::value_type;
+// TODO: Is the cyclic dependency intentional? --mloskot
+// gil_function_requires<PixelValueConcept<value_type>>();
 
-        using reference = typename P::reference;
-        gil_function_requires<PixelConcept
-            <
-                typename detail::remove_const_and_reference<reference>::type
-            >>();
+using reference = typename P::reference;
+gil_function_requires<PixelConcept
+<
+typename detail::remove_const_and_reference<reference>::type
+>>();
 
-        using const_reference = typename P::const_reference;
-        gil_function_requires<PixelConcept
-            <
-                typename detail::remove_const_and_reference<const_reference>::type
-            >>();
-    }
+using const_reference = typename P::const_reference;
+gil_function_requires<PixelConcept
+<
+typename detail::remove_const_and_reference<const_reference>::type
+>>();
+}
 };
 
 /// \brief Pixel concept that allows for changing its channels
@@ -100,11 +100,11 @@ struct PixelConcept
 template <typename P>
 struct MutablePixelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PixelConcept<P>>();
-        static_assert(P::is_mutable, "");
-    }
+void constraints()
+{
+gil_function_requires<PixelConcept<P>>();
+static_assert(P::is_mutable, "");
+}
 };
 
 /// \brief Homogeneous pixel concept
@@ -122,14 +122,14 @@ struct MutablePixelConcept
 template <typename P>
 struct HomogeneousPixelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PixelConcept<P>>();
-        gil_function_requires<HomogeneousColorBaseConcept<P>>();
-        gil_function_requires<HomogeneousPixelBasedConcept<P>>();
-        p[0];
-    }
-    P p;
+void constraints()
+{
+gil_function_requires<PixelConcept<P>>();
+gil_function_requires<HomogeneousColorBaseConcept<P>>();
+gil_function_requires<HomogeneousPixelBasedConcept<P>>();
+p[0];
+}
+P p;
 };
 
 /// \brief Homogeneous pixel concept that allows for changing its channels
@@ -147,15 +147,15 @@ struct HomogeneousPixelConcept
 template <typename P>
 struct MutableHomogeneousPixelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<HomogeneousPixelConcept<P>>();
-        gil_function_requires<MutableHomogeneousColorBaseConcept<P>>();
-        p[0] = v;
-        v = p[0];
-    }
-    typename P::template element_type<P>::type v;
-    P p;
+void constraints()
+{
+gil_function_requires<HomogeneousPixelConcept<P>>();
+gil_function_requires<MutableHomogeneousColorBaseConcept<P>>();
+p[0] = v;
+v = p[0];
+}
+typename P::template element_type<P>::type v;
+P p;
 };
 
 /// \brief Pixel concept that is a Regular type
@@ -169,11 +169,11 @@ struct MutableHomogeneousPixelConcept
 template <typename P>
 struct PixelValueConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PixelConcept<P>>();
-        gil_function_requires<Regular<P>>();
-    }
+void constraints()
+{
+gil_function_requires<PixelConcept<P>>();
+gil_function_requires<Regular<P>>();
+}
 };
 
 /// \brief Homogeneous pixel concept that is a Regular type
@@ -187,27 +187,27 @@ struct PixelValueConcept
 template <typename P>
 struct HomogeneousPixelValueConcept
 {
-    void constraints()
-    {
-        gil_function_requires<HomogeneousPixelConcept<P>>();
-        gil_function_requires<Regular<P>>();
-        static_assert(std::is_same<P, typename P::value_type>::value, "");
-    }
+void constraints()
+{
+gil_function_requires<HomogeneousPixelConcept<P>>();
+gil_function_requires<Regular<P>>();
+static_assert(std::is_same<P, typename P::value_type>::value, "");
+}
 };
 
 namespace detail {
 
 template <typename P1, typename P2, int K>
 struct channels_are_pairwise_compatible
-    : mp11::mp_and
-    <
-        channels_are_pairwise_compatible<P1, P2, K - 1>,
-        channels_are_compatible
-        <
-            typename kth_semantic_element_reference_type<P1, K>::type,
-            typename kth_semantic_element_reference_type<P2, K>::type
-        >
-    >
+: mp11::mp_and
+<
+channels_are_pairwise_compatible<P1, P2, K - 1>,
+channels_are_compatible
+<
+typename kth_semantic_element_reference_type<P1, K>::type,
+typename kth_semantic_element_reference_type<P2, K>::type
+>
+>
 {
 };
 
@@ -224,18 +224,18 @@ struct channels_are_pairwise_compatible<P1, P2, -1> : std::true_type {};
 /// \tparam P2 Models PixelConcept
 template <typename P1, typename P2>
 struct pixels_are_compatible
-    : mp11::mp_and
-        <
-            typename color_spaces_are_compatible
-            <
-                typename color_space_type<P1>::type,
-                typename color_space_type<P2>::type
-            >::type,
-            detail::channels_are_pairwise_compatible
-            <
-                P1, P2, num_channels<P1>::value - 1
-            >
-        >
+: mp11::mp_and
+<
+typename color_spaces_are_compatible
+<
+typename color_space_type<P1>::type,
+typename color_space_type<P2>::type
+>::type,
+detail::channels_are_pairwise_compatible
+<
+P1, P2, num_channels<P1>::value - 1
+>
+>
 {
 };
 
@@ -255,10 +255,10 @@ struct pixels_are_compatible
 template <typename P1, typename P2>
 struct PixelsCompatibleConcept
 {
-    void constraints()
-    {
-        static_assert(pixels_are_compatible<P1, P2>::value, "");
-    }
+void constraints()
+{
+static_assert(pixels_are_compatible<P1, P2>::value, "");
+}
 };
 
 /// \ingroup PixelConcept
@@ -276,14 +276,14 @@ struct PixelsCompatibleConcept
 template <typename SrcP, typename DstP>
 struct PixelConvertibleConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PixelConcept<SrcP>>();
-        gil_function_requires<MutablePixelConcept<DstP>>();
-        color_convert(src, dst);
-    }
-    SrcP src;
-    DstP dst;
+void constraints()
+{
+gil_function_requires<PixelConcept<SrcP>>();
+gil_function_requires<MutablePixelConcept<DstP>>();
+color_convert(src, dst);
+}
+SrcP src;
+DstP dst;
 };
 
 }} // namespace boost::gil

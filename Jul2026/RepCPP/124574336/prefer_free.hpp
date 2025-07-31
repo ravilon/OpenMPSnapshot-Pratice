@@ -19,12 +19,12 @@
 #include <boost/asio/detail/type_traits.hpp>
 
 #if defined(BOOST_ASIO_HAS_DECLTYPE) \
-  && defined(BOOST_ASIO_HAS_NOEXCEPT) \
-  && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
+&& defined(BOOST_ASIO_HAS_NOEXCEPT) \
+&& defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
 # define BOOST_ASIO_HAS_DEDUCED_PREFER_FREE_TRAIT 1
 #endif // defined(BOOST_ASIO_HAS_DECLTYPE)
-       //   && defined(BOOST_ASIO_HAS_NOEXCEPT)
-       //   && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
+//   && defined(BOOST_ASIO_HAS_NOEXCEPT)
+//   && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
 
 #include <boost/asio/detail/push_options.hpp>
 
@@ -43,8 +43,8 @@ namespace detail {
 
 struct no_prefer_free
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = false);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = false);
 };
 
 #if defined(BOOST_ASIO_HAS_DEDUCED_PREFER_FREE_TRAIT)
@@ -56,31 +56,31 @@ struct prefer_free_trait : no_prefer_free
 
 template <typename T, typename Property>
 struct prefer_free_trait<T, Property,
-  typename void_type<
-    decltype(prefer(declval<T>(), declval<Property>()))
-  >::type>
+typename void_type<
+decltype(prefer(declval<T>(), declval<Property>()))
+>::type>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
 
-  using result_type = decltype(
-    prefer(declval<T>(), declval<Property>()));
+using result_type = decltype(
+prefer(declval<T>(), declval<Property>()));
 
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = noexcept(
-    prefer(declval<T>(), declval<Property>())));
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = noexcept(
+prefer(declval<T>(), declval<Property>())));
 };
 
 #else // defined(BOOST_ASIO_HAS_DEDUCED_PREFER_FREE_TRAIT)
 
 template <typename T, typename Property, typename = void>
 struct prefer_free_trait :
-  conditional<
-    is_same<T, typename decay<T>::type>::value
-      && is_same<Property, typename decay<Property>::type>::value,
-    no_prefer_free,
-    traits::prefer_free<
-      typename decay<T>::type,
-      typename decay<Property>::type>
-  >::type
+conditional<
+is_same<T, typename decay<T>::type>::value
+&& is_same<Property, typename decay<Property>::type>::value,
+no_prefer_free,
+traits::prefer_free<
+typename decay<T>::type,
+typename decay<Property>::type>
+>::type
 {
 };
 
@@ -91,13 +91,13 @@ namespace traits {
 
 template <typename T, typename Property, typename>
 struct prefer_free_default :
-  detail::prefer_free_trait<T, Property>
+detail::prefer_free_trait<T, Property>
 {
 };
 
 template <typename T, typename Property, typename>
 struct prefer_free :
-  prefer_free_default<T, Property>
+prefer_free_default<T, Property>
 {
 };
 

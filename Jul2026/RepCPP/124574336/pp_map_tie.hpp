@@ -1,9 +1,9 @@
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
-    Copyright (c) 2006 Dan Marsden
+Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2006 Dan Marsden
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 ==============================================================================*/
 #ifndef BOOST_PP_IS_ITERATING
 #if !defined(FUSION_PP_MAP_TIE_20060814_1116)
@@ -28,12 +28,12 @@
 #endif
 
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-    This is an auto-generated file. Do not edit!
+This is an auto-generated file. Do not edit!
 ==============================================================================*/
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -42,40 +42,40 @@
 
 namespace boost { namespace fusion
 {
-    struct void_;
+struct void_;
 
-    namespace result_of
-    {
-        template <
-            BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(
-                FUSION_MAX_MAP_SIZE, typename K, void_)
-          , BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(
-                FUSION_MAX_MAP_SIZE, typename D, void_)
-          , typename Extra = void_
-        >
-        struct map_tie;
+namespace result_of
+{
+template <
+BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(
+FUSION_MAX_MAP_SIZE, typename K, void_)
+, BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(
+FUSION_MAX_MAP_SIZE, typename D, void_)
+, typename Extra = void_
+>
+struct map_tie;
 
-        template <>
-        struct map_tie<>
-        {
-            typedef map<> type;
-        };
-    }
+template <>
+struct map_tie<>
+{
+typedef map<> type;
+};
+}
 
-    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline map<>
-    map_tie()
-    {
-        return map<>();
-    }
+BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+inline map<>
+map_tie()
+{
+return map<>();
+}
 
 #define BOOST_FUSION_TIED_PAIR(z, n, data)                                                          \
-    fusion::pair<                                                                                   \
-        BOOST_PP_CAT(K, n)                                                                          \
-      , typename add_reference<BOOST_PP_CAT(D, n)>::type>
+fusion::pair<                                                                                   \
+BOOST_PP_CAT(K, n)                                                                          \
+, typename add_reference<BOOST_PP_CAT(D, n)>::type>
 
 #define BOOST_FUSION_PAIR_TIE(z, n, _)                                         \
-    fusion::pair_tie<BOOST_PP_CAT(K, n)>(BOOST_PP_CAT(_, n))                   \
+fusion::pair_tie<BOOST_PP_CAT(K, n)>(BOOST_PP_CAT(_, n))                   \
 
 #define BOOST_PP_FILENAME_1 <boost/fusion/container/generation/detail/pp_map_tie.hpp>
 #define BOOST_PP_ITERATION_LIMITS (1, FUSION_MAX_MAP_SIZE)
@@ -102,31 +102,31 @@ namespace boost { namespace fusion
 
 #define N BOOST_PP_ITERATION()
 
-    namespace result_of
-    {
-        template <
-            BOOST_PP_ENUM_PARAMS(N, typename K)
-          , BOOST_PP_ENUM_PARAMS(N, typename D)
-        >
-        #define TEXT(z, n, text) , text
-        struct map_tie<BOOST_PP_ENUM_PARAMS(N, K), BOOST_PP_ENUM_PARAMS(N, D) BOOST_PP_REPEAT_FROM_TO(N, FUSION_MAX_MAP_SIZE, TEXT, void_) BOOST_PP_REPEAT_FROM_TO(BOOST_PP_DEC(N), FUSION_MAX_MAP_SIZE, TEXT, void_)>
-        #undef TEXT
-        {
-            typedef map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)> type;
-        };
-    }
+namespace result_of
+{
+template <
+BOOST_PP_ENUM_PARAMS(N, typename K)
+, BOOST_PP_ENUM_PARAMS(N, typename D)
+>
+#define TEXT(z, n, text) , text
+struct map_tie<BOOST_PP_ENUM_PARAMS(N, K), BOOST_PP_ENUM_PARAMS(N, D) BOOST_PP_REPEAT_FROM_TO(N, FUSION_MAX_MAP_SIZE, TEXT, void_) BOOST_PP_REPEAT_FROM_TO(BOOST_PP_DEC(N), FUSION_MAX_MAP_SIZE, TEXT, void_)>
+#undef TEXT
+{
+typedef map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)> type;
+};
+}
 
-    template <
-        BOOST_PP_ENUM_PARAMS(N, typename K)
-      , BOOST_PP_ENUM_PARAMS(N, typename D)
-    >
-    BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
-    inline map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)>
-    map_tie(BOOST_PP_ENUM_BINARY_PARAMS(N, D, & arg))
-    {
-        return map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)>(
-            BOOST_PP_ENUM(N, BOOST_FUSION_PAIR_TIE, arg));
-    }
+template <
+BOOST_PP_ENUM_PARAMS(N, typename K)
+, BOOST_PP_ENUM_PARAMS(N, typename D)
+>
+BOOST_CONSTEXPR BOOST_FUSION_GPU_ENABLED
+inline map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)>
+map_tie(BOOST_PP_ENUM_BINARY_PARAMS(N, D, & arg))
+{
+return map<BOOST_PP_ENUM(N, BOOST_FUSION_TIED_PAIR, _)>(
+BOOST_PP_ENUM(N, BOOST_FUSION_PAIR_TIE, arg));
+}
 
 #undef N
 #endif // defined(BOOST_PP_IS_ITERATING)

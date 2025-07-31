@@ -52,54 +52,54 @@ namespace boost { namespace gil {
 template <typename D>
 struct PixelDereferenceAdaptorConcept
 {
-    void constraints()
-    {
-        gil_function_requires
-        <
-            boost::UnaryFunctionConcept
-            <
-                D,
-                typename detail::remove_const_and_reference<typename D::result_type>::type,
-                typename D::argument_type
-            >
-        >();
-        gil_function_requires<boost::DefaultConstructibleConcept<D>>();
-        gil_function_requires<boost::CopyConstructibleConcept<D>>();
-        gil_function_requires<boost::AssignableConcept<D>>();
+void constraints()
+{
+gil_function_requires
+<
+boost::UnaryFunctionConcept
+<
+D,
+typename detail::remove_const_and_reference<typename D::result_type>::type,
+typename D::argument_type
+>
+>();
+gil_function_requires<boost::DefaultConstructibleConcept<D>>();
+gil_function_requires<boost::CopyConstructibleConcept<D>>();
+gil_function_requires<boost::AssignableConcept<D>>();
 
-        gil_function_requires<PixelConcept
-            <
-                typename detail::remove_const_and_reference<typename D::result_type>::type
-            >>();
+gil_function_requires<PixelConcept
+<
+typename detail::remove_const_and_reference<typename D::result_type>::type
+>>();
 
-        using const_t = typename D::const_t;
-        gil_function_requires<PixelDereferenceAdaptorConcept<const_t>>();
+using const_t = typename D::const_t;
+gil_function_requires<PixelDereferenceAdaptorConcept<const_t>>();
 
-        using value_type = typename D::value_type;
-        gil_function_requires<PixelValueConcept<value_type>>();
+using value_type = typename D::value_type;
+gil_function_requires<PixelValueConcept<value_type>>();
 
-        // TODO: Should this be concept-checked after "if you remove const and reference"? --mloskot
-        using reference = typename D::reference; // == PixelConcept (if you remove const and reference)
-        using const_reference = typename D::const_reference; // == PixelConcept (if you remove const and reference)
+// TODO: Should this be concept-checked after "if you remove const and reference"? --mloskot
+using reference = typename D::reference; // == PixelConcept (if you remove const and reference)
+using const_reference = typename D::const_reference; // == PixelConcept (if you remove const and reference)
 
-        bool const is_mutable = D::is_mutable;
-        ignore_unused_variable_warning(is_mutable);
-    }
-    D d;
+bool const is_mutable = D::is_mutable;
+ignore_unused_variable_warning(is_mutable);
+}
+D d;
 };
 
 template <typename P>
 struct PixelDereferenceAdaptorArchetype
 {
-    using argument_type = P;
-    using result_type = P;
-    using const_t = PixelDereferenceAdaptorArchetype;
-    using value_type = typename std::remove_reference<P>::type;
-    using reference = typename std::add_lvalue_reference<P>::type;
-    using const_reference = reference;
+using argument_type = P;
+using result_type = P;
+using const_t = PixelDereferenceAdaptorArchetype;
+using value_type = typename std::remove_reference<P>::type;
+using reference = typename std::add_lvalue_reference<P>::type;
+using const_reference = reference;
 
-    static const bool is_mutable = false;
-    P operator()(P) const { throw; }
+static const bool is_mutable = false;
+P operator()(P) const { throw; }
 };
 
 }} // namespace boost::gil

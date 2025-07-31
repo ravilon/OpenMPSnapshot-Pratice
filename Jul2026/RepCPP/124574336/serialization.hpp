@@ -54,33 +54,33 @@ BOOST_STRONG_TYPEDEF(unsigned int, version_type)
 // default implementation - call the member function "serialize"
 template<class Archive, class T>
 inline void serialize(
-    Archive & ar, T & t, const unsigned int file_version
+Archive & ar, T & t, const unsigned int file_version
 ){
-    access::serialize(ar, t, static_cast<unsigned int>(file_version));
+access::serialize(ar, t, static_cast<unsigned int>(file_version));
 }
 
 // save data required for construction
 template<class Archive, class T>
 inline void save_construct_data(
-    Archive & /*ar*/,
-    const T * /*t*/,
-    const unsigned int /*file_version */
+Archive & /*ar*/,
+const T * /*t*/,
+const unsigned int /*file_version */
 ){
-    // default is to save no data because default constructor
-    // requires no arguments.
+// default is to save no data because default constructor
+// requires no arguments.
 }
 
 // load data required for construction and invoke constructor in place
 template<class Archive, class T>
 inline void load_construct_data(
-    Archive & /*ar*/,
-    T * t,
-    const unsigned int /*file_version*/
+Archive & /*ar*/,
+T * t,
+const unsigned int /*file_version*/
 ){
-    // default just uses the default constructor.  going
-    // through access permits usage of otherwise private default
-    // constructor
-    access::construct(t);
+// default just uses the default constructor.  going
+// through access permits usage of otherwise private default
+// constructor
+access::construct(t);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,34 +101,34 @@ inline void load_construct_data(
 
 template<class Archive, class T>
 inline void serialize_adl(
-    Archive & ar,
-    T & t,
-    const unsigned int file_version
+Archive & ar,
+T & t,
+const unsigned int file_version
 ){
-    const version_type v(file_version);
-    serialize(ar, t, v);
+const version_type v(file_version);
+serialize(ar, t, v);
 }
 
 template<class Archive, class T>
 inline void save_construct_data_adl(
-    Archive & ar,
-    const T * t,
-    const unsigned int file_version
+Archive & ar,
+const T * t,
+const unsigned int file_version
 ){
 
-    const version_type v(file_version);
-    save_construct_data(ar, t, v);
+const version_type v(file_version);
+save_construct_data(ar, t, v);
 }
 
 template<class Archive, class T>
 inline void load_construct_data_adl(
-    Archive & ar,
-    T * t,
-    const unsigned int file_version
+Archive & ar,
+T * t,
+const unsigned int file_version
 ){
-    // see above comment
-    const version_type v(file_version);
-    load_construct_data(ar, t, v);
+// see above comment
+const version_type v(file_version);
+load_construct_data(ar, t, v);
 }
 
 } // namespace serialization

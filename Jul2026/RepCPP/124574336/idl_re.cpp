@@ -1,13 +1,13 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    Sample: IDL lexer 
+Sample: IDL lexer 
 
-    http://www.boost.org/
+http://www.boost.org/
 
-    Copyright (c) 2001-2010 Hartmut Kaiser. Distributed under the Boost
-    Software License, Version 1.0. (See accompanying file
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Copyright (c) 2001-2010 Hartmut Kaiser. Distributed under the Boost
+Software License, Version 1.0. (See accompanying file
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #include <boost/config.hpp>
@@ -42,12 +42,12 @@
 
 //#define BOOST_WAVE_RET(i)    {s->cur = cursor; return (i);}
 #define BOOST_WAVE_RET(i)    \
-    { \
-        s->line += count_backslash_newlines(s, cursor); \
-        s->cur = cursor; \
-        return (i); \
-    } \
-    /**/
+{ \
+s->line += count_backslash_newlines(s, cursor); \
+s->cur = cursor; \
+return (i); \
+} \
+/**/
 
 ///////////////////////////////////////////////////////////////////////////////
 namespace boost {
@@ -56,18 +56,18 @@ namespace idllexer {
 namespace re2clex {
 
 bool is_backslash(
-  boost::wave::cpplexer::re2clex::uchar *p, 
-  boost::wave::cpplexer::re2clex::uchar *end, int &len)
+boost::wave::cpplexer::re2clex::uchar *p, 
+boost::wave::cpplexer::re2clex::uchar *end, int &len)
 {
-    if (*p == '\\') {
-        len = 1;
-        return true;
-    }
-    else if (*p == '?' && *(p+1) == '?' && (p+2 < end && *(p+2) == '/')) {
-        len = 3;
-        return true;
-    }
-    return false;
+if (*p == '\\') {
+len = 1;
+return true;
+}
+else if (*p == '?' && *(p+1) == '?' && (p+2 < end && *(p+2) == '/')) {
+len = 3;
+return true;
+}
+return false;
 }
 
 

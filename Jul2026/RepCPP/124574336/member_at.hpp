@@ -39,29 +39,29 @@ See also member_with_tag, is_tag_of_member_at_left, is_tag_of_member_at_right, g
 value_type_of, pair_by, pair_type_by.
 
 \ingroup relation_group
-                                                                                        **/
+**/
 namespace member_at {
 
-    /// \brief Member at left tag
-    /**
-    See also member_at, right.
-                                            **/
+/// \brief Member at left tag
+/**
+See also member_at, right.
+**/
 
-    struct left  {};
+struct left  {};
 
-    /// \brief Member at right tag
-    /**
-    See also member_at, left.
-                                            **/
+/// \brief Member at right tag
+/**
+See also member_at, left.
+**/
 
-    struct right {};
+struct right {};
 
-    /// \brief Member info tag
-    /**
-    See also member_at, left, right.
-                                            **/
+/// \brief Member info tag
+/**
+See also member_at, left, right.
+**/
 
-    struct info  {};
+struct info  {};
 
 }
 

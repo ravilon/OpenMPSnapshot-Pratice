@@ -38,7 +38,7 @@ template <class T> struct add_cv<T&>{ typedef T& type; };
 
 #if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
-   template <class T> using add_cv_t = typename add_cv<T>::type;
+template <class T> using add_cv_t = typename add_cv<T>::type;
 
 #endif
 

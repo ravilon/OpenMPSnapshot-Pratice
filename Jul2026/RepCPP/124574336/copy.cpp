@@ -12,7 +12,7 @@
 
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-    #pragma warning(disable:4996)
+#pragma warning(disable:4996)
 #endif
 
 #define BOOST_TEST_MODULE odeint_nt2_copy
@@ -31,14 +31,14 @@ BOOST_AUTO_TEST_SUITE( nt2_copy )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_copy, T, fp_types )
 {
-  nt2::table<T> x = nt2::linspace(T(1),T(0),7);
+nt2::table<T> x = nt2::linspace(T(1),T(0),7);
 
-  nt2::table<T> y;
+nt2::table<T> y;
 
-  copy(y,x);
+copy(y,x);
 
-  for (std::size_t ii=1; ii<=x.size();ii++)
-    BOOST_CHECK_EQUAL(x(ii),y(ii));
+for (std::size_t ii=1; ii<=x.size();ii++)
+BOOST_CHECK_EQUAL(x(ii),y(ii));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

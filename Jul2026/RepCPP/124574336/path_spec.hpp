@@ -65,32 +65,32 @@ template<> struct is_supported_path_spec< const filesystem::path > : std::true_t
 
 inline std::string convert_to_string( std::string const& obj)
 {
-   return obj;
+return obj;
 }
 
 inline std::string convert_to_string( std::wstring const& s )
 {
-    std::size_t len = wcslen( s.c_str() );
-    char* c = reinterpret_cast<char*>( alloca( len ));
-    wcstombs( c, s.c_str(), len );
+std::size_t len = wcslen( s.c_str() );
+char* c = reinterpret_cast<char*>( alloca( len ));
+wcstombs( c, s.c_str(), len );
 
-    return std::string( c, c + len );
+return std::string( c, c + len );
 }
 
 inline std::string convert_to_string( const char* str )
 {
-    return std::string( str );
+return std::string( str );
 }
 
 inline std::string convert_to_string( char* str )
 {
-    return std::string( str );
+return std::string( str );
 }
 
 #ifdef BOOST_GIL_IO_ADD_FS_PATH_SUPPORT
 inline std::string convert_to_string( const filesystem::path& path )
 {
-    return convert_to_string( path.string() );
+return convert_to_string( path.string() );
 }
 #endif // BOOST_GIL_IO_ADD_FS_PATH_SUPPORT
 
@@ -100,35 +100,35 @@ inline std::string convert_to_string( const filesystem::path& path )
 
 inline const char* convert_to_native_string( char* str )
 {
-    return str;
+return str;
 }
 
 inline const char* convert_to_native_string( const char* str )
 {
-    return str;
+return str;
 }
 
 inline const char* convert_to_native_string( const std::string& str )
 {
-   return str.c_str();
+return str.c_str();
 }
 
 inline const char* convert_to_native_string( const wchar_t* str )
 {
-    std::size_t len = wcslen( str ) + 1;
-    char* c = new char[len];
-    wcstombs( c, str, len );
+std::size_t len = wcslen( str ) + 1;
+char* c = new char[len];
+wcstombs( c, str, len );
 
-    return c;
+return c;
 }
 
 inline const char* convert_to_native_string( const std::wstring& str )
 {
-    std::size_t len = wcslen( str.c_str() ) + 1;
-    char* c = new char[len];
-    wcstombs( c, str.c_str(), len );
+std::size_t len = wcslen( str.c_str() ) + 1;
+char* c = new char[len];
+wcstombs( c, str.c_str(), len );
 
-    return c;
+return c;
 }
 
 } // namespace detail

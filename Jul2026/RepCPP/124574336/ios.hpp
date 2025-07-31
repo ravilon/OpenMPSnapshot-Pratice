@@ -11,7 +11,7 @@
 #if defined(_MSC_VER)
 # pragma once
 #endif              
-                 
+
 #include <boost/config.hpp> // BOOST_MSVC.
 #include <boost/detail/workaround.hpp>
 #include <boost/iostreams/detail/config/wide_streams.hpp>
@@ -32,8 +32,8 @@ namespace boost { namespace iostreams { namespace detail {
 #ifndef BOOST_IOSTREAMS_NO_STREAM_TEMPLATES //--------------------------------//
 # define BOOST_IOSTREAMS_BASIC_IOS(ch, tr)  std::basic_ios< ch, tr >
 # if !BOOST_WORKAROUND(__MWERKS__, <= 0x3003) && \
-     !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) \
-     /**/
+!BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) \
+/**/
 
 #define BOOST_IOS                std::ios
 #define BOOST_IOSTREAMS_FAILURE  std::ios::failure
@@ -52,10 +52,10 @@ namespace boost { namespace iostreams { namespace detail {
 
 class failure : std::exception {    
 public:
-    explicit failure(const std::string& what_arg) : what_(what_arg) { }
-    const char* what() const { return what_.c_str(); }
+explicit failure(const std::string& what_arg) : what_(what_arg) { }
+const char* what() const { return what_.c_str(); }
 private:
-    std::string what_;
+std::string what_;
 };
 
 #endif // #ifndef BOOST_IOSTREAMS_NO_STREAM_TEMPLATES //----------------------//

@@ -23,7 +23,7 @@ inline const char* getenv(const char *env_var)
 #  pragma warning(push)
 #  pragma warning(disable: 4996)
 #endif
-    return std::getenv(env_var);
+return std::getenv(env_var);
 #ifdef _MSC_VER
 #  pragma warning(pop)
 #endif

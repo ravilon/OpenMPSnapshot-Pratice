@@ -28,13 +28,13 @@ namespace boost {
 namespace archive {
 
 class BOOST_SYMBOL_VISIBLE polymorphic_xml_wiarchive :
-    public detail::polymorphic_iarchive_route<xml_wiarchive>
+public detail::polymorphic_iarchive_route<xml_wiarchive>
 {
 public:
-    polymorphic_xml_wiarchive(std::wistream & is, unsigned int flags = 0) :
-        detail::polymorphic_iarchive_route<xml_wiarchive>(is, flags)
-    {}
-    ~polymorphic_xml_wiarchive() BOOST_OVERRIDE {}
+polymorphic_xml_wiarchive(std::wistream & is, unsigned int flags = 0) :
+detail::polymorphic_iarchive_route<xml_wiarchive>(is, flags)
+{}
+~polymorphic_xml_wiarchive() BOOST_OVERRIDE {}
 };
 
 } // namespace archive
@@ -42,7 +42,7 @@ public:
 
 // required by export
 BOOST_SERIALIZATION_REGISTER_ARCHIVE(
-    boost::archive::polymorphic_xml_wiarchive
+boost::archive::polymorphic_xml_wiarchive
 )
 
 #endif // BOOST_NO_STD_WSTREAMBUF

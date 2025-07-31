@@ -125,34 +125,34 @@ namespace boost
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct less_than_comparable2 : B
 {
-     friend bool operator<=(const T& x, const U& y) { return !static_cast<bool>(x > y); }
-     friend bool operator>=(const T& x, const U& y) { return !static_cast<bool>(x < y); }
-     friend bool operator>(const U& x, const T& y)  { return y < x; }
-     friend bool operator<(const U& x, const T& y)  { return y > x; }
-     friend bool operator<=(const U& x, const T& y) { return !static_cast<bool>(y < x); }
-     friend bool operator>=(const U& x, const T& y) { return !static_cast<bool>(y > x); }
+friend bool operator<=(const T& x, const U& y) { return !static_cast<bool>(x > y); }
+friend bool operator>=(const T& x, const U& y) { return !static_cast<bool>(x < y); }
+friend bool operator>(const U& x, const T& y)  { return y < x; }
+friend bool operator<(const U& x, const T& y)  { return y > x; }
+friend bool operator<=(const U& x, const T& y) { return !static_cast<bool>(y < x); }
+friend bool operator>=(const U& x, const T& y) { return !static_cast<bool>(y > x); }
 };
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct less_than_comparable1 : B
 {
-     friend bool operator>(const T& x, const T& y)  { return y < x; }
-     friend bool operator<=(const T& x, const T& y) { return !static_cast<bool>(y < x); }
-     friend bool operator>=(const T& x, const T& y) { return !static_cast<bool>(x < y); }
+friend bool operator>(const T& x, const T& y)  { return y < x; }
+friend bool operator<=(const T& x, const T& y) { return !static_cast<bool>(y < x); }
+friend bool operator>=(const T& x, const T& y) { return !static_cast<bool>(x < y); }
 };
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct equality_comparable2 : B
 {
-     friend bool operator==(const U& y, const T& x) { return x == y; }
-     friend bool operator!=(const U& y, const T& x) { return !static_cast<bool>(x == y); }
-     friend bool operator!=(const T& y, const U& x) { return !static_cast<bool>(y == x); }
+friend bool operator==(const U& y, const T& x) { return x == y; }
+friend bool operator!=(const U& y, const T& x) { return !static_cast<bool>(x == y); }
+friend bool operator!=(const T& y, const U& x) { return !static_cast<bool>(y == x); }
 };
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct equality_comparable1 : B
 {
-     friend bool operator!=(const T& x, const T& y) { return !static_cast<bool>(x == y); }
+friend bool operator!=(const T& x, const T& y) { return !static_cast<bool>(x == y); }
 };
 
 // A macro which produces "name_2left" from "name".
@@ -171,39 +171,39 @@ struct equality_comparable1 : B
 template <class T, class U, class B = ::boost::detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
-  friend T operator OP( const T& lhs, const U& rhs )                          \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
-  friend T operator OP( const U& lhs, const T& rhs )                          \
-    { T nrv( rhs ); nrv OP##= lhs; return nrv; }                              \
+friend T operator OP( const T& lhs, const U& rhs )                          \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
+friend T operator OP( const U& lhs, const T& rhs )                          \
+{ T nrv( rhs ); nrv OP##= lhs; return nrv; }                              \
 };                                                                            \
-                                                                              \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >                 \
 struct NAME##1 : B                                                            \
 {                                                                             \
-  friend T operator OP( const T& lhs, const T& rhs )                          \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
+friend T operator OP( const T& lhs, const T& rhs )                          \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
 };
 
 #define BOOST_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
 template <class T, class U, class B = ::boost::detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
-  friend T operator OP( const T& lhs, const U& rhs )                    \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
+friend T operator OP( const T& lhs, const U& rhs )                    \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
 };                                                                      \
-                                                                        \
+\
 template <class T, class U, class B = ::boost::detail::empty_base<T> >  \
 struct BOOST_OPERATOR2_LEFT(NAME) : B                                   \
 {                                                                       \
-  friend T operator OP( const U& lhs, const T& rhs )                    \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
+friend T operator OP( const U& lhs, const T& rhs )                    \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
 };                                                                      \
-                                                                        \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >           \
 struct NAME##1 : B                                                      \
 {                                                                       \
-  friend T operator OP( const T& lhs, const T& rhs )                    \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
+friend T operator OP( const T& lhs, const T& rhs )                    \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
 };
 
 #else // defined(BOOST_HAS_NRVO) || defined(BOOST_FORCE_SYMMETRIC_OPERATORS)
@@ -217,34 +217,34 @@ struct NAME##1 : B                                                      \
 template <class T, class U, class B = ::boost::detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
-  friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; } \
-  friend T operator OP( const U& lhs, T rhs ) { return rhs OP##= lhs; } \
+friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; } \
+friend T operator OP( const U& lhs, T rhs ) { return rhs OP##= lhs; } \
 };                                                                      \
-                                                                        \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >           \
 struct NAME##1 : B                                                      \
 {                                                                       \
-  friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
+friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
 };
 
 #define BOOST_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
 template <class T, class U, class B = ::boost::detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
-  friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; } \
+friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; } \
 };                                                                      \
-                                                                        \
+\
 template <class T, class U, class B = ::boost::detail::empty_base<T> >  \
 struct BOOST_OPERATOR2_LEFT(NAME) : B                                   \
 {                                                                       \
-  friend T operator OP( const U& lhs, const T& rhs )                    \
-    { return T( lhs ) OP##= rhs; }                                      \
+friend T operator OP( const U& lhs, const T& rhs )                    \
+{ return T( lhs ) OP##= rhs; }                                      \
 };                                                                      \
-                                                                        \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >           \
 struct NAME##1 : B                                                      \
 {                                                                       \
-  friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
+friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
 };
 
 #endif // defined(BOOST_HAS_NRVO) || defined(BOOST_FORCE_SYMMETRIC_OPERATORS)
@@ -267,27 +267,27 @@ BOOST_BINARY_OPERATOR_COMMUTATIVE( orable, | )
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct incrementable : B
 {
-  friend T operator++(T& x, int)
-  {
-    incrementable_type nrv(x);
-    ++x;
-    return nrv;
-  }
+friend T operator++(T& x, int)
+{
+incrementable_type nrv(x);
+++x;
+return nrv;
+}
 private: // The use of this typedef works around a Borland bug
-  typedef T incrementable_type;
+typedef T incrementable_type;
 };
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct decrementable : B
 {
-  friend T operator--(T& x, int)
-  {
-    decrementable_type nrv(x);
-    --x;
-    return nrv;
-  }
+friend T operator--(T& x, int)
+{
+decrementable_type nrv(x);
+--x;
+return nrv;
+}
 private: // The use of this typedef works around a Borland bug
-  typedef T decrementable_type;
+typedef T decrementable_type;
 };
 
 //  Iterator operator classes (contributed by Jeremy Siek) ------------------//
@@ -295,19 +295,19 @@ private: // The use of this typedef works around a Borland bug
 template <class T, class P, class B = ::boost::detail::empty_base<T> >
 struct dereferenceable : B
 {
-  P operator->() const
-  { 
-    return &*static_cast<const T&>(*this); 
-  }
+P operator->() const
+{ 
+return &*static_cast<const T&>(*this); 
+}
 };
 
 template <class T, class I, class R, class B = ::boost::detail::empty_base<T> >
 struct indexable : B
 {
-  R operator[](I n) const
-  {
-    return *(static_cast<const T&>(*this) + n);
-  }
+R operator[](I n) const
+{
+return *(static_cast<const T&>(*this) + n);
+}
 };
 
 //  More operator classes (contributed by Daryle Walker) --------------------//
@@ -319,15 +319,15 @@ struct indexable : B
 template <class T, class U, class B = ::boost::detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
-  friend T operator OP( const T& lhs, const U& rhs )                          \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
+friend T operator OP( const T& lhs, const U& rhs )                          \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
 };                                                                            \
-                                                                              \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >                 \
 struct NAME##1 : B                                                            \
 {                                                                             \
-  friend T operator OP( const T& lhs, const T& rhs )                          \
-    { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
+friend T operator OP( const T& lhs, const T& rhs )                          \
+{ T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
 };
 
 #else // defined(BOOST_HAS_NRVO) || defined(BOOST_FORCE_SYMMETRIC_OPERATORS)
@@ -336,13 +336,13 @@ struct NAME##1 : B                                                            \
 template <class T, class U, class B = ::boost::detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
-  friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; }       \
+friend T operator OP( T lhs, const U& rhs ) { return lhs OP##= rhs; }       \
 };                                                                            \
-                                                                              \
+\
 template <class T, class B = ::boost::detail::empty_base<T> >                 \
 struct NAME##1 : B                                                            \
 {                                                                             \
-  friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; }       \
+friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; }       \
 };
 
 #endif // defined(BOOST_HAS_NRVO) || defined(BOOST_FORCE_SYMMETRIC_OPERATORS)
@@ -355,283 +355,283 @@ BOOST_BINARY_OPERATOR( right_shiftable, >> )
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct equivalent2 : B
 {
-  friend bool operator==(const T& x, const U& y)
-  {
-    return !static_cast<bool>(x < y) && !static_cast<bool>(x > y);
-  }
+friend bool operator==(const T& x, const U& y)
+{
+return !static_cast<bool>(x < y) && !static_cast<bool>(x > y);
+}
 };
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct equivalent1 : B
 {
-  friend bool operator==(const T&x, const T&y)
-  {
-    return !static_cast<bool>(x < y) && !static_cast<bool>(y < x);
-  }
+friend bool operator==(const T&x, const T&y)
+{
+return !static_cast<bool>(x < y) && !static_cast<bool>(y < x);
+}
 };
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct partially_ordered2 : B
 {
-  friend bool operator<=(const T& x, const U& y)
-    { return static_cast<bool>(x < y) || static_cast<bool>(x == y); }
-  friend bool operator>=(const T& x, const U& y)
-    { return static_cast<bool>(x > y) || static_cast<bool>(x == y); }
-  friend bool operator>(const U& x, const T& y)
-    { return y < x; }
-  friend bool operator<(const U& x, const T& y)
-    { return y > x; }
-  friend bool operator<=(const U& x, const T& y)
-    { return static_cast<bool>(y > x) || static_cast<bool>(y == x); }
-  friend bool operator>=(const U& x, const T& y)
-    { return static_cast<bool>(y < x) || static_cast<bool>(y == x); }
+friend bool operator<=(const T& x, const U& y)
+{ return static_cast<bool>(x < y) || static_cast<bool>(x == y); }
+friend bool operator>=(const T& x, const U& y)
+{ return static_cast<bool>(x > y) || static_cast<bool>(x == y); }
+friend bool operator>(const U& x, const T& y)
+{ return y < x; }
+friend bool operator<(const U& x, const T& y)
+{ return y > x; }
+friend bool operator<=(const U& x, const T& y)
+{ return static_cast<bool>(y > x) || static_cast<bool>(y == x); }
+friend bool operator>=(const U& x, const T& y)
+{ return static_cast<bool>(y < x) || static_cast<bool>(y == x); }
 };
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct partially_ordered1 : B
 {
-  friend bool operator>(const T& x, const T& y)
-    { return y < x; }
-  friend bool operator<=(const T& x, const T& y)
-    { return static_cast<bool>(x < y) || static_cast<bool>(x == y); }
-  friend bool operator>=(const T& x, const T& y)
-    { return static_cast<bool>(y < x) || static_cast<bool>(x == y); }
+friend bool operator>(const T& x, const T& y)
+{ return y < x; }
+friend bool operator<=(const T& x, const T& y)
+{ return static_cast<bool>(x < y) || static_cast<bool>(x == y); }
+friend bool operator>=(const T& x, const T& y)
+{ return static_cast<bool>(y < x) || static_cast<bool>(x == y); }
 };
 
 //  Combined operator classes (contributed by Daryle Walker) ----------------//
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct totally_ordered2
-    : less_than_comparable2<T, U
-    , equality_comparable2<T, U, B
-      > > {};
+: less_than_comparable2<T, U
+, equality_comparable2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct totally_ordered1
-    : less_than_comparable1<T
-    , equality_comparable1<T, B
-      > > {};
+: less_than_comparable1<T
+, equality_comparable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct additive2
-    : addable2<T, U
-    , subtractable2<T, U, B
-      > > {};
+: addable2<T, U
+, subtractable2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct additive1
-    : addable1<T
-    , subtractable1<T, B
-      > > {};
+: addable1<T
+, subtractable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct multiplicative2
-    : multipliable2<T, U
-    , dividable2<T, U, B
-      > > {};
+: multipliable2<T, U
+, dividable2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct multiplicative1
-    : multipliable1<T
-    , dividable1<T, B
-      > > {};
+: multipliable1<T
+, dividable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct integer_multiplicative2
-    : multiplicative2<T, U
-    , modable2<T, U, B
-      > > {};
+: multiplicative2<T, U
+, modable2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct integer_multiplicative1
-    : multiplicative1<T
-    , modable1<T, B
-      > > {};
+: multiplicative1<T
+, modable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct arithmetic2
-    : additive2<T, U
-    , multiplicative2<T, U, B
-      > > {};
+: additive2<T, U
+, multiplicative2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct arithmetic1
-    : additive1<T
-    , multiplicative1<T, B
-      > > {};
+: additive1<T
+, multiplicative1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct integer_arithmetic2
-    : additive2<T, U
-    , integer_multiplicative2<T, U, B
-      > > {};
+: additive2<T, U
+, integer_multiplicative2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct integer_arithmetic1
-    : additive1<T
-    , integer_multiplicative1<T, B
-      > > {};
+: additive1<T
+, integer_multiplicative1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct bitwise2
-    : xorable2<T, U
-    , andable2<T, U
-    , orable2<T, U, B
-      > > > {};
+: xorable2<T, U
+, andable2<T, U
+, orable2<T, U, B
+> > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct bitwise1
-    : xorable1<T
-    , andable1<T
-    , orable1<T, B
-      > > > {};
+: xorable1<T
+, andable1<T
+, orable1<T, B
+> > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct unit_steppable
-    : incrementable<T
-    , decrementable<T, B
-      > > {};
+: incrementable<T
+, decrementable<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct shiftable2
-    : left_shiftable2<T, U
-    , right_shiftable2<T, U, B
-      > > {};
+: left_shiftable2<T, U
+, right_shiftable2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct shiftable1
-    : left_shiftable1<T
-    , right_shiftable1<T, B
-      > > {};
+: left_shiftable1<T
+, right_shiftable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct ring_operators2
-    : additive2<T, U
-    , subtractable2_left<T, U
-    , multipliable2<T, U, B
-      > > > {};
+: additive2<T, U
+, subtractable2_left<T, U
+, multipliable2<T, U, B
+> > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct ring_operators1
-    : additive1<T
-    , multipliable1<T, B
-      > > {};
+: additive1<T
+, multipliable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct ordered_ring_operators2
-    : ring_operators2<T, U
-    , totally_ordered2<T, U, B
-      > > {};
+: ring_operators2<T, U
+, totally_ordered2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct ordered_ring_operators1
-    : ring_operators1<T
-    , totally_ordered1<T, B
-      > > {};
+: ring_operators1<T
+, totally_ordered1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct field_operators2
-    : ring_operators2<T, U
-    , dividable2<T, U
-    , dividable2_left<T, U, B
-      > > > {};
+: ring_operators2<T, U
+, dividable2<T, U
+, dividable2_left<T, U, B
+> > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct field_operators1
-    : ring_operators1<T
-    , dividable1<T, B
-      > > {};
+: ring_operators1<T
+, dividable1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct ordered_field_operators2
-    : field_operators2<T, U
-    , totally_ordered2<T, U, B
-      > > {};
+: field_operators2<T, U
+, totally_ordered2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct ordered_field_operators1
-    : field_operators1<T
-    , totally_ordered1<T, B
-      > > {};
+: field_operators1<T
+, totally_ordered1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct euclidian_ring_operators2
-    : ring_operators2<T, U
-    , dividable2<T, U
-    , dividable2_left<T, U
-    , modable2<T, U
-    , modable2_left<T, U, B
-      > > > > > {};
+: ring_operators2<T, U
+, dividable2<T, U
+, dividable2_left<T, U
+, modable2<T, U
+, modable2_left<T, U, B
+> > > > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct euclidian_ring_operators1
-    : ring_operators1<T
-    , dividable1<T
-    , modable1<T, B
-      > > > {};
+: ring_operators1<T
+, dividable1<T
+, modable1<T, B
+> > > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct ordered_euclidian_ring_operators2
-    : totally_ordered2<T, U
-    , euclidian_ring_operators2<T, U, B
-      > > {};
+: totally_ordered2<T, U
+, euclidian_ring_operators2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct ordered_euclidian_ring_operators1
-    : totally_ordered1<T
-    , euclidian_ring_operators1<T, B
-      > > {};
+: totally_ordered1<T
+, euclidian_ring_operators1<T, B
+> > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct euclidean_ring_operators2
-    : ring_operators2<T, U
-    , dividable2<T, U
-    , dividable2_left<T, U
-    , modable2<T, U
-    , modable2_left<T, U, B
-      > > > > > {};
+: ring_operators2<T, U
+, dividable2<T, U
+, dividable2_left<T, U
+, modable2<T, U
+, modable2_left<T, U, B
+> > > > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct euclidean_ring_operators1
-    : ring_operators1<T
-    , dividable1<T
-    , modable1<T, B
-      > > > {};
+: ring_operators1<T
+, dividable1<T
+, modable1<T, B
+> > > {};
 
 template <class T, class U, class B = ::boost::detail::empty_base<T> >
 struct ordered_euclidean_ring_operators2
-    : totally_ordered2<T, U
-    , euclidean_ring_operators2<T, U, B
-      > > {};
+: totally_ordered2<T, U
+, euclidean_ring_operators2<T, U, B
+> > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct ordered_euclidean_ring_operators1
-    : totally_ordered1<T
-    , euclidean_ring_operators1<T, B
-      > > {};
+: totally_ordered1<T
+, euclidean_ring_operators1<T, B
+> > {};
 
 template <class T, class P, class B = ::boost::detail::empty_base<T> >
 struct input_iteratable
-    : equality_comparable1<T
-    , incrementable<T
-    , dereferenceable<T, P, B
-      > > > {};
+: equality_comparable1<T
+, incrementable<T
+, dereferenceable<T, P, B
+> > > {};
 
 template <class T, class B = ::boost::detail::empty_base<T> >
 struct output_iteratable
-    : incrementable<T, B
-      > {};
+: incrementable<T, B
+> {};
 
 template <class T, class P, class B = ::boost::detail::empty_base<T> >
 struct forward_iteratable
-    : input_iteratable<T, P, B
-      > {};
+: input_iteratable<T, P, B
+> {};
 
 template <class T, class P, class B = ::boost::detail::empty_base<T> >
 struct bidirectional_iteratable
-    : forward_iteratable<T, P
-    , decrementable<T, B
-      > > {};
+: forward_iteratable<T, P
+, decrementable<T, B
+> > {};
 
 //  To avoid repeated derivation from equality_comparable,
 //  which is an indirect base class of bidirectional_iterable,
@@ -639,11 +639,11 @@ struct bidirectional_iteratable
 //  but from less_than_comparable1 only. (Helmut Zeisel, 02-Dec-2001)
 template <class T, class P, class D, class R, class B = ::boost::detail::empty_base<T> >
 struct random_access_iteratable
-    : bidirectional_iteratable<T, P
-    , less_than_comparable1<T
-    , additive2<T, D
-    , indexable<T, D, R, B
-      > > > > {};
+: bidirectional_iteratable<T, P
+, less_than_comparable1<T
+, additive2<T, D
+, indexable<T, D, R, B
+> > > > {};
 
 #ifndef BOOST_NO_OPERATORS_IN_NAMESPACE
 } // namespace boost
@@ -660,7 +660,7 @@ struct random_access_iteratable
 
 #ifndef BOOST_NO_OPERATORS_IN_NAMESPACE
 
-  // The template is already in boost so we have nothing to do.
+// The template is already in boost so we have nothing to do.
 # define BOOST_IMPORT_TEMPLATE4(template_name)
 # define BOOST_IMPORT_TEMPLATE3(template_name)
 # define BOOST_IMPORT_TEMPLATE2(template_name)
@@ -670,8 +670,8 @@ struct random_access_iteratable
 
 #  ifndef BOOST_NO_USING_TEMPLATE
 
-     // Bring the names in with a using-declaration
-     // to avoid stressing the compiler.
+// Bring the names in with a using-declaration
+// to avoid stressing the compiler.
 #    define BOOST_IMPORT_TEMPLATE4(template_name) using ::template_name;
 #    define BOOST_IMPORT_TEMPLATE3(template_name) using ::template_name;
 #    define BOOST_IMPORT_TEMPLATE2(template_name) using ::template_name;
@@ -679,23 +679,23 @@ struct random_access_iteratable
 
 #  else
 
-     // Otherwise, because a Borland C++ 5.5 bug prevents a using declaration
-     // from working, we are forced to use inheritance for that compiler.
+// Otherwise, because a Borland C++ 5.5 bug prevents a using declaration
+// from working, we are forced to use inheritance for that compiler.
 #    define BOOST_IMPORT_TEMPLATE4(template_name)                                             \
-     template <class T, class U, class V, class W, class B = ::boost::detail::empty_base<T> > \
-     struct template_name : ::template_name<T, U, V, W, B> {};
+template <class T, class U, class V, class W, class B = ::boost::detail::empty_base<T> > \
+struct template_name : ::template_name<T, U, V, W, B> {};
 
 #    define BOOST_IMPORT_TEMPLATE3(template_name)                                    \
-     template <class T, class U, class V, class B = ::boost::detail::empty_base<T> > \
-     struct template_name : ::template_name<T, U, V, B> {};
+template <class T, class U, class V, class B = ::boost::detail::empty_base<T> > \
+struct template_name : ::template_name<T, U, V, B> {};
 
 #    define BOOST_IMPORT_TEMPLATE2(template_name)                           \
-     template <class T, class U, class B = ::boost::detail::empty_base<T> > \
-     struct template_name : ::template_name<T, U, B> {};
+template <class T, class U, class B = ::boost::detail::empty_base<T> > \
+struct template_name : ::template_name<T, U, B> {};
 
 #    define BOOST_IMPORT_TEMPLATE1(template_name)                  \
-     template <class T, class B = ::boost::detail::empty_base<T> > \
-     struct template_name : ::template_name<T, B> {};
+template <class T, class B = ::boost::detail::empty_base<T> > \
+struct template_name : ::template_name<T, B> {};
 
 #  endif // BOOST_NO_USING_TEMPLATE
 
@@ -716,15 +716,15 @@ namespace boost {
 // A type parameter is used instead of a plain bool because Borland's compiler
 // didn't cope well with the more obvious non-type template parameter.
 namespace detail {
-  struct true_t {};
-  struct false_t {};
+struct true_t {};
+struct false_t {};
 } // namespace detail
 
 // Unspecialized version assumes that most types are not being used for base
 // class chaining. We specialize for the operator templates defined in this
 // library.
 template<class T> struct is_chained_base {
-  typedef ::boost::detail::false_t value;
+typedef ::boost::detail::false_t value;
 };
 
 } // namespace boost
@@ -732,38 +732,38 @@ template<class T> struct is_chained_base {
 // Import a 4-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
 # define BOOST_OPERATOR_TEMPLATE4(template_name4)                     \
-  BOOST_IMPORT_TEMPLATE4(template_name4)                              \
-  template<class T, class U, class V, class W, class B>               \
-  struct is_chained_base< ::boost::template_name4<T, U, V, W, B> > {  \
-    typedef ::boost::detail::true_t value;                            \
-  };
+BOOST_IMPORT_TEMPLATE4(template_name4)                              \
+template<class T, class U, class V, class W, class B>               \
+struct is_chained_base< ::boost::template_name4<T, U, V, W, B> > {  \
+typedef ::boost::detail::true_t value;                            \
+};
 
 // Import a 3-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
 # define BOOST_OPERATOR_TEMPLATE3(template_name3)                     \
-  BOOST_IMPORT_TEMPLATE3(template_name3)                              \
-  template<class T, class U, class V, class B>                        \
-  struct is_chained_base< ::boost::template_name3<T, U, V, B> > {     \
-    typedef ::boost::detail::true_t value;                            \
-  };
+BOOST_IMPORT_TEMPLATE3(template_name3)                              \
+template<class T, class U, class V, class B>                        \
+struct is_chained_base< ::boost::template_name3<T, U, V, B> > {     \
+typedef ::boost::detail::true_t value;                            \
+};
 
 // Import a 2-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
 # define BOOST_OPERATOR_TEMPLATE2(template_name2)                  \
-  BOOST_IMPORT_TEMPLATE2(template_name2)                           \
-  template<class T, class U, class B>                              \
-  struct is_chained_base< ::boost::template_name2<T, U, B> > {     \
-    typedef ::boost::detail::true_t value;                         \
-  };
+BOOST_IMPORT_TEMPLATE2(template_name2)                           \
+template<class T, class U, class B>                              \
+struct is_chained_base< ::boost::template_name2<T, U, B> > {     \
+typedef ::boost::detail::true_t value;                         \
+};
 
 // Import a 1-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
 # define BOOST_OPERATOR_TEMPLATE1(template_name1)                  \
-  BOOST_IMPORT_TEMPLATE1(template_name1)                           \
-  template<class T, class B>                                       \
-  struct is_chained_base< ::boost::template_name1<T, B> > {        \
-    typedef ::boost::detail::true_t value;                         \
-  };
+BOOST_IMPORT_TEMPLATE1(template_name1)                           \
+template<class T, class B>                                       \
+struct is_chained_base< ::boost::template_name1<T, B> > {        \
+typedef ::boost::detail::true_t value;                         \
+};
 
 // BOOST_OPERATOR_TEMPLATE(template_name) defines template_name<> such that it
 // can be used for specifying both 1-argument and 2-argument forms. Requires the
@@ -781,32 +781,32 @@ template<class T> struct is_chained_base {
 
 # define BOOST_OPERATOR_TEMPLATE(template_name)                    \
 template <class T                                                  \
-         ,class U = T                                              \
-         ,class B = ::boost::detail::empty_base<T>                 \
-         ,class O = typename is_chained_base<U>::value             \
-         >                                                         \
+,class U = T                                              \
+,class B = ::boost::detail::empty_base<T>                 \
+,class O = typename is_chained_base<U>::value             \
+>                                                         \
 struct template_name : template_name##2<T, U, B> {};               \
-                                                                   \
+\
 template<class T, class U, class B>                                \
 struct template_name<T, U, B, ::boost::detail::true_t>             \
-  : template_name##1<T, U> {};                                     \
-                                                                   \
+: template_name##1<T, U> {};                                     \
+\
 template <class T, class B>                                        \
 struct template_name<T, T, B, ::boost::detail::false_t>            \
-  : template_name##1<T, B> {};                                     \
-                                                                   \
+: template_name##1<T, B> {};                                     \
+\
 template<class T, class U, class B, class O>                       \
 struct is_chained_base< ::boost::template_name<T, U, B, O> > {     \
-  typedef ::boost::detail::true_t value;                           \
+typedef ::boost::detail::true_t value;                           \
 };                                                                 \
-                                                                   \
+\
 BOOST_OPERATOR_TEMPLATE2(template_name##2)                         \
 BOOST_OPERATOR_TEMPLATE1(template_name##1)
 
 
 
 namespace boost {
-    
+
 BOOST_OPERATOR_TEMPLATE(less_than_comparable)
 BOOST_OPERATOR_TEMPLATE(equality_comparable)
 BOOST_OPERATOR_TEMPLATE(multipliable)
@@ -869,77 +869,77 @@ BOOST_OPERATOR_TEMPLATE4(random_access_iteratable)
 // declares ALL of the required member operators.
 template <class T, class U>
 struct operators2
-    : totally_ordered2<T,U
-    , integer_arithmetic2<T,U
-    , bitwise2<T,U
-      > > > {};
+: totally_ordered2<T,U
+, integer_arithmetic2<T,U
+, bitwise2<T,U
+> > > {};
 
 template <class T, class U = T>
 struct operators : operators2<T, U> {};
 
 template <class T> struct operators<T, T>
-    : totally_ordered<T
-    , integer_arithmetic<T
-    , bitwise<T
-    , unit_steppable<T
-      > > > > {};
+: totally_ordered<T
+, integer_arithmetic<T
+, bitwise<T
+, unit_steppable<T
+> > > > {};
 
 //  Iterator helper classes (contributed by Jeremy Siek) -------------------//
 //  (Input and output iterator helpers contributed by Daryle Walker) -------//
 //  (Changed to use combined operator classes by Daryle Walker) ------------//
 template <class T,
-          class V,
-          class D = std::ptrdiff_t,
-          class P = V const *,
-          class R = V const &>
+class V,
+class D = std::ptrdiff_t,
+class P = V const *,
+class R = V const &>
 struct input_iterator_helper
-  : input_iteratable<T, P
-  , std::iterator<std::input_iterator_tag, V, D, P, R
-    > > {};
+: input_iteratable<T, P
+, std::iterator<std::input_iterator_tag, V, D, P, R
+> > {};
 
 template<class T>
 struct output_iterator_helper
-  : output_iteratable<T
-  , std::iterator<std::output_iterator_tag, void, void, void, void
-  > >
+: output_iteratable<T
+, std::iterator<std::output_iterator_tag, void, void, void, void
+> >
 {
-  T& operator*()  { return static_cast<T&>(*this); }
-  T& operator++() { return static_cast<T&>(*this); }
+T& operator*()  { return static_cast<T&>(*this); }
+T& operator++() { return static_cast<T&>(*this); }
 };
 
 template <class T,
-          class V,
-          class D = std::ptrdiff_t,
-          class P = V*,
-          class R = V&>
+class V,
+class D = std::ptrdiff_t,
+class P = V*,
+class R = V&>
 struct forward_iterator_helper
-  : forward_iteratable<T, P
-  , std::iterator<std::forward_iterator_tag, V, D, P, R
-    > > {};
+: forward_iteratable<T, P
+, std::iterator<std::forward_iterator_tag, V, D, P, R
+> > {};
 
 template <class T,
-          class V,
-          class D = std::ptrdiff_t,
-          class P = V*,
-          class R = V&>
+class V,
+class D = std::ptrdiff_t,
+class P = V*,
+class R = V&>
 struct bidirectional_iterator_helper
-  : bidirectional_iteratable<T, P
-  , std::iterator<std::bidirectional_iterator_tag, V, D, P, R
-    > > {};
+: bidirectional_iteratable<T, P
+, std::iterator<std::bidirectional_iterator_tag, V, D, P, R
+> > {};
 
 template <class T,
-          class V, 
-          class D = std::ptrdiff_t,
-          class P = V*,
-          class R = V&>
+class V, 
+class D = std::ptrdiff_t,
+class P = V*,
+class R = V&>
 struct random_access_iterator_helper
-  : random_access_iteratable<T, P, D, R
-  , std::iterator<std::random_access_iterator_tag, V, D, P, R
-    > >
+: random_access_iteratable<T, P, D, R
+, std::iterator<std::random_access_iterator_tag, V, D, P, R
+> >
 {
-  friend D requires_difference_operator(const T& x, const T& y) {
-    return x - y;
-  }
+friend D requires_difference_operator(const T& x, const T& y) {
+return x - y;
+}
 }; // random_access_iterator_helper
 
 } // namespace boost

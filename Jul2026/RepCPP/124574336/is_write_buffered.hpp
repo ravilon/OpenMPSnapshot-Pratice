@@ -44,12 +44,12 @@ class is_write_buffered
 {
 public:
 #if defined(GENERATING_DOCUMENTATION)
-  /// The value member is true only if the Stream type supports buffering of
-  /// written data.
-  static const bool value;
+/// The value member is true only if the Stream type supports buffering of
+/// written data.
+static const bool value;
 #else
-  BOOST_ASIO_STATIC_CONSTANT(bool,
-      value = sizeof(detail::is_write_buffered_helper((Stream*)0)) == 1);
+BOOST_ASIO_STATIC_CONSTANT(bool,
+value = sizeof(detail::is_write_buffered_helper((Stream*)0)) == 1);
 #endif
 };
 

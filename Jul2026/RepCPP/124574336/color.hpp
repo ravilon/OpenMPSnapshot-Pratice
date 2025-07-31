@@ -36,12 +36,12 @@ namespace boost { namespace gil {
 template <typename CS>
 struct ColorSpaceConcept
 {
-    void constraints()
-    {
-        // Boost.MP11-compatible list, whose elements are color tags
+void constraints()
+{
+// Boost.MP11-compatible list, whose elements are color tags
 
-        // TODO: Is this incomplete?
-    }
+// TODO: Is this incomplete?
+}
 };
 
 // Models ColorSpaceConcept
@@ -59,10 +59,10 @@ struct color_spaces_are_compatible : std::is_same<CS1, CS2> {};
 template <typename CS1, typename CS2>
 struct ColorSpacesCompatibleConcept
 {
-    void constraints()
-    {
-        static_assert(color_spaces_are_compatible<CS1, CS2>::value, "");
-    }
+void constraints()
+{
+static_assert(color_spaces_are_compatible<CS1, CS2>::value, "");
+}
 };
 
 /// \ingroup ColorSpaceAndLayoutConcept
@@ -77,13 +77,13 @@ struct ColorSpacesCompatibleConcept
 template <typename CM>
 struct ChannelMappingConcept
 {
-    void constraints()
-    {
-        // Boost.MP11-compatible list, whose elements model
-        // MPLIntegralConstant representing a permutation.
+void constraints()
+{
+// Boost.MP11-compatible list, whose elements model
+// MPLIntegralConstant representing a permutation.
 
-        // TODO: Is this incomplete?
-    }
+// TODO: Is this incomplete?
+}
 };
 
 }} // namespace boost::gil

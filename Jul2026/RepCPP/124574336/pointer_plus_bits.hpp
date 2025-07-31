@@ -46,7 +46,7 @@ namespace intrusive {
 template<class VoidPointer, std::size_t Alignment>
 struct max_pointer_plus_bits
 {
-   static const std::size_t value = 0;
+static const std::size_t value = 0;
 };
 
 //!This is a specialization for raw pointers.
@@ -55,7 +55,7 @@ struct max_pointer_plus_bits
 template<std::size_t Alignment>
 struct max_pointer_plus_bits<void*, Alignment>
 {
-   static const std::size_t value = detail::ls_zeros<Alignment>::value;
+static const std::size_t value = detail::ls_zeros<Alignment>::value;
 };
 
 //!This is class that is supposed to have static methods
@@ -68,9 +68,9 @@ struct max_pointer_plus_bits<void*, Alignment>
 //!operations to embed the bits in the pointer.
 template<class Pointer, std::size_t NumBits>
 struct pointer_plus_bits
-   #ifdef BOOST_INTRUSIVE_DOXYGEN_INVOKED
-   {}
-   #endif
+#ifdef BOOST_INTRUSIVE_DOXYGEN_INVOKED
+{}
+#endif
 ;
 
 //!This is the specialization to embed extra bits of information
@@ -78,26 +78,26 @@ struct pointer_plus_bits
 template<class T, std::size_t NumBits>
 struct pointer_plus_bits<T*, NumBits>
 {
-   static const uintptr_t Mask = uintptr_t((uintptr_t(1u) << NumBits) - 1);
-   typedef T*        pointer;
+static const uintptr_t Mask = uintptr_t((uintptr_t(1u) << NumBits) - 1);
+typedef T*        pointer;
 
-   BOOST_INTRUSIVE_FORCEINLINE static pointer get_pointer(pointer n) BOOST_NOEXCEPT
-   {  return pointer(uintptr_t(n) & uintptr_t(~Mask));  }
+BOOST_INTRUSIVE_FORCEINLINE static pointer get_pointer(pointer n) BOOST_NOEXCEPT
+{  return pointer(uintptr_t(n) & uintptr_t(~Mask));  }
 
-   BOOST_INTRUSIVE_FORCEINLINE static void set_pointer(pointer &n, pointer p) BOOST_NOEXCEPT
-   {
-      BOOST_INTRUSIVE_INVARIANT_ASSERT(0 == (uintptr_t(p) & Mask));
-      n = pointer(uintptr_t(p) | (uintptr_t(n) & Mask));
-   }
+BOOST_INTRUSIVE_FORCEINLINE static void set_pointer(pointer &n, pointer p) BOOST_NOEXCEPT
+{
+BOOST_INTRUSIVE_INVARIANT_ASSERT(0 == (uintptr_t(p) & Mask));
+n = pointer(uintptr_t(p) | (uintptr_t(n) & Mask));
+}
 
-   BOOST_INTRUSIVE_FORCEINLINE static std::size_t get_bits(pointer n) BOOST_NOEXCEPT
-   {  return std::size_t(uintptr_t(n) & Mask);  }
+BOOST_INTRUSIVE_FORCEINLINE static std::size_t get_bits(pointer n) BOOST_NOEXCEPT
+{  return std::size_t(uintptr_t(n) & Mask);  }
 
-   BOOST_INTRUSIVE_FORCEINLINE static void set_bits(pointer &n, std::size_t c) BOOST_NOEXCEPT
-   {
-      BOOST_INTRUSIVE_INVARIANT_ASSERT(uintptr_t(c) <= Mask);
-      n = pointer(uintptr_t((get_pointer)(n)) | uintptr_t(c));
-   }
+BOOST_INTRUSIVE_FORCEINLINE static void set_bits(pointer &n, std::size_t c) BOOST_NOEXCEPT
+{
+BOOST_INTRUSIVE_INVARIANT_ASSERT(uintptr_t(c) <= Mask);
+n = pointer(uintptr_t((get_pointer)(n)) | uintptr_t(c));
+}
 };
 
 } //namespace intrusive

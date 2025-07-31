@@ -31,11 +31,11 @@ namespace support {
 /** \brief Gets a pair view of the relation.
 
 \ingroup relation_group
-                                                                        **/
+**/
 
 template< class Tag, class Relation >
 BOOST_DEDUCED_TYPENAME result_of::pair_by<Tag,Relation>::type
-    pair_by( Relation & rel );
+pair_by( Relation & rel );
 
 } // namespace support
 } // namespace relation
@@ -70,21 +70,21 @@ namespace support {
 // Result of
 // -------------------------------------------------------------------------
 /*
-    namespace result_of {
+namespace result_of {
 
-    template< class Tag, class Relation >
-    struct pair_by<Tag,Relation>;
-    {
-        typedef -unspecified- type;
-    };
+template< class Tag, class Relation >
+struct pair_by<Tag,Relation>;
+{
+typedef -unspecified- type;
+};
 
-    } // namespace result_of
+} // namespace result_of
 */
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_RESULT_OF_BUILDER
 (
-    pair_by,
-    pair_type_by
+pair_by,
+pair_type_by
 )
 
 
@@ -94,11 +94,11 @@ BOOST_BIMAP_SYMMETRIC_ACCESS_RESULT_OF_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_IMPLEMENTATION_BUILDER
 (
-    pair_by,
-    Relation,
-    rel,
-    return rel.get_left_pair(),
-    return rel.get_right_pair()
+pair_by,
+Relation,
+rel,
+return rel.get_left_pair(),
+return rel.get_right_pair()
 )
 
 // Interface
@@ -106,7 +106,7 @@ BOOST_BIMAP_SYMMETRIC_ACCESS_IMPLEMENTATION_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_INTERFACE_BUILDER
 (
-    pair_by
+pair_by
 )
 
 } // namespace support

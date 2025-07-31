@@ -51,17 +51,17 @@ namespace dtl {
 template <class Container>
 struct is_container
 {
-   static const bool value =
-      boost::container::is_container_detail::
-         has_member_function_callable_with_size <const Container>::value &&
-      boost::container::is_container_detail::
-         has_member_function_callable_with_empty<const Container>::value;
+static const bool value =
+boost::container::is_container_detail::
+has_member_function_callable_with_size <const Container>::value &&
+boost::container::is_container_detail::
+has_member_function_callable_with_empty<const Container>::value;
 };
 
 template <>
 struct is_container<void>
 {
-   static const bool value = false;
+static const bool value = false;
 };
 
 

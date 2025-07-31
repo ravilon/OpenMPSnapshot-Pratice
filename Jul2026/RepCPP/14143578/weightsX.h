@@ -1,4 +1,4 @@
-#pragma once
-
-#include "weights.h"
-#include "gridX.h"
+#pragma once
+
+#include "weights.h"
+#include "gridX.h"

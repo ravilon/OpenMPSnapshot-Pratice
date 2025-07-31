@@ -41,23 +41,23 @@ namespace boost { namespace geometry
 template <typename Range>
 struct identity_view
 {
-    using const_iterator = typename boost::range_iterator<Range const>::type;
-    using iterator = typename boost::range_iterator<Range>::type;
+using const_iterator = typename boost::range_iterator<Range const>::type;
+using iterator = typename boost::range_iterator<Range>::type;
 
-    explicit inline identity_view(Range& r)
-        : m_begin(boost::begin(r))
-        , m_end(boost::end(r))
-    {}
+explicit inline identity_view(Range& r)
+: m_begin(boost::begin(r))
+, m_end(boost::end(r))
+{}
 
-    inline const_iterator begin() const { return m_begin; }
-    inline const_iterator end() const { return m_end; }
+inline const_iterator begin() const { return m_begin; }
+inline const_iterator end() const { return m_end; }
 
-    inline iterator begin() { return m_begin; }
-    inline iterator end() { return m_end; }
+inline iterator begin() { return m_begin; }
+inline iterator end() { return m_end; }
 
 private:
-    iterator m_begin;
-    iterator m_end;
+iterator m_begin;
+iterator m_end;
 };
 
 #if defined(_MSC_VER)

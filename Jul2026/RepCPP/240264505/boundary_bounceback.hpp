@@ -1,10 +1,10 @@
 #ifndef LBT_BOUNDARY_BOUNCEBACK
 #define LBT_BOUNDARY_BOUNCEBACK
 
-/**
- * \file     boundary_bounceback.hpp
+/**
+ * \file     boundary_bounceback.hpp
  * \mainpage Solid walls with simple bounce-back boundaries
- * \author   Tobit Flatscher (github.com/2b-t)
+ * \author   Tobit Flatscher (github.com/2b-t)
 */
 
 #include <array>

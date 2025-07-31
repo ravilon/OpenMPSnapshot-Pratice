@@ -1,9 +1,9 @@
 /*-----------------------------------------------------------------------------+
 Copyright (c) 2008-2009: Joachim Faulhaber
 +------------------------------------------------------------------------------+
-   Distributed under the Boost Software License, Version 1.0.
-      (See accompanying file LICENCE.txt or copy at
-           http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENCE.txt or copy at
+http://www.boost.org/LICENSE_1_0.txt)
 +-----------------------------------------------------------------------------*/
 
 /*------------------------------------------------------------------------------
@@ -44,77 +44,77 @@ w.r.t. addition (identity_element()).
 
 namespace boost{namespace icl
 {
-    template<> struct is_discrete<boost::posix_time::ptime>
-    {
-        typedef is_discrete type;
-        BOOST_STATIC_CONSTANT(bool, value = true);
-    };
+template<> struct is_discrete<boost::posix_time::ptime>
+{
+typedef is_discrete type;
+BOOST_STATIC_CONSTANT(bool, value = true);
+};
 
-    template<> 
-    inline boost::posix_time::ptime identity_element<boost::posix_time::ptime>::value()
-    { 
-        return boost::posix_time::ptime(boost::posix_time::min_date_time); 
-    }
+template<> 
+inline boost::posix_time::ptime identity_element<boost::posix_time::ptime>::value()
+{ 
+return boost::posix_time::ptime(boost::posix_time::min_date_time); 
+}
 
-    template<> 
-    struct has_difference<boost::posix_time::ptime> 
-    { 
-        typedef has_difference type;
-        BOOST_STATIC_CONSTANT(bool, value = true);
-    };  
+template<> 
+struct has_difference<boost::posix_time::ptime> 
+{ 
+typedef has_difference type;
+BOOST_STATIC_CONSTANT(bool, value = true);
+};  
 
-    template<> 
-    struct difference_type_of<boost::posix_time::ptime> 
-    { 
-        typedef boost::posix_time::time_duration type; 
-    };  
+template<> 
+struct difference_type_of<boost::posix_time::ptime> 
+{ 
+typedef boost::posix_time::time_duration type; 
+};  
 
-    template<> 
-    struct size_type_of<boost::posix_time::ptime> 
-    { 
-        typedef boost::posix_time::time_duration type; 
-    };  
+template<> 
+struct size_type_of<boost::posix_time::ptime> 
+{ 
+typedef boost::posix_time::time_duration type; 
+};  
 
-    // ------------------------------------------------------------------------
-    inline boost::posix_time::ptime operator ++(boost::posix_time::ptime& x)
-    {
-        return x += boost::posix_time::ptime::time_duration_type::unit();
-    }
+// ------------------------------------------------------------------------
+inline boost::posix_time::ptime operator ++(boost::posix_time::ptime& x)
+{
+return x += boost::posix_time::ptime::time_duration_type::unit();
+}
 
-    inline boost::posix_time::ptime operator --(boost::posix_time::ptime& x)
-    {
-        return x -= boost::posix_time::ptime::time_duration_type::unit();
-    }
+inline boost::posix_time::ptime operator --(boost::posix_time::ptime& x)
+{
+return x -= boost::posix_time::ptime::time_duration_type::unit();
+}
 
-    // ------------------------------------------------------------------------
-    template<> struct is_discrete<boost::posix_time::time_duration>
-    {
-        typedef is_discrete type;
-        BOOST_STATIC_CONSTANT(bool, value = true);
-    };
+// ------------------------------------------------------------------------
+template<> struct is_discrete<boost::posix_time::time_duration>
+{
+typedef is_discrete type;
+BOOST_STATIC_CONSTANT(bool, value = true);
+};
 
-    template<> 
-    struct has_difference<boost::posix_time::time_duration> 
-    { 
-        typedef has_difference type;
-        BOOST_STATIC_CONSTANT(bool, value = true);
-    };  
+template<> 
+struct has_difference<boost::posix_time::time_duration> 
+{ 
+typedef has_difference type;
+BOOST_STATIC_CONSTANT(bool, value = true);
+};  
 
-    template<> 
-    struct size_type_of<boost::posix_time::time_duration> 
-    { 
-        typedef boost::posix_time::time_duration type; 
-    };  
+template<> 
+struct size_type_of<boost::posix_time::time_duration> 
+{ 
+typedef boost::posix_time::time_duration type; 
+};  
 
-    inline boost::posix_time::time_duration operator ++(boost::posix_time::time_duration& x)
-    {
-        return x += boost::posix_time::ptime::time_duration_type::unit();
-    }
+inline boost::posix_time::time_duration operator ++(boost::posix_time::time_duration& x)
+{
+return x += boost::posix_time::ptime::time_duration_type::unit();
+}
 
-    inline boost::posix_time::time_duration operator --(boost::posix_time::time_duration& x)
-    {
-        return x -= boost::posix_time::ptime::time_duration_type::unit();
-    }
+inline boost::posix_time::time_duration operator --(boost::posix_time::time_duration& x)
+{
+return x -= boost::posix_time::ptime::time_duration_type::unit();
+}
 }} // namespace icl boost
 
 #endif

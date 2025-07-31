@@ -24,8 +24,8 @@ class jpeg_io_base
 
 protected:
 
-    jpeg_error_mgr _jerr;
-    jmp_buf        _mark;
+jpeg_error_mgr _jerr;
+jmp_buf        _mark;
 };
 
 #if BOOST_WORKAROUND(BOOST_MSVC, >= 1400)

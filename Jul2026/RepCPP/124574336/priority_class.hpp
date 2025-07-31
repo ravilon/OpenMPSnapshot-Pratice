@@ -1,10 +1,10 @@
 /*
- * Copyright 2016 Klemens D. Morgenstern
- * Copyright 2016 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Klemens D. Morgenstern
+* Copyright 2016 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_PRIORITY_CLASS_HPP_INCLUDED_
 #define BOOST_WINAPI_PRIORITY_CLASS_HPP_INCLUDED_
@@ -27,8 +27,8 @@ GetPriorityClass(boost::winapi::HANDLE_ hProcess);
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 SetPriorityClass(
-    boost::winapi::HANDLE_ hProcess,
-    boost::winapi::DWORD_ dwPriorityClass);
+boost::winapi::HANDLE_ hProcess,
+boost::winapi::DWORD_ dwPriorityClass);
 
 } // extern "C"
 #endif //defined BOOST_WINDOWS_H

@@ -29,36 +29,36 @@ struct public_ { };     // Represents public inheritance.
 
 namespace detail {
 
-    // Implements protected inheritance.
-    template<typename U>
-    struct prot_ : protected U 
-    { 
-        prot_() { }
-        template<typename V> prot_(V v) : U(v) { }
-    };
+// Implements protected inheritance.
+template<typename U>
+struct prot_ : protected U 
+{ 
+prot_() { }
+template<typename V> prot_(V v) : U(v) { }
+};
 
-    // Implements public inheritance.
-    template<typename U> struct pub_ : public U { 
-        pub_() { }
-        template<typename V> pub_(V v) : U(v) { }
-    };
+// Implements public inheritance.
+template<typename U> struct pub_ : public U { 
+pub_() { }
+template<typename V> pub_(V v) : U(v) { }
+};
 
 //
 // Used to deduce the base type for the template access_control.
 //
 template<typename T, typename Access>
 struct access_control_base {
-    typedef int                                 bad_access_specifier;
-    typedef typename 
-            iostreams::select<  // Disambiguation for Tru64
-                ::boost::is_same<
-                    Access, protected_
-                >,                              prot_<T>,
-                ::boost::is_same<
-                    Access, public_
-                >,                              pub_<T>,
-                else_,                          bad_access_specifier
-            >::type                             type;
+typedef int                                 bad_access_specifier;
+typedef typename 
+iostreams::select<  // Disambiguation for Tru64
+::boost::is_same<
+Access, protected_
+>,                              prot_<T>,
+::boost::is_same<
+Access, public_
+>,                              pub_<T>,
+else_,                          bad_access_specifier
+>::type                             type;
 };
 
 } // End namespace detail.
@@ -73,11 +73,11 @@ struct access_control_base {
 //          values access_base::prot or access_base::pub.
 //
 template< typename T, typename Access,
-          typename Base = // VC6 workaraound (Compiler Error C2516)
-              typename detail::access_control_base<T, Access>::type >
+typename Base = // VC6 workaraound (Compiler Error C2516)
+typename detail::access_control_base<T, Access>::type >
 struct access_control : public Base { 
-    access_control() { }
-    template<typename U> explicit access_control(U u) : Base(u) { }
+access_control() { }
+template<typename U> explicit access_control(U u) : Base(u) { }
 };
 
 //----------------------------------------------------------------------------//

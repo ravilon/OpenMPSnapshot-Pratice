@@ -34,13 +34,13 @@ namespace boost {
 
 template<class T>
 struct use_empty_value_base {
-    enum {
+enum {
 #if defined(BOOST_DETAIL_EMPTY_VALUE_BASE)
-        value = __is_empty(T) && !__is_final(T)
+value = __is_empty(T) && !__is_final(T)
 #else
-        value = false
+value = false
 #endif
-    };
+};
 };
 
 struct empty_init_t { };
@@ -48,95 +48,95 @@ struct empty_init_t { };
 namespace empty_ {
 
 template<class T, unsigned N = 0,
-    bool E = boost::use_empty_value_base<T>::value>
+bool E = boost::use_empty_value_base<T>::value>
 class empty_value {
 public:
-    typedef T type;
+typedef T type;
 
 #if !defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS)
-    empty_value() = default;
+empty_value() = default;
 #else
-    empty_value() { }
+empty_value() { }
 #endif
 
-    empty_value(boost::empty_init_t)
-        : value_() { }
+empty_value(boost::empty_init_t)
+: value_() { }
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
-    template<class U, class... Args>
-    empty_value(boost::empty_init_t, U&& value, Args&&... args)
-        : value_(std::forward<U>(value), std::forward<Args>(args)...) { }
+template<class U, class... Args>
+empty_value(boost::empty_init_t, U&& value, Args&&... args)
+: value_(std::forward<U>(value), std::forward<Args>(args)...) { }
 #else
-    template<class U>
-    empty_value(boost::empty_init_t, U&& value)
-        : value_(std::forward<U>(value)) { }
+template<class U>
+empty_value(boost::empty_init_t, U&& value)
+: value_(std::forward<U>(value)) { }
 #endif
 #else
-    template<class U>
-    empty_value(boost::empty_init_t, const U& value)
-        : value_(value) { }
+template<class U>
+empty_value(boost::empty_init_t, const U& value)
+: value_(value) { }
 
-    template<class U>
-    empty_value(boost::empty_init_t, U& value)
-        : value_(value) { }
+template<class U>
+empty_value(boost::empty_init_t, U& value)
+: value_(value) { }
 #endif
 
-    const T& get() const BOOST_NOEXCEPT {
-        return value_;
-    }
+const T& get() const BOOST_NOEXCEPT {
+return value_;
+}
 
-    T& get() BOOST_NOEXCEPT {
-        return value_;
-    }
+T& get() BOOST_NOEXCEPT {
+return value_;
+}
 
 private:
-    T value_;
+T value_;
 };
 
 #if !defined(BOOST_NO_TEMPLATE_PARTIAL_SPECIALIZATION)
 template<class T, unsigned N>
 class empty_value<T, N, true>
-    : T {
+: T {
 public:
-    typedef T type;
+typedef T type;
 
 #if !defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS)
-    empty_value() = default;
+empty_value() = default;
 #else
-    empty_value() { }
+empty_value() { }
 #endif
 
-    empty_value(boost::empty_init_t)
-        : T() { }
+empty_value(boost::empty_init_t)
+: T() { }
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
-    template<class U, class... Args>
-    empty_value(boost::empty_init_t, U&& value, Args&&... args)
-        : T(std::forward<U>(value), std::forward<Args>(args)...) { }
+template<class U, class... Args>
+empty_value(boost::empty_init_t, U&& value, Args&&... args)
+: T(std::forward<U>(value), std::forward<Args>(args)...) { }
 #else
-    template<class U>
-    empty_value(boost::empty_init_t, U&& value)
-        : T(std::forward<U>(value)) { }
+template<class U>
+empty_value(boost::empty_init_t, U&& value)
+: T(std::forward<U>(value)) { }
 #endif
 #else
-    template<class U>
-    empty_value(boost::empty_init_t, const U& value)
-        : T(value) { }
+template<class U>
+empty_value(boost::empty_init_t, const U& value)
+: T(value) { }
 
-    template<class U>
-    empty_value(boost::empty_init_t, U& value)
-        : T(value) { }
+template<class U>
+empty_value(boost::empty_init_t, U& value)
+: T(value) { }
 #endif
 
-    const T& get() const BOOST_NOEXCEPT {
-        return *this;
-    }
+const T& get() const BOOST_NOEXCEPT {
+return *this;
+}
 
-    T& get() BOOST_NOEXCEPT {
-        return *this;
-    }
+T& get() BOOST_NOEXCEPT {
+return *this;
+}
 };
 #endif
 

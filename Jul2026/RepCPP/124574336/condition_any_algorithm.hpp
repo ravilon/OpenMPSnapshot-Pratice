@@ -59,127 +59,127 @@ namespace ipcdetail {
 template<class ConditionAnyMembers>
 class condition_any_algorithm
 {
-   private:
-   condition_any_algorithm();
-   ~condition_any_algorithm();
-   condition_any_algorithm(const condition_any_algorithm &);
-   condition_any_algorithm &operator=(const condition_any_algorithm &);
+private:
+condition_any_algorithm();
+~condition_any_algorithm();
+condition_any_algorithm(const condition_any_algorithm &);
+condition_any_algorithm &operator=(const condition_any_algorithm &);
 
-   typedef typename ConditionAnyMembers::mutex_type      mutex_type;
-   typedef typename ConditionAnyMembers::condvar_type    condvar_type;
+typedef typename ConditionAnyMembers::mutex_type      mutex_type;
+typedef typename ConditionAnyMembers::condvar_type    condvar_type;
 
-   public:
-   template <class Lock>
-   static void wait(ConditionAnyMembers& data, Lock& lock)
-   {
-      //lock internal before unlocking external to avoid race with a notifier
-      scoped_lock<mutex_type> internal_lock(data.get_mutex());
-      {
-         lock_inverter<Lock> inverted_lock(lock);
-         scoped_lock<lock_inverter<Lock> >   external_unlock(inverted_lock);
-         {  //unlock internal first to avoid deadlock with near simultaneous waits
-            scoped_lock<mutex_type>     internal_unlock;
-            internal_lock.swap(internal_unlock);
-            data.get_condvar().wait(internal_unlock);
-         }
-      }
-   }
+public:
+template <class Lock>
+static void wait(ConditionAnyMembers& data, Lock& lock)
+{
+//lock internal before unlocking external to avoid race with a notifier
+scoped_lock<mutex_type> internal_lock(data.get_mutex());
+{
+lock_inverter<Lock> inverted_lock(lock);
+scoped_lock<lock_inverter<Lock> >   external_unlock(inverted_lock);
+{  //unlock internal first to avoid deadlock with near simultaneous waits
+scoped_lock<mutex_type>     internal_unlock;
+internal_lock.swap(internal_unlock);
+data.get_condvar().wait(internal_unlock);
+}
+}
+}
 
-   template <class Lock, class TimePoint>
-   static bool timed_wait(ConditionAnyMembers &data, Lock& lock, const TimePoint &abs_time)
-   {
-      //lock internal before unlocking external to avoid race with a notifier
-      scoped_lock<mutex_type> internal_lock(data.get_mutex());
-      {
-         //Unlock external lock and program for relock
-         lock_inverter<Lock> inverted_lock(lock);
-         scoped_lock<lock_inverter<Lock> >   external_unlock(inverted_lock);
-         {  //unlock internal first to avoid deadlock with near simultaneous waits
-            scoped_lock<mutex_type> internal_unlock;
-            internal_lock.swap(internal_unlock);
-            return data.get_condvar().timed_wait(internal_unlock, abs_time);
-         }
-      }
-   }
+template <class Lock, class TimePoint>
+static bool timed_wait(ConditionAnyMembers &data, Lock& lock, const TimePoint &abs_time)
+{
+//lock internal before unlocking external to avoid race with a notifier
+scoped_lock<mutex_type> internal_lock(data.get_mutex());
+{
+//Unlock external lock and program for relock
+lock_inverter<Lock> inverted_lock(lock);
+scoped_lock<lock_inverter<Lock> >   external_unlock(inverted_lock);
+{  //unlock internal first to avoid deadlock with near simultaneous waits
+scoped_lock<mutex_type> internal_unlock;
+internal_lock.swap(internal_unlock);
+return data.get_condvar().timed_wait(internal_unlock, abs_time);
+}
+}
+}
 
-   static void signal(ConditionAnyMembers& data, bool broadcast)
-   {
-      scoped_lock<mutex_type> internal_lock(data.get_mutex());
-      if(broadcast){
-         data.get_condvar().notify_all();
-      }
-      else{
-         data.get_condvar().notify_one();
-      }
-   }
+static void signal(ConditionAnyMembers& data, bool broadcast)
+{
+scoped_lock<mutex_type> internal_lock(data.get_mutex());
+if(broadcast){
+data.get_condvar().notify_all();
+}
+else{
+data.get_condvar().notify_one();
+}
+}
 };
 
 
 template<class ConditionAnyMembers>
 class condition_any_wrapper
 {
-   //Non-copyable
-   condition_any_wrapper(const condition_any_wrapper &);
-   condition_any_wrapper &operator=(const condition_any_wrapper &);
+//Non-copyable
+condition_any_wrapper(const condition_any_wrapper &);
+condition_any_wrapper &operator=(const condition_any_wrapper &);
 
-   ConditionAnyMembers m_data;
-   typedef ipcdetail::condition_any_algorithm<ConditionAnyMembers> algo_type;
+ConditionAnyMembers m_data;
+typedef ipcdetail::condition_any_algorithm<ConditionAnyMembers> algo_type;
 
-   public:
+public:
 
-   condition_any_wrapper(){}
+condition_any_wrapper(){}
 
-   ~condition_any_wrapper(){}
+~condition_any_wrapper(){}
 
-   ConditionAnyMembers & get_members()
-   {  return m_data; }
+ConditionAnyMembers & get_members()
+{  return m_data; }
 
-   const ConditionAnyMembers & get_members() const
-   {  return m_data; }
+const ConditionAnyMembers & get_members() const
+{  return m_data; }
 
-   void notify_one()
-   {  algo_type::signal(m_data, false);  }
+void notify_one()
+{  algo_type::signal(m_data, false);  }
 
-   void notify_all()
-   {  algo_type::signal(m_data, true);  }
+void notify_all()
+{  algo_type::signal(m_data, true);  }
 
-   template <typename Lock>
-   void wait(Lock& lock)
-   {
-      if (!lock)
-         throw lock_exception();
-      algo_type::wait(m_data, lock);
-   }
+template <typename Lock>
+void wait(Lock& lock)
+{
+if (!lock)
+throw lock_exception();
+algo_type::wait(m_data, lock);
+}
 
-   template <typename L, typename Pr>
-   void wait(L& lock, Pr pred)
-   {
-      if (!lock)
-         throw lock_exception();
+template <typename L, typename Pr>
+void wait(L& lock, Pr pred)
+{
+if (!lock)
+throw lock_exception();
 
-      while (!pred())
-         algo_type::wait(m_data, lock);
-   }
+while (!pred())
+algo_type::wait(m_data, lock);
+}
 
-   template <typename L, typename TimePoint>
-   bool timed_wait(L& lock, const TimePoint &abs_time)
-   {
-      if (!lock)
-         throw lock_exception();
-      return algo_type::timed_wait(m_data, lock, abs_time);
-   }
+template <typename L, typename TimePoint>
+bool timed_wait(L& lock, const TimePoint &abs_time)
+{
+if (!lock)
+throw lock_exception();
+return algo_type::timed_wait(m_data, lock, abs_time);
+}
 
-   template <typename L, typename TimePoint, typename Pr>
-   bool timed_wait(L& lock, const TimePoint &abs_time, Pr pred)
-   {
-      if (!lock)
-            throw lock_exception();
-      while (!pred()){
-         if (!algo_type::timed_wait(m_data, lock, abs_time))
-            return pred();
-      }
-      return true;
-   }
+template <typename L, typename TimePoint, typename Pr>
+bool timed_wait(L& lock, const TimePoint &abs_time, Pr pred)
+{
+if (!lock)
+throw lock_exception();
+while (!pred()){
+if (!algo_type::timed_wait(m_data, lock, abs_time))
+return pred();
+}
+return true;
+}
 };
 
 }  //namespace ipcdetail

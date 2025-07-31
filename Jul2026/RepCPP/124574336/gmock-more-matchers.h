@@ -53,17 +53,17 @@ namespace testing {
 // and silence C4800 (C4800: 'int *const ': forcing value
 // to bool 'true' or 'false') for MSVC 14
 # pragma warning(disable:4800)
-  #endif
+#endif
 #endif
 
 // Defines a matcher that matches an empty container. The container must
 // support both size() and empty(), which all STL-like containers provide.
 MATCHER(IsEmpty, negation ? "isn't empty" : "is empty") {
-  if (arg.empty()) {
-    return true;
-  }
-  *result_listener << "whose size is " << arg.size();
-  return false;
+if (arg.empty()) {
+return true;
+}
+*result_listener << "whose size is " << arg.size();
+return false;
 }
 
 // Define a matcher that matches a value that evaluates in boolean
@@ -71,7 +71,7 @@ MATCHER(IsEmpty, negation ? "isn't empty" : "is empty") {
 // bool" operators and so can't be compared for equality with true
 // and false.
 MATCHER(IsTrue, negation ? "is false" : "is true") {
-  return static_cast<bool>(arg);
+return static_cast<bool>(arg);
 }
 
 // Define a matcher that matches a value that evaluates in boolean
@@ -79,7 +79,7 @@ MATCHER(IsTrue, negation ? "is false" : "is true") {
 // bool" operators and so can't be compared for equality with true
 // and false.
 MATCHER(IsFalse, negation ? "is true" : "is false") {
-  return !static_cast<bool>(arg);
+return !static_cast<bool>(arg);
 }
 
 #ifdef _MSC_VER

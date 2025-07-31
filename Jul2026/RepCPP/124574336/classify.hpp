@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2020-2021 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2020-2021 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/classify.hpp
- *
- * This header contains type traits for type classification.
- */
+* \file   atomic/detail/classify.hpp
+*
+* This header contains type traits for type classification.
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_CLASSIFY_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_CLASSIFY_HPP_INCLUDED_
@@ -32,24 +32,24 @@ namespace detail {
 template< typename T, bool IsFunction = atomics::detail::is_function< T >::value >
 struct classify_pointer
 {
-    typedef void* type;
+typedef void* type;
 };
 
 template< typename T >
 struct classify_pointer< T, true >
 {
-    typedef void type;
+typedef void type;
 };
 
 template<
-    typename T,
-    bool IsInt = atomics::detail::is_integral< T >::value,
-    bool IsFloat = atomics::detail::is_floating_point< T >::value,
-    bool IsEnum = atomics::detail::is_enum< T >::value
+typename T,
+bool IsInt = atomics::detail::is_integral< T >::value,
+bool IsFloat = atomics::detail::is_floating_point< T >::value,
+bool IsEnum = atomics::detail::is_enum< T >::value
 >
 struct classify
 {
-    typedef void type;
+typedef void type;
 };
 
 template< typename T >

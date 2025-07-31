@@ -34,224 +34,224 @@ class const_registered_buffer;
 class registered_buffer_id
 {
 public:
-  /// The native buffer identifier type.
-  typedef int native_handle_type;
+/// The native buffer identifier type.
+typedef int native_handle_type;
 
-  /// Default constructor creates an invalid registered buffer identifier.
-  registered_buffer_id() BOOST_ASIO_NOEXCEPT
-    : scope_(0),
-      index_(-1)
-  {
-  }
+/// Default constructor creates an invalid registered buffer identifier.
+registered_buffer_id() BOOST_ASIO_NOEXCEPT
+: scope_(0),
+index_(-1)
+{
+}
 
-  /// Get the native buffer identifier type.
-  native_handle_type native_handle() const BOOST_ASIO_NOEXCEPT
-  {
-    return index_;
-  }
+/// Get the native buffer identifier type.
+native_handle_type native_handle() const BOOST_ASIO_NOEXCEPT
+{
+return index_;
+}
 
-  /// Compare two IDs for equality.
-  friend bool operator==(const registered_buffer_id& lhs,
-      const registered_buffer_id& rhs) BOOST_ASIO_NOEXCEPT
-  {
-    return lhs.scope_ == rhs.scope_ && lhs.index_ == rhs.index_;
-  }
+/// Compare two IDs for equality.
+friend bool operator==(const registered_buffer_id& lhs,
+const registered_buffer_id& rhs) BOOST_ASIO_NOEXCEPT
+{
+return lhs.scope_ == rhs.scope_ && lhs.index_ == rhs.index_;
+}
 
-  /// Compare two IDs for equality.
-  friend bool operator!=(const registered_buffer_id& lhs,
-      const registered_buffer_id& rhs) BOOST_ASIO_NOEXCEPT
-  {
-    return lhs.scope_ != rhs.scope_ || lhs.index_ != rhs.index_;
-  }
+/// Compare two IDs for equality.
+friend bool operator!=(const registered_buffer_id& lhs,
+const registered_buffer_id& rhs) BOOST_ASIO_NOEXCEPT
+{
+return lhs.scope_ != rhs.scope_ || lhs.index_ != rhs.index_;
+}
 
 private:
-  friend class detail::buffer_registration_base;
+friend class detail::buffer_registration_base;
 
-  // Hidden constructor used by buffer registration.
-  registered_buffer_id(const void* scope, int index) BOOST_ASIO_NOEXCEPT
-    : scope_(scope),
-      index_(index)
-  {
-  }
+// Hidden constructor used by buffer registration.
+registered_buffer_id(const void* scope, int index) BOOST_ASIO_NOEXCEPT
+: scope_(scope),
+index_(index)
+{
+}
 
-  const void* scope_;
-  int index_;
+const void* scope_;
+int index_;
 };
 
 /// Holds a registered buffer over modifiable data.
 /** 
- * Satisfies the @c MutableBufferSequence type requirements.
- */
+* Satisfies the @c MutableBufferSequence type requirements.
+*/
 class mutable_registered_buffer
 {
 public:
 #if !defined(BOOST_ASIO_HAS_DECLTYPE) \
-  && !defined(GENERATING_DOCUMENTATION)
-  typedef mutable_buffer value_type;
+&& !defined(GENERATING_DOCUMENTATION)
+typedef mutable_buffer value_type;
 #endif // !defined(BOOST_ASIO_HAS_DECLTYPE)
-       //   && !defined(GENERATING_DOCUMENTATION)
+//   && !defined(GENERATING_DOCUMENTATION)
 
-  /// Default constructor creates an invalid registered buffer.
-  mutable_registered_buffer() BOOST_ASIO_NOEXCEPT
-    : buffer_(),
-      id_()
-  {
-  }
+/// Default constructor creates an invalid registered buffer.
+mutable_registered_buffer() BOOST_ASIO_NOEXCEPT
+: buffer_(),
+id_()
+{
+}
 
-  /// Get the underlying mutable buffer.
-  const mutable_buffer& buffer() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_;
-  }
+/// Get the underlying mutable buffer.
+const mutable_buffer& buffer() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_;
+}
 
-  /// Get a pointer to the beginning of the memory range.
-  /**
-   * @returns <tt>buffer().data()</tt>.
-   */
-  void* data() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_.data();
-  }
+/// Get a pointer to the beginning of the memory range.
+/**
+* @returns <tt>buffer().data()</tt>.
+*/
+void* data() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_.data();
+}
 
-  /// Get the size of the memory range.
-  /**
-   * @returns <tt>buffer().size()</tt>.
-   */
-  std::size_t size() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_.size();
-  }
+/// Get the size of the memory range.
+/**
+* @returns <tt>buffer().size()</tt>.
+*/
+std::size_t size() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_.size();
+}
 
-  /// Get the registered buffer identifier.
-  const registered_buffer_id& id() const BOOST_ASIO_NOEXCEPT
-  {
-    return id_;
-  }
+/// Get the registered buffer identifier.
+const registered_buffer_id& id() const BOOST_ASIO_NOEXCEPT
+{
+return id_;
+}
 
-  /// Move the start of the buffer by the specified number of bytes.
-  mutable_registered_buffer& operator+=(std::size_t n) BOOST_ASIO_NOEXCEPT
-  {
-    buffer_ += n;
-    return *this;
-  }
+/// Move the start of the buffer by the specified number of bytes.
+mutable_registered_buffer& operator+=(std::size_t n) BOOST_ASIO_NOEXCEPT
+{
+buffer_ += n;
+return *this;
+}
 
 private:
-  friend class detail::buffer_registration_base;
+friend class detail::buffer_registration_base;
 
-  // Hidden constructor used by buffer registration and operators.
-  mutable_registered_buffer(const mutable_buffer& b,
-      const registered_buffer_id& i) BOOST_ASIO_NOEXCEPT
-    : buffer_(b),
-      id_(i)
-  {
-  }
+// Hidden constructor used by buffer registration and operators.
+mutable_registered_buffer(const mutable_buffer& b,
+const registered_buffer_id& i) BOOST_ASIO_NOEXCEPT
+: buffer_(b),
+id_(i)
+{
+}
 
 #if !defined(GENERATING_DOCUMENTATION)
-  friend mutable_registered_buffer buffer(
-      const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT;
+friend mutable_registered_buffer buffer(
+const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT;
 #endif // !defined(GENERATING_DOCUMENTATION)
 
-  mutable_buffer buffer_;
-  registered_buffer_id id_;
+mutable_buffer buffer_;
+registered_buffer_id id_;
 };
 
 /// Holds a registered buffer over non-modifiable data.
 /** 
- * Satisfies the @c ConstBufferSequence type requirements.
- */
+* Satisfies the @c ConstBufferSequence type requirements.
+*/
 class const_registered_buffer
 {
 public:
 #if !defined(BOOST_ASIO_HAS_DECLTYPE) \
-  && !defined(GENERATING_DOCUMENTATION)
-  typedef const_buffer value_type;
+&& !defined(GENERATING_DOCUMENTATION)
+typedef const_buffer value_type;
 #endif // !defined(BOOST_ASIO_HAS_DECLTYPE)
-       //   && !defined(GENERATING_DOCUMENTATION)
+//   && !defined(GENERATING_DOCUMENTATION)
 
-  /// Default constructor creates an invalid registered buffer.
-  const_registered_buffer() BOOST_ASIO_NOEXCEPT
-    : buffer_(),
-      id_()
-  {
-  }
+/// Default constructor creates an invalid registered buffer.
+const_registered_buffer() BOOST_ASIO_NOEXCEPT
+: buffer_(),
+id_()
+{
+}
 
-  /// Construct a non-modifiable buffer from a modifiable one.
-  const_registered_buffer(
-      const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
-    : buffer_(b.buffer()),
-      id_(b.id())
-  {
-  }
+/// Construct a non-modifiable buffer from a modifiable one.
+const_registered_buffer(
+const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+: buffer_(b.buffer()),
+id_(b.id())
+{
+}
 
-  /// Get the underlying constant buffer.
-  const const_buffer& buffer() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_;
-  }
+/// Get the underlying constant buffer.
+const const_buffer& buffer() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_;
+}
 
-  /// Get a pointer to the beginning of the memory range.
-  /**
-   * @returns <tt>buffer().data()</tt>.
-   */
-  const void* data() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_.data();
-  }
+/// Get a pointer to the beginning of the memory range.
+/**
+* @returns <tt>buffer().data()</tt>.
+*/
+const void* data() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_.data();
+}
 
-  /// Get the size of the memory range.
-  /**
-   * @returns <tt>buffer().size()</tt>.
-   */
-  std::size_t size() const BOOST_ASIO_NOEXCEPT
-  {
-    return buffer_.size();
-  }
+/// Get the size of the memory range.
+/**
+* @returns <tt>buffer().size()</tt>.
+*/
+std::size_t size() const BOOST_ASIO_NOEXCEPT
+{
+return buffer_.size();
+}
 
-  /// Get the registered buffer identifier.
-  const registered_buffer_id& id() const BOOST_ASIO_NOEXCEPT
-  {
-    return id_;
-  }
+/// Get the registered buffer identifier.
+const registered_buffer_id& id() const BOOST_ASIO_NOEXCEPT
+{
+return id_;
+}
 
-  /// Move the start of the buffer by the specified number of bytes.
-  const_registered_buffer& operator+=(std::size_t n) BOOST_ASIO_NOEXCEPT
-  {
-    buffer_ += n;
-    return *this;
-  }
+/// Move the start of the buffer by the specified number of bytes.
+const_registered_buffer& operator+=(std::size_t n) BOOST_ASIO_NOEXCEPT
+{
+buffer_ += n;
+return *this;
+}
 
 private:
-  // Hidden constructor used by operators.
-  const_registered_buffer(const const_buffer& b,
-      const registered_buffer_id& i) BOOST_ASIO_NOEXCEPT
-    : buffer_(b),
-      id_(i)
-  {
-  }
+// Hidden constructor used by operators.
+const_registered_buffer(const const_buffer& b,
+const registered_buffer_id& i) BOOST_ASIO_NOEXCEPT
+: buffer_(b),
+id_(i)
+{
+}
 
 #if !defined(GENERATING_DOCUMENTATION)
-  friend const_registered_buffer buffer(
-      const const_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT;
+friend const_registered_buffer buffer(
+const const_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT;
 #endif // !defined(GENERATING_DOCUMENTATION)
 
-  const_buffer buffer_;
-  registered_buffer_id id_;
+const_buffer buffer_;
+registered_buffer_id id_;
 };
 
 /** @addtogroup buffer_sequence_begin */
 
 /// Get an iterator to the first element in a buffer sequence.
 inline const mutable_buffer* buffer_sequence_begin(
-    const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return &b.buffer();
+return &b.buffer();
 }
 
 /// Get an iterator to the first element in a buffer sequence.
 inline const const_buffer* buffer_sequence_begin(
-    const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return &b.buffer();
+return &b.buffer();
 }
 
 /** @} */
@@ -259,16 +259,16 @@ inline const const_buffer* buffer_sequence_begin(
 
 /// Get an iterator to one past the end element in a buffer sequence.
 inline const mutable_buffer* buffer_sequence_end(
-    const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return &b.buffer() + 1;
+return &b.buffer() + 1;
 }
 
 /// Get an iterator to one past the end element in a buffer sequence.
 inline const const_buffer* buffer_sequence_end(
-    const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return &b.buffer() + 1;
+return &b.buffer() + 1;
 }
 
 /** @} */
@@ -276,30 +276,30 @@ inline const const_buffer* buffer_sequence_end(
 
 /// Obtain a buffer representing the entire registered buffer.
 inline mutable_registered_buffer buffer(
-    const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return b;
+return b;
 }
 
 /// Obtain a buffer representing the entire registered buffer.
 inline const_registered_buffer buffer(
-    const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return b;
+return b;
 }
 
 /// Obtain a buffer representing part of a registered buffer.
 inline mutable_registered_buffer buffer(
-    const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
 {
-  return mutable_registered_buffer(buffer(b.buffer_, n), b.id_);
+return mutable_registered_buffer(buffer(b.buffer_, n), b.id_);
 }
 
 /// Obtain a buffer representing part of a registered buffer.
 inline const_registered_buffer buffer(
-    const const_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
+const const_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
 {
-  return const_registered_buffer(buffer(b.buffer_, n), b.id_);
+return const_registered_buffer(buffer(b.buffer_, n), b.id_);
 }
 
 /** @} */
@@ -307,47 +307,47 @@ inline const_registered_buffer buffer(
 /// Create a new modifiable registered buffer that is offset from the start of
 /// another.
 /**
- * @relates mutable_registered_buffer
- */
+* @relates mutable_registered_buffer
+*/
 inline mutable_registered_buffer operator+(
-    const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b, std::size_t n) BOOST_ASIO_NOEXCEPT
 {
-  mutable_registered_buffer tmp(b);
-  tmp += n;
-  return tmp;
+mutable_registered_buffer tmp(b);
+tmp += n;
+return tmp;
 }
 
 /// Create a new modifiable buffer that is offset from the start of another.
 /**
- * @relates mutable_registered_buffer
- */
+* @relates mutable_registered_buffer
+*/
 inline mutable_registered_buffer operator+(std::size_t n,
-    const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const mutable_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return b + n;
+return b + n;
 }
 
 /// Create a new non-modifiable registered buffer that is offset from the start
 /// of another.
 /**
- * @relates const_registered_buffer
- */
+* @relates const_registered_buffer
+*/
 inline const_registered_buffer operator+(const const_registered_buffer& b,
-    std::size_t n) BOOST_ASIO_NOEXCEPT
+std::size_t n) BOOST_ASIO_NOEXCEPT
 {
-  const_registered_buffer tmp(b);
-  tmp += n;
-  return tmp;
+const_registered_buffer tmp(b);
+tmp += n;
+return tmp;
 }
 
 /// Create a new non-modifiable buffer that is offset from the start of another.
 /**
- * @relates const_registered_buffer
- */
+* @relates const_registered_buffer
+*/
 inline const_registered_buffer operator+(std::size_t n,
-    const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
+const const_registered_buffer& b) BOOST_ASIO_NOEXCEPT
 {
-  return b + n;
+return b + n;
 }
 
 } // namespace asio

@@ -23,17 +23,17 @@
 namespace boost
 {
 
-    namespace range_distance_adl_barrier
-    {
-        template< class T >
-        inline BOOST_CXX14_CONSTEXPR BOOST_DEDUCED_TYPENAME range_difference<T>::type
-        distance( const T& r )
-        {
-            return boost::iterators::distance( boost::begin( r ), boost::end( r ) );
-        }
-    }
+namespace range_distance_adl_barrier
+{
+template< class T >
+inline BOOST_CXX14_CONSTEXPR BOOST_DEDUCED_TYPENAME range_difference<T>::type
+distance( const T& r )
+{
+return boost::iterators::distance( boost::begin( r ), boost::end( r ) );
+}
+}
 
-    using namespace range_distance_adl_barrier;
+using namespace range_distance_adl_barrier;
 
 } // namespace 'boost'
 

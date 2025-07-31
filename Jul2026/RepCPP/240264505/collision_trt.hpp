@@ -1,10 +1,10 @@
 #ifndef LBT_COLLISION_TRT
 #define LBT_COLLISION_TRT
 
-/**
- * \file     collision_trt.hpp
+/**
+ * \file     collision_trt.hpp
  * \mainpage TRT collision operator
- * \author   Tobit Flatscher (github.com/2b-t)
+ * \author   Tobit Flatscher (github.com/2b-t)
 */
 
 #include <algorithm>

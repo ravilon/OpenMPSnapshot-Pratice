@@ -17,10 +17,10 @@
 
 #if defined(BOOST_EXTERNAL_LIB_NAME)
 # if defined(BOOST_MSVC) \
-     || defined(__BORLANDC__) && !defined(__clang__) \
-     || (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) \
-     || (defined(__ICL) && defined(_MSC_EXTENSIONS)) \
-     /**/
+|| defined(__BORLANDC__) && !defined(__clang__) \
+|| (defined(__MWERKS__) && defined(_WIN32) && (__MWERKS__ >= 0x3000)) \
+|| (defined(__ICL) && defined(_MSC_EXTENSIONS)) \
+/**/
 #  pragma comment(lib, BOOST_EXTERNAL_LIB_NAME)
 # endif
 # undef BOOST_EXTERNAL_LIB_NAME
@@ -29,9 +29,9 @@
 //------------------Enable automatic library variant selection----------------// 
 
 #if !defined(BOOST_IOSTREAMS_SOURCE) && \
-    !defined(BOOST_ALL_NO_LIB) && \
-    !defined(BOOST_IOSTREAMS_NO_LIB) \
-    /**/
+!defined(BOOST_ALL_NO_LIB) && \
+!defined(BOOST_IOSTREAMS_NO_LIB) \
+/**/
 
 // Set the name of our library, this will get undef'ed by auto_link.hpp
 // once it's done with it.

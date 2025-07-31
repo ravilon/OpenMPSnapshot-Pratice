@@ -64,98 +64,98 @@ BOOST_STATIC_ASSERT( is_set_type_of< multiset_of<Type> >::value )
 
 BOOST_STATIC_ASSERT
 (
-     is_same
-     <
-        compute_index_type
-        <
-            multiset_of<Type,KeyCompare>,
-            KeyExtractor,
-            Tag
+is_same
+<
+compute_index_type
+<
+multiset_of<Type,KeyCompare>,
+KeyExtractor,
+Tag
 
-        >::type
-        ,
-        ordered_nonunique< tag<Tag>, KeyExtractor, KeyCompare >
+>::type
+,
+ordered_nonunique< tag<Tag>, KeyExtractor, KeyCompare >
 
-    >::value
+>::value
 )
 
 typedef bimap
 <
-    multiset_of<Type>, RightKeyType
+multiset_of<Type>, RightKeyType
 
 > bimap_with_left_type_as_multiset;
 
 BOOST_STATIC_ASSERT
 (
-    is_same
-    <
-        compute_map_view_type
-        <
-            member_at::left,
-            bimap_with_left_type_as_multiset
+is_same
+<
+compute_map_view_type
+<
+member_at::left,
+bimap_with_left_type_as_multiset
 
-        >::type,
-        multimap_view< member_at::left, bimap_with_left_type_as_multiset >
+>::type,
+multimap_view< member_at::left, bimap_with_left_type_as_multiset >
 
-    >::value
+>::value
 )
 
 \endcode
 
 See also multiset_of_relation.
-                                                                        **/
+**/
 
 template
 <
-    class KeyType,
-    class KeyCompare = std::less< BOOST_DEDUCED_TYPENAME
-        ::boost::bimaps::tags::support::value_type_of<KeyType>::type >
+class KeyType,
+class KeyCompare = std::less< BOOST_DEDUCED_TYPENAME
+::boost::bimaps::tags::support::value_type_of<KeyType>::type >
 >
 struct multiset_of : public ::boost::bimaps::detail::set_type_of_tag
 {
-    /// User type, can be tagged
-    typedef KeyType user_type;
+/// User type, can be tagged
+typedef KeyType user_type;
 
-    /// Type of the object that will be stored in the multiset
-    typedef BOOST_DEDUCED_TYPENAME ::boost::bimaps::tags::support::
-        value_type_of<user_type>::type value_type;
+/// Type of the object that will be stored in the multiset
+typedef BOOST_DEDUCED_TYPENAME ::boost::bimaps::tags::support::
+value_type_of<user_type>::type value_type;
 
-    /// Functor that compare two keys
-    typedef KeyCompare key_compare;
+/// Functor that compare two keys
+typedef KeyCompare key_compare;
 
-    struct lazy_concept_checked
-    {
-        BOOST_CLASS_REQUIRE ( value_type,
-                              boost, AssignableConcept );
+struct lazy_concept_checked
+{
+BOOST_CLASS_REQUIRE ( value_type,
+boost, AssignableConcept );
 
-        BOOST_CLASS_REQUIRE4( key_compare, bool, value_type, value_type,
-                              boost, BinaryFunctionConcept );
+BOOST_CLASS_REQUIRE4( key_compare, bool, value_type, value_type,
+boost, BinaryFunctionConcept );
 
-        typedef multiset_of type;
-    };
+typedef multiset_of type;
+};
 
-    BOOST_BIMAP_GENERATE_INDEX_BINDER_1CP(
+BOOST_BIMAP_GENERATE_INDEX_BINDER_1CP(
 
-        // binds to
-        multi_index::ordered_non_unique,
+// binds to
+multi_index::ordered_non_unique,
 
-        // with
-        key_compare
-    )
+// with
+key_compare
+)
 
-    BOOST_BIMAP_GENERATE_MAP_VIEW_BINDER(
+BOOST_BIMAP_GENERATE_MAP_VIEW_BINDER(
 
-        // binds to
-        views::multimap_view
-    )
+// binds to
+views::multimap_view
+)
 
-    BOOST_BIMAP_GENERATE_SET_VIEW_BINDER(
+BOOST_BIMAP_GENERATE_SET_VIEW_BINDER(
 
-        // binds to
-        views::multiset_view
-    )
+// binds to
+views::multiset_view
+)
 
-    typedef mpl::bool_<false> mutable_key;
+typedef mpl::bool_<false> mutable_key;
 };
 
 
@@ -171,31 +171,31 @@ task of finding the right type of the set for the relation.
 template<class Relation>
 struct bind_to
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 \endcode
 
 See also multiset_of, is_set_type_of_relation.
-                                                                **/
+**/
 
 template< class KeyCompare = std::less< _relation > >
 struct multiset_of_relation : public ::boost::bimaps::detail::set_type_of_relation_tag
 {
-    /// Functor that compare two keys
-    typedef KeyCompare key_compare;
+/// Functor that compare two keys
+typedef KeyCompare key_compare;
 
 
-    BOOST_BIMAP_GENERATE_RELATION_BINDER_1CP(
+BOOST_BIMAP_GENERATE_RELATION_BINDER_1CP(
 
-        // binds to
-        multiset_of,
+// binds to
+multiset_of,
 
-        // with
-        key_compare
-    )
+// with
+key_compare
+)
 
-    typedef mpl::bool_<false>  left_mutable_key;
-    typedef mpl::bool_<false> right_mutable_key;
+typedef mpl::bool_<false>  left_mutable_key;
+typedef mpl::bool_<false> right_mutable_key;
 };
 
 } // namespace bimaps

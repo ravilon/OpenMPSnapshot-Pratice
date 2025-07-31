@@ -26,10 +26,10 @@ struct custom_tag { };
 
 template<typename T>
 struct is_custom
-    : mpl::not_<
-          is_base_and_derived< custom_tag, operations<T> >
-      >
-    { };
+: mpl::not_<
+is_base_and_derived< custom_tag, operations<T> >
+>
+{ };
 
 } // End namespace detail.
 

@@ -1,5 +1,5 @@
-#pragma once
-
-#if defined(__BMI2__)
-
+#pragma once
+
+#if defined(__BMI2__)
+
 #endif

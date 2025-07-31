@@ -32,14 +32,14 @@ The returned type is one of the {SetType}_of definition classes.
 template< class Tag, class Bimap >
 struct key_type_by
 {
-    typedef typename Bimap::{side}_key_type type;
+typedef typename Bimap::{side}_key_type type;
 };
 
 \endcode
 
 See also member_at.
 \ingroup bimap_group
-                                                                    **/
+**/
 
 
 namespace boost {
@@ -50,9 +50,9 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    key_type_by,
-    left_key_type,
-    right_key_type
+key_type_by,
+left_key_type,
+right_key_type
 )
 
 

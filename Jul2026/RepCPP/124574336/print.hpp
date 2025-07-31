@@ -19,7 +19,7 @@
 #include <boost/mpl/identity.hpp>
 
 namespace boost { namespace mpl {
-  
+
 namespace aux {
 #if defined(BOOST_MSVC)
 # pragma warning(push, 3)
@@ -27,43 +27,43 @@ namespace aux {
 # pragma warning(disable: 4307)
 #elif defined(__MWERKS__)
 # pragma warn_hidevirtual on
-   struct print_base { virtual void f() {} };
+struct print_base { virtual void f() {} };
 #endif
 
 #if defined(__EDG_VERSION__)
-  template <class T>
-  struct dependent_unsigned
-  {
-      static const unsigned value = 1;
-  };
+template <class T>
+struct dependent_unsigned
+{
+static const unsigned value = 1;
+};
 #endif
 } // namespace aux
 
 template <class T>
 struct print
-    : mpl::identity<T>
+: mpl::identity<T>
 #if defined(__MWERKS__)
-    , aux::print_base
+, aux::print_base
 #endif 
 {
 #if defined(__clang__)
 # pragma clang diagnostic push
 # pragma clang diagnostic ignored "-Wc++11-extensions"
-    const int m_x = 1 / (sizeof(T) - sizeof(T));
+const int m_x = 1 / (sizeof(T) - sizeof(T));
 # pragma clang diagnostic pop
 #elif defined(BOOST_MSVC)
-    enum { n = sizeof(T) + -1 };
+enum { n = sizeof(T) + -1 };
 #elif defined(__MWERKS__)
-    void f(int);
+void f(int);
 #else 
-    enum {
-        n =
+enum {
+n =
 # if defined(__EDG_VERSION__)
-           aux::dependent_unsigned<T>::value > -1
+aux::dependent_unsigned<T>::value > -1
 # else 
-           sizeof(T) > -1
+sizeof(T) > -1
 # endif 
-        };
+};
 #endif 
 };
 

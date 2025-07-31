@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2014 Renato Tegon Forti, Antony Polukhin
- * Copyright 2015, 2020 Andrey Semashev
- * Copyright 2015 Antony Polukhin
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2014 Renato Tegon Forti, Antony Polukhin
+* Copyright 2015, 2020 Andrey Semashev
+* Copyright 2015 Antony Polukhin
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_DLL_HPP_INCLUDED_
 #define BOOST_WINAPI_DLL_HPP_INCLUDED_
@@ -30,9 +30,9 @@ LoadLibraryA(boost::winapi::LPCSTR_ lpFileName);
 
 BOOST_WINAPI_IMPORT boost::winapi::HMODULE_ BOOST_WINAPI_WINAPI_CC
 LoadLibraryExA(
-    boost::winapi::LPCSTR_ lpFileName,
-    boost::winapi::HANDLE_ hFile,
-    boost::winapi::DWORD_ dwFlags
+boost::winapi::LPCSTR_ lpFileName,
+boost::winapi::HANDLE_ hFile,
+boost::winapi::DWORD_ dwFlags
 );
 
 BOOST_WINAPI_IMPORT boost::winapi::HMODULE_ BOOST_WINAPI_WINAPI_CC
@@ -40,9 +40,9 @@ GetModuleHandleA(boost::winapi::LPCSTR_ lpFileName);
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 GetModuleFileNameA(
-    boost::winapi::HMODULE_ hModule,
-    boost::winapi::LPSTR_ lpFilename,
-    boost::winapi::DWORD_ nSize
+boost::winapi::HMODULE_ hModule,
+boost::winapi::LPSTR_ lpFilename,
+boost::winapi::DWORD_ nSize
 );
 #endif
 
@@ -51,9 +51,9 @@ LoadLibraryW(boost::winapi::LPCWSTR_ lpFileName);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::HMODULE_ BOOST_WINAPI_WINAPI_CC
 LoadLibraryExW(
-    boost::winapi::LPCWSTR_ lpFileName,
-    boost::winapi::HANDLE_ hFile,
-    boost::winapi::DWORD_ dwFlags
+boost::winapi::LPCWSTR_ lpFileName,
+boost::winapi::HANDLE_ hFile,
+boost::winapi::DWORD_ dwFlags
 );
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::HMODULE_ BOOST_WINAPI_WINAPI_CC
@@ -61,9 +61,9 @@ GetModuleHandleW(boost::winapi::LPCWSTR_ lpFileName);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 GetModuleFileNameW(
-    boost::winapi::HMODULE_ hModule,
-    boost::winapi::LPWSTR_ lpFilename,
-    boost::winapi::DWORD_ nSize
+boost::winapi::HMODULE_ hModule,
+boost::winapi::LPWSTR_ lpFilename,
+boost::winapi::DWORD_ nSize
 );
 
 struct _MEMORY_BASIC_INFORMATION;
@@ -71,16 +71,16 @@ struct _MEMORY_BASIC_INFORMATION;
 #if !defined( BOOST_WINAPI_IS_MINGW )
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::SIZE_T_ BOOST_WINAPI_WINAPI_CC
 VirtualQuery(
-    boost::winapi::LPCVOID_ lpAddress,
-    ::_MEMORY_BASIC_INFORMATION* lpBuffer,
-    boost::winapi::SIZE_T_ dwLength
+boost::winapi::LPCVOID_ lpAddress,
+::_MEMORY_BASIC_INFORMATION* lpBuffer,
+boost::winapi::SIZE_T_ dwLength
 );
 #else // !defined( BOOST_WINAPI_IS_MINGW )
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 VirtualQuery(
-    boost::winapi::LPCVOID_ lpAddress,
-    ::_MEMORY_BASIC_INFORMATION* lpBuffer,
-    boost::winapi::DWORD_ dwLength
+boost::winapi::LPCVOID_ lpAddress,
+::_MEMORY_BASIC_INFORMATION* lpBuffer,
+boost::winapi::DWORD_ dwLength
 );
 #endif // !defined( BOOST_WINAPI_IS_MINGW )
 } // extern "C"
@@ -90,13 +90,13 @@ namespace boost {
 namespace winapi {
 
 typedef struct BOOST_MAY_ALIAS MEMORY_BASIC_INFORMATION_ {
-    PVOID_  BaseAddress;
-    PVOID_  AllocationBase;
-    DWORD_  AllocationProtect;
-    SIZE_T_ RegionSize;
-    DWORD_  State;
-    DWORD_  Protect;
-    DWORD_  Type;
+PVOID_  BaseAddress;
+PVOID_  AllocationBase;
+DWORD_  AllocationProtect;
+SIZE_T_ RegionSize;
+DWORD_  State;
+DWORD_  Protect;
+DWORD_  Type;
 } *PMEMORY_BASIC_INFORMATION_;
 
 #if defined( BOOST_USE_WINDOWS_H )
@@ -123,49 +123,49 @@ using ::GetModuleFileNameW;
 
 BOOST_FORCEINLINE SIZE_T_ VirtualQuery(LPCVOID_ lpAddress, MEMORY_BASIC_INFORMATION_* lpBuffer, SIZE_T_ dwLength)
 {
-    return ::VirtualQuery(lpAddress, reinterpret_cast< ::_MEMORY_BASIC_INFORMATION* >(lpBuffer), dwLength);
+return ::VirtualQuery(lpAddress, reinterpret_cast< ::_MEMORY_BASIC_INFORMATION* >(lpBuffer), dwLength);
 }
 
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_FORCEINLINE HMODULE_ load_library(LPCSTR_ lpFileName)
 {
-    return ::LoadLibraryA(lpFileName);
+return ::LoadLibraryA(lpFileName);
 }
 
 BOOST_FORCEINLINE HMODULE_ load_library_ex(LPCSTR_ lpFileName, HANDLE_ hFile, DWORD_ dwFlags)
 {
-    return ::LoadLibraryExA(lpFileName, hFile, dwFlags);
+return ::LoadLibraryExA(lpFileName, hFile, dwFlags);
 }
 
 BOOST_FORCEINLINE HMODULE_ get_module_handle(LPCSTR_ lpFileName)
 {
-    return ::GetModuleHandleA(lpFileName);
+return ::GetModuleHandleA(lpFileName);
 }
 
 BOOST_FORCEINLINE DWORD_ get_module_file_name(HMODULE_ hModule, LPSTR_ lpFilename, DWORD_ nSize)
 {
-    return ::GetModuleFileNameA(hModule, lpFilename, nSize);
+return ::GetModuleFileNameA(hModule, lpFilename, nSize);
 }
 #endif // #if !defined( BOOST_NO_ANSI_APIS )
 
 BOOST_FORCEINLINE HMODULE_ load_library(LPCWSTR_ lpFileName)
 {
-    return ::LoadLibraryW(lpFileName);
+return ::LoadLibraryW(lpFileName);
 }
 
 BOOST_FORCEINLINE HMODULE_ load_library_ex(LPCWSTR_ lpFileName, HANDLE_ hFile, DWORD_ dwFlags)
 {
-    return ::LoadLibraryExW(lpFileName, hFile, dwFlags);
+return ::LoadLibraryExW(lpFileName, hFile, dwFlags);
 }
 
 BOOST_FORCEINLINE HMODULE_ get_module_handle(LPCWSTR_ lpFileName)
 {
-    return ::GetModuleHandleW(lpFileName);
+return ::GetModuleHandleW(lpFileName);
 }
 
 BOOST_FORCEINLINE DWORD_ get_module_file_name(HMODULE_ hModule, LPWSTR_ lpFilename, DWORD_ nSize)
 {
-    return ::GetModuleFileNameW(hModule, lpFilename, nSize);
+return ::GetModuleFileNameW(hModule, lpFilename, nSize);
 }
 
 } // namespace winapi

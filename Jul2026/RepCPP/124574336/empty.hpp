@@ -22,11 +22,11 @@
 namespace boost 
 { 
 
-    template< class T >
-    inline bool empty( const T& r )
-    {
-        return boost::begin( r ) == boost::end( r );
-    }
+template< class T >
+inline bool empty( const T& r )
+{
+return boost::begin( r ) == boost::end( r );
+}
 
 } // namespace 'boost'
 

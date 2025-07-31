@@ -46,55 +46,55 @@ namespace detail { namespace correct_closure
 
 struct nop
 {
-    template <typename Geometry>
-    static inline void apply(Geometry& )
-    {}
+template <typename Geometry>
+static inline void apply(Geometry& )
+{}
 };
 
 // Close a ring, if not closed, or open it
 struct close_or_open_ring
 {
-    template <typename Ring>
-    static inline void apply(Ring& r)
-    {
-        auto size = boost::size(r);
-        if (size <= 2)
-        {
-            return;
-        }
+template <typename Ring>
+static inline void apply(Ring& r)
+{
+auto size = boost::size(r);
+if (size <= 2)
+{
+return;
+}
 
-        // TODO: This requires relate(pt, pt) strategy
-        bool const disjoint = geometry::disjoint(*boost::begin(r), *(boost::end(r) - 1));
-        closure_selector const closure = geometry::closure<Ring>::value;
+// TODO: This requires relate(pt, pt) strategy
+bool const disjoint = geometry::disjoint(*boost::begin(r), *(boost::end(r) - 1));
+closure_selector const closure = geometry::closure<Ring>::value;
 
-        if (disjoint && closure == closed)
-        {
-            // Close it by adding first point
-            geometry::append(r, *boost::begin(r));
-        }
-        else if (! disjoint && closure == open)
-        {
-            // Open it by removing last point
-            range::resize(r, size - 1);
-        }
-    }
+if (disjoint && closure == closed)
+{
+// Close it by adding first point
+geometry::append(r, *boost::begin(r));
+}
+else if (! disjoint && closure == open)
+{
+// Open it by removing last point
+range::resize(r, size - 1);
+}
+}
 };
 
 // Close/open exterior ring and all its interior rings
 struct close_or_open_polygon
 {
-    template <typename Polygon>
-    static inline void apply(Polygon& poly)
-    {
-        close_or_open_ring::apply(exterior_ring(poly));
+template <typename Polygon>
+static inline void apply(Polygon& poly)
+{
+close_or_open_ring::apply(exterior_ring(poly));
 
-        auto&& rings = interior_rings(poly);
-        auto const end = boost::end(rings);
-        for (auto it = boost::begin(rings); it != end; ++it)
-        {
-            close_or_open_ring::apply(*it);
-        }
-    }
+auto&& rings = interior_rings(poly);
+auto const end = boost::end(rings);
+for (auto it = boost::begin(rings); it != end; ++it)
+{
+close_or_open_ring::apply(*it);
+}
+}
 };
 
 }} // namespace detail::correct_closure
@@ -111,54 +111,54 @@ struct correct_closure: not_implemented<Tag>
 
 template <typename Point>
 struct correct_closure<Point, point_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 template <typename LineString>
 struct correct_closure<LineString, linestring_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 template <typename Segment>
 struct correct_closure<Segment, segment_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 
 template <typename Box>
 struct correct_closure<Box, box_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 template <typename Ring>
 struct correct_closure<Ring, ring_tag>
-    : detail::correct_closure::close_or_open_ring
+: detail::correct_closure::close_or_open_ring
 {};
 
 template <typename Polygon>
 struct correct_closure<Polygon, polygon_tag>
-    : detail::correct_closure::close_or_open_polygon
+: detail::correct_closure::close_or_open_polygon
 {};
 
 
 template <typename MultiPoint>
 struct correct_closure<MultiPoint, multi_point_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 
 template <typename MultiLineString>
 struct correct_closure<MultiLineString, multi_linestring_tag>
-    : detail::correct_closure::nop
+: detail::correct_closure::nop
 {};
 
 
 template <typename Geometry>
 struct correct_closure<Geometry, multi_polygon_tag>
-    : detail::multi_modify
-        <
-            detail::correct_closure::close_or_open_polygon
-        >
+: detail::multi_modify
+<
+detail::correct_closure::close_or_open_polygon
+>
 {};
 
 
@@ -172,36 +172,36 @@ namespace resolve_variant
 template <typename Geometry, typename Tag = typename tag<Geometry>::type>
 struct correct_closure
 {
-    static inline void apply(Geometry& geometry)
-    {
-        concepts::check<Geometry const>();
-        dispatch::correct_closure<Geometry>::apply(geometry);
-    }
+static inline void apply(Geometry& geometry)
+{
+concepts::check<Geometry const>();
+dispatch::correct_closure<Geometry>::apply(geometry);
+}
 };
 
 template <typename Geometry>
 struct correct_closure<Geometry, dynamic_geometry_tag>
 {
-    static void apply(Geometry& geometry)
-    {
-        traits::visit<Geometry>::apply([](auto & g)
-        {
-            correct_closure<util::remove_cref_t<decltype(g)>>::apply(g);
-        }, geometry);
-    }
+static void apply(Geometry& geometry)
+{
+traits::visit<Geometry>::apply([](auto & g)
+{
+correct_closure<util::remove_cref_t<decltype(g)>>::apply(g);
+}, geometry);
+}
 };
 
 template <typename Geometry>
 struct correct_closure<Geometry, geometry_collection_tag>
 {
-    static void apply(Geometry& geometry)
-    {
-        detail::visit_breadth_first([](auto & g)
-        {
-            correct_closure<util::remove_cref_t<decltype(g)>>::apply(g);
-            return true;
-        }, geometry);
-    }
+static void apply(Geometry& geometry)
+{
+detail::visit_breadth_first([](auto & g)
+{
+correct_closure<util::remove_cref_t<decltype(g)>>::apply(g);
+return true;
+}, geometry);
+}
 };
 
 } // namespace resolve_variant
@@ -213,8 +213,8 @@ struct correct_closure<Geometry, geometry_collection_tag>
 /*!
 \brief Closes or opens a geometry, according to its type
 \details Corrects a geometry w.r.t. closure points to all rings which do not
-    have a closing point and are typed as they should have one, the first point
-    is appended.
+have a closing point and are typed as they should have one, the first point
+is appended.
 \ingroup correct_closure
 \tparam Geometry \tparam_geometry
 \param geometry \param_geometry which will be corrected if necessary
@@ -222,7 +222,7 @@ struct correct_closure<Geometry, geometry_collection_tag>
 template <typename Geometry>
 inline void correct_closure(Geometry& geometry)
 {
-    resolve_variant::correct_closure<Geometry>::apply(geometry);
+resolve_variant::correct_closure<Geometry>::apply(geometry);
 }
 
 

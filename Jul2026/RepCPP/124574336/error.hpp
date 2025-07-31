@@ -11,7 +11,7 @@
 #if defined(_MSC_VER)
 # pragma once
 #endif              
-                 
+
 #include <boost/iostreams/detail/ios.hpp>  // failure.
 
 namespace boost { namespace iostreams { namespace detail {

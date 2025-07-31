@@ -31,44 +31,44 @@ signature compatible classes.
 template< class Tag, class Bimap >
 struct iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 template< class Tag, class Bimap >
 struct const_iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 template< class Tag, class Bimap >
 struct reverse_iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 template< class Tag, class Bimap >
 struct const_reverse_iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 template< class Tag, class Bimap >
 struct local_iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 template< class Tag, class Bimap >
 struct const_local_iterator_type_by
 {
-    typedef -unspecified- type;
+typedef -unspecified- type;
 };
 
 \endcode
 
 See also member_at.
 \ingroup bimap_group
-                                                                    **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -80,18 +80,18 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    iterator_type_by,
-    left_iterator,
-    right_iterator
+iterator_type_by,
+left_iterator,
+right_iterator
 )
 
 // Implementation of const iterator type by metafunction
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    const_iterator_type_by,
-    left_const_iterator,
-    right_const_iterator
+const_iterator_type_by,
+left_const_iterator,
+right_const_iterator
 )
 
 
@@ -99,18 +99,18 @@ BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    reverse_iterator_type_by,
-    left_reverse_iterator,
-    right_reverse_iterator
+reverse_iterator_type_by,
+left_reverse_iterator,
+right_reverse_iterator
 )
 
 // Implementation of const reverse iterator type by metafunction
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    const_reverse_iterator_type_by,
-    left_const_reverse_iterator,
-    right_const_reverse_iterator
+const_reverse_iterator_type_by,
+left_const_reverse_iterator,
+right_const_reverse_iterator
 )
 
 
@@ -118,18 +118,18 @@ BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    local_iterator_type_by,
-    left_local_iterator,
-    right_local_iterator
+local_iterator_type_by,
+left_local_iterator,
+right_local_iterator
 )
 
 // Implementation of const local iterator type by metafunction
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    const_local_iterator_type_by,
-    left_const_local_iterator,
-    right_const_local_iterator
+const_local_iterator_type_by,
+left_const_local_iterator,
+right_const_local_iterator
 )
 
 } // namespace support

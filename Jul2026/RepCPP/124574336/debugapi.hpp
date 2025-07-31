@@ -1,9 +1,9 @@
 /*
- * Copyright 2017 Vinnie Falco
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2017 Vinnie Falco
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_DEBUGAPI_HPP_INCLUDED_
 #define BOOST_WINAPI_DEBUGAPI_HPP_INCLUDED_
@@ -45,12 +45,12 @@ using ::OutputDebugStringW;
 
 BOOST_FORCEINLINE void output_debug_string(char const* s)
 {
-    ::OutputDebugStringA(s);
+::OutputDebugStringA(s);
 }
 
 BOOST_FORCEINLINE void output_debug_string(wchar_t const* s)
 {
-    ::OutputDebugStringW(s);
+::OutputDebugStringW(s);
 }
 
 }

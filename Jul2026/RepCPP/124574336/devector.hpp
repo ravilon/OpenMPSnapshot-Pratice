@@ -25,8 +25,8 @@ namespace pmr {
 #if !defined(BOOST_NO_CXX11_TEMPLATE_ALIASES)
 
 template <
-  typename T,
-  typename GrowthPolicy = growth_factor_60
+typename T,
+typename GrowthPolicy = growth_factor_60
 >
 using devector = boost::container::devector<T, GrowthPolicy, polymorphic_allocator<T> >;
 
@@ -35,13 +35,13 @@ using devector = boost::container::devector<T, GrowthPolicy, polymorphic_allocat
 //! A portable metafunction to obtain a vector
 //! that uses a polymorphic allocator
 template <
-  typename T,
-  typename GrowthPolicy = growth_factor_60
+typename T,
+typename GrowthPolicy = growth_factor_60
 >
 struct devector_of
 {
-   typedef boost::container::devector
-      < T, GrowthPolicy, polymorphic_allocator<T> > type;
+typedef boost::container::devector
+< T, GrowthPolicy, polymorphic_allocator<T> > type;
 };
 
 }  //namespace pmr {

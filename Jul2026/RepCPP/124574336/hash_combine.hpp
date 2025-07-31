@@ -44,46 +44,46 @@ namespace detail {
 template <typename SizeT>
 inline void hash_combine_size_t(SizeT& seed, SizeT value)
 {
-   seed ^= value + 0x9e3779b9 + (seed<<6) + (seed>>2);
+seed ^= value + 0x9e3779b9 + (seed<<6) + (seed>>2);
 }
 
 inline void hash_combine_size_t(boost::uint32_t& h1, boost::uint32_t k1)
 {
-   const uint32_t c1 = 0xcc9e2d51;
-   const uint32_t c2 = 0x1b873593;
+const uint32_t c1 = 0xcc9e2d51;
+const uint32_t c2 = 0x1b873593;
 
-   k1 *= c1;
-   k1 = BOOST_INTRUSIVE_HASH_ROTL32(k1,15);
-   k1 *= c2;
+k1 *= c1;
+k1 = BOOST_INTRUSIVE_HASH_ROTL32(k1,15);
+k1 *= c2;
 
-   h1 ^= k1;
-   h1 = BOOST_INTRUSIVE_HASH_ROTL32(h1,13);
-   h1 = h1*5+0xe6546b64;
+h1 ^= k1;
+h1 = BOOST_INTRUSIVE_HASH_ROTL32(h1,13);
+h1 = h1*5+0xe6546b64;
 }
 
 
-   // Don't define 64-bit hash combine on platforms without 64 bit integers,
-   // and also not for 32-bit gcc as it warns about the 64-bit constant.
-   #if !defined(BOOST_NO_INT64_T) && \
-       !(defined(__GNUC__) && ULONG_MAX == 0xffffffff)
-   inline void hash_combine_size_t(boost::uint64_t& h, boost::uint64_t k)
-   {
-      const boost::uint64_t m = UINT64_C(0xc6a4a7935bd1e995);
-      const int r = 47;
+// Don't define 64-bit hash combine on platforms without 64 bit integers,
+// and also not for 32-bit gcc as it warns about the 64-bit constant.
+#if !defined(BOOST_NO_INT64_T) && \
+!(defined(__GNUC__) && ULONG_MAX == 0xffffffff)
+inline void hash_combine_size_t(boost::uint64_t& h, boost::uint64_t k)
+{
+const boost::uint64_t m = UINT64_C(0xc6a4a7935bd1e995);
+const int r = 47;
 
-      k *= m;
-      k ^= k >> r;
-      k *= m;
+k *= m;
+k ^= k >> r;
+k *= m;
 
-      h ^= k;
-      h *= m;
+h ^= k;
+h *= m;
 
-      // Completely arbitrary number, to prevent 0's
-      // from hashing to 0.
-      h += 0xe6546b64;
-   }
+// Completely arbitrary number, to prevent 0's
+// from hashing to 0.
+h += 0xe6546b64;
+}
 
-   #endif // BOOST_NO_INT64_T
+#endif // BOOST_NO_INT64_T
 
 }  //namespace detail {
 }  //namespace intrusive {

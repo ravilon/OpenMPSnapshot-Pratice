@@ -33,7 +33,7 @@
 
 namespace boost {
 namespace serialization {
-    class extended_type_info;
+class extended_type_info;
 } // namespace serialization
 
 // forward declarations
@@ -44,36 +44,36 @@ class basic_oarchive;
 class basic_pointer_oserializer;
 
 class BOOST_SYMBOL_VISIBLE basic_oserializer :
-    public basic_serializer
+public basic_serializer
 {
 private:
-    basic_pointer_oserializer *m_bpos;
+basic_pointer_oserializer *m_bpos;
 protected:
-    explicit BOOST_ARCHIVE_DECL basic_oserializer(
-        const boost::serialization::extended_type_info & type_
-    );
-    virtual BOOST_ARCHIVE_DECL ~basic_oserializer();
+explicit BOOST_ARCHIVE_DECL basic_oserializer(
+const boost::serialization::extended_type_info & type_
+);
+virtual BOOST_ARCHIVE_DECL ~basic_oserializer();
 public:
-    bool serialized_as_pointer() const {
-        return m_bpos != NULL;
-    }
-    void set_bpos(basic_pointer_oserializer *bpos){
-        m_bpos = bpos;
-    }
-    const basic_pointer_oserializer * get_bpos() const {
-        return m_bpos;
-    }
-    virtual void save_object_data(
-        basic_oarchive & ar, const void * x
-    ) const = 0;
-    // returns true if class_info should be saved
-    virtual bool class_info() const = 0;
-    // returns true if objects should be tracked
-    virtual bool tracking(const unsigned int flags) const = 0;
-    // returns class version
-    virtual version_type version() const = 0;
-    // returns true if this class is polymorphic
-    virtual bool is_polymorphic() const = 0;
+bool serialized_as_pointer() const {
+return m_bpos != NULL;
+}
+void set_bpos(basic_pointer_oserializer *bpos){
+m_bpos = bpos;
+}
+const basic_pointer_oserializer * get_bpos() const {
+return m_bpos;
+}
+virtual void save_object_data(
+basic_oarchive & ar, const void * x
+) const = 0;
+// returns true if class_info should be saved
+virtual bool class_info() const = 0;
+// returns true if objects should be tracked
+virtual bool tracking(const unsigned int flags) const = 0;
+// returns class version
+virtual version_type version() const = 0;
+// returns true if this class is polymorphic
+virtual bool is_polymorphic() const = 0;
 };
 
 } // namespace detail

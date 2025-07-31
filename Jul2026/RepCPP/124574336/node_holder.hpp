@@ -26,7 +26,7 @@ namespace intrusive {
 
 template<class Node, class Tag, unsigned int>
 struct node_holder
-   :  public Node
+:  public Node
 {};
 
 }  //namespace intrusive{

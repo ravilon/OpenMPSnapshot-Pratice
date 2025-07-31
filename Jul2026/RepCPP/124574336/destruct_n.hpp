@@ -30,35 +30,35 @@ namespace movelib{
 template<class T, class RandItUninit>
 class destruct_n
 {
-   public:
-   explicit destruct_n(RandItUninit raw)
-      : m_ptr(raw), m_size()
-   {}
+public:
+explicit destruct_n(RandItUninit raw)
+: m_ptr(raw), m_size()
+{}
 
-   void incr()
-   {
-      ++m_size;
-   }
+void incr()
+{
+++m_size;
+}
 
-   void incr(std::size_t n)
-   {
-      m_size += n;
-   }
+void incr(std::size_t n)
+{
+m_size += n;
+}
 
-   void release()
-   {
-      m_size = 0u;
-   }
+void release()
+{
+m_size = 0u;
+}
 
-   ~destruct_n()
-   {
-      while(m_size--){
-         m_ptr[m_size].~T();
-      }
-   }
-   private:
-   RandItUninit m_ptr;
-   std::size_t m_size;
+~destruct_n()
+{
+while(m_size--){
+m_ptr[m_size].~T();
+}
+}
+private:
+RandItUninit m_ptr;
+std::size_t m_size;
 };
 
 }} //namespace boost {  namespace movelib{

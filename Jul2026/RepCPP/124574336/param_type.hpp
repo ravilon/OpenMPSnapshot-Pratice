@@ -19,7 +19,7 @@ namespace boost { namespace iostreams { namespace detail {
 
 template<typename T>
 struct param_type {
-    typedef typename mpl::if_<is_std_io<T>, T&, const T&>::type type;
+typedef typename mpl::if_<is_std_io<T>, T&, const T&>::type type;
 };
 
 } } } // End namespaces detail, iostreams, boost.

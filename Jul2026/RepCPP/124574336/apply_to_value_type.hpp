@@ -28,12 +28,12 @@
 template< class Metafunction, class TaggedType >
 struct apply_to_value_type
 {
-    typedef tagged
-    <
-        Metafuntion< value_type_of< TaggedType >::type >::type,
-        tag_of< TaggedType >::type
+typedef tagged
+<
+Metafuntion< value_type_of< TaggedType >::type >::type,
+tag_of< TaggedType >::type
 
-    > type;
+> type;
 };
 \endcode
 
@@ -41,7 +41,7 @@ This higher order metafunctions is very useful, and it can be used with lambda
 expressions.
 
 See also tagged.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -56,8 +56,8 @@ struct apply_to_value_type;
 template < class F, class ValueType, class Tag >
 struct apply_to_value_type<F, tagged<ValueType,Tag> >
 {
-    typedef BOOST_DEDUCED_TYPENAME mpl::apply< F, ValueType >::type new_value_type;
-    typedef tagged< new_value_type, Tag > type;
+typedef BOOST_DEDUCED_TYPENAME mpl::apply< F, ValueType >::type new_value_type;
+typedef tagged< new_value_type, Tag > type;
 };
 
 } // namespace support

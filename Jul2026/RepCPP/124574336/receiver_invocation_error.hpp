@@ -27,14 +27,14 @@ namespace execution {
 /// Exception reported via @c set_error when an exception escapes from
 /// @c set_value.
 class receiver_invocation_error
-  : public std::runtime_error
+: public std::runtime_error
 #if defined(BOOST_ASIO_HAS_STD_NESTED_EXCEPTION)
-  , public std::nested_exception
+, public std::nested_exception
 #endif // defined(BOOST_ASIO_HAS_STD_NESTED_EXCEPTION)
 {
 public:
-  /// Constructor.
-  BOOST_ASIO_DECL receiver_invocation_error();
+/// Constructor.
+BOOST_ASIO_DECL receiver_invocation_error();
 };
 
 } // namespace execution

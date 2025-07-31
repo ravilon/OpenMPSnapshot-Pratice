@@ -43,7 +43,7 @@ This function is a safe wrapper around reinterpret_cast. It checks at
 compile time that the desired view is supported by the mutant class.
 See also mutant, can_mutate_in.
 \ingroup mutant_group
-                                                                            **/
+**/
 
 
 template< class View, class Type >
@@ -53,10 +53,10 @@ View&
 
 >::type mutate( Type & m )
 {
-    BOOST_MPL_ASSERT((
-        ::boost::mpl::contains<BOOST_DEDUCED_TYPENAME Type::mutant_views,View>
-    ));
-    return *reinterpret_cast< View* >(boost::addressof(m));
+BOOST_MPL_ASSERT((
+::boost::mpl::contains<BOOST_DEDUCED_TYPENAME Type::mutant_views,View>
+));
+return *reinterpret_cast< View* >(boost::addressof(m));
 }
 
 template< class View, class Type >
@@ -66,10 +66,10 @@ const View&
 
 >::type mutate( Type & m )
 {
-    BOOST_MPL_ASSERT((
-        ::boost::mpl::contains<BOOST_DEDUCED_TYPENAME Type::mutant_views,View> 
-    ));
-    return *reinterpret_cast< const View* >(boost::addressof(m));
+BOOST_MPL_ASSERT((
+::boost::mpl::contains<BOOST_DEDUCED_TYPENAME Type::mutant_views,View> 
+));
+return *reinterpret_cast< const View* >(boost::addressof(m));
 }
 
 //@}

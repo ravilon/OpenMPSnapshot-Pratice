@@ -19,49 +19,49 @@ namespace boost{ namespace math{
 template <class T, class Policy>
 inline T modf(const T& v, T* ipart, const Policy& pol)
 {
-   *ipart = trunc(v, pol);
-   return v - *ipart;
+*ipart = trunc(v, pol);
+return v - *ipart;
 }
 template <class T>
 inline T modf(const T& v, T* ipart)
 {
-   return modf(v, ipart, policies::policy<>());
+return modf(v, ipart, policies::policy<>());
 }
 
 template <class T, class Policy>
 inline T modf(const T& v, int* ipart, const Policy& pol)
 {
-   *ipart = itrunc(v, pol);
-   return v - *ipart;
+*ipart = itrunc(v, pol);
+return v - *ipart;
 }
 template <class T>
 inline T modf(const T& v, int* ipart)
 {
-   return modf(v, ipart, policies::policy<>());
+return modf(v, ipart, policies::policy<>());
 }
 
 template <class T, class Policy>
 inline T modf(const T& v, long* ipart, const Policy& pol)
 {
-   *ipart = ltrunc(v, pol);
-   return v - *ipart;
+*ipart = ltrunc(v, pol);
+return v - *ipart;
 }
 template <class T>
 inline T modf(const T& v, long* ipart)
 {
-   return modf(v, ipart, policies::policy<>());
+return modf(v, ipart, policies::policy<>());
 }
 
 template <class T, class Policy>
 inline T modf(const T& v, long long* ipart, const Policy& pol)
 {
-   *ipart = lltrunc(v, pol);
-   return v - *ipart;
+*ipart = lltrunc(v, pol);
+return v - *ipart;
 }
 template <class T>
 inline T modf(const T& v, long long* ipart)
 {
-   return modf(v, ipart, policies::policy<>());
+return modf(v, ipart, policies::policy<>());
 }
 
 }} // namespaces

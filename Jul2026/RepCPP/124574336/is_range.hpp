@@ -1,20 +1,20 @@
 /*
- [auto_generated]
- boost/numeric/odeint/util/detail/is_range.hpp
+[auto_generated]
+boost/numeric/odeint/util/detail/is_range.hpp
 
- [begin_description]
- is_range implementation. Taken from the boost::range library.
- [end_description]
+[begin_description]
+is_range implementation. Taken from the boost::range library.
+[end_description]
 
- Copyright 2011-2013 Karsten Ahnert
- Copyright 2011-2013 Thorsten Ottosen
+Copyright 2011-2013 Karsten Ahnert
+Copyright 2011-2013 Thorsten Ottosen
 
 
 
- Distributed under the Boost Software License, Version 1.0.
- (See accompanying file LICENSE_1_0.txt or
- copy at http://www.boost.org/LICENSE_1_0.txt)
- */
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE_1_0.txt or
+copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
 
 
 #ifndef BOOST_NUMERIC_ODEINT_UTIL_DETAIL_IS_RANGE_HPP_INCLUDED
@@ -40,7 +40,7 @@ namespace odeint {
 namespace range_detail
 {
 BOOST_MPL_HAS_XXX_TRAIT_DEF(iterator)
-    BOOST_MPL_HAS_XXX_TRAIT_DEF(const_iterator)
+BOOST_MPL_HAS_XXX_TRAIT_DEF(const_iterator)
 }
 
 namespace detail

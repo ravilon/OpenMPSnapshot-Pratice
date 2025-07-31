@@ -1,23 +1,23 @@
 /*
- [auto_generated]
- libs/numeric/odeint/test/resizing.cpp
+[auto_generated]
+libs/numeric/odeint/test/resizing.cpp
 
- [begin_description]
- This file tests the resizing mechanism of odeint.
- [end_description]
+[begin_description]
+This file tests the resizing mechanism of odeint.
+[end_description]
 
- Copyright 2010-2012 Karsten Ahnert
- Copyright 2010-2012 Mario Mulansky
+Copyright 2010-2012 Karsten Ahnert
+Copyright 2010-2012 Mario Mulansky
 
- Distributed under the Boost Software License, Version 1.0.
- (See accompanying file LICENSE_1_0.txt or
- copy at http://www.boost.org/LICENSE_1_0.txt)
- */
+Distributed under the Boost Software License, Version 1.0.
+(See accompanying file LICENSE_1_0.txt or
+copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
 
 // disable checked iterator warning for msvc
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-    #pragma warning(disable:4996)
+#pragma warning(disable:4996)
 #endif
 
 #define BOOST_TEST_MODULE odeint_resize
@@ -77,33 +77,33 @@ typedef runge_kutta4< test_array_type , double , test_array_type , double , rang
 
 
 typedef mpl::vector<
-    mpl::vector< euler_manual_type , mpl::int_<1> , mpl::int_<0> > ,
-    mpl::vector< euler_initially_type , mpl::int_<1> , mpl::int_<1> > ,
-    mpl::vector< euler_always_type , mpl::int_<1> , mpl::int_<3> > ,
-    mpl::vector< rk4_manual_type , mpl::int_<5> , mpl::int_<0> > ,
-    mpl::vector< rk4_initially_type , mpl::int_<5> , mpl::int_<1> > ,
-    mpl::vector< rk4_always_type , mpl::int_<5> , mpl::int_<3> > ,
-    mpl::vector< rk4_gen_manual_type , mpl::int_<5> , mpl::int_<0> > ,
-    mpl::vector< rk4_gen_initially_type , mpl::int_<5> , mpl::int_<1> > ,
-    mpl::vector< rk4_gen_always_type , mpl::int_<5> , mpl::int_<3> >
-    >::type resize_check_types;
+mpl::vector< euler_manual_type , mpl::int_<1> , mpl::int_<0> > ,
+mpl::vector< euler_initially_type , mpl::int_<1> , mpl::int_<1> > ,
+mpl::vector< euler_always_type , mpl::int_<1> , mpl::int_<3> > ,
+mpl::vector< rk4_manual_type , mpl::int_<5> , mpl::int_<0> > ,
+mpl::vector< rk4_initially_type , mpl::int_<5> , mpl::int_<1> > ,
+mpl::vector< rk4_always_type , mpl::int_<5> , mpl::int_<3> > ,
+mpl::vector< rk4_gen_manual_type , mpl::int_<5> , mpl::int_<0> > ,
+mpl::vector< rk4_gen_initially_type , mpl::int_<5> , mpl::int_<1> > ,
+mpl::vector< rk4_gen_always_type , mpl::int_<5> , mpl::int_<3> >
+>::type resize_check_types;
 
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize , T, resize_check_types )
 {
-    typedef typename mpl::at< T , mpl::int_< 0 > >::type stepper_type;
-    const size_t resize_calls = mpl::at< T , mpl::int_< 1 > >::type::value;
-    const size_t multiplicity = mpl::at< T , mpl::int_< 2 > >::type::value;
-    adjust_size_count = 0;
+typedef typename mpl::at< T , mpl::int_< 0 > >::type stepper_type;
+const size_t resize_calls = mpl::at< T , mpl::int_< 1 > >::type::value;
+const size_t multiplicity = mpl::at< T , mpl::int_< 2 > >::type::value;
+adjust_size_count = 0;
 
-    stepper_type stepper;
-    test_array_type x;
-    stepper.do_step( constant_system , x , 0.0 , 0.1 );
-    stepper.do_step( constant_system , x , 0.0 , 0.1 );
-    stepper.do_step( constant_system , x , 0.0 , 0.1 );
+stepper_type stepper;
+test_array_type x;
+stepper.do_step( constant_system , x , 0.0 , 0.1 );
+stepper.do_step( constant_system , x , 0.0 , 0.1 );
+stepper.do_step( constant_system , x , 0.0 , 0.1 );
 
-    BOOST_TEST_MESSAGE( "adjust_size_count : " << adjust_size_count );
-    BOOST_CHECK_MESSAGE( adjust_size_count == resize_calls * multiplicity , "adjust_size_count : " << adjust_size_count << " expected: " << resize_calls * multiplicity );
+BOOST_TEST_MESSAGE( "adjust_size_count : " << adjust_size_count );
+BOOST_CHECK_MESSAGE( adjust_size_count == resize_calls * multiplicity , "adjust_size_count : " << adjust_size_count << " expected: " << resize_calls * multiplicity );
 }
 
 

@@ -27,7 +27,7 @@
 #include <boost/config.hpp> // msvc 6.0 needs this for warning suppression
 #if defined(BOOST_NO_STDC_NAMESPACE)
 namespace std{
-    using ::size_t;
+using ::size_t;
 } // namespace std
 #endif
 #include <boost/detail/workaround.hpp>
@@ -50,52 +50,52 @@ namespace stl {
 //
 
 template<
-    class Archive,
-    class T
+class Archive,
+class T
 >
 typename boost::enable_if<
-    typename detail::is_default_constructible<
-        typename T::value_type
-    >,
-    void
+typename detail::is_default_constructible<
+typename T::value_type
+>,
+void
 >::type
 collection_load_impl(
-    Archive & ar,
-    T & t,
-    collection_size_type count,
-    item_version_type /*item_version*/
+Archive & ar,
+T & t,
+collection_size_type count,
+item_version_type /*item_version*/
 ){
-    t.resize(count);
-    typename T::iterator hint;
-    hint = t.begin();
-    while(count-- > 0){
-        ar >> boost::serialization::make_nvp("item", *hint++);
-    }
+t.resize(count);
+typename T::iterator hint;
+hint = t.begin();
+while(count-- > 0){
+ar >> boost::serialization::make_nvp("item", *hint++);
+}
 }
 
 template<
-    class Archive,
-    class T
+class Archive,
+class T
 >
 typename boost::disable_if<
-    typename detail::is_default_constructible<
-        typename T::value_type
-    >,
-    void
+typename detail::is_default_constructible<
+typename T::value_type
+>,
+void
 >::type
 collection_load_impl(
-    Archive & ar,
-    T & t,
-    collection_size_type count,
-    item_version_type item_version
+Archive & ar,
+T & t,
+collection_size_type count,
+item_version_type item_version
 ){
-    t.clear();
-    while(count-- > 0){
-        detail::stack_construct<Archive, typename T::value_type> u(ar, item_version);
-        ar >> boost::serialization::make_nvp("item", u.reference());
-        t.push_back(boost::move(u.reference()));
-        ar.reset_object_address(& t.back() , u.address());
-     }
+t.clear();
+while(count-- > 0){
+detail::stack_construct<Archive, typename T::value_type> u(ar, item_version);
+ar >> boost::serialization::make_nvp("item", u.reference());
+t.push_back(boost::move(u.reference()));
+ar.reset_object_address(& t.back() , u.address());
+}
 }
 
 } // namespace stl

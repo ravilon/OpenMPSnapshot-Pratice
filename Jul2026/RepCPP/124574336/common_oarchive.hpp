@@ -34,48 +34,48 @@ namespace detail {
 template<class Archive>
 
 class BOOST_SYMBOL_VISIBLE common_oarchive :
-    public basic_oarchive,
-    public interface_oarchive<Archive>
+public basic_oarchive,
+public interface_oarchive<Archive>
 {
-    friend class interface_oarchive<Archive>;
-    friend class basic_oarchive;
+friend class interface_oarchive<Archive>;
+friend class basic_oarchive;
 private:
-    void vsave(const version_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const object_id_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const object_reference_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const class_id_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const class_id_reference_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const class_id_optional_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const class_name_type & t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
-    void vsave(const tracking_type t) BOOST_OVERRIDE {
-        * this->This() << t;
-    }
+void vsave(const version_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const object_id_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const object_reference_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const class_id_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const class_id_reference_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const class_id_optional_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const class_name_type & t) BOOST_OVERRIDE {
+* this->This() << t;
+}
+void vsave(const tracking_type t) BOOST_OVERRIDE {
+* this->This() << t;
+}
 protected:
-    // default processing - invoke serialization library
-    template<class T>
-    void save_override(T & t){
-        archive::save(* this->This(), t);
-    }
-    void save_start(const char * /*name*/){}
-    void save_end(const char * /*name*/){}
-    common_oarchive(unsigned int flags = 0) :
-        basic_oarchive(flags),
-        interface_oarchive<Archive>()
-    {}
+// default processing - invoke serialization library
+template<class T>
+void save_override(T & t){
+archive::save(* this->This(), t);
+}
+void save_start(const char * /*name*/){}
+void save_end(const char * /*name*/){}
+common_oarchive(unsigned int flags = 0) :
+basic_oarchive(flags),
+interface_oarchive<Archive>()
+{}
 };
 
 } // namespace detail
