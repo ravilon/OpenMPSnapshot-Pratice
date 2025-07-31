@@ -179,7 +179,6 @@ void DeflateDecompressor::decode(std::unique_ptr<unsigned char[]>* uBuffer,
 
 #else
 
-#pragma message                                                                \
-    "ZLIB is not present! Deflate compression will not be supported!"
+#pragma message                                                                 "ZLIB is not present! Deflate compression will not be supported!"
 
 #endif

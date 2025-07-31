@@ -938,8 +938,7 @@ namespace Kratos
 
       int not_assigned = 0;
 
-#pragma omp parallel for reduction(+ \
-                                   : not_assigned)
+#pragma omp parallel for reduction(+  : not_assigned)
       for (int pn = 0; pn < NumberOfNodes; ++pn)
       {
         ModelPart::NodesContainerType::iterator iNode = NodesBegin + pn;

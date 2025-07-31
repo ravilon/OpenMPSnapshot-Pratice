@@ -437,10 +437,7 @@ void ApplyChimera<TDim>::FormulateConstraints(
     IndexType removed_counter = 0;
 
     BuiltinTimer loop_over_b_nodes;
-#pragma omp parallel for shared(constraints_id_vector,               \
-                                rVelocityMasterSlaveContainerVector, \
-                                rPressureMasterSlaveContainerVector, \
-                                rBinLocator) reduction(+ : found_counter)
+#pragma omp parallel for shared(constraints_id_vector,                rVelocityMasterSlaveContainerVector,  rPressureMasterSlaveContainerVector,  rBinLocator) reduction(+ : found_counter)
     for (int i_bn = 0; i_bn < n_boundary_nodes; ++i_bn) {
         ModelPart::NodesContainerType::iterator i_boundary_node =
             rBoundaryModelPart.NodesBegin() + i_bn;

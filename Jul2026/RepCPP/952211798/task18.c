@@ -202,9 +202,7 @@ void solve(const int n, const double alpha, const double dx, const double dt, co
     const double r2 = 1.0 - 4.0 * r;        // COEFICIENTE CENTRAL NO ESQUEMA EXPLÍCITO
 
     // DIRETIVA OPENMP PARA EXECUTAR O LOOP NESTE NÍVEL EM PARALELO NA GPU
-    #pragma omp target teams distribute parallel for collapse(2) \
-        map(to: u[0:n*n]) map(from: u_tmp[0:n*n]) \
-        firstprivate(n, r, r2)
+    #pragma omp target teams distribute parallel for collapse(2)  map(to: u[0:n*n]) map(from: u_tmp[0:n*n])  firstprivate(n, r, r2)
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             // CÁLCULO DO VALOR DA MALHA NA PRÓXIMA ITERAÇÃO TEMPORAL
@@ -233,8 +231,7 @@ double l2norm(const int n, const double * restrict u, const int nsteps, const do
     double norm = 0.0;                 // VARIÁVEL PARA ACUMULAR O SOMATÓRIO
 
     // DIRETIVA OPENMP PARA PARALELIZAR O CÁLCULO DO SOMATÓRIO NA GPU
-    #pragma omp target teams distribute parallel for collapse(2) reduction(+:norm) \
-        map(to: u[0:n*n]) firstprivate(n, dx, length, alpha, time)
+    #pragma omp target teams distribute parallel for collapse(2) reduction(+:norm)  map(to: u[0:n*n]) firstprivate(n, dx, length, alpha, time)
     for (int j = 0; j < n; ++j) {
         for (int i = 0; i < n; ++i) {
             double x = dx * (i + 1);

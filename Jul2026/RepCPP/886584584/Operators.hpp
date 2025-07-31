@@ -959,8 +959,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Electric field Ex (d,p,p)
     for (unsigned int ix = 0; ix < em.nx_d_m; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 0; iy < em.ny_p_m; iy++) {
@@ -979,8 +978,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Electric field Ey (p,d,p)
     for (unsigned int ix = 0; ix < em.nx_p_m; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 0; iy < em.ny_d_m; iy++) {
@@ -999,8 +997,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Electric field Ez (p,p,d)
     for (unsigned int ix = 0; ix < em.nx_p_m; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 0; iy < em.ny_p_m; iy++) {
@@ -1025,8 +1022,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Magnetic field Bx (p,d,d)
     for (unsigned int ix = 0; ix < em.nx_p_m; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 1; iy < em.ny_d_m - 1; iy++) {
@@ -1044,8 +1040,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Magnetic field By (d,p,d)
     for (unsigned int ix = 1; ix < em.nx_d_m - 1; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 0; iy < em.ny_p_m; iy++) {
@@ -1063,8 +1058,7 @@ auto solve_maxwell(const Params &params, ElectroMagn &em, Profiler &profiler) ->
 
     // Magnetic field Bz (d,d,p)
     for (unsigned int ix = 1; ix < em.nx_d_m - 1; ix++) {
-#pragma omp task untied default(none) shared(em, profiler) \
-  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
+#pragma omp task untied default(none) shared(em, profiler)  firstprivate(ix, dt, dt_over_dx, dt_over_dy, dt_over_dz)
       {
         profiler.start(MAXWELL);
         for (unsigned int iy = 1; iy < em.ny_d_m - 1; iy++) {

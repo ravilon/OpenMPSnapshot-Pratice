@@ -207,9 +207,7 @@ VC5Decompressor::BandData VC5Decompressor::Wavelet::reconstructPass(
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wshorten-64-to-32"
 #ifdef HAVE_OPENMP
-#pragma omp taskloop default(none) firstprivate(dst, process)                  \
-    num_tasks(roundUpDivisionSafe(rawspeed_get_number_of_processor_cores(),    \
-                                      numChannels))
+#pragma omp taskloop default(none) firstprivate(dst, process)                   num_tasks(roundUpDivisionSafe(rawspeed_get_number_of_processor_cores(),     numChannels))
 #endif
   for (int row = 0; row < dst.height() / 2; ++row) {
 #pragma GCC diagnostic pop
@@ -266,9 +264,7 @@ VC5Decompressor::BandData VC5Decompressor::Wavelet::combineLowHighPass(
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #pragma GCC diagnostic ignored "-Wshorten-64-to-32"
 #ifdef HAVE_OPENMP
-#pragma omp taskloop if (finalWavelet) default(none)                           \
-    firstprivate(dst, process) num_tasks(roundUpDivisionSafe(                  \
-            rawspeed_get_number_of_processor_cores(), 2)) mergeable
+#pragma omp taskloop if (finalWavelet) default(none)                            firstprivate(dst, process) num_tasks(roundUpDivisionSafe(                   rawspeed_get_number_of_processor_cores(), 2)) mergeable
 #endif
   for (int row = 0; row < dst.height(); ++row) {
 #pragma GCC diagnostic pop
@@ -293,9 +289,7 @@ void VC5Decompressor::Wavelet::ReconstructableBand::
   auto& lowpass = intermediates.lowpass;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-    shared(exceptionThrown, highlow, lowlow, lowpass)                          \
-    depend(in : highlow, lowlow) depend(out : lowpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, highlow, lowlow, lowpass)                           depend(in : highlow, lowlow) depend(out : lowpass)
 #endif
   {
     // Proceed only if decoding did not fail.
@@ -317,9 +311,7 @@ void VC5Decompressor::Wavelet::ReconstructableBand::
   auto& highpass = intermediates.highpass;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-    shared(exceptionThrown, highhigh, lowhigh, highpass)                       \
-    depend(in : highhigh, lowhigh) depend(out : highpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, highhigh, lowhigh, highpass)                        depend(in : highhigh, lowhigh) depend(out : highpass)
 #endif
   {
     // Proceed only if decoding did not fail.
@@ -340,8 +332,7 @@ void VC5Decompressor::Wavelet::ReconstructableBand::
   auto& reconstructedLowpass = data;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none) shared(exceptionThrown)                         \
-    depend(in : lowpass, highpass)
+#pragma omp task default(none) shared(exceptionThrown)                          depend(in : lowpass, highpass)
 #endif
   {
     if (!readValue(exceptionThrown)) {
@@ -350,9 +341,7 @@ void VC5Decompressor::Wavelet::ReconstructableBand::
   }
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-    shared(exceptionThrown, lowpass, highpass, reconstructedLowpass)           \
-    depend(in : lowpass, highpass) depend(out : reconstructedLowpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, lowpass, highpass, reconstructedLowpass)            depend(in : lowpass, highpass) depend(out : reconstructedLowpass)
 #endif
   {
     // Proceed only if decoding did not fail.
@@ -622,8 +611,7 @@ void VC5Decompressor::Wavelet::AbstractDecodeableBand::createDecodingTasks(
   auto& decodedData = data;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none) shared(decodedData, errLog, exceptionThrown)    \
-    depend(out : decodedData)
+#pragma omp task default(none) shared(decodedData, errLog, exceptionThrown)     depend(out : decodedData)
 #endif
   {
     // Proceed only if decoding did not fail.
@@ -857,8 +845,7 @@ void VC5Decompressor::decode(unsigned int offsetX, unsigned int offsetY,
   alignas(RAWSPEED_CACHELINESIZE) bool exceptionThrown = false;
 
 #ifdef HAVE_OPENMP
-#pragma omp parallel default(none) shared(exceptionThrown)                     \
-    num_threads(rawspeed_get_number_of_processor_cores())
+#pragma omp parallel default(none) shared(exceptionThrown)                      num_threads(rawspeed_get_number_of_processor_cores())
 #endif
   decodeThread(exceptionThrown);
 

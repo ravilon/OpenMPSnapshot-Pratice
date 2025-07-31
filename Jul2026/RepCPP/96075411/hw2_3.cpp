@@ -87,9 +87,7 @@ void pagerank(long double *nextrank_value, long double *currentrank_value, doubl
     int idx;
     for (iter = 0; iter < iterator; iter++){
         double tempsum = 0;
-#pragma omp parallel for num_threads(thread_count)\
-shared(nextrank_value,currentrank_value,transition) \
-private(row,col,idx)
+#pragma omp parallel for num_threads(thread_count) shared(nextrank_value,currentrank_value,transition)  private(row,col,idx)
         for (idx = 0;idx < edge_num; idx++){
             row = start_edge[idx];
             col = end_edge[idx];
@@ -97,9 +95,7 @@ private(row,col,idx)
         }
 
         // avoid too big or small value
-#pragma omp parallel for num_threads(thread_count)\
-shared(nextrank_value,tempsum) \
-private(row)
+#pragma omp parallel for num_threads(thread_count) shared(nextrank_value,tempsum)  private(row)
         for (row = 0; row < NODES_NUM; row++) {
             nextrank_value[row] = max(1.0 / NODES_NUM / NODES_NUM, nextrank_value[row]);
             nextrank_value[row] = min(1.0 - 1.0 / NODES_NUM / NODES_NUM, nextrank_value[row]);
@@ -107,9 +103,7 @@ private(row)
         }
 
         // update and normlize currentrank_value
-#pragma omp parallel for num_threads(thread_count)\
-shared(nextrank_value,currentrank_value,tempsum) \
-private(row)
+#pragma omp parallel for num_threads(thread_count) shared(nextrank_value,currentrank_value,tempsum)  private(row)
         for (row = 0; row < NODES_NUM; row++) {
             nextrank_value[row] = nextrank_value[row]/tempsum;
             currentrank_value[row] = nextrank_value[row];

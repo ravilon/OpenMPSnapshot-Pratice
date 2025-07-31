@@ -157,9 +157,7 @@ void Programa_Macroion(int N, double l_B, double D, double dt, double A, double 
     double *restrict nrand = new double[tam];                                       // Arreglo de números aleatorios, de una distribución normal 
                                                                                     // con media 0 y desviación estandar 1
     
-    #pragma acc enter data copyin(x[:N], y[:N], z[:N], v[:N], vT[:NT], Fx[:N], Fy[:N], Fz[:N], xT[:NT], yT[:NT], zT[:NT], d[:N], \
-                                    N, NT, tam_dr, dr, Dij, Dijm, Dijc, R, Rc, l_B, D, A, qM, sigma, lm, lc, eps, \
-                                    rho_rp[:O_Rc], rho_rn[:O_Rc], P_r[:tam_dr], nrand[:tam])
+    #pragma acc enter data copyin(x[:N], y[:N], z[:N], v[:N], vT[:NT], Fx[:N], Fy[:N], Fz[:N], xT[:NT], yT[:NT], zT[:NT], d[:N],  N, NT, tam_dr, dr, Dij, Dijm, Dijc, R, Rc, l_B, D, A, qM, sigma, lm, lc, eps,  rho_rp[:O_Rc], rho_rn[:O_Rc], P_r[:tam_dr], nrand[:tam])
     
     cudaStream_t stream; 
 
@@ -460,9 +458,7 @@ void Programa_Macroion(int N, double l_B, double D, double dt, double A, double 
     
     /*     Liberación de memoria     */ 
 
-    #pragma acc exit data delete(d[:N], x[:N], y[:N], z[:N], v[:N], vT[:NT], Fx[:N], Fy[:N], Fz[:N], xT[:NT], yT[:NT], zT[:NT], \
-                                N, NT, tam_dr, dr, Dij, Dijm, Dijc, pi, R, Rc, l_B, D, A, qM, sigma, lm, lc, eps, \
-                                rho_rp[:O_Rc], rho_rn[:O_Rc], P_r[:tam_dr], nrand[:tam])
+    #pragma acc exit data delete(d[:N], x[:N], y[:N], z[:N], v[:N], vT[:NT], Fx[:N], Fy[:N], Fz[:N], xT[:NT], yT[:NT], zT[:NT],  N, NT, tam_dr, dr, Dij, Dijm, Dijc, pi, R, Rc, l_B, D, A, qM, sigma, lm, lc, eps,  rho_rp[:O_Rc], rho_rn[:O_Rc], P_r[:tam_dr], nrand[:tam])
     
     delete x;   delete y;   delete z;   delete v;                                  
     delete Fx;  delete Fy;  delete Fz;  delete vT; 

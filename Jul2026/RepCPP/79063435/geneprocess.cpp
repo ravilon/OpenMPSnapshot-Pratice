@@ -393,8 +393,7 @@ void GeneProcess::geneFrame (unsigned short *indat, float *scene_frame){
 
         p = fftw_plan_dft_1d(N, (fftw_complex *) in, (fftw_complex *)out, FFTW_FORWARD, FFTW_ESTIMATE);
 
-	#pragma omp parallel for \
-		shared(indat, scene_frame, npts, bbhot, bbcold, in, out)
+	#pragma omp parallel for  shared(indat, scene_frame, npts, bbhot, bbcold, in, out)
         for (int colno=0; colno < this->nsamps; colno++)
         {
 

@@ -65,8 +65,7 @@ void Programa_Thomson(int N, double l_B, double D, double dt, double A, double *
     double *restrict nrand = new double[tam];                                       // Arreglo de números aleatorios, de una distribución normal 
                                                                                     // con media 0 y desviación estandar 1
     
-    #pragma acc enter data copyin(x[:N], y[:N], z[:N], Fx[:N], Fy[:N], Fz[:N], \
-                                    N, R, dt, l_B, D, A, difussion, nrand[:tam])    // Copia de arreglos y variables a la GPU
+    #pragma acc enter data copyin(x[:N], y[:N], z[:N], Fx[:N], Fy[:N], Fz[:N],  N, R, dt, l_B, D, A, difussion, nrand[:tam])    // Copia de arreglos y variables a la GPU
     
     cudaStream_t stream; 
 
@@ -372,8 +371,7 @@ void Descenso_gradiente(int N, double *__restrict x, double *__restrict y,  doub
     double U = Potencial(N, x, y, z);                                                   // Calcula el potencial inicial
 
 
-    #pragma acc enter data copyin(x[:N], y[:N], z[:N], px[:N], py[:N], pz[:N], xa[:N], ya[:N], za[:N], \
-                                    N, R, alfa, UA, U)                                  // Copia de arreglos y variables a la GPU
+    #pragma acc enter data copyin(x[:N], y[:N], z[:N], px[:N], py[:N], pz[:N], xa[:N], ya[:N], za[:N],  N, R, alfa, UA, U)                                  // Copia de arreglos y variables a la GPU
     
     for(int con = 1; con <= itDG; con++){                                                
       

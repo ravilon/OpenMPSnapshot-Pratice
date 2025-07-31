@@ -176,19 +176,7 @@ void CTSPHeuristicaOpenMP::execute()
             tidDataSz[k] = m_datasz - tidStartData[k];
     }
 
-#pragma omp parallel num_threads(DEF_NUM_OF_THREADS)    \
-            private(p0,                                 \
-                    p1,                                 \
-                    tid,                                \
-                    pos0,                               \
-                    pos1,                               \
-                    i,                                  \
-                    nThreads)                           \
-            shared( m_datares,                          \
-                    m_datawrk,                          \
-                    m_datasz,                           \
-                    tidDataSz,                          \
-                    tidStartData)
+#pragma omp parallel num_threads(DEF_NUM_OF_THREADS)     private(p0,                                  p1,                                  tid,                                 pos0,                                pos1,                                i,                                   nThreads)                            shared( m_datares,                           m_datawrk,                           m_datasz,                            tidDataSz,                           tidStartData)
     {
         //nThreads = omp_get_num_threads();
         tid = omp_get_thread_num();

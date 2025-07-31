@@ -127,8 +127,7 @@ double partial_pi(double left, double right, Params *params) {
 #ifdef WITH_MPI
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 #endif
-#pragma omp parallel default(none) \
-    shared(sum, delta, left, right, result, params, rank)
+#pragma omp parallel default(none)  shared(sum, delta, left, right, result, params, rank)
     {
         long i;
         double x;

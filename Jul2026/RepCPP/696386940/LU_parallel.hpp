@@ -196,8 +196,7 @@ void parallel_block_lu_decomp(std::vector<T>& matrix, const std::size_t n,
 				[u u u * * * * * * *]
 		*/
 		// Copy matrix to b_block, under_b_block and right_b_block
-#pragma omp parallel for shared(matrix, b_block, under_b_block, right_b_block, \
-									step, n, m)
+#pragma omp parallel for shared(matrix, b_block, under_b_block, right_b_block,  step, n, m)
 		for (std::size_t j = 0; j < (m - i); ++j) {
 			for (std::size_t k = 0; k < step; ++k) {
 				if (j < step && j < n - i) {
@@ -327,8 +326,7 @@ void parallel_block_lu_decomp(std::vector<T>& matrix, const std::size_t n,
 				[u u u o o o o o o o]
 				[u u u o o o o o o o]
 		*/
-#pragma omp parallel for shared(matrix, under_b_block, right_b_block, step, n, \
-									m)
+#pragma omp parallel for shared(matrix, under_b_block, right_b_block, step, n,  m)
 		for (std::size_t l = 0; l < n - i - step; ++l) {
 			for (std::size_t k = 0; k < step; ++k) {
 				for (std::size_t j = 0; j < m - i - step; ++j) {

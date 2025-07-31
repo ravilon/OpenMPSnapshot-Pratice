@@ -82,8 +82,7 @@ int main(int argc_, char** argv_) {
   const auto corpusCount = argv.size() - 1;
   auto chunkSize = (corpusCount / (10 * omp_get_num_threads()));
   chunkSize = std::max(chunkSize, 1);
-#pragma omp parallel for default(none) firstprivate(argv, chunkSize)           \
-    schedule(dynamic, chunkSize)
+#pragma omp parallel for default(none) firstprivate(argv, chunkSize)            schedule(dynamic, chunkSize)
 #endif
   for (int i = 1; i < argv.size(); ++i)
     process(argv(i));

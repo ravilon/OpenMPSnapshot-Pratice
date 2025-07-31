@@ -223,25 +223,7 @@ void CTSPForcaBrutaOpenMP::execute()
 
     long bIsValid;
 
-#pragma omp parallel num_threads(DEF_NUM_OF_THREADS)    \
-            private(p_datares,                          \
-                    p_datawrk,                          \
-                    datasz,                             \
-                    tid,                                \
-                    tidLenVal,                          \
-                    tidStartVal,                        \
-                    inival,                             \
-                    finval,                             \
-                    inicost,                            \
-                    fincost,                            \
-                    isRunning,                          \
-                    bIsValid)                           \
-            shared( m_datares,                          \
-                    m_datawrk,                          \
-                    m_datasz,                           \
-                    initial_cost,                       \
-                    final_cost,                         \
-                    nThreads)
+#pragma omp parallel num_threads(DEF_NUM_OF_THREADS)     private(p_datares,                           p_datawrk,                           datasz,                              tid,                                 tidLenVal,                           tidStartVal,                         inival,                              finval,                              inicost,                             fincost,                             isRunning,                           bIsValid)                            shared( m_datares,                           m_datawrk,                           m_datasz,                            initial_cost,                        final_cost,                          nThreads)
     {
         nThreads = omp_get_num_threads();
         tid = omp_get_thread_num();

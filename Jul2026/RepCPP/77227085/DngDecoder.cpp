@@ -125,8 +125,7 @@ void DngDecoder::dropUnsuportedChunks(std::vector<const TiffIFD*>* data) {
 
 #ifndef HAVE_ZLIB
     case 8: // deflate
-#pragma message                                                                \
-    "ZLIB is not present! Deflate compression will not be supported!"
+#pragma message                                                                 "ZLIB is not present! Deflate compression will not be supported!"
       writeLog(DEBUG_PRIO::WARNING, "DNG Decoder: found Deflate-encoded chunk, "
                                     "but the deflate support was disabled at "
                                     "build!");
@@ -134,8 +133,7 @@ void DngDecoder::dropUnsuportedChunks(std::vector<const TiffIFD*>* data) {
 #endif
 #ifndef HAVE_JPEG
     case 0x884c: // lossy JPEG
-#pragma message                                                                \
-    "JPEG is not present! Lossy JPEG compression will not be supported!"
+#pragma message                                                                 "JPEG is not present! Lossy JPEG compression will not be supported!"
       writeLog(DEBUG_PRIO::WARNING, "DNG Decoder: found lossy JPEG-encoded "
                                     "chunk, but the jpeg support was "
                                     "disabled at build!");

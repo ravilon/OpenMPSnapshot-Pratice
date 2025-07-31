@@ -173,7 +173,6 @@ void JpegDecompressor::decode(uint32_t offX,
 
 #else
 
-#pragma message                                                                \
-    "JPEG is not present! Lossy JPEG compression will not be supported!"
+#pragma message                                                                 "JPEG is not present! Lossy JPEG compression will not be supported!"
 
 #endif

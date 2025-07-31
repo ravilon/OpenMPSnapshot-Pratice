@@ -19,10 +19,7 @@ int main() {
     omp_set_num_threads(3);
 
     // Use default(none) to force explicit scoping - good practice!
-    #pragma omp parallel default(none) \
-            shared(shared_var, std::cout) \
-            firstprivate(firstpriv_var) \
-            private(private_var_outside) // Each thread gets uninitialized copy
+    #pragma omp parallel default(none)  shared(shared_var, std::cout)  firstprivate(firstpriv_var)  private(private_var_outside) // Each thread gets uninitialized copy
     {
         int thread_id = omp_get_thread_num();
         // private_var_outside is uninitialized here for each thread

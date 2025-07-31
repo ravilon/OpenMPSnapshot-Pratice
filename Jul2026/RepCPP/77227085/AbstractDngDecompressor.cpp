@@ -218,8 +218,7 @@ void AbstractDngDecompressor::decompressThread() const noexcept {
 #ifdef HAVE_ZLIB
     decompressThread<8>();
 #else
-#pragma message                                                                \
-    "ZLIB is not present! Deflate compression will not be supported!"
+#pragma message                                                                 "ZLIB is not present! Deflate compression will not be supported!"
     mRaw->setError("deflate support is disabled.");
 #endif
   } else if (compression == 9) {
@@ -240,8 +239,7 @@ void AbstractDngDecompressor::decompressThread() const noexcept {
 
 void AbstractDngDecompressor::decompress() const {
 #ifdef HAVE_OPENMP
-#pragma omp parallel default(none) num_threads(                                \
-        rawspeed_get_number_of_processor_cores()) if (slices.size() > 1)
+#pragma omp parallel default(none) num_threads(                                 rawspeed_get_number_of_processor_cores()) if (slices.size() > 1)
 #endif
   decompressThread();
 

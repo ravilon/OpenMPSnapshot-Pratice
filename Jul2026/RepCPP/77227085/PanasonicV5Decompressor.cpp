@@ -236,8 +236,7 @@ void PanasonicV5Decompressor::processBlock(const Block& block) const {
 template <const PanasonicV5Decompressor::PacketDsc& dsc>
 void PanasonicV5Decompressor::decompressInternal() const noexcept {
 #ifdef HAVE_OPENMP
-#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores()) \
-    schedule(static) default(none)
+#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores())  schedule(static) default(none)
 #endif
   for (const auto& block :
        Array1DRef(blocks.data(), implicit_cast<int>(blocks.size()))) {

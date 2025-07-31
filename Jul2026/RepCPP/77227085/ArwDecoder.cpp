@@ -369,8 +369,7 @@ void ArwDecoder::DecodeLJpeg(const TiffIFD* raw) {
 
   mRaw->createData();
 #ifdef HAVE_OPENMP
-#pragma omp parallel for schedule(static) default(none)                        \
-    shared(offsets, counts) firstprivate(tilesX, tilew, tileh)
+#pragma omp parallel for schedule(static) default(none)                         shared(offsets, counts) firstprivate(tilesX, tilew, tileh)
 #endif
   for (int tile = 0U; tile < static_cast<int>(offsets->count); tile++) {
     try {

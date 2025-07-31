@@ -238,8 +238,7 @@ int main(int argc_, char* argv_[]) {
 
     double sum = 0.0;
 #ifdef HAVE_OPENMP
-#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, bpp)    \
-    schedule(static) reduction(+ : sum)
+#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, bpp)     schedule(static) reduction(+ : sum)
 #endif
     for (int y = 0; y < dimUncropped.y; ++y) {
       const rawspeed::Array2DRef<std::byte> img =
@@ -255,8 +254,7 @@ int main(int argc_, char* argv_[]) {
       sum = 0.0;
 
 #ifdef HAVE_OPENMP
-#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, cpp)    \
-    schedule(static) reduction(+ : sum)
+#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, cpp)     schedule(static) reduction(+ : sum)
 #endif
       for (int y = 0; y < dimUncropped.y; ++y) {
         const rawspeed::Array2DRef<float> img =
@@ -272,8 +270,7 @@ int main(int argc_, char* argv_[]) {
       sum = 0.0;
 
 #ifdef HAVE_OPENMP
-#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, cpp)    \
-    schedule(static) reduction(+ : sum)
+#pragma omp parallel for default(none) firstprivate(dimUncropped, raw, cpp)     schedule(static) reduction(+ : sum)
 #endif
       for (int y = 0; y < dimUncropped.y; ++y) {
         const rawspeed::Array2DRef<uint16_t> img =

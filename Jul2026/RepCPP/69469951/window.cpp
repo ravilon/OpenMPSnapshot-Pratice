@@ -562,8 +562,7 @@ void TimelineProxy::computeYScale( ProgressController *progress )
           int tmpComputedMinYSize = tmpComputedMinY.size();
           int tmpComputedZerosSize = tmpComputedZeros.size();
 
-          #pragma omp task shared ( currentObject, progressSteps, progress, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros ) \
-                           firstprivate( tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize )
+          #pragma omp task shared ( currentObject, progressSteps, progress, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros )  firstprivate( tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize )
           {
             TObjectOrder obj = selected[ i ];
             initRow( obj, winBeginTime, NOCREATE, tmpComputedMaxY[ tmpComputedMaxYSize - 1 ], tmpComputedMinY[ tmpComputedMinYSize - 1 ], tmpComputedZeros[ tmpComputedZerosSize - 1 ]  );
@@ -2319,10 +2318,7 @@ void TimelineProxy::computeSemanticParallel( vector< TObjectOrder >& selectedSet
         }
         else if( numRows > 1 )
         {
-          #pragma omp task firstprivate(numRows, firstObj, lastObj, timeStep, timePos, objectAxisPos) \
-                          shared(currentRow, paramProgress, selectedSet, selected, objectPosList, tmpDrawCaution, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros, valuesToDraw, eventsToDraw, commsToDraw) \
-                          firstprivate(tmpDrawCautionSize, tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize, valuesToDrawSize, eventsToDrawSize, commsToDrawSize) \
-                          default(none)
+          #pragma omp task firstprivate(numRows, firstObj, lastObj, timeStep, timePos, objectAxisPos)  shared(currentRow, paramProgress, selectedSet, selected, objectPosList, tmpDrawCaution, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros, valuesToDraw, eventsToDraw, commsToDraw)  firstprivate(tmpDrawCautionSize, tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize, valuesToDrawSize, eventsToDrawSize, commsToDrawSize)  default(none)
           {
             if( paramProgress == nullptr ||
                 ( paramProgress != nullptr && !paramProgress->getStop() ) )
@@ -2730,10 +2726,7 @@ void TimelineProxy::computeSemanticPunctualParallel( vector< TObjectOrder >& sel
         int eventsToDrawSize = eventsToDraw.size();
         int commsToDrawSize = eventsToDraw.size();
 
-        #pragma omp task firstprivate(numRows, firstObj, lastObj, timeStep, timePos, objectAxisPos, paramProgress) \
-                        shared(selectedSet, selected, objectPosList, tmpDrawCaution, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros, valuesToDraw, eventsToDraw, commsToDraw) \
-                        firstprivate(tmpDrawCautionSize, tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize, valuesToDrawSize, eventsToDrawSize, commsToDrawSize) \
-                        default(none)
+        #pragma omp task firstprivate(numRows, firstObj, lastObj, timeStep, timePos, objectAxisPos, paramProgress)  shared(selectedSet, selected, objectPosList, tmpDrawCaution, tmpComputedMaxY, tmpComputedMinY, tmpComputedZeros, valuesToDraw, eventsToDraw, commsToDraw)  firstprivate(tmpDrawCautionSize, tmpComputedMaxYSize, tmpComputedMinYSize, tmpComputedZerosSize, valuesToDrawSize, eventsToDrawSize, commsToDrawSize)  default(none)
         {
             computeSemanticRowPunctualParallel(
                     numRows, firstObj, lastObj, selectedSet, selected, timeStep, timePos,

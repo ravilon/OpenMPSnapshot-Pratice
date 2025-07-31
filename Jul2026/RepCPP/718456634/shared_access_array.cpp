@@ -14,8 +14,7 @@ int main() {
   // and different parallel reigons can have different numbers of threads
   // working on it.
   int c;
-#pragma omp parallel num_threads(4) shared(a)                                  \
-    shared(b) private(c) // this reigon will use only 4 threads, a is shared and
+#pragma omp parallel num_threads(4) shared(a)                                   shared(b) private(c) // this reigon will use only 4 threads, a is shared and
                          // b becomes private for each thread.
   {
     int id = omp_get_thread_num(); // unique for each thread since defined in

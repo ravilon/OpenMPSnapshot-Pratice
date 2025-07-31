@@ -999,8 +999,7 @@ namespace grppi {
       {
         auto i = subproblems.begin() + 1;
         while (i != subproblems.end() && num_threads.load() > 0) {
-#pragma omp task firstprivate(i, division) \
-                shared(partials, divide_op, solve_op, combine_op, num_threads)
+#pragma omp task firstprivate(i, division)  shared(partials, divide_op, solve_op, combine_op, num_threads)
           {
             process_subproblems(i, division);
           }
@@ -1080,8 +1079,7 @@ namespace grppi {
       {
         auto i = subproblems.begin() + 1;
         while (i != subproblems.end() && num_threads.load() > 0) {
-#pragma omp task firstprivate(i, division) \
-                shared(partials, divide_op, solve_op, combine_op, num_threads)
+#pragma omp task firstprivate(i, division)  shared(partials, divide_op, solve_op, combine_op, num_threads)
           {
             process_subproblems(i, division);
           }

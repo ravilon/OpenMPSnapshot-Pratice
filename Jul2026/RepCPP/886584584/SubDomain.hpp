@@ -217,8 +217,7 @@ public:
 #pragma omp taskgroup
     {
 
-#pragma omp task untied default(none) firstprivate(params) shared(em_, timers, profiler, minipic::host) \
-  depend(out : reset_current_flags)
+#pragma omp task untied default(none) firstprivate(params) shared(em_, timers, profiler, minipic::host)  depend(out : reset_current_flags)
       {
 
         if (params.current_projection || params.n_particles > 0) {
@@ -264,10 +263,7 @@ public:
               int init = i_bin * bin_size;        // start of bin
               int end  = i_bin * bin_size + size; // end of bin
 
-#pragma omp task untied default(none) firstprivate(idx_patch, is, init, end, rest) \
-  shared(timers, profiler, patches_, em_, params)                                  \
-  depend(out : evolve_particles_flags[idx_patch]) \
-  priority(bin_number)
+#pragma omp task untied default(none) firstprivate(idx_patch, is, init, end, rest)  shared(timers, profiler, patches_, em_, params)                                   depend(out : evolve_particles_flags[idx_patch])  priority(bin_number)
               {
                 profiler.start(EVOLVE_BIN);
 
@@ -323,18 +319,7 @@ public:
 
       for (int idx_patch = 0; idx_patch < patches_.size(); idx_patch++) {
 
-#pragma omp task untied default(none) firstprivate(idx_patch,it) shared(patches_,                \
-                                                                       timers,                   \
-                                                                       profiler,                 \
-                                                                       params,                   \
-                                                                       task_exchange_count_,     \
-                                                                       reset_current_flags,      \
-                                                                       evolve_particles_flags,   \
-                                                                       reduction_internal_flags, \
-                                                                       reduction_external_flags, \
-                                                                       backend                   \
-                                                                    ) \
-  depend(in : evolve_particles_flags[idx_patch]) depend(in : reset_current_flags)
+#pragma omp task untied default(none) firstprivate(idx_patch,it) shared(patches_,                 timers,                    profiler,                  params,                    task_exchange_count_,      reset_current_flags,       evolve_particles_flags,    reduction_internal_flags,  reduction_external_flags,  backend                    )  depend(in : evolve_particles_flags[idx_patch]) depend(in : reset_current_flags)
         {
 
           profiler.start(EVOLVE_PATCH);
@@ -385,9 +370,7 @@ public:
 
             timers.stop(timers.current_local_reduc, idx_patch);
 
-            #pragma omp task untied default(none) firstprivate(idx_patch) \
-            shared(timers, patches_, profiler, em_, params) \
-            //depend(out : reduction_internal_flags[idx_patch])
+            #pragma omp task untied default(none) firstprivate(idx_patch)  shared(timers, patches_, profiler, em_, params)  //depend(out : reduction_internal_flags[idx_patch])
             {
               // __________________________________________________________________
               // Projection to global grid internal
@@ -399,9 +382,7 @@ public:
               timers.stop(timers.current_global_reduc, idx_patch);
             } // end task
 
-            #pragma omp task untied default(none) firstprivate(idx_patch) \
-            shared(timers, patches_, profiler, em_, params) \
-            //depend(out : reduction_external_flags[idx_patch])
+            #pragma omp task untied default(none) firstprivate(idx_patch)  shared(timers, patches_, profiler, em_, params)  //depend(out : reduction_external_flags[idx_patch])
             {
               // __________________________________________________________________
               // Projection to global grid internal
@@ -436,8 +417,7 @@ public:
                   // Task count
                   if (--task_exchange_count_[idx_neighbor] == 0) {
 
-#pragma omp task untied default(none) firstprivate(idx_neighbor, it) \
-  shared(patches_, em_, timers, profiler, params)
+#pragma omp task untied default(none) firstprivate(idx_neighbor, it)  shared(patches_, em_, timers, profiler, params)
                     {
 
                       timers.start(timers.exchange, idx_neighbor);
@@ -491,8 +471,7 @@ public:
                 int init = i_bin * bin_size;        // start of bin
                 int end  = i_bin * bin_size + size; // end of bin
 
-#pragma omp task untied default(none) firstprivate(idx_patch, is, init, end, rest) \
-  shared(timers, profiler, patches_, em_, it, params) if (rest > 0)
+#pragma omp task untied default(none) firstprivate(idx_patch, is, init, end, rest)  shared(timers, profiler, patches_, em_, it, params) if (rest > 0)
                 {
                   if (rest > 0) {
                     timers.start(timers.imbalance, idx_patch);
@@ -515,8 +494,7 @@ public:
 
     if (params.maxwell_solver) {
 
-#pragma omp task untied default(none) firstprivate(it) shared(timers, profiler, em_, params) \
-  depend(out : maxwell_solver_flags)
+#pragma omp task untied default(none) firstprivate(it) shared(timers, profiler, em_, params)  depend(out : maxwell_solver_flags)
       {
 
         if (params.current_projection || params.n_particles > 0) {
@@ -591,8 +569,7 @@ public:
         // for each species index of this diagnostic
         for (auto is : particle_binning.species_indexes_) {
 
-#pragma omp task untied default(none) firstprivate(particle_binning, is, it, ns) \
-  shared(timers, profiler, params)
+#pragma omp task untied default(none) firstprivate(particle_binning, is, it, ns)  shared(timers, profiler, params)
           {
 
             if (!(it % particle_binning.period_)) {
@@ -668,8 +645,7 @@ public:
       // Scalar diagnostics
       if (!(it % params.scalar_diagnostics_period)) {
 
-#pragma omp task untied default(none) firstprivate(it) shared(params, timers, profiler) \
-  depend(in : maxwell_solver_flags)
+#pragma omp task untied default(none) firstprivate(it) shared(params, timers, profiler)  depend(in : maxwell_solver_flags)
         {
           timers.start(timers.diags_scalar);
           profiler.start(DIAGS);
@@ -684,8 +660,7 @@ public:
       // Field diagnostics
       if (!(it % params.field_diagnostics_period)) {
 
-#pragma omp task untied default(none) firstprivate(it) shared(params, timers, profiler) \
-  depend(in : maxwell_solver_flags)
+#pragma omp task untied default(none) firstprivate(it) shared(params, timers, profiler)  depend(in : maxwell_solver_flags)
         {
           timers.start(timers.diags_field);
           profiler.start(DIAGS);

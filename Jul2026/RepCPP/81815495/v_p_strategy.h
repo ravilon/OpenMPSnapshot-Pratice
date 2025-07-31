@@ -769,8 +769,7 @@ namespace Kratos
 
       double NormV = 0.00;
 
-#pragma omp parallel for reduction(+ \
-                                   : NormV)
+#pragma omp parallel for reduction(+  : NormV)
       for (int i_node = 0; i_node < n_nodes; ++i_node)
       {
         const auto it_node = rModelPart.NodesBegin() + i_node;
@@ -797,8 +796,7 @@ namespace Kratos
 
       double NormP = 0.00;
 
-#pragma omp parallel for reduction(+ \
-                                   : NormP)
+#pragma omp parallel for reduction(+  : NormP)
       for (int i_node = 0; i_node < n_nodes; ++i_node)
       {
         const auto it_node = rModelPart.NodesBegin() + i_node;

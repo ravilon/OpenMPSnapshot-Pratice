@@ -26,8 +26,7 @@ int main(int argc, char *argv[]) {
  * This allows each thread to determine its own thread ID (tid) 
  * while executing the loop iterations in parallel
 */
-#pragma omp parallel for shared(a, b, c, chunk) private(i, tid)                \
-    schedule(static, chunk)
+#pragma omp parallel for shared(a, b, c, chunk) private(i, tid)                 schedule(static, chunk)
   {
     tid = omp_get_thread_num();
     for (i = 0; i < N; i++) {

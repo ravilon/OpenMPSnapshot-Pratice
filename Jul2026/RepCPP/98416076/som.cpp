@@ -221,13 +221,9 @@ size_t Som::getBmu(const CSR& data, const size_t n, double& dStar) const
 
     bmu mini = bmu(-1, DBL_MAX);
 
-#pragma omp declare \
-    reduction(BMU : bmu : omp_out = omp_in.dst <= omp_out.dst ? omp_in : omp_out) \
-    initializer (omp_priv(omp_orig))
+#pragma omp declare  reduction(BMU : bmu : omp_out = omp_in.dst <= omp_out.dst ? omp_in : omp_out)  initializer (omp_priv(omp_orig))
 
-#pragma omp parallel for \
-    reduction(BMU:mini) \
-    schedule(static,1)
+#pragma omp parallel for  reduction(BMU:mini)  schedule(static,1)
 */
 
     for (size_t k=0; k < m_height*m_width; ++k)
@@ -461,8 +457,7 @@ void Som::train(const CSR& data, size_t tmax,
     }
 
     // stabilize all units
-#pragma omp parallel for \
-    schedule(static,1)
+#pragma omp parallel for  schedule(static,1)
 
     for (idx_t k=0; k < m_height * m_width; ++k)
     {

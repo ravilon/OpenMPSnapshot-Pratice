@@ -26,9 +26,7 @@ int main(int argc,char** argv){
     // start
     //clock_t start;
     //start = clock();
-#pragma omp parallel for num_threads(thread_count) \
-        default(none) reduction(+:cycle_num) private(i,x,y,distance_point)\
-        shared(point_num)
+#pragma omp parallel for num_threads(thread_count)  default(none) reduction(+:cycle_num) private(i,x,y,distance_point) shared(point_num)
     for(i = 0; i < point_num; i++){
         // generate x,y
         x = (double)rand()/(double)RAND_MAX;

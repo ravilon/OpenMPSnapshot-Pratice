@@ -21,9 +21,7 @@ struct point
 	int index;
 };
 
-#pragma omp declare reduction(min : struct point : omp_out.mindistance = omp_in.mindistance > omp_out.mindistance ? omp_out.mindistance : omp_in.mindistance, \
-								  omp_out.index = omp_in.mindistance > omp_out.mindistance ? omp_out.index : omp_in.index)                                    \
-	initializer(omp_priv = {INT_MAX, INT_MAX})
+#pragma omp declare reduction(min : struct point : omp_out.mindistance = omp_in.mindistance > omp_out.mindistance ? omp_out.mindistance : omp_in.mindistance,  omp_out.index = omp_in.mindistance > omp_out.mindistance ? omp_out.index : omp_in.index)                                     initializer(omp_priv = {INT_MAX, INT_MAX})
 
 int main(int argc, char *argv[])
 {

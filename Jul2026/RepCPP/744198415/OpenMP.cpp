@@ -78,11 +78,7 @@ namespace openmp
 			* num - Своя локальная переменная в каждом потоке
 			* sum - переменная для выполнения редуционной операции. reduction(Op:variables), где Op - список операторов (+,*,-&,^,|,&&,||), variables - список переменных, разделяемых запятыми
 			*/
-#pragma omp parallel for \
-				shared(j) \
-				private(num) \
-				reduction(+:sum, x) \
-				reduction(-:difference)
+#pragma omp parallel for  shared(j)  private(num)  reduction(+:sum, x)  reduction(-:difference)
 			for (int i = 0; i < size; ++i)
 			{
 				j = i;

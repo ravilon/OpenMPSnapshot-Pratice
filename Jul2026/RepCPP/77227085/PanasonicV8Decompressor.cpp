@@ -368,8 +368,7 @@ void PanasonicV8Decompressor::decompress() const {
 #ifdef HAVE_OPENMP
   unsigned threadCount =
       std::min(numStrips, rawspeed_get_number_of_processor_cores());
-#pragma omp parallel for num_threads(threadCount)                              \
-    schedule(static) default(none) firstprivate(numStrips)
+#pragma omp parallel for num_threads(threadCount)                               schedule(static) default(none) firstprivate(numStrips)
 #endif
   for (int stripIdx = 0; stripIdx < numStrips; ++stripIdx) {
     try {

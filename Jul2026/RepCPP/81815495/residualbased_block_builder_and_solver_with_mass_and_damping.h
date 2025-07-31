@@ -186,8 +186,7 @@ public:
         // Assemble all elements
         const auto timer = BuiltinTimer();
 
-#pragma omp parallel firstprivate(nelements, nconditions, lhs_contribution, mass_contribution, \
-                                      damping_contribution, rhs_contribution, equation_ids)
+#pragma omp parallel firstprivate(nelements, nconditions, lhs_contribution, mass_contribution,  damping_contribution, rhs_contribution, equation_ids)
         {
 #pragma omp for schedule(guided, 512) nowait
             for (int k = 0; k < nelements; k++) {
