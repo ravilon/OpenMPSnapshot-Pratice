@@ -1,0 +1,165 @@
+/*
+	Copyright 2006 Gabriel Dimitriu
+
+	This file is part of scientific_computing.
+
+    scientific_computing is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    scientific_computing is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with scientific_computing; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  
+*/
+#include<solve-omp.h>
+int gauss_fast_omp(long dim,int thread,double **mat,double *x,double *libre)
+/*
+	dim c'est la dimension de matrice
+	thread c'est le numero de thread qui travaile
+	mat c'est la matrice de system
+	libre c'est le termen libre
+	x c'est le vector de resoudre
+*/
+{
+long s;	// le numero de ligne dans la partition
+long nr;	// le 
+int dernierre=0;	//si ce thead a la derniere ligne
+long i,j,k,l;
+int tid;		//thread identification
+int *counters;
+long proccount,proccount1,replay;
+omp_lock_t *cond_m;
+	omp_set_num_threads(thread);
+	cond_m=(omp_lock_t *)calloc(dim,sizeof(omp_lock_t));
+	counters=(int *)calloc(dim,sizeof(int));
+	#pragma omp parallel for
+	for(i=0;i<dim;i++) 
+	{
+		omp_init_lock(&cond_m[i]);
+		omp_set_lock(&cond_m[i]);
+	}
+	#pragma omp parallel private(i,j,k,l,s,nr,tid,replay,proccount,proccount1,dernierre)
+	{
+		tid=omp_get_thread_num();
+		dernierre=0;
+		nr=dim%thread;
+		s=(dim-nr)/thread;
+		if((tid+1)<nr) s++;
+		else if((tid+1)==nr)
+		{
+			s++;
+			dernierre=1;
+		}
+		if((nr==0) && ((tid+1)==thread)) dernierre=1;
+		//fait allocation pour le premier processor
+		if(tid==0)
+		{
+			for(j=1;j<dim;j++) mat[0][j]=mat[0][j]/mat[0][0];
+			libre[0]=libre[0]/mat[0][0];
+			mat[0][0]=1.0;
+			#pragma omp atomic
+				counters[0]++;
+			omp_unset_lock(&cond_m[0]);
+			proccount=proccount1=tid+thread;
+		}
+		else
+			proccount=proccount1=tid;
+		replay=0;
+		// i c'est la ligne de travaille
+		for(i=proccount;i<dim;i+=thread)
+		{
+			//fait elimination phase
+			for(k=replay;k<i;k++)
+			{
+				if(counters[k]==0)
+				{
+					omp_set_lock(&cond_m[k]);
+					omp_unset_lock(&cond_m[k]);
+				}
+				for(j=(k+1);j<dim;j++)
+					mat[i][j]-=mat[i][k]*mat[k][j];
+				libre[i]-=mat[i][k]*libre[k];
+				mat[i][k]=0;
+			}
+			//fait la division phase
+			for(j=i+1;j<dim;j++)
+				mat[i][j]=mat[i][j]/mat[i][i];
+			libre[i]=libre[i]/mat[i][i];
+			mat[i][i]=1.0;
+			//fait le setting pour la prochaine ligne
+			#pragma omp atomic
+				counters[i]++;
+			omp_unset_lock(&cond_m[i]);
+			proccount1=i+thread;
+			for(k=replay;k<i;k++)
+			{
+				for(l=proccount1;l<dim;l+=thread)
+				{
+					for(j=(k+1);j<dim;j++)
+						mat[l][j]-=mat[l][k]*mat[k][j];
+					libre[l]-=mat[l][k]*libre[k];
+					mat[l][k]=0;
+				}
+			}
+			replay=i;
+		}
+		
+		#pragma omp barrier
+		//fait la substitution ranverse
+		#pragma omp for
+		for(i=0;i<dim;i++)
+		{
+			counters[i]=0;
+			omp_set_lock(&cond_m[i]);
+		}
+		if(dernierre==1)
+		{
+			#pragma omp atomic
+				counters[dim-1]++;
+			omp_unset_lock(&cond_m[dim-1]);
+			proccount=dim-1-thread;
+		}
+		else proccount=tid+thread*(s-1);	
+		replay=dim-1;
+		for(i=proccount;i>=tid;i-=thread)
+		{
+			//pour toutes les lignes
+			for(k=replay;k>i;k--)
+			{
+				if(counters[k]==0)
+				{
+					omp_set_lock(&cond_m[k]);
+					omp_unset_lock(&cond_m[k]);
+				}
+				libre[i]-=libre[k]*mat[i][k];
+			}
+			#pragma omp atomic
+				counters[i]++;
+			omp_unset_lock(&cond_m[i]);
+			proccount1=i-thread;
+			for(k=replay;k>i;k--)
+			{
+				for(l=proccount1;l>=tid;l-=thread)
+					libre[l]-=libre[k]*mat[l][k];
+			}
+			replay=i;
+		}
+		
+	}
+	#pragma omp barrier
+	#pragma omp parallel for
+	for(i=0;i<dim;i++)
+		omp_destroy_lock(&cond_m[i]);
+	#pragma omp parallel for
+	for(i=0;i<dim;i++)
+		x[i]=libre[i];
+	free(cond_m);
+	free(counters);
+	return 0;
+}
