@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 import os
 import logging
+import platform
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -120,7 +121,10 @@ for repo in repos:
                 except (UnicodeDecodeError, IOError):
                         continue
     # Remove o repositório temporário
-    os.system(f'rmdir /S /Q "{repo_tmp_dir}"')
+    if platform.system() == "Windows":
+        os.system(f'rmdir /S /Q "{repo_tmp_dir}"')
+    else:
+        os.system(f'rm -rf "{repo_tmp_dir}"')
     # Adiciona as informações em uma linha da lista
     repos_list.append([id,name, description, stars, forks, url, linguagens,files_with_pragma])
     j += 1
