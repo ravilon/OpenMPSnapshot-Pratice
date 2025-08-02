@@ -31,8 +31,12 @@ logger = logging.getLogger()
 logger.addHandler(logging.StreamHandler())
 
 # Token de autenticacao
-g = Github(os.getenv("GITHUBAPIKEY"))
-
+token = os.getenv("GITHUBAPIKEY")
+if token != None:
+    g = Github(token)
+else :
+    print("Token de autenticação não encontrado. Certifique-se de que o arquivo .env contém a variável GITHUBAPIKEY.")
+    exit(1)
 # Lista para armazenar os dados dos repositórios
 repos_list = []
 
