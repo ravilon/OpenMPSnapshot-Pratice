@@ -34,22 +34,22 @@ stl algorithms.
 See also member_at, pair_by().
 \ingroup relation_group
 
-                                                                                  **/
+**/
 
 template< class Tag, class Relation >
 struct get_pair_functor
 {
-    BOOST_DEDUCED_TYPENAME result_of::pair_by<Tag,Relation>::type
-    operator()( Relation & r ) const
-    {
-        return pair_by<Tag>(r);
-    }
+BOOST_DEDUCED_TYPENAME result_of::pair_by<Tag,Relation>::type
+operator()( Relation & r ) const
+{
+return pair_by<Tag>(r);
+}
 
-    BOOST_DEDUCED_TYPENAME result_of::pair_by<Tag,const Relation>::type
-    operator()( const Relation & r ) const
-    {
-        return pair_by<Tag>(r);
-    }
+BOOST_DEDUCED_TYPENAME result_of::pair_by<Tag,const Relation>::type
+operator()( const Relation & r ) const
+{
+return pair_by<Tag>(r);
+}
 };
 
 
@@ -57,22 +57,22 @@ struct get_pair_functor
 /**
 
 \ingroup relation_group
-                                                                                  **/
+**/
 
 template< class Relation >
 struct get_above_view_functor
 {
-    BOOST_DEDUCED_TYPENAME Relation::above_view &
-    operator()( Relation & r ) const
-    {
-        return r.get_view();
-    }
+BOOST_DEDUCED_TYPENAME Relation::above_view &
+operator()( Relation & r ) const
+{
+return r.get_view();
+}
 
-    const BOOST_DEDUCED_TYPENAME Relation::above_view &
-    operator()( const Relation & r ) const
-    {
-        return r.get_view();
-    }
+const BOOST_DEDUCED_TYPENAME Relation::above_view &
+operator()( const Relation & r ) const
+{
+return r.get_view();
+}
 };
 
 } // namespace support

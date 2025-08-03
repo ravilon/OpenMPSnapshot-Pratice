@@ -31,22 +31,22 @@ namespace serialization {
 // pair
 template<class Archive, class F, class S>
 inline void serialize(
-    Archive & ar,
-    std::pair<F, S> & p,
-    const unsigned int /* file_version */
+Archive & ar,
+std::pair<F, S> & p,
+const unsigned int /* file_version */
 ){
-    // note: we remove any const-ness on the first argument.  The reason is that
-    // for stl maps, the type saved is pair<const key, T).  We remove
-    // the const-ness in order to be able to load it.
-    typedef typename boost::remove_const<F>::type typef;
-    ar & boost::serialization::make_nvp("first", const_cast<typef &>(p.first));
-    ar & boost::serialization::make_nvp("second", p.second);
+// note: we remove any const-ness on the first argument.  The reason is that
+// for stl maps, the type saved is pair<const key, T).  We remove
+// the const-ness in order to be able to load it.
+typedef typename boost::remove_const<F>::type typef;
+ar & boost::serialization::make_nvp("first", const_cast<typef &>(p.first));
+ar & boost::serialization::make_nvp("second", p.second);
 }
 
 /// specialization of is_bitwise_serializable for pairs
 template <class T, class U>
 struct is_bitwise_serializable<std::pair<T,U> >
- : public mpl::and_<is_bitwise_serializable< T >,is_bitwise_serializable<U> >
+: public mpl::and_<is_bitwise_serializable< T >,is_bitwise_serializable<U> >
 {
 };
 

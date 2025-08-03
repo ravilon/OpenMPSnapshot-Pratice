@@ -1,7 +1,7 @@
-﻿#pragma once
-
-namespace tbb
-{
-	void start();
-}
-
+﻿#pragma once
+
+namespace tbb
+{
+void start();
+}
+

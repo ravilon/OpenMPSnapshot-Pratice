@@ -27,8 +27,8 @@
 
 #if !defined(BOOST_FILESYSTEM_DISABLE_ARC4RANDOM)
 #if BOOST_OS_BSD_OPEN >= BOOST_VERSION_NUMBER(2, 1, 0) || \
-    BOOST_OS_BSD_FREE >= BOOST_VERSION_NUMBER(8, 0, 0) || \
-    BOOST_LIB_C_CLOUDABI
+BOOST_OS_BSD_FREE >= BOOST_VERSION_NUMBER(8, 0, 0) || \
+BOOST_LIB_C_CLOUDABI
 #include <stdlib.h>
 #define BOOST_FILESYSTEM_HAS_ARC4RANDOM
 #endif
@@ -36,7 +36,7 @@
 
 #if !defined(BOOST_FILESYSTEM_DISABLE_GETRANDOM)
 #if (defined(__linux__) || defined(__linux) || defined(linux)) && \
-    (!defined(__ANDROID__) || __ANDROID_API__ >= 28)
+(!defined(__ANDROID__) || __ANDROID_API__ >= 28)
 #include <sys/syscall.h>
 #if defined(SYS_getrandom)
 #define BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL
@@ -112,20 +112,20 @@ namespace {
 //! Converts NTSTATUS error codes to Win32 error codes for reporting
 inline boost::winapi::DWORD_ translate_ntstatus(boost::winapi::NTSTATUS_ status)
 {
-    // Note: Legacy MinGW doesn't have ntstatus.h and doesn't define NTSTATUS error codes other than STATUS_SUCCESS.
-    //       Because of this we have to use hardcoded integer literals here. Also, we have to cast to unsigned
-    //       integral type to avoid signed overflow and narrowing conversion in the constants.
-    switch (static_cast< boost::winapi::ULONG_ >(status))
-    {
-    case 0xC0000017ul: // STATUS_NO_MEMORY
-        return boost::winapi::ERROR_OUTOFMEMORY_;
-    case 0xC0000008ul: // STATUS_INVALID_HANDLE
-        return boost::winapi::ERROR_INVALID_HANDLE_;
-    case 0xC000000Dul: // STATUS_INVALID_PARAMETER
-        return boost::winapi::ERROR_INVALID_PARAMETER_;
-    default:
-        return boost::winapi::ERROR_NOT_SUPPORTED_;
-    }
+// Note: Legacy MinGW doesn't have ntstatus.h and doesn't define NTSTATUS error codes other than STATUS_SUCCESS.
+//       Because of this we have to use hardcoded integer literals here. Also, we have to cast to unsigned
+//       integral type to avoid signed overflow and narrowing conversion in the constants.
+switch (static_cast< boost::winapi::ULONG_ >(status))
+{
+case 0xC0000017ul: // STATUS_NO_MEMORY
+return boost::winapi::ERROR_OUTOFMEMORY_;
+case 0xC0000008ul: // STATUS_INVALID_HANDLE
+return boost::winapi::ERROR_INVALID_HANDLE_;
+case 0xC000000Dul: // STATUS_INVALID_PARAMETER
+return boost::winapi::ERROR_INVALID_PARAMETER_;
+default:
+return boost::winapi::ERROR_NOT_SUPPORTED_;
+}
 }
 #endif // defined(BOOST_FILESYSTEM_HAS_BCRYPT)
 
@@ -134,32 +134,32 @@ inline boost::winapi::DWORD_ translate_ntstatus(boost::winapi::NTSTATUS_ status)
 //! Fills buffer with cryptographically random data obtained from /dev/(u)random
 int fill_random_dev_random(void* buf, std::size_t len)
 {
-    int file = ::open("/dev/urandom", O_RDONLY | O_CLOEXEC);
-    if (file == -1)
-    {
-        file = ::open("/dev/random", O_RDONLY | O_CLOEXEC);
-        if (file == -1)
-            return errno;
-    }
+int file = ::open("/dev/urandom", O_RDONLY | O_CLOEXEC);
+if (file == -1)
+{
+file = ::open("/dev/random", O_RDONLY | O_CLOEXEC);
+if (file == -1)
+return errno;
+}
 
-    std::size_t bytes_read = 0u;
-    while (bytes_read < len)
-    {
-        ssize_t n = ::read(file, buf, len - bytes_read);
-        if (BOOST_UNLIKELY(n == -1))
-        {
-            int err = errno;
-            if (err == EINTR)
-                continue;
-            close_fd(file);
-            return err;
-        }
-        bytes_read += n;
-        buf = static_cast< char* >(buf) + n;
-    }
+std::size_t bytes_read = 0u;
+while (bytes_read < len)
+{
+ssize_t n = ::read(file, buf, len - bytes_read);
+if (BOOST_UNLIKELY(n == -1))
+{
+int err = errno;
+if (err == EINTR)
+continue;
+close_fd(file);
+return err;
+}
+bytes_read += n;
+buf = static_cast< char* >(buf) + n;
+}
 
-    close_fd(file);
-    return 0;
+close_fd(file);
+return 0;
 }
 
 #if defined(BOOST_FILESYSTEM_HAS_GETRANDOM) || defined(BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL)
@@ -172,34 +172,34 @@ fill_random_t* fill_random = &fill_random_dev_random;
 //! Fills buffer with cryptographically random data obtained from getrandom()
 int fill_random_getrandom(void* buf, std::size_t len)
 {
-    std::size_t bytes_read = 0u;
-    while (bytes_read < len)
-    {
+std::size_t bytes_read = 0u;
+while (bytes_read < len)
+{
 #if defined(BOOST_FILESYSTEM_HAS_GETRANDOM)
-        ssize_t n = ::getrandom(buf, len - bytes_read, 0u);
+ssize_t n = ::getrandom(buf, len - bytes_read, 0u);
 #else
-        ssize_t n = ::syscall(SYS_getrandom, buf, len - bytes_read, 0u);
+ssize_t n = ::syscall(SYS_getrandom, buf, len - bytes_read, 0u);
 #endif
-        if (BOOST_UNLIKELY(n < 0))
-        {
-            const int err = errno;
-            if (err == EINTR)
-                continue;
+if (BOOST_UNLIKELY(n < 0))
+{
+const int err = errno;
+if (err == EINTR)
+continue;
 
-            if (err == ENOSYS && bytes_read == 0u)
-            {
-                filesystem::detail::atomic_store_relaxed(fill_random, &fill_random_dev_random);
-                return fill_random_dev_random(buf, len);
-            }
+if (err == ENOSYS && bytes_read == 0u)
+{
+filesystem::detail::atomic_store_relaxed(fill_random, &fill_random_dev_random);
+return fill_random_dev_random(buf, len);
+}
 
-            return err;
-        }
+return err;
+}
 
-        bytes_read += n;
-        buf = static_cast< char* >(buf) + n;
-    }
+bytes_read += n;
+buf = static_cast< char* >(buf) + n;
+}
 
-    return 0;
+return 0;
 }
 
 #endif // defined(BOOST_FILESYSTEM_HAS_GETRANDOM) || defined(BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL)
@@ -212,19 +212,19 @@ void system_crypt_random(void* buf, std::size_t len, boost::system::error_code* 
 
 #if defined(BOOST_FILESYSTEM_HAS_GETRANDOM) || defined(BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL)
 
-    int err = filesystem::detail::atomic_load_relaxed(fill_random)(buf, len);
-    if (BOOST_UNLIKELY(err != 0))
-        emit_error(err, ec, "boost::filesystem::unique_path");
+int err = filesystem::detail::atomic_load_relaxed(fill_random)(buf, len);
+if (BOOST_UNLIKELY(err != 0))
+emit_error(err, ec, "boost::filesystem::unique_path");
 
 #elif defined(BOOST_FILESYSTEM_HAS_ARC4RANDOM)
 
-    arc4random_buf(buf, len);
+arc4random_buf(buf, len);
 
 #else
 
-    int err = fill_random_dev_random(buf, len);
-    if (BOOST_UNLIKELY(err != 0))
-        emit_error(err, ec, "boost::filesystem::unique_path");
+int err = fill_random_dev_random(buf, len);
+if (BOOST_UNLIKELY(err != 0))
+emit_error(err, ec, "boost::filesystem::unique_path");
 
 #endif
 
@@ -232,44 +232,44 @@ void system_crypt_random(void* buf, std::size_t len, boost::system::error_code* 
 
 #if defined(BOOST_FILESYSTEM_HAS_BCRYPT)
 
-    boost::winapi::BCRYPT_ALG_HANDLE_ handle;
-    boost::winapi::NTSTATUS_ status = boost::winapi::BCryptOpenAlgorithmProvider(&handle, boost::winapi::BCRYPT_RNG_ALGORITHM_, NULL, 0);
-    if (BOOST_UNLIKELY(status != 0))
-    {
-    fail:
-        emit_error(translate_ntstatus(status), ec, "boost::filesystem::unique_path");
-        return;
-    }
+boost::winapi::BCRYPT_ALG_HANDLE_ handle;
+boost::winapi::NTSTATUS_ status = boost::winapi::BCryptOpenAlgorithmProvider(&handle, boost::winapi::BCRYPT_RNG_ALGORITHM_, NULL, 0);
+if (BOOST_UNLIKELY(status != 0))
+{
+fail:
+emit_error(translate_ntstatus(status), ec, "boost::filesystem::unique_path");
+return;
+}
 
-    status = boost::winapi::BCryptGenRandom(handle, static_cast< boost::winapi::PUCHAR_ >(buf), static_cast< boost::winapi::ULONG_ >(len), 0);
+status = boost::winapi::BCryptGenRandom(handle, static_cast< boost::winapi::PUCHAR_ >(buf), static_cast< boost::winapi::ULONG_ >(len), 0);
 
-    boost::winapi::BCryptCloseAlgorithmProvider(handle, 0);
+boost::winapi::BCryptCloseAlgorithmProvider(handle, 0);
 
-    if (BOOST_UNLIKELY(status != 0))
-        goto fail;
+if (BOOST_UNLIKELY(status != 0))
+goto fail;
 
 #else // defined(BOOST_FILESYSTEM_HAS_BCRYPT)
 
-    boost::winapi::HCRYPTPROV_ handle;
-    boost::winapi::DWORD_ err = 0u;
-    if (BOOST_UNLIKELY(!boost::winapi::CryptAcquireContextW(&handle, NULL, NULL, boost::winapi::PROV_RSA_FULL_, boost::winapi::CRYPT_VERIFYCONTEXT_ | boost::winapi::CRYPT_SILENT_)))
-    {
-        err = boost::winapi::GetLastError();
+boost::winapi::HCRYPTPROV_ handle;
+boost::winapi::DWORD_ err = 0u;
+if (BOOST_UNLIKELY(!boost::winapi::CryptAcquireContextW(&handle, NULL, NULL, boost::winapi::PROV_RSA_FULL_, boost::winapi::CRYPT_VERIFYCONTEXT_ | boost::winapi::CRYPT_SILENT_)))
+{
+err = boost::winapi::GetLastError();
 
-    fail:
-        emit_error(err, ec, "boost::filesystem::unique_path");
-        return;
-    }
+fail:
+emit_error(err, ec, "boost::filesystem::unique_path");
+return;
+}
 
-    boost::winapi::BOOL_ gen_ok = boost::winapi::CryptGenRandom(handle, static_cast< boost::winapi::DWORD_ >(len), static_cast< boost::winapi::BYTE_* >(buf));
+boost::winapi::BOOL_ gen_ok = boost::winapi::CryptGenRandom(handle, static_cast< boost::winapi::DWORD_ >(len), static_cast< boost::winapi::BYTE_* >(buf));
 
-    if (BOOST_UNLIKELY(!gen_ok))
-        err = boost::winapi::GetLastError();
+if (BOOST_UNLIKELY(!gen_ok))
+err = boost::winapi::GetLastError();
 
-    boost::winapi::CryptReleaseContext(handle, 0);
+boost::winapi::CryptReleaseContext(handle, 0);
 
-    if (BOOST_UNLIKELY(!gen_ok))
-        goto fail;
+if (BOOST_UNLIKELY(!gen_ok))
+goto fail;
 
 #endif // defined(BOOST_FILESYSTEM_HAS_BCRYPT)
 
@@ -292,13 +292,13 @@ BOOST_CONSTEXPR_OR_CONST char percent = '%';
 void init_fill_random_impl(unsigned int major_ver, unsigned int minor_ver, unsigned int patch_ver)
 {
 #if defined(BOOST_FILESYSTEM_HAS_INIT_PRIORITY) && \
-    (defined(BOOST_FILESYSTEM_HAS_GETRANDOM) || defined(BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL))
-    fill_random_t* fr = &fill_random_dev_random;
+(defined(BOOST_FILESYSTEM_HAS_GETRANDOM) || defined(BOOST_FILESYSTEM_HAS_GETRANDOM_SYSCALL))
+fill_random_t* fr = &fill_random_dev_random;
 
-    if (major_ver > 3u || (major_ver == 3u && minor_ver >= 17u))
-        fr = &fill_random_getrandom;
+if (major_ver > 3u || (major_ver == 3u && minor_ver >= 17u))
+fr = &fill_random_getrandom;
 
-    filesystem::detail::atomic_store_relaxed(fill_random, fr);
+filesystem::detail::atomic_store_relaxed(fill_random, fr);
 #endif
 }
 
@@ -307,40 +307,40 @@ void init_fill_random_impl(unsigned int major_ver, unsigned int minor_ver, unsig
 BOOST_FILESYSTEM_DECL
 path unique_path(path const& model, system::error_code* ec)
 {
-    // This function used wstring for fear of misidentifying
-    // a part of a multibyte character as a percent sign.
-    // However, double byte encodings only have 80-FF as lead
-    // bytes and 40-7F as trailing bytes, whereas % is 25.
-    // So, use string on POSIX and avoid conversions.
+// This function used wstring for fear of misidentifying
+// a part of a multibyte character as a percent sign.
+// However, double byte encodings only have 80-FF as lead
+// bytes and 40-7F as trailing bytes, whereas % is 25.
+// So, use string on POSIX and avoid conversions.
 
-    path::string_type s(model.native());
+path::string_type s(model.native());
 
-    char ran[16] = {};                                                    // init to avoid clang static analyzer message
-                                                                          // see ticket #8954
-    BOOST_CONSTEXPR_OR_CONST unsigned int max_nibbles = 2u * sizeof(ran); // 4-bits per nibble
+char ran[16] = {};                                                    // init to avoid clang static analyzer message
+// see ticket #8954
+BOOST_CONSTEXPR_OR_CONST unsigned int max_nibbles = 2u * sizeof(ran); // 4-bits per nibble
 
-    unsigned int nibbles_used = max_nibbles;
-    for (path::string_type::size_type i = 0, n = s.size(); i < n; ++i)
-    {
-        if (s[i] == percent) // digit request
-        {
-            if (nibbles_used == max_nibbles)
-            {
-                system_crypt_random(ran, sizeof(ran), ec);
-                if (ec && *ec)
-                    return path();
-                nibbles_used = 0;
-            }
-            unsigned int c = ran[nibbles_used / 2u];
-            c >>= 4u * (nibbles_used++ & 1u); // if odd, shift right 1 nibble
-            s[i] = hex[c & 0xf];              // convert to hex digit and replace
-        }
-    }
+unsigned int nibbles_used = max_nibbles;
+for (path::string_type::size_type i = 0, n = s.size(); i < n; ++i)
+{
+if (s[i] == percent) // digit request
+{
+if (nibbles_used == max_nibbles)
+{
+system_crypt_random(ran, sizeof(ran), ec);
+if (ec && *ec)
+return path();
+nibbles_used = 0;
+}
+unsigned int c = ran[nibbles_used / 2u];
+c >>= 4u * (nibbles_used++ & 1u); // if odd, shift right 1 nibble
+s[i] = hex[c & 0xf];              // convert to hex digit and replace
+}
+}
 
-    if (ec)
-        ec->clear();
+if (ec)
+ec->clear();
 
-    return s;
+return s;
 }
 
 } // namespace detail

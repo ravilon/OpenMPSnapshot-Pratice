@@ -1,9 +1,9 @@
 /*
- * Copyright 2016 Klemens D. Morgenstern
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Klemens D. Morgenstern
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_SHELL_HPP_INCLUDED_
 #define BOOST_WINAPI_SHELL_HPP_INCLUDED_
@@ -34,19 +34,19 @@ struct _SHFILEINFOW;
 
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_PTR_ BOOST_WINAPI_WINAPI_CC SHGetFileInfoA(
-    boost::winapi::LPCSTR_ pszPath,
-    boost::winapi::DWORD_ dwFileAttributes,
-    ::_SHFILEINFOA *psfinsigned,
-    boost::winapi::UINT_ cbFileInfons,
-    boost::winapi::UINT_ uFlags);
+boost::winapi::LPCSTR_ pszPath,
+boost::winapi::DWORD_ dwFileAttributes,
+::_SHFILEINFOA *psfinsigned,
+boost::winapi::UINT_ cbFileInfons,
+boost::winapi::UINT_ uFlags);
 #endif
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_PTR_ BOOST_WINAPI_WINAPI_CC SHGetFileInfoW(
-    boost::winapi::LPCWSTR_ pszPath,
-    boost::winapi::DWORD_ dwFileAttributes,
-    ::_SHFILEINFOW *psfinsigned,
-    boost::winapi::UINT_ cbFileInfons,
-    boost::winapi::UINT_ uFlags);
+boost::winapi::LPCWSTR_ pszPath,
+boost::winapi::DWORD_ dwFileAttributes,
+::_SHFILEINFOW *psfinsigned,
+boost::winapi::UINT_ cbFileInfons,
+boost::winapi::UINT_ uFlags);
 
 } // extern "C"
 #endif // !defined( BOOST_USE_WINDOWS_H )
@@ -107,43 +107,43 @@ BOOST_CONSTEXPR_OR_CONST DWORD_ SHGFI_ADDOVERLAYS_       = 0x000000020;
 BOOST_CONSTEXPR_OR_CONST DWORD_ SHGFI_OVERLAYINDEX_      = 0x000000040;
 
 typedef struct BOOST_MAY_ALIAS _SHFILEINFOA {
-    HICON_ hIcon;
-    int iIcon;
-    DWORD_ dwAttributes;
-    CHAR_ szDisplayName[MAX_PATH_];
-    CHAR_ szTypeName[80];
+HICON_ hIcon;
+int iIcon;
+DWORD_ dwAttributes;
+CHAR_ szDisplayName[MAX_PATH_];
+CHAR_ szTypeName[80];
 } SHFILEINFOA_;
 
 typedef struct BOOST_MAY_ALIAS _SHFILEINFOW {
-    HICON_ hIcon;
-    int iIcon;
-    DWORD_ dwAttributes;
-    WCHAR_ szDisplayName[MAX_PATH_];
-    WCHAR_ szTypeName[80];
+HICON_ hIcon;
+int iIcon;
+DWORD_ dwAttributes;
+WCHAR_ szDisplayName[MAX_PATH_];
+WCHAR_ szTypeName[80];
 } SHFILEINFOW_;
 
 #if !defined( BOOST_NO_ANSI_APIS )
 
 BOOST_FORCEINLINE DWORD_PTR_ SHGetFileInfoA(LPCSTR_ pszPath, DWORD_ dwFileAttributes, SHFILEINFOA_* psfinsigned, UINT_ cbFileInfons, UINT_ uFlags)
 {
-    return ::SHGetFileInfoA(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOA* >(psfinsigned), cbFileInfons, uFlags);
+return ::SHGetFileInfoA(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOA* >(psfinsigned), cbFileInfons, uFlags);
 }
 
 BOOST_FORCEINLINE DWORD_PTR_ sh_get_file_info(LPCSTR_ pszPath, DWORD_ dwFileAttributes, SHFILEINFOA_* psfinsigned, UINT_ cbFileInfons, UINT_ uFlags)
 {
-    return ::SHGetFileInfoA(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOA* >(psfinsigned), cbFileInfons, uFlags);
+return ::SHGetFileInfoA(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOA* >(psfinsigned), cbFileInfons, uFlags);
 }
 
 #endif // BOOST_NO_ANSI_APIS
 
 BOOST_FORCEINLINE DWORD_PTR_ SHGetFileInfoW(LPCWSTR_ pszPath, DWORD_ dwFileAttributes, SHFILEINFOW_* psfinsigned, UINT_ cbFileInfons, UINT_ uFlags)
 {
-    return ::SHGetFileInfoW(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOW* >(psfinsigned), cbFileInfons, uFlags);
+return ::SHGetFileInfoW(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOW* >(psfinsigned), cbFileInfons, uFlags);
 }
 
 BOOST_FORCEINLINE DWORD_PTR_ sh_get_file_info(LPCWSTR_ pszPath, DWORD_ dwFileAttributes, SHFILEINFOW_* psfinsigned, UINT_ cbFileInfons, UINT_ uFlags)
 {
-    return ::SHGetFileInfoW(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOW* >(psfinsigned), cbFileInfons, uFlags);
+return ::SHGetFileInfoW(pszPath, dwFileAttributes, reinterpret_cast< ::_SHFILEINFOW* >(psfinsigned), cbFileInfons, uFlags);
 }
 
 }

@@ -29,18 +29,18 @@ namespace detail {
 
 struct void_receiver
 {
-  void set_value() BOOST_ASIO_NOEXCEPT
-  {
-  }
+void set_value() BOOST_ASIO_NOEXCEPT
+{
+}
 
-  template <typename E>
-  void set_error(BOOST_ASIO_MOVE_ARG(E)) BOOST_ASIO_NOEXCEPT
-  {
-  }
+template <typename E>
+void set_error(BOOST_ASIO_MOVE_ARG(E)) BOOST_ASIO_NOEXCEPT
+{
+}
 
-  void set_done() BOOST_ASIO_NOEXCEPT
-  {
-  }
+void set_done() BOOST_ASIO_NOEXCEPT
+{
+}
 };
 
 } // namespace detail
@@ -52,9 +52,9 @@ namespace traits {
 template <>
 struct set_value_member<boost::asio::execution::detail::void_receiver, void()>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_VALUE_MEMBER_TRAIT)
@@ -64,9 +64,9 @@ struct set_value_member<boost::asio::execution::detail::void_receiver, void()>
 template <typename E>
 struct set_error_member<boost::asio::execution::detail::void_receiver, E>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_ERROR_MEMBER_TRAIT)
@@ -76,9 +76,9 @@ struct set_error_member<boost::asio::execution::detail::void_receiver, E>
 template <>
 struct set_done_member<boost::asio::execution::detail::void_receiver>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_DONE_MEMBER_TRAIT)

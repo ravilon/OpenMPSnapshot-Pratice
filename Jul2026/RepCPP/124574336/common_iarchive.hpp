@@ -36,45 +36,45 @@ class extended_type_info;
 // note: referred to as Curiously Recurring Template Patter (CRTP)
 template<class Archive>
 class BOOST_SYMBOL_VISIBLE common_iarchive :
-    public basic_iarchive,
-    public interface_iarchive<Archive>
+public basic_iarchive,
+public interface_iarchive<Archive>
 {
-    friend class interface_iarchive<Archive>;
-    friend class basic_iarchive;
+friend class interface_iarchive<Archive>;
+friend class basic_iarchive;
 private:
-    void vload(version_type & t) BOOST_OVERRIDE {
-        * this->This() >> t;
-    }
-    void vload(object_id_type & t) BOOST_OVERRIDE {
-        * this->This() >> t;
-    }
-    void vload(class_id_type & t) BOOST_OVERRIDE {
-        * this->This() >> t;
-    }
-    void vload(class_id_optional_type & t) BOOST_OVERRIDE {
-        * this->This() >> t;
-    }
-    void vload(tracking_type & t) BOOST_OVERRIDE {
-        * this->This() >> t;
-    }
-    void vload(class_name_type &s) BOOST_OVERRIDE {
-        * this->This() >> s;
-    }
+void vload(version_type & t) BOOST_OVERRIDE {
+* this->This() >> t;
+}
+void vload(object_id_type & t) BOOST_OVERRIDE {
+* this->This() >> t;
+}
+void vload(class_id_type & t) BOOST_OVERRIDE {
+* this->This() >> t;
+}
+void vload(class_id_optional_type & t) BOOST_OVERRIDE {
+* this->This() >> t;
+}
+void vload(tracking_type & t) BOOST_OVERRIDE {
+* this->This() >> t;
+}
+void vload(class_name_type &s) BOOST_OVERRIDE {
+* this->This() >> s;
+}
 protected:
-    // default processing - invoke serialization library
-    template<class T>
-    void load_override(T & t){
-        archive::load(* this->This(), t);
-    }
-    // default implementations of functions which emit start/end tags for
-    // archive types that require them.
-    void load_start(const char * /*name*/){}
-    void load_end(const char * /*name*/){}
-    // default archive initialization
-    common_iarchive(unsigned int flags = 0) :
-        basic_iarchive(flags),
-        interface_iarchive<Archive>()
-    {}
+// default processing - invoke serialization library
+template<class T>
+void load_override(T & t){
+archive::load(* this->This(), t);
+}
+// default implementations of functions which emit start/end tags for
+// archive types that require them.
+void load_start(const char * /*name*/){}
+void load_end(const char * /*name*/){}
+// default archive initialization
+common_iarchive(unsigned int flags = 0) :
+basic_iarchive(flags),
+interface_iarchive<Archive>()
+{}
 };
 
 } // namespace detail

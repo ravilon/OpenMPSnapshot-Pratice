@@ -18,8 +18,8 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_WINDOWS_RANDOM_ACCESS_HANDLE) \
-  || defined(BOOST_ASIO_HAS_WINDOWS_STREAM_HANDLE) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(BOOST_ASIO_HAS_WINDOWS_STREAM_HANDLE) \
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/windows/basic_overlapped_handle.hpp>
 
@@ -35,7 +35,7 @@ typedef basic_overlapped_handle<> overlapped_handle;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_WINDOWS_RANDOM_ACCESS_HANDLE)
-       //   || defined(BOOST_ASIO_HAS_WINDOWS_STREAM_HANDLE)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(BOOST_ASIO_HAS_WINDOWS_STREAM_HANDLE)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_WINDOWS_OVERLAPPED_HANDLE_HPP

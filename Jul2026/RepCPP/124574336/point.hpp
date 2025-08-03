@@ -60,26 +60,26 @@ T& axis_value(point<T>& p);
 template <typename P>
 struct PointNDConcept
 {
-    void constraints()
-    {
-        gil_function_requires<Regular<P>>();
+void constraints()
+{
+gil_function_requires<Regular<P>>();
 
-        using value_type = typename P::value_type;
-        ignore_unused_variable_warning(value_type{});
+using value_type = typename P::value_type;
+ignore_unused_variable_warning(value_type{});
 
-        static const std::size_t N = P::num_dimensions;
-        ignore_unused_variable_warning(N);
-        using FT = typename P::template axis<0>::coord_t;
-        using LT = typename P::template axis<N - 1>::coord_t;
-        FT ft = gil::axis_value<0>(point);
-        axis_value<0>(point) = ft;
-        LT lt = axis_value<N - 1>(point);
-        axis_value<N - 1>(point) = lt;
+static const std::size_t N = P::num_dimensions;
+ignore_unused_variable_warning(N);
+using FT = typename P::template axis<0>::coord_t;
+using LT = typename P::template axis<N - 1>::coord_t;
+FT ft = gil::axis_value<0>(point);
+axis_value<0>(point) = ft;
+LT lt = axis_value<N - 1>(point);
+axis_value<N - 1>(point) = lt;
 
-        //value_type v=point[0];
-        //ignore_unused_variable_warning(v);
-    }
-    P point;
+//value_type v=point[0];
+//ignore_unused_variable_warning(v);
+}
+P point;
 };
 
 /// \brief 2-dimensional point concept
@@ -102,14 +102,14 @@ struct PointNDConcept
 template <typename P>
 struct Point2DConcept
 {
-    void constraints()
-    {
-        gil_function_requires<PointNDConcept<P>>();
-        static_assert(P::num_dimensions == 2, "");
-        point.x = point.y;
-        point[0] = point[1];
-    }
-    P point;
+void constraints()
+{
+gil_function_requires<PointNDConcept<P>>();
+static_assert(P::num_dimensions == 2, "");
+point.x = point.y;
+point[0] = point[1];
+}
+P point;
 };
 
 }} // namespace boost::gil

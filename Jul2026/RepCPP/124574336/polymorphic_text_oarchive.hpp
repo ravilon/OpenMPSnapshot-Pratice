@@ -24,13 +24,13 @@ namespace boost {
 namespace archive {
 
 class BOOST_SYMBOL_VISIBLE polymorphic_text_oarchive :
-    public detail::polymorphic_oarchive_route<text_oarchive>
+public detail::polymorphic_oarchive_route<text_oarchive>
 {
 public:
-    polymorphic_text_oarchive(std::ostream & os, unsigned int flags = 0) :
-        detail::polymorphic_oarchive_route<text_oarchive>(os, flags)
-    {}
-    ~polymorphic_text_oarchive() BOOST_OVERRIDE {}
+polymorphic_text_oarchive(std::ostream & os, unsigned int flags = 0) :
+detail::polymorphic_oarchive_route<text_oarchive>(os, flags)
+{}
+~polymorphic_text_oarchive() BOOST_OVERRIDE {}
 };
 
 } // namespace archive
@@ -38,7 +38,7 @@ public:
 
 // required by export
 BOOST_SERIALIZATION_REGISTER_ARCHIVE(
-    boost::archive::polymorphic_text_oarchive
+boost::archive::polymorphic_text_oarchive
 )
 
 #endif // BOOST_ARCHIVE_POLYMORPHIC_TEXT_OARCHIVE_HPP

@@ -32,13 +32,13 @@ namespace iterators {
 class xml_unescape_exception : public std::exception
 {
 public:
-    xml_unescape_exception()
-    {}
+xml_unescape_exception()
+{}
 
-    virtual const char *what( ) const throw( )
-    {
-        return "xml contained un-recognized escape code";
-    }
+virtual const char *what( ) const throw( )
+{
+return "xml contained un-recognized escape code";
+}
 };
 
 } // namespace iterators

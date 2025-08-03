@@ -1,10 +1,10 @@
 /* Copyright 2003-2013 Joaquin M Lopez Munoz.
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * See Boost website at http://www.boost.org/
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* See Boost website at http://www.boost.org/
+*/
 
 #ifndef BOOST_DETAIL_ALLOCATOR_UTILITIES_HPP
 #define BOOST_DETAIL_ALLOCATOR_UTILITIES_HPP
@@ -22,77 +22,77 @@ namespace boost{
 namespace detail{
 
 /* Allocator adaption layer. Some stdlibs provide allocators without rebind
- * and template ctors. These facilities are simulated with the external
- * template class rebind_to and the aid of partial_std_allocator_wrapper.
- */
+* and template ctors. These facilities are simulated with the external
+* template class rebind_to and the aid of partial_std_allocator_wrapper.
+*/
 
 namespace allocator{
 
 /* partial_std_allocator_wrapper inherits the functionality of a std
- * allocator while providing a templatized ctor and other bits missing
- * in some stdlib implementation or another.
- */
+* allocator while providing a templatized ctor and other bits missing
+* in some stdlib implementation or another.
+*/
 
 template<typename Type>
 class partial_std_allocator_wrapper:public std::allocator<Type>
 {
 public:
-  /* Oddly enough, STLport does not define std::allocator<void>::value_type
-   * when configured to work without partial template specialization.
-   * No harm in supplying the definition here unconditionally.
-   */
+/* Oddly enough, STLport does not define std::allocator<void>::value_type
+* when configured to work without partial template specialization.
+* No harm in supplying the definition here unconditionally.
+*/
 
-  typedef Type value_type;
+typedef Type value_type;
 
-  partial_std_allocator_wrapper(){}
+partial_std_allocator_wrapper(){}
 
-  template<typename Other>
-  partial_std_allocator_wrapper(const partial_std_allocator_wrapper<Other>&){}
+template<typename Other>
+partial_std_allocator_wrapper(const partial_std_allocator_wrapper<Other>&){}
 
-  partial_std_allocator_wrapper(const std::allocator<Type>& x):
-    std::allocator<Type>(x)
-  {
-  }
+partial_std_allocator_wrapper(const std::allocator<Type>& x):
+std::allocator<Type>(x)
+{
+}
 
 #if defined(BOOST_DINKUMWARE_STDLIB)
-  /* Dinkumware guys didn't provide a means to call allocate() without
-   * supplying a hint, in disagreement with the standard.
-   */
+/* Dinkumware guys didn't provide a means to call allocate() without
+* supplying a hint, in disagreement with the standard.
+*/
 
-  Type* allocate(std::size_t n,const void* hint=0)
-  {
-    std::allocator<Type>& a=*this;
-    return a.allocate(n,hint);
-  }
+Type* allocate(std::size_t n,const void* hint=0)
+{
+std::allocator<Type>& a=*this;
+return a.allocate(n,hint);
+}
 #endif
 
 };
 
 /* Detects whether a given allocator belongs to a defective stdlib not
- * having the required member templates.
- * Note that it does not suffice to check the Boost.Config stdlib
- * macros, as the user might have passed a custom, compliant allocator.
- * The checks also considers partial_std_allocator_wrapper to be
- * a standard defective allocator.
- */
+* having the required member templates.
+* Note that it does not suffice to check the Boost.Config stdlib
+* macros, as the user might have passed a custom, compliant allocator.
+* The checks also considers partial_std_allocator_wrapper to be
+* a standard defective allocator.
+*/
 
 #if defined(BOOST_NO_STD_ALLOCATOR)&&\
-  (defined(BOOST_HAS_PARTIAL_STD_ALLOCATOR)||defined(BOOST_DINKUMWARE_STDLIB))
+(defined(BOOST_HAS_PARTIAL_STD_ALLOCATOR)||defined(BOOST_DINKUMWARE_STDLIB))
 
 template<typename Allocator>
 struct is_partial_std_allocator
 {
-  BOOST_STATIC_CONSTANT(bool,
-    value=
-      (is_same<
-        std::allocator<BOOST_DEDUCED_TYPENAME Allocator::value_type>,
-        Allocator
-      >::value)||
-      (is_same<
-        partial_std_allocator_wrapper<
-          BOOST_DEDUCED_TYPENAME Allocator::value_type>,
-        Allocator
-      >::value));
+BOOST_STATIC_CONSTANT(bool,
+value=
+(is_same<
+std::allocator<BOOST_DEDUCED_TYPENAME Allocator::value_type>,
+Allocator
+>::value)||
+(is_same<
+partial_std_allocator_wrapper<
+BOOST_DEDUCED_TYPENAME Allocator::value_type>,
+Allocator
+>::value));
 };
 
 #else
@@ -100,7 +100,7 @@ struct is_partial_std_allocator
 template<typename Allocator>
 struct is_partial_std_allocator
 {
-  BOOST_STATIC_CONSTANT(bool,value=false);
+BOOST_STATIC_CONSTANT(bool,value=false);
 };
 
 #endif
@@ -110,7 +110,7 @@ struct is_partial_std_allocator
 template<typename Allocator,typename Type>
 struct partial_std_allocator_rebind_to
 {
-  typedef partial_std_allocator_wrapper<Type> type;
+typedef partial_std_allocator_wrapper<Type> type;
 };
 
 /* rebind operation in all other cases */
@@ -118,36 +118,36 @@ struct partial_std_allocator_rebind_to
 template<typename Allocator>
 struct rebinder
 {
-  template<typename Type>
-  struct result
-  {
+template<typename Type>
+struct result
+{
 #ifdef BOOST_NO_CXX11_ALLOCATOR
-      typedef typename Allocator::BOOST_NESTED_TEMPLATE
-          rebind<Type>::other other;
+typedef typename Allocator::BOOST_NESTED_TEMPLATE
+rebind<Type>::other other;
 #else
-      typedef typename std::allocator_traits<Allocator>::BOOST_NESTED_TEMPLATE
-          rebind_alloc<Type> other;
+typedef typename std::allocator_traits<Allocator>::BOOST_NESTED_TEMPLATE
+rebind_alloc<Type> other;
 #endif
-  };
+};
 };
 
 template<typename Allocator,typename Type>
 struct compliant_allocator_rebind_to
 {
-  typedef typename rebinder<Allocator>::
-      BOOST_NESTED_TEMPLATE result<Type>::other type;
+typedef typename rebinder<Allocator>::
+BOOST_NESTED_TEMPLATE result<Type>::other type;
 };
 
 /* rebind front-end */
 
 template<typename Allocator,typename Type>
 struct rebind_to:
-  boost::detail::if_true<
-    is_partial_std_allocator<Allocator>::value
-  >::template then<
-    partial_std_allocator_rebind_to<Allocator,Type>,
-    compliant_allocator_rebind_to<Allocator,Type>
-  >::type
+boost::detail::if_true<
+is_partial_std_allocator<Allocator>::value
+>::template then<
+partial_std_allocator_rebind_to<Allocator,Type>,
+compliant_allocator_rebind_to<Allocator,Type>
+>::type
 {
 };
 
@@ -156,13 +156,13 @@ struct rebind_to:
 template<typename Type>
 void construct(void* p,const Type& t)
 {
-  new (p) Type(t);
+new (p) Type(t);
 }
 
 #if BOOST_WORKAROUND(BOOST_MSVC,BOOST_TESTED_AT(1500))
 /* MSVC++ issues spurious warnings about unreferencend formal parameters
- * in destroy<Type> when Type is a class with trivial dtor.
- */
+* in destroy<Type> when Type is a class with trivial dtor.
+*/
 
 #pragma warning(push)
 #pragma warning(disable:4100)
@@ -173,9 +173,9 @@ void destroy(const Type* p)
 {
 
 #if BOOST_WORKAROUND(__SUNPRO_CC,BOOST_TESTED_AT(0x590))
-  const_cast<Type*>(p)->~Type();
+const_cast<Type*>(p)->~Type();
 #else
-  p->~Type();
+p->~Type();
 #endif
 
 }

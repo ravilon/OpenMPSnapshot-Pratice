@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2020 Andrey Semashev
+*/
 /*!
- * \file   atomic/ipc_atomic_flag.hpp
- *
- * This header contains definition of \c ipc_atomic_flag.
- */
+* \file   atomic/ipc_atomic_flag.hpp
+*
+* This header contains definition of \c ipc_atomic_flag.
+*/
 
 #ifndef BOOST_ATOMIC_IPC_ATOMIC_FLAG_HPP_INCLUDED_
 #define BOOST_ATOMIC_IPC_ATOMIC_FLAG_HPP_INCLUDED_

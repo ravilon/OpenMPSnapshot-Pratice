@@ -20,10 +20,10 @@
 #include <boost/asio/traits/static_query.hpp>
 
 #if defined(BOOST_ASIO_HAS_DECLTYPE) \
-  && defined(BOOST_ASIO_HAS_NOEXCEPT)
+&& defined(BOOST_ASIO_HAS_NOEXCEPT)
 # define BOOST_ASIO_HAS_DEDUCED_STATIC_REQUIRE_TRAIT 1
 #endif // defined(BOOST_ASIO_HAS_DECLTYPE)
-       //   && defined(BOOST_ASIO_HAS_NOEXCEPT)
+//   && defined(BOOST_ASIO_HAS_NOEXCEPT)
 
 #include <boost/asio/detail/push_options.hpp>
 
@@ -42,19 +42,19 @@ namespace detail {
 
 struct no_static_require
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
 };
 
 template <typename T, typename Property, typename = void>
 struct static_require_trait :
-  conditional<
-    is_same<T, typename decay<T>::type>::value
-      && is_same<Property, typename decay<Property>::type>::value,
-    no_static_require,
-    traits::static_require<
-      typename decay<T>::type,
-      typename decay<Property>::type>
-  >::type
+conditional<
+is_same<T, typename decay<T>::type>::value
+&& is_same<Property, typename decay<Property>::type>::value,
+no_static_require,
+traits::static_require<
+typename decay<T>::type,
+typename decay<Property>::type>
+>::type
 {
 };
 
@@ -64,11 +64,11 @@ struct static_require_trait :
 
 template <typename T, typename Property>
 struct static_require_trait<T, Property,
-  typename enable_if<
-    decay<Property>::type::value() == traits::static_query<T, Property>::value()
-  >::type>
+typename enable_if<
+decay<Property>::type::value() == traits::static_query<T, Property>::value()
+>::type>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
 };
 
 #else // defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
@@ -77,26 +77,26 @@ false_type static_require_test(...);
 
 template <typename T, typename Property>
 true_type static_require_test(T*, Property*,
-    typename enable_if<
-      Property::value() == traits::static_query<T, Property>::value()
-    >::type* = 0);
+typename enable_if<
+Property::value() == traits::static_query<T, Property>::value()
+>::type* = 0);
 
 template <typename T, typename Property>
 struct has_static_require
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, value =
-    decltype((static_require_test)(
-      static_cast<T*>(0), static_cast<Property*>(0)))::value);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, value =
+decltype((static_require_test)(
+static_cast<T*>(0), static_cast<Property*>(0)))::value);
 };
 
 template <typename T, typename Property>
 struct static_require_trait<T, Property,
-  typename enable_if<
-    has_static_require<typename decay<T>::type,
-      typename decay<Property>::type>::value
-  >::type>
+typename enable_if<
+has_static_require<typename decay<T>::type,
+typename decay<Property>::type>::value
+>::type>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
 };
 
 #endif // defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)

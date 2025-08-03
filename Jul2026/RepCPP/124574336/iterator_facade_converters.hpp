@@ -30,37 +30,37 @@ namespace support {
 /**
 Container adaptor is designed to play well with Boost.Iterators. This
 converter can be used if this library is used to adapt the iterators.
-                                                                            **/
+**/
 template
 <
-    class Iterator,
-    class ConstIterator
+class Iterator,
+class ConstIterator
 >
 struct iterator_facade_to_base
 {
-    BOOST_DEDUCED_TYPENAME Iterator::base_type operator()(Iterator iter) const
-    {
-        return iter.base();
-    }
+BOOST_DEDUCED_TYPENAME Iterator::base_type operator()(Iterator iter) const
+{
+return iter.base();
+}
 
-    BOOST_DEDUCED_TYPENAME ConstIterator::base_type operator()(ConstIterator iter) const
-    {
-        return iter.base();
-    }
+BOOST_DEDUCED_TYPENAME ConstIterator::base_type operator()(ConstIterator iter) const
+{
+return iter.base();
+}
 };
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
 template
 <
-    class Iterator
+class Iterator
 >
 struct iterator_facade_to_base<Iterator,Iterator>
 {
-    BOOST_DEDUCED_TYPENAME Iterator::base_type operator()(Iterator iter) const
-    {
-        return iter.base();
-    }
+BOOST_DEDUCED_TYPENAME Iterator::base_type operator()(Iterator iter) const
+{
+return iter.base();
+}
 };
 
 #endif // BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES

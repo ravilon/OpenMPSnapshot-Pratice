@@ -1,8 +1,8 @@
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 ==============================================================================*/
 #ifndef BOOST_PP_IS_ITERATING
 #if !defined(FUSION_VECTOR_N_CHOOSER_07072005_1248)
@@ -34,7 +34,7 @@
 
 namespace boost { namespace fusion
 {
-    struct void_;
+struct void_;
 }}
 
 #if !defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
@@ -45,12 +45,12 @@ namespace boost { namespace fusion
 #endif
 
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-    This is an auto-generated file. Do not edit!
+This is an auto-generated file. Do not edit!
 ==============================================================================*/
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -59,20 +59,20 @@ namespace boost { namespace fusion
 
 namespace boost { namespace fusion { namespace detail
 {
-    template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename T)>
-    struct vector_n_chooser
-    {
-        typedef BOOST_PP_CAT(vector, FUSION_MAX_VECTOR_SIZE)<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, T)> type;
-    };
+template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, typename T)>
+struct vector_n_chooser
+{
+typedef BOOST_PP_CAT(vector, FUSION_MAX_VECTOR_SIZE)<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, T)> type;
+};
 
-    template <>
-    struct vector_n_chooser<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, void_ BOOST_PP_INTERCEPT)>
-    {
-        typedef vector0<> type;
-    };
+template <>
+struct vector_n_chooser<BOOST_PP_ENUM_PARAMS(FUSION_MAX_VECTOR_SIZE, void_ BOOST_PP_INTERCEPT)>
+{
+typedef vector0<> type;
+};
 
 #define BOOST_PP_FILENAME_1 \
-    <boost/fusion/container/vector/detail/cpp03/vector_n_chooser.hpp>
+<boost/fusion/container/vector/detail/cpp03/vector_n_chooser.hpp>
 #define BOOST_PP_ITERATION_LIMITS (1, BOOST_PP_DEC(FUSION_MAX_VECTOR_SIZE))
 #include BOOST_PP_ITERATE()
 
@@ -95,13 +95,13 @@ namespace boost { namespace fusion { namespace detail
 
 #define N BOOST_PP_ITERATION()
 
-    template <BOOST_PP_ENUM_PARAMS(N, typename T)>
-    struct vector_n_chooser<
-        BOOST_PP_ENUM_PARAMS(N, T)
-        BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_PP_SUB(FUSION_MAX_VECTOR_SIZE, N), void_ BOOST_PP_INTERCEPT)>
-    {
-        typedef BOOST_PP_CAT(vector, N)<BOOST_PP_ENUM_PARAMS(N, T)> type;
-    };
+template <BOOST_PP_ENUM_PARAMS(N, typename T)>
+struct vector_n_chooser<
+BOOST_PP_ENUM_PARAMS(N, T)
+BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_PP_SUB(FUSION_MAX_VECTOR_SIZE, N), void_ BOOST_PP_INTERCEPT)>
+{
+typedef BOOST_PP_CAT(vector, N)<BOOST_PP_ENUM_PARAMS(N, T)> type;
+};
 
 #undef N
 #endif // defined(BOOST_PP_IS_ITERATING)

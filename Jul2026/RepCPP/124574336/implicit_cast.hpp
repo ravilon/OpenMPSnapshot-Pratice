@@ -17,7 +17,7 @@ namespace detail {
 
 template<class T> struct icast_identity
 {
-    typedef T type;
+typedef T type;
 };
 
 } // namespace detail
@@ -29,7 +29,7 @@ template<class T> struct icast_identity
 // explicit template argument must be supplied
 template <typename T>
 BOOST_CONSTEXPR inline T implicit_cast (typename boost::detail::icast_identity<T>::type x) {
-    return x;
+return x;
 }
 
 } // namespace boost

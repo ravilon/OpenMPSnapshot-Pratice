@@ -17,13 +17,13 @@
 
 namespace boost { namespace spirit { namespace karma { namespace detail
 {
-    template <typename Modifiers, bool case_modifier = false>
-    struct get_casetag : mpl::identity<unused_type> {};
+template <typename Modifiers, bool case_modifier = false>
+struct get_casetag : mpl::identity<unused_type> {};
 
-    template <typename Modifiers>
-    struct get_casetag<Modifiers, true>
-      : mpl::if_<has_modifier<Modifiers, tag::char_code_base<tag::lower> >
-          , tag::lower, tag::upper> {};
+template <typename Modifiers>
+struct get_casetag<Modifiers, true>
+: mpl::if_<has_modifier<Modifiers, tag::char_code_base<tag::lower> >
+, tag::lower, tag::upper> {};
 }}}}
 
 #endif

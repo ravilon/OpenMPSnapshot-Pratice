@@ -31,16 +31,16 @@
 #define BOOST_CONFIG_WARNING_DISABLE_HPP
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1400) 
-   // Error 'function': was declared deprecated
-   // http://msdn2.microsoft.com/en-us/library/ttcz0bys(VS.80).aspx
-   // This error is emitted when you use some perfectly conforming
-   // std lib functions in a perfectly correct way, and also by
-   // some of Microsoft's own std lib code !
+// Error 'function': was declared deprecated
+// http://msdn2.microsoft.com/en-us/library/ttcz0bys(VS.80).aspx
+// This error is emitted when you use some perfectly conforming
+// std lib functions in a perfectly correct way, and also by
+// some of Microsoft's own std lib code !
 #  pragma warning(disable:4996)
 #endif
 #if defined(__INTEL_COMPILER) || defined(__ICL)
-   // As above: gives warning when a "deprecated"
-   // std library function is encountered.
+// As above: gives warning when a "deprecated"
+// std library function is encountered.
 #  pragma warning(disable:1786)
 #endif
 

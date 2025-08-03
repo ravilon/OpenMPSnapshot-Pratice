@@ -19,47 +19,47 @@
 
 namespace boost { namespace spirit { namespace karma 
 { 
-    ///////////////////////////////////////////////////////////////////////////
-    //
-    //  The bool_inserter template takes care of the boolean to string 
-    //  conversion. The Policies template parameter is used to allow
-    //  customization of the formatting process
-    //
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename T>
-    struct bool_policies;
+///////////////////////////////////////////////////////////////////////////
+//
+//  The bool_inserter template takes care of the boolean to string 
+//  conversion. The Policies template parameter is used to allow
+//  customization of the formatting process
+//
+///////////////////////////////////////////////////////////////////////////
+template <typename T>
+struct bool_policies;
 
-    template <typename T
-      , typename Policies = bool_policies<T>
-      , typename CharEncoding = unused_type
-      , typename Tag = unused_type>
-    struct bool_inserter
-    {
-        template <typename OutputIterator, typename U>
-        static bool
-        call (OutputIterator& sink, U b, Policies const& p = Policies())
-        {
+template <typename T
+, typename Policies = bool_policies<T>
+, typename CharEncoding = unused_type
+, typename Tag = unused_type>
+struct bool_inserter
+{
+template <typename OutputIterator, typename U>
+static bool
+call (OutputIterator& sink, U b, Policies const& p = Policies())
+{
 #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1600))
-            p; // suppresses warning: C4100: 'p' : unreferenced formal parameter
+p; // suppresses warning: C4100: 'p' : unreferenced formal parameter
 #endif
-            return p.template call<bool_inserter>(sink, T(b), p);
-        }
+return p.template call<bool_inserter>(sink, T(b), p);
+}
 
-        ///////////////////////////////////////////////////////////////////////
-        //  This is the workhorse behind the real generator
-        ///////////////////////////////////////////////////////////////////////
-        template <typename OutputIterator, typename U>
-        static bool
-        call_n (OutputIterator& sink, U b, Policies const& p)
-        {
+///////////////////////////////////////////////////////////////////////
+//  This is the workhorse behind the real generator
+///////////////////////////////////////////////////////////////////////
+template <typename OutputIterator, typename U>
+static bool
+call_n (OutputIterator& sink, U b, Policies const& p)
+{
 #if BOOST_WORKAROUND(BOOST_MSVC, BOOST_TESTED_AT(1600))
-            p; // suppresses warning: C4100: 'p' : unreferenced formal parameter
+p; // suppresses warning: C4100: 'p' : unreferenced formal parameter
 #endif
-            if (b) 
-                return p.template generate_true<CharEncoding, Tag>(sink, b);
-            return p.template generate_false<CharEncoding, Tag>(sink, b);
-        }
-    };
+if (b) 
+return p.template generate_true<CharEncoding, Tag>(sink, b);
+return p.template generate_false<CharEncoding, Tag>(sink, b);
+}
+};
 
 }}}
 

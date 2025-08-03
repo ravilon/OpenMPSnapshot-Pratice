@@ -14,19 +14,19 @@
 //  See http://www.boost.org/libs/static_assert for documentation.
 
 /*
- Revision history:
-   15 June  2003 - Initial version.
-   31 March 2004 - improved diagnostic messages and portability
-                   (Jonathan Turkanis)
-   03 April 2004 - works on VC6 at class and namespace scope
-                 - ported to DigitalMars
-                 - static warnings disabled by default; when enabled,
-                   uses pragmas to enable required compiler warnings
-                   on MSVC, Intel, Metrowerks and Borland 5.x.
-                   (Jonathan Turkanis)
-   30 May 2004   - tweaked for msvc 7.1 and gcc 3.3
-                 - static warnings ENabled by default; when enabled,
-                   (Robert Ramey)
+Revision history:
+15 June  2003 - Initial version.
+31 March 2004 - improved diagnostic messages and portability
+(Jonathan Turkanis)
+03 April 2004 - works on VC6 at class and namespace scope
+- ported to DigitalMars
+- static warnings disabled by default; when enabled,
+uses pragmas to enable required compiler warnings
+on MSVC, Intel, Metrowerks and Borland 5.x.
+(Jonathan Turkanis)
+30 May 2004   - tweaked for msvc 7.1 and gcc 3.3
+- static warnings ENabled by default; when enabled,
+(Robert Ramey)
 */
 
 #include <boost/config.hpp>
@@ -77,15 +77,15 @@ struct BOOST_SERIALIZATION_STATIC_WARNING_LINE{};
 
 template<bool B, int L>
 struct static_warning_test{
-    typename boost::mpl::eval_if_c<
-        B,
-        boost::mpl::true_,
-        typename boost::mpl::identity<
-            boost::mpl::print<
-                BOOST_SERIALIZATION_STATIC_WARNING_LINE<L>
-            >
-        >
-    >::type type;
+typename boost::mpl::eval_if_c<
+B,
+boost::mpl::true_,
+typename boost::mpl::identity<
+boost::mpl::print<
+BOOST_SERIALIZATION_STATIC_WARNING_LINE<L>
+>
+>
+>::type type;
 };
 
 template<int i>
@@ -95,9 +95,9 @@ struct BOOST_SERIALIZATION_SS {};
 } // boost
 
 #define BOOST_SERIALIZATION_BSW(B, L) \
-    typedef boost::serialization::BOOST_SERIALIZATION_SS< \
-        sizeof( boost::serialization::static_warning_test< B, L > ) \
-    > BOOST_JOIN(STATIC_WARNING_LINE, L) BOOST_ATTRIBUTE_UNUSED;
+typedef boost::serialization::BOOST_SERIALIZATION_SS< \
+sizeof( boost::serialization::static_warning_test< B, L > ) \
+> BOOST_JOIN(STATIC_WARNING_LINE, L) BOOST_ATTRIBUTE_UNUSED;
 #define BOOST_STATIC_WARNING(B) BOOST_SERIALIZATION_BSW(B, __LINE__)
 
 #endif // BOOST_SERIALIZATION_STATIC_WARNING_HPP

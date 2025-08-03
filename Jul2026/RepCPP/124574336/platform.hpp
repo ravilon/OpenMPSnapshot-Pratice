@@ -1,16 +1,16 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2009 Helge Bahmann
- * Copyright (c) 2014-2018, 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2009 Helge Bahmann
+* Copyright (c) 2014-2018, 2020 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/platform.hpp
- *
- * This header defines macros for the target platform detection
- */
+* \file   atomic/detail/platform.hpp
+*
+* This header defines macros for the target platform detection
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_PLATFORM_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_PLATFORM_HPP_INCLUDED_
@@ -29,12 +29,12 @@
 #elif defined(__ARM_ARCH_8A__)
 #define BOOST_ATOMIC_DETAIL_ARM_ARCH 8
 #elif defined(__ARM_ARCH_7__) || defined(__ARM_ARCH_7A__) ||\
-    defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) ||\
-    defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7S__)
+defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) ||\
+defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_7S__)
 #define BOOST_ATOMIC_DETAIL_ARM_ARCH 7
 #elif defined(__ARM_ARCH_6__)  || defined(__ARM_ARCH_6J__) ||\
-    defined(__ARM_ARCH_6K__) || defined(__ARM_ARCH_6Z__) ||\
-    defined(__ARM_ARCH_6ZK__)
+defined(__ARM_ARCH_6K__) || defined(__ARM_ARCH_6Z__) ||\
+defined(__ARM_ARCH_6ZK__)
 #define BOOST_ATOMIC_DETAIL_ARM_ARCH 6
 #else
 // We are not interested in older versions - they don't support atomic ops
@@ -97,29 +97,29 @@
 // IBM XL C++ Compiler has to be checked before GCC/Clang as it pretends to be one but does not support __atomic* intrinsics.
 // It does support GCC inline assembler though.
 #if !(defined(__ibmxl__) || defined(__IBMCPP__)) &&\
-    ((defined(__GNUC__) && ((__GNUC__ * 100 + __GNUC_MINOR__) >= 407)) ||\
-        (defined(BOOST_CLANG) && ((__clang_major__ * 100 + __clang_minor__) >= 302))) &&\
-    (\
-        (__GCC_ATOMIC_BOOL_LOCK_FREE + 0) == 2 ||\
-        (__GCC_ATOMIC_CHAR_LOCK_FREE + 0) == 2 ||\
-        (__GCC_ATOMIC_SHORT_LOCK_FREE + 0) == 2 ||\
-        (__GCC_ATOMIC_INT_LOCK_FREE + 0) == 2 ||\
-        (__GCC_ATOMIC_LONG_LOCK_FREE + 0) == 2 ||\
-        (__GCC_ATOMIC_LLONG_LOCK_FREE + 0) == 2\
-    )
+((defined(__GNUC__) && ((__GNUC__ * 100 + __GNUC_MINOR__) >= 407)) ||\
+(defined(BOOST_CLANG) && ((__clang_major__ * 100 + __clang_minor__) >= 302))) &&\
+(\
+(__GCC_ATOMIC_BOOL_LOCK_FREE + 0) == 2 ||\
+(__GCC_ATOMIC_CHAR_LOCK_FREE + 0) == 2 ||\
+(__GCC_ATOMIC_SHORT_LOCK_FREE + 0) == 2 ||\
+(__GCC_ATOMIC_INT_LOCK_FREE + 0) == 2 ||\
+(__GCC_ATOMIC_LONG_LOCK_FREE + 0) == 2 ||\
+(__GCC_ATOMIC_LLONG_LOCK_FREE + 0) == 2\
+)
 
 #define BOOST_ATOMIC_DETAIL_CORE_BACKEND gcc_atomic
 
 // GCC __sync* instrinsics backend is less efficient than asm-based backends, so use it only when nothing better is available.
 #elif !defined(BOOST_ATOMIC_DETAIL_CORE_ARCH_BACKEND) &&\
-    defined(__GNUC__) && ((__GNUC__ * 100 + __GNUC_MINOR__) >= 401) &&\
-    (\
-        defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1) ||\
-        defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2) ||\
-        defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4) ||\
-        defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8) ||\
-        defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16)\
-    )
+defined(__GNUC__) && ((__GNUC__ * 100 + __GNUC_MINOR__) >= 401) &&\
+(\
+defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1) ||\
+defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2) ||\
+defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4) ||\
+defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8) ||\
+defined(__GCC_HAVE_SYNC_COMPARE_AND_SWAP_16)\
+)
 
 #define BOOST_ATOMIC_DETAIL_CORE_BACKEND gcc_sync
 
@@ -154,9 +154,9 @@
 #define BOOST_ATOMIC_DETAIL_WAIT_BACKEND futex
 #elif defined(__APPLE__)
 #if (defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ >= 101200) || \
-    (defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 100000) || \
-    (defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__ >= 100000) || \
-    (defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__ >= 30000)
+(defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 100000) || \
+(defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__ >= 100000) || \
+(defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__) && __ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__ >= 30000)
 // Darwin 16+ supports ulock API
 #define BOOST_ATOMIC_DETAIL_WAIT_BACKEND darwin_ulock
 #endif // __ENVIRONMENT_*_VERSION_MIN_REQUIRED__

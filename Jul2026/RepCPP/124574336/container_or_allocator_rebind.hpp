@@ -28,22 +28,22 @@ namespace dtl {
 
 template<class AllocatorOrContainer, class ToType, bool = is_container<AllocatorOrContainer>::value>
 struct container_or_allocator_rebind_impl
-   : container_rebind<AllocatorOrContainer, ToType>
+: container_rebind<AllocatorOrContainer, ToType>
 {};
 
 template<class AllocatorOrContainer, class ToType>
 struct container_or_allocator_rebind_impl<AllocatorOrContainer, ToType, false>
-   : allocator_traits<AllocatorOrContainer>::template portable_rebind_alloc<ToType>
+: allocator_traits<AllocatorOrContainer>::template portable_rebind_alloc<ToType>
 {};
 
 template<class ToType>
 struct container_or_allocator_rebind_impl<void, ToType, false>
-   : real_allocator<ToType, void>
+: real_allocator<ToType, void>
 {};
 
 template<class AllocatorOrContainer, class ToType>
 struct container_or_allocator_rebind
-   : container_or_allocator_rebind_impl<AllocatorOrContainer, ToType>
+: container_or_allocator_rebind_impl<AllocatorOrContainer, ToType>
 {};
 
 }  //namespace dtl {

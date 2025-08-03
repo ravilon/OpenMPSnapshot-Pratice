@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2020 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/wait_operations_fwd.hpp
- *
- * This header contains forward declaration of the \c wait_operations template.
- */
+* \file   atomic/detail/wait_operations_fwd.hpp
+*
+* This header contains forward declaration of the \c wait_operations template.
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_WAIT_OPERATIONS_FWD_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_WAIT_OPERATIONS_FWD_HPP_INCLUDED_
@@ -27,10 +27,10 @@ namespace atomics {
 namespace detail {
 
 template<
-    typename Base,
-    std::size_t Size = sizeof(typename Base::storage_type),
-    bool AlwaysLockFree = Base::is_always_lock_free,
-    bool Interprocess = Base::is_interprocess
+typename Base,
+std::size_t Size = sizeof(typename Base::storage_type),
+bool AlwaysLockFree = Base::is_always_lock_free,
+bool Interprocess = Base::is_interprocess
 >
 struct wait_operations;
 

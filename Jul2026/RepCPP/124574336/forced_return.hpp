@@ -34,12 +34,12 @@ template <typename T>
 BOOST_NORETURN inline T
 forced_return()
 {
-    // logical error: should never be here! (see above)
-    BOOST_ASSERT(false);
+// logical error: should never be here! (see above)
+BOOST_ASSERT(false);
 
-    T (*dummy)() = 0;
-    (void)dummy;
-    BOOST_UNREACHABLE_RETURN(dummy());
+T (*dummy)() = 0;
+(void)dummy;
+BOOST_UNREACHABLE_RETURN(dummy());
 }
 
 }}} // namespace boost::detail::variant

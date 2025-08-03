@@ -34,46 +34,46 @@ template<class Archive>
 class interface_iarchive
 {
 protected:
-    interface_iarchive() {}
+interface_iarchive() {}
 public:
-    /////////////////////////////////////////////////////////
-    // archive public interface
-    typedef mpl::bool_<true> is_loading;
-    typedef mpl::bool_<false> is_saving;
+/////////////////////////////////////////////////////////
+// archive public interface
+typedef mpl::bool_<true> is_loading;
+typedef mpl::bool_<false> is_saving;
 
-    // return a pointer to the most derived class
-    Archive * This(){
-        return static_cast<Archive *>(this);
-    }
+// return a pointer to the most derived class
+Archive * This(){
+return static_cast<Archive *>(this);
+}
 
-    template<class T>
-    const basic_pointer_iserializer *
-    register_type(T * = NULL){
-        const basic_pointer_iserializer & bpis =
-            boost::serialization::singleton<
-                pointer_iserializer<Archive, T>
-            >::get_const_instance();
-        this->This()->register_basic_serializer(bpis.get_basic_serializer());
-        return & bpis;
-    }
-    template<class Helper>
-    Helper &
-    get_helper(void * const id = 0){
-        helper_collection & hc = this->This()->get_helper_collection();
-        return hc.template find_helper<Helper>(id);
-    }
+template<class T>
+const basic_pointer_iserializer *
+register_type(T * = NULL){
+const basic_pointer_iserializer & bpis =
+boost::serialization::singleton<
+pointer_iserializer<Archive, T>
+>::get_const_instance();
+this->This()->register_basic_serializer(bpis.get_basic_serializer());
+return & bpis;
+}
+template<class Helper>
+Helper &
+get_helper(void * const id = 0){
+helper_collection & hc = this->This()->get_helper_collection();
+return hc.template find_helper<Helper>(id);
+}
 
-    template<class T>
-    Archive & operator>>(T & t){
-        this->This()->load_override(t);
-        return * this->This();
-    }
+template<class T>
+Archive & operator>>(T & t){
+this->This()->load_override(t);
+return * this->This();
+}
 
-    // the & operator
-    template<class T>
-    Archive & operator&(T & t){
-        return *(this->This()) >> t;
-    }
+// the & operator
+template<class T>
+Archive & operator&(T & t){
+return *(this->This()) >> t;
+}
 };
 
 } // namespace detail

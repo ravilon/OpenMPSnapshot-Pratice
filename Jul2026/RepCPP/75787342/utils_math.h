@@ -1,14 +1,14 @@
 /*!
- * \file utils_math.h
- * \brief Useful math equations in CCGL.
- *
- * \remarks
- *   - 1. 2018-05-02 - lj - Make part of CCGL.
- *   - 2. 2021-07-15 - lj - Integrate pal.math for fast pow, exp, and ln
- *
- * \author Liangjun Zhu, zlj(a)lreis.ac.cn
- * \version 1.1
- */
+* \file utils_math.h
+* \brief Useful math equations in CCGL.
+*
+* \remarks
+*   - 1. 2018-05-02 - lj - Make part of CCGL.
+*   - 2. 2021-07-15 - lj - Integrate pal.math for fast pow, exp, and ln
+*
+* \author Liangjun Zhu, zlj(a)lreis.ac.cn
+* \version 1.1
+*/
 #ifndef CCGL_UTILS_MATH_H
 #define CCGL_UTILS_MATH_H
 
@@ -114,9 +114,9 @@
 
 namespace ccgl {
 /*!
- * \namespace ccgl::utils_math
- * \brief Basic mathematics related functions
- */
+* \namespace ccgl::utils_math
+* \brief Basic mathematics related functions
+*/
 namespace utils_math {
 /*! Return maximum value */
 #ifndef Max
@@ -132,31 +132,31 @@ namespace utils_math {
 #endif
 
 /*!
- * \brief Whether v1 is equal to v2
- * \param[in]  v1 Numeric value of data type 1
- * \param[in]  v2 Numeric value of data type 2
- * \return true or false
- */
+* \brief Whether v1 is equal to v2
+* \param[in]  v1 Numeric value of data type 1
+* \param[in]  v2 Numeric value of data type 2
+* \return true or false
+*/
 template <typename T1, typename T2>
 bool FloatEqual(T1 v1, T2 v2) {
-    return Abs(CVT_DBL(v1) - CVT_DBL(v2)) < 1.e-32;
+return Abs(CVT_DBL(v1) - CVT_DBL(v2)) < 1.e-32;
 }
 
 /*!
- * \brief Check the argument against upper and lower boundary values prior to doing Exponential function
- */
+* \brief Check the argument against upper and lower boundary values prior to doing Exponential function
+*/
 float Expo(float xx, float upper = 20.f, float lower = -20.f);
 
 /*!
- *\brief deal with positive and negative float numbers
- */
+*\brief deal with positive and negative float numbers
+*/
 float Power(float a, float n);
 
 /*!
- * \brief Get maximum value in a numeric array with size n.
- * \param[in] a, n
- * \return max value
- */
+* \brief Get maximum value in a numeric array with size n.
+* \param[in] a, n
+* \return max value
+*/
 template <typename T>
 T MaxInArray(const T* a, int n);
 
@@ -169,294 +169,294 @@ template <typename T>
 T MinInArray(const T* a, int n);
 
 /*!
- * \brief Sum of a numeric array
- * Get sum value of a double array with size row.
- * \param[in] row
- * \param[in] data
- * \return sum
- */
+* \brief Sum of a numeric array
+* Get sum value of a double array with size row.
+* \param[in] row
+* \param[in] data
+* \return sum
+*/
 template <typename T>
 T Sum(int row, const T* data);
 
 /*!
- * \brief Sum of a numeric array
- * Get sum value of a double array with size row and real index idx.
- * \param[in] row
- * \param[in] idx
- * \param[in] data
- * \return sum
- */
+* \brief Sum of a numeric array
+* Get sum value of a double array with size row and real index idx.
+* \param[in] row
+* \param[in] idx
+* \param[in] data
+* \return sum
+*/
 template <typename T>
 T Sum(int row, int*& idx, const T* data);
 
 /*!
- * \brief calculate basic statistics at one time_funcs
- * \param[in] values data array
- * \param[in] num data length
- * \param[out] derivedvalues \a double array, value number, mean, max, min, std, range
- * \param[in] exclude optional, excluded value, e.g. NoDATA, the default is -9999
- */
+* \brief calculate basic statistics at one time_funcs
+* \param[in] values data array
+* \param[in] num data length
+* \param[out] derivedvalues \a double array, value number, mean, max, min, std, range
+* \param[in] exclude optional, excluded value, e.g. NoDATA, the default is -9999
+*/
 template <typename T>
 void BasicStatistics(const T* values, int num, double** derivedvalues,
-                     T exclude = static_cast<T>(NODATA_VALUE));
+T exclude = static_cast<T>(NODATA_VALUE));
 
 /*!
- * \brief calculate basic statistics at one time_funcs for 2D raster data
- * \param[in] values data array
- * \param[in] num data length
- * \param[in] lyrs layer number
- * \param[out] derivedvalues \a double array, value number, mean, max, min, std, range
- * \param[in] exclude optional, excluded value, e.g. NoDATA, the default is -9999
- */
+* \brief calculate basic statistics at one time_funcs for 2D raster data
+* \param[in] values data array
+* \param[in] num data length
+* \param[in] lyrs layer number
+* \param[out] derivedvalues \a double array, value number, mean, max, min, std, range
+* \param[in] exclude optional, excluded value, e.g. NoDATA, the default is -9999
+*/
 template <typename T>
 void BasicStatistics(const T*const * values, int num, int lyrs,
-                     double*** derivedvalues, T exclude = static_cast<T>(NODATA_VALUE));
+double*** derivedvalues, T exclude = static_cast<T>(NODATA_VALUE));
 
 /*!
- * \brief approximate sqrt
- *
- * This uses a method to approximate sqrt which only applies to IEEE 754 floating point numbers,
- * described in [1]. The optimized magic constant is from Chris Lomont[2]
- *
- * References:
- * 1: http://en.wikipedia.org/wiki/Fast_inverse_square_root
- * 2: http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf
- *
- * \param[in] z float or double value
- * \return approximation of sqrt
- */
+* \brief approximate sqrt
+*
+* This uses a method to approximate sqrt which only applies to IEEE 754 floating point numbers,
+* described in [1]. The optimized magic constant is from Chris Lomont[2]
+*
+* References:
+* 1: http://en.wikipedia.org/wiki/Fast_inverse_square_root
+* 2: http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf
+*
+* \param[in] z float or double value
+* \return approximation of sqrt
+*/
 float ApprSqrt(float z);
 double ApprSqrt(double z);
 
 template<typename T>
 T CalSqrt(T val) {
 #if defined(USE_APPR_PAL_MATH)
-    return ApprSqrt(val);
+return ApprSqrt(val);
 #else
-    return sqrt(val);
+return sqrt(val);
 #endif
 }
 
 /*!
- * \brief Approximate e^x by Taylor Series expansion when 0<=x<=ln2
- *
- * e^x = 1./e^-x
- * e^-x = 1 + a1 * x + a2 * x^2 + ... + a4 * x^4 + e(x), where |e(x)| <= 3 * 10^-5
- *
- */
+* \brief Approximate e^x by Taylor Series expansion when 0<=x<=ln2
+*
+* e^x = 1./e^-x
+* e^-x = 1 + a1 * x + a2 * x^2 + ... + a4 * x^4 + e(x), where |e(x)| <= 3 * 10^-5
+*
+*/
 template <typename T>
 static inline T __p_exp_ln2(const T x) {
-    const T a1 = static_cast<T>(-0.9998684);
-    const T a2 = static_cast<T>(0.4982926);
-    const T a3 = static_cast<T>(-0.1595332);
-    const T a4 = static_cast<T>(0.0293641);
-    T exp_x = static_cast<T>(1.0) +
-        a1 * x +
-        a2 * x * x +
-        a3 * x * x * x +
-        a4 * x * x * x * x;
-    return static_cast<T>(1.0) / exp_x;
+const T a1 = static_cast<T>(-0.9998684);
+const T a2 = static_cast<T>(0.4982926);
+const T a3 = static_cast<T>(-0.1595332);
+const T a4 = static_cast<T>(0.0293641);
+T exp_x = static_cast<T>(1.0) +
+a1 * x +
+a2 * x * x +
+a3 * x * x * x +
+a4 * x * x * x * x;
+return static_cast<T>(1.0) / exp_x;
 }
 
 /*!
- * \brief Approximate e^x when x >= 0
- *
- * exp x = exp(x' + k ln 2) = (exp x') * 2^k
- */
+* \brief Approximate e^x when x >= 0
+*
+* exp x = exp(x' + k ln 2) = (exp x') * 2^k
+*/
 template <typename T>
 static inline T __p_exp_pos(const T x) {
-    long int k, twok;
-    static const T ln2 = static_cast<T>(M_LN2);
-    T x_;
-    k = x / ln2;
-    twok = 1ULL << k;
-    x_ = x - static_cast<T>(k) * ln2;
-    return static_cast<T>(twok) * __p_exp_ln2(x_);
+long int k, twok;
+static const T ln2 = static_cast<T>(M_LN2);
+T x_;
+k = x / ln2;
+twok = 1ULL << k;
+x_ = x - static_cast<T>(k) * ln2;
+return static_cast<T>(twok) * __p_exp_ln2(x_);
 }
 
 template <typename T>
 static inline T ApprExp(const T x) {
-    if (x >= static_cast<T>(0.0))
-        return __p_exp_pos(x);
-    else
-        return static_cast<T>(1.0) / __p_exp_pos(-x);
+if (x >= static_cast<T>(0.0))
+return __p_exp_pos(x);
+else
+return static_cast<T>(1.0) / __p_exp_pos(-x);
 }
 
 template<typename T>
 T CalExp(T val) {
 #if defined(USE_APPR_PAL_MATH)
-    return ApprExp(val);
+return ApprExp(val);
 #else
-    return exp(val);
+return exp(val);
 #endif
 }
 
 /*!
- * \brief Approximates the natural logarithm, (where the base is 'e'=2.71828)
- *
- */
+* \brief Approximates the natural logarithm, (where the base is 'e'=2.71828)
+*
+*/
 float ApprLn(float z);
 double ApprLn(double z);
 
 template<typename T>
 T CalLn(T val) {
 #if defined(USE_APPR_PAL_MATH)
-    return ApprLn(val);
+return ApprLn(val);
 #else
-    return log(val);
+return log(val);
 #endif
 }
 
 /*!
-  * \brief lookup for pow(a, b) function
-  * \param[in] exp power to raise radix to (exponent), i.e., b in pow(a, b)
-  * \param[in] log_base one over log, to required radix, of two (ln(base))
-  */
+* \brief lookup for pow(a, b) function
+* \param[in] exp power to raise radix to (exponent), i.e., b in pow(a, b)
+* \param[in] log_base one over log, to required radix, of two (ln(base))
+*/
 float pow_lookup(const float exp, const float log_base);
 
 /*!
- * \brief Approximates pow(a, b) based on the work of Harrison Ainsworth.
- *
- * Refers to http://www.hxa.name/articles/content/fast-pow-adjustable_hxa7241_2007.html
- * Copyright (c) 2007, Harrison Ainsworth / HXA7241.
- */
+* \brief Approximates pow(a, b) based on the work of Harrison Ainsworth.
+*
+* Refers to http://www.hxa.name/articles/content/fast-pow-adjustable_hxa7241_2007.html
+* Copyright (c) 2007, Harrison Ainsworth / HXA7241.
+*/
 float inline ApprPow(float a, float b) {
-    // pow(base, exponent) = pow_lookup(exponent, ln(base))
-    return pow_lookup(b, ApprLn(a));
+// pow(base, exponent) = pow_lookup(exponent, ln(base))
+return pow_lookup(b, ApprLn(a));
 };
 
 template<typename T1, typename T2>
 double CalPow(T1 a, T2 b) {
 #if defined(USE_APPR_PAL_MATH)
-    return CVT_DBL(ApprPow(CVT_FLT(a), CVT_FLT(b)));
+return CVT_DBL(ApprPow(CVT_FLT(a), CVT_FLT(b)));
 #else
-    return pow(CVT_DBL(a),CVT_DBL(b));
+return pow(CVT_DBL(a),CVT_DBL(b));
 #endif
 }
 
 /************ Implementation of template functions ******************/
 template <typename T>
 T MaxInArray(const T* a, const int n) {
-    T m = a[0];
-    for (int i = 1; i < n; i++) {
-        if (a[i] > m) {
-            m = a[i];
-        }
-    }
-    return m;
+T m = a[0];
+for (int i = 1; i < n; i++) {
+if (a[i] > m) {
+m = a[i];
+}
+}
+return m;
 }
 
 template <typename T>
 T MinInArray(const T* a, const int n) {
-    T m = a[0];
-    for (int i = 1; i < n; i++) {
-        if (a[i] < m) {
-            m = a[i];
-        }
-    }
-    return m;
+T m = a[0];
+for (int i = 1; i < n; i++) {
+if (a[i] < m) {
+m = a[i];
+}
+}
+return m;
 }
 
 template <typename T>
 T Sum(const int row, const T* data) {
-    T tmp = 0;
+T tmp = 0;
 #pragma omp parallel for reduction(+:tmp)
-    for (int i = 0; i < row; i++) {
-        tmp += data[i];
-    }
-    return tmp;
+for (int i = 0; i < row; i++) {
+tmp += data[i];
+}
+return tmp;
 }
 
 template <typename T>
 T Sum(const int row, int*& idx, const T* data) {
-    T tmp = 0;
+T tmp = 0;
 #pragma omp parallel for reduction(+:tmp)
-    for (int i = 0; i < row; i++) {
-        int j = idx[i];
-        tmp += data[j];
-    }
-    return tmp;
+for (int i = 0; i < row; i++) {
+int j = idx[i];
+tmp += data[j];
+}
+return tmp;
 }
 
 template <typename T>
 void BasicStatistics(const T* values, const int num, double** derivedvalues,
-                     T exclude /* = CVT_TYP(NODATA_VALUE) */) {
-    double* tmpstats = new double[6];
-    double maxv = MISSINGFLOAT;
-    double minv = MAXIMUMFLOAT;
-    int validnum = 0;
-    double sumv = 0.;
-    double std = 0.;
-    for (int i = 0; i < num; i++) {
-        if (FloatEqual(values[i], exclude)) continue;
-        if (maxv < values[i]) maxv = values[i];
-        if (minv > values[i]) minv = values[i];
-        validnum += 1;
-        sumv += values[i];
-    }
-    tmpstats[0] = CVT_DBL(validnum);
-    double mean = sumv / tmpstats[0];
+T exclude /* = CVT_TYP(NODATA_VALUE) */) {
+double* tmpstats = new double[6];
+double maxv = MISSINGFLOAT;
+double minv = MAXIMUMFLOAT;
+int validnum = 0;
+double sumv = 0.;
+double std = 0.;
+for (int i = 0; i < num; i++) {
+if (FloatEqual(values[i], exclude)) continue;
+if (maxv < values[i]) maxv = values[i];
+if (minv > values[i]) minv = values[i];
+validnum += 1;
+sumv += values[i];
+}
+tmpstats[0] = CVT_DBL(validnum);
+double mean = sumv / tmpstats[0];
 #pragma omp parallel for reduction(+:std)
-    for (int i = 0; i < num; i++) {
-        if (!FloatEqual(values[i], exclude)) {
-            std += (values[i] - mean) * (values[i] - mean);
-        }
-    }
-    std = sqrt(std / tmpstats[0]);
-    tmpstats[1] = mean;
-    tmpstats[2] = maxv;
-    tmpstats[3] = minv;
-    tmpstats[4] = std;
-    tmpstats[5] = maxv - minv;
-    *derivedvalues = tmpstats;
+for (int i = 0; i < num; i++) {
+if (!FloatEqual(values[i], exclude)) {
+std += (values[i] - mean) * (values[i] - mean);
+}
+}
+std = sqrt(std / tmpstats[0]);
+tmpstats[1] = mean;
+tmpstats[2] = maxv;
+tmpstats[3] = minv;
+tmpstats[4] = std;
+tmpstats[5] = maxv - minv;
+*derivedvalues = tmpstats;
 }
 
 template <typename T>
 void BasicStatistics(const T*const * values, const int num, const int lyrs,
-                     double*** derivedvalues, T exclude /* = CVT_TYP(NODATA_VALUE) */) {
-    double** tmpstats = new double *[6];
-    for (int i = 0; i < 6; i++) {
-        tmpstats[i] = new double[lyrs];
-    }
-    for (int j = 0; j < lyrs; j++) {
-        tmpstats[0][j] = 0.;                    /// valid number
-        tmpstats[1][j] = 0.;                    /// mean
-        tmpstats[2][j] = CVT_DBL(MISSINGFLOAT); /// maximum
-        tmpstats[3][j] = CVT_DBL(MAXIMUMFLOAT); /// minimum
-        tmpstats[4][j] = 0.;                    /// std
-        tmpstats[5][j] = 0.;                    /// range
-    }
-    double* sumv = nullptr;
-    utils_array::Initialize1DArray(lyrs, sumv, 0.);
-    for (int i = 0; i < num; i++) {
-        for (int j = 0; j < lyrs; j++) {
-            if (FloatEqual(values[i][j], exclude)) continue;
-            if (tmpstats[2][j] < values[i][j]) tmpstats[2][j] = values[i][j];
-            if (tmpstats[3][j] > values[i][j]) tmpstats[3][j] = values[i][j];
-            tmpstats[0][j] += 1;
-            sumv[j] += values[i][j];
-        }
-    }
+double*** derivedvalues, T exclude /* = CVT_TYP(NODATA_VALUE) */) {
+double** tmpstats = new double *[6];
+for (int i = 0; i < 6; i++) {
+tmpstats[i] = new double[lyrs];
+}
+for (int j = 0; j < lyrs; j++) {
+tmpstats[0][j] = 0.;                    /// valid number
+tmpstats[1][j] = 0.;                    /// mean
+tmpstats[2][j] = CVT_DBL(MISSINGFLOAT); /// maximum
+tmpstats[3][j] = CVT_DBL(MAXIMUMFLOAT); /// minimum
+tmpstats[4][j] = 0.;                    /// std
+tmpstats[5][j] = 0.;                    /// range
+}
+double* sumv = nullptr;
+utils_array::Initialize1DArray(lyrs, sumv, 0.);
+for (int i = 0; i < num; i++) {
+for (int j = 0; j < lyrs; j++) {
+if (FloatEqual(values[i][j], exclude)) continue;
+if (tmpstats[2][j] < values[i][j]) tmpstats[2][j] = values[i][j];
+if (tmpstats[3][j] > values[i][j]) tmpstats[3][j] = values[i][j];
+tmpstats[0][j] += 1;
+sumv[j] += values[i][j];
+}
+}
 
-    for (int j = 0; j < lyrs; j++) {
-        tmpstats[5][j] = tmpstats[2][j] - tmpstats[3][j];
-        tmpstats[1][j] = sumv[j] / tmpstats[0][j];
-    }
-    for (int j = 0; j < lyrs; j++) {
-        double tmpstd = 0;
+for (int j = 0; j < lyrs; j++) {
+tmpstats[5][j] = tmpstats[2][j] - tmpstats[3][j];
+tmpstats[1][j] = sumv[j] / tmpstats[0][j];
+}
+for (int j = 0; j < lyrs; j++) {
+double tmpstd = 0;
 #pragma omp parallel for reduction(+:tmpstd)
-        for (int i = 0; i < num; i++) {
-            if (!FloatEqual(values[i][j], exclude)) {
-                tmpstd += (values[i][j] - tmpstats[1][j]) * (values[i][j] - tmpstats[1][j]);
-            }
-        }
-        tmpstats[4][j] = tmpstd;
-    }
-    for (int j = 0; j < lyrs; j++) {
-        tmpstats[4][j] = sqrt(tmpstats[4][j] / tmpstats[0][j]);
-    }
-    utils_array::Release1DArray(sumv);
-    *derivedvalues = tmpstats;
+for (int i = 0; i < num; i++) {
+if (!FloatEqual(values[i][j], exclude)) {
+tmpstd += (values[i][j] - tmpstats[1][j]) * (values[i][j] - tmpstats[1][j]);
+}
+}
+tmpstats[4][j] = tmpstd;
+}
+for (int j = 0; j < lyrs; j++) {
+tmpstats[4][j] = sqrt(tmpstats[4][j] / tmpstats[0][j]);
+}
+utils_array::Release1DArray(sumv);
+*derivedvalues = tmpstats;
 }
 
 } /* namespace: utils_math */

@@ -37,19 +37,19 @@ BOOST_NORETURN void quick_exit( int code ) BOOST_NOEXCEPT
 {
 #if defined(_MSC_VER) && _MSC_VER < 1900
 
-    ::_exit( code );
+::_exit( code );
 
 #elif defined(__MINGW32__)
 
-    ::_exit( code );
+::_exit( code );
 
 #elif defined(__APPLE__)
 
-    ::_Exit( code );
+::_Exit( code );
 
 #else
 
-    ::quick_exit( code );
+::quick_exit( code );
 
 #endif
 }

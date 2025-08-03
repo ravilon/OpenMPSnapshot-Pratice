@@ -28,33 +28,33 @@ template<typename SourceTr, typename TargetTr>
 typename TargetTr::int_type 
 translate_int_type(typename SourceTr::int_type c) 
 { 
-    typedef translate_int_type_impl<is_same<SourceTr, TargetTr>::value> impl;
-    return impl::template inner<SourceTr, TargetTr>::translate(c);
+typedef translate_int_type_impl<is_same<SourceTr, TargetTr>::value> impl;
+return impl::template inner<SourceTr, TargetTr>::translate(c);
 }
 
 //----------------------------------------------------------------------------//
 
 template<>
 struct translate_int_type_impl<true> {
-    template<typename SourceTr, typename TargetTr>
-    struct inner {
-        static typename TargetTr::int_type 
-        translate(typename SourceTr::int_type c) { return c; }
-    };
+template<typename SourceTr, typename TargetTr>
+struct inner {
+static typename TargetTr::int_type 
+translate(typename SourceTr::int_type c) { return c; }
+};
 };
 
 template<>
 struct translate_int_type_impl<false> {
-    template<typename SourceTr, typename TargetTr>
-    struct inner {
-        static typename TargetTr::int_type 
-        translate(typename SourceTr::int_type c)
-            { 
-                return SourceTr::eq_int_type(SourceTr::eof()) ?
-                           TargetTr::eof() :
-                           TargetTr::to_int_type(SourceTr::to_char_type(c));
-            }
-    };
+template<typename SourceTr, typename TargetTr>
+struct inner {
+static typename TargetTr::int_type 
+translate(typename SourceTr::int_type c)
+{ 
+return SourceTr::eq_int_type(SourceTr::eof()) ?
+TargetTr::eof() :
+TargetTr::to_int_type(SourceTr::to_char_type(c));
+}
+};
 };
 
 } } } // End namespaces detail, iostreams, boost.

@@ -24,23 +24,23 @@ extern "C" {
 /*!An forward iterator to traverse the elements of a memory chain container.*/
 typedef struct multialloc_node_impl
 {
-   struct multialloc_node_impl *next_node_ptr;
+struct multialloc_node_impl *next_node_ptr;
 } boost_cont_memchain_node;
 
 
 /*!An forward iterator to traverse the elements of a memory chain container.*/
 typedef struct multialloc_it_impl
 {
-   boost_cont_memchain_node *node_ptr;
+boost_cont_memchain_node *node_ptr;
 } boost_cont_memchain_it;
 
 /*!Memory chain: A container holding memory portions allocated by boost_cont_multialloc_nodes
-   and boost_cont_multialloc_arrays functions.*/
+and boost_cont_multialloc_arrays functions.*/
 typedef struct boost_cont_memchain_impl
 {
-   size_t                   num_mem;
-   boost_cont_memchain_node  root_node;
-   boost_cont_memchain_node *last_node_ptr;
+size_t                   num_mem;
+boost_cont_memchain_node  root_node;
+boost_cont_memchain_node *last_node_ptr;
 } boost_cont_memchain;
 
 /*!Advances the iterator one position so that it points to the next element in the memory chain*/
@@ -74,155 +74,155 @@ typedef struct boost_cont_memchain_impl
 #define BOOST_CONTAINER_MEMCHAIN_SIZE(PMEMCHAIN) ((PMEMCHAIN)->num_mem)
 
 /*!Initializes the memory chain from the first memory portion, the last memory
-   portion and number of portions obtained from another memory chain*/
+portion and number of portions obtained from another memory chain*/
 #define BOOST_CONTAINER_MEMCHAIN_INIT_FROM(PMEMCHAIN, FIRST, LAST, NUM)\
-   (PMEMCHAIN)->last_node_ptr = (boost_cont_memchain_node *)(LAST), \
-   (PMEMCHAIN)->root_node.next_node_ptr  = (boost_cont_memchain_node *)(FIRST), \
-   (PMEMCHAIN)->num_mem  = (NUM);\
+(PMEMCHAIN)->last_node_ptr = (boost_cont_memchain_node *)(LAST), \
+(PMEMCHAIN)->root_node.next_node_ptr  = (boost_cont_memchain_node *)(FIRST), \
+(PMEMCHAIN)->num_mem  = (NUM);\
 /**/
 
 /*!Default initializes a memory chain. Postconditions: begin iterator is end iterator,
-   the number of portions is zero.*/
+the number of portions is zero.*/
 #define BOOST_CONTAINER_MEMCHAIN_INIT(PMEMCHAIN)\
-   ((PMEMCHAIN)->root_node.next_node_ptr = 0, (PMEMCHAIN)->last_node_ptr = &((PMEMCHAIN)->root_node), (PMEMCHAIN)->num_mem = 0)\
+((PMEMCHAIN)->root_node.next_node_ptr = 0, (PMEMCHAIN)->last_node_ptr = &((PMEMCHAIN)->root_node), (PMEMCHAIN)->num_mem = 0)\
 /**/
 
 /*!True if the memory chain is empty (holds no memory portions*/
 #define BOOST_CONTAINER_MEMCHAIN_EMPTY(PMEMCHAIN)\
-   ((PMEMCHAIN)->num_mem == 0)\
+((PMEMCHAIN)->num_mem == 0)\
 /**/
 
 /*!Inserts a new memory portions in the front of the chain*/
 #define BOOST_CONTAINER_MEMCHAIN_PUSH_BACK(PMEMCHAIN, MEM)\
-   do{\
-      boost_cont_memchain *____chain____ = (PMEMCHAIN);\
-      boost_cont_memchain_node *____tmp_mem____ = (boost_cont_memchain_node *)(MEM);\
-      ____chain____->last_node_ptr->next_node_ptr = ____tmp_mem____;\
-      ____tmp_mem____->next_node_ptr = 0;\
-      ____chain____->last_node_ptr = ____tmp_mem____;\
-      ++____chain____->num_mem;\
-   }while(0)\
+do{\
+boost_cont_memchain *____chain____ = (PMEMCHAIN);\
+boost_cont_memchain_node *____tmp_mem____ = (boost_cont_memchain_node *)(MEM);\
+____chain____->last_node_ptr->next_node_ptr = ____tmp_mem____;\
+____tmp_mem____->next_node_ptr = 0;\
+____chain____->last_node_ptr = ____tmp_mem____;\
+++____chain____->num_mem;\
+}while(0)\
 /**/
 
 /*!Inserts a new memory portions in the back of the chain*/
 #define BOOST_CONTAINER_MEMCHAIN_PUSH_FRONT(PMEMCHAIN, MEM)\
-   do{\
-      boost_cont_memchain *____chain____ = (PMEMCHAIN);\
-      boost_cont_memchain_node *____tmp_mem____   = (boost_cont_memchain_node *)(MEM);\
-      boost_cont_memchain *____root____  = &((PMEMCHAIN)->root_node);\
-      if(!____chain____->root_node.next_node_ptr){\
-         ____chain____->last_node_ptr = ____tmp_mem____;\
-      }\
-      boost_cont_memchain_node *____old_first____ = ____root____->next_node_ptr;\
-      ____tmp_mem____->next_node_ptr = ____old_first____;\
-      ____root____->next_node_ptr = ____tmp_mem____;\
-      ++____chain____->num_mem;\
-   }while(0)\
+do{\
+boost_cont_memchain *____chain____ = (PMEMCHAIN);\
+boost_cont_memchain_node *____tmp_mem____   = (boost_cont_memchain_node *)(MEM);\
+boost_cont_memchain *____root____  = &((PMEMCHAIN)->root_node);\
+if(!____chain____->root_node.next_node_ptr){\
+____chain____->last_node_ptr = ____tmp_mem____;\
+}\
+boost_cont_memchain_node *____old_first____ = ____root____->next_node_ptr;\
+____tmp_mem____->next_node_ptr = ____old_first____;\
+____root____->next_node_ptr = ____tmp_mem____;\
+++____chain____->num_mem;\
+}while(0)\
 /**/
 
 /*!Erases the memory portion after the portion pointed by BEFORE_IT from the memory chain*/
 /*!Precondition: BEFORE_IT must be a valid iterator of the memory chain and it can't be the end iterator*/
 #define BOOST_CONTAINER_MEMCHAIN_ERASE_AFTER(PMEMCHAIN, BEFORE_IT)\
-   do{\
-      boost_cont_memchain *____chain____ = (PMEMCHAIN);\
-      boost_cont_memchain_node *____prev_node____  = (BEFORE_IT).node_ptr;\
-      boost_cont_memchain_node *____erase_node____ = ____prev_node____->next_node_ptr;\
-      if(____chain____->last_node_ptr == ____erase_node____){\
-         ____chain____->last_node_ptr = &____chain____->root_node;\
-      }\
-      ____prev_node____->next_node_ptr = ____erase_node____->next_node_ptr;\
-      --____chain____->num_mem;\
-   }while(0)\
+do{\
+boost_cont_memchain *____chain____ = (PMEMCHAIN);\
+boost_cont_memchain_node *____prev_node____  = (BEFORE_IT).node_ptr;\
+boost_cont_memchain_node *____erase_node____ = ____prev_node____->next_node_ptr;\
+if(____chain____->last_node_ptr == ____erase_node____){\
+____chain____->last_node_ptr = &____chain____->root_node;\
+}\
+____prev_node____->next_node_ptr = ____erase_node____->next_node_ptr;\
+--____chain____->num_mem;\
+}while(0)\
 /**/
 
 /*!Erases the first portion from the memory chain.
-   Precondition: the memory chain must not be empty*/
+Precondition: the memory chain must not be empty*/
 #define BOOST_CONTAINER_MEMCHAIN_POP_FRONT(PMEMCHAIN)\
-   do{\
-      boost_cont_memchain *____chain____ = (PMEMCHAIN);\
-      boost_cont_memchain_node *____prev_node____  = &____chain____->root_node;\
-      boost_cont_memchain_node *____erase_node____ = ____prev_node____->next_node_ptr;\
-      if(____chain____->last_node_ptr == ____erase_node____){\
-         ____chain____->last_node_ptr = &____chain____->root_node;\
-      }\
-      ____prev_node____->next_node_ptr = ____erase_node____->next_node_ptr;\
-      --____chain____->num_mem;\
-   }while(0)\
+do{\
+boost_cont_memchain *____chain____ = (PMEMCHAIN);\
+boost_cont_memchain_node *____prev_node____  = &____chain____->root_node;\
+boost_cont_memchain_node *____erase_node____ = ____prev_node____->next_node_ptr;\
+if(____chain____->last_node_ptr == ____erase_node____){\
+____chain____->last_node_ptr = &____chain____->root_node;\
+}\
+____prev_node____->next_node_ptr = ____erase_node____->next_node_ptr;\
+--____chain____->num_mem;\
+}while(0)\
 /**/
 
 /*!Joins two memory chains inserting the portions of the second chain at the back of the first chain*/
 /*
 #define BOOST_CONTAINER_MEMCHAIN_SPLICE_BACK(PMEMCHAIN, PMEMCHAIN2)\
-   do{\
-      boost_cont_memchain *____chain____  = (PMEMCHAIN);\
-      boost_cont_memchain *____chain2____ = (PMEMCHAIN2);\
-      if(!____chain2____->root_node.next_node_ptr){\
-         break;\
-      }\
-      else if(!____chain____->first_mem){\
-         ____chain____->first_mem  = ____chain2____->first_mem;\
-         ____chain____->last_node_ptr = ____chain2____->last_node_ptr;\
-         ____chain____->num_mem  = ____chain2____->num_mem;\
-         BOOST_CONTAINER_MEMCHAIN_INIT(*____chain2____);\
-      }\
-      else{\
-         ____chain____->last_node_ptr->next_node_ptr = ____chain2____->first_mem;\
-         ____chain____->last_node_ptr = ____chain2____->last_node_ptr;\
-         ____chain____->num_mem += ____chain2____->num_mem;\
-      }\
-   }while(0)\*/
+do{\
+boost_cont_memchain *____chain____  = (PMEMCHAIN);\
+boost_cont_memchain *____chain2____ = (PMEMCHAIN2);\
+if(!____chain2____->root_node.next_node_ptr){\
+break;\
+}\
+else if(!____chain____->first_mem){\
+____chain____->first_mem  = ____chain2____->first_mem;\
+____chain____->last_node_ptr = ____chain2____->last_node_ptr;\
+____chain____->num_mem  = ____chain2____->num_mem;\
+BOOST_CONTAINER_MEMCHAIN_INIT(*____chain2____);\
+}\
+else{\
+____chain____->last_node_ptr->next_node_ptr = ____chain2____->first_mem;\
+____chain____->last_node_ptr = ____chain2____->last_node_ptr;\
+____chain____->num_mem += ____chain2____->num_mem;\
+}\
+}while(0)\*/
 /**/
 
 /*!Joins two memory chains inserting the portions of the second chain at the back of the first chain*/
 #define BOOST_CONTAINER_MEMCHAIN_INCORPORATE_AFTER(PMEMCHAIN, BEFORE_IT, FIRST, BEFORELAST, NUM)\
-   do{\
-      boost_cont_memchain *____chain____  = (PMEMCHAIN);\
-      boost_cont_memchain_node *____pnode____  = (BEFORE_IT).node_ptr;\
-      boost_cont_memchain_node *____next____   = ____pnode____->next_node_ptr;\
-      boost_cont_memchain_node *____first____  = (boost_cont_memchain_node *)(FIRST);\
-      boost_cont_memchain_node *____blast____  = (boost_cont_memchain_node *)(BEFORELAST);\
-      size_t ____num____ = (NUM);\
-      if(!____num____){\
-         break;\
-      }\
-      if(____pnode____ == ____chain____->last_node_ptr){\
-         ____chain____->last_node_ptr = ____blast____;\
-      }\
-      ____pnode____->next_node_ptr  = ____first____;\
-      ____blast____->next_node_ptr  = ____next____;\
-      ____chain____->num_mem  += ____num____;\
-   }while(0)\
+do{\
+boost_cont_memchain *____chain____  = (PMEMCHAIN);\
+boost_cont_memchain_node *____pnode____  = (BEFORE_IT).node_ptr;\
+boost_cont_memchain_node *____next____   = ____pnode____->next_node_ptr;\
+boost_cont_memchain_node *____first____  = (boost_cont_memchain_node *)(FIRST);\
+boost_cont_memchain_node *____blast____  = (boost_cont_memchain_node *)(BEFORELAST);\
+size_t ____num____ = (NUM);\
+if(!____num____){\
+break;\
+}\
+if(____pnode____ == ____chain____->last_node_ptr){\
+____chain____->last_node_ptr = ____blast____;\
+}\
+____pnode____->next_node_ptr  = ____first____;\
+____blast____->next_node_ptr  = ____next____;\
+____chain____->num_mem  += ____num____;\
+}while(0)\
 /**/
 
 /*!Indicates the all elements allocated by boost_cont_multialloc_nodes or boost_cont_multialloc_arrays
-   must be contiguous.*/
+must be contiguous.*/
 #define BOOST_CONTAINER_DL_MULTIALLOC_ALL_CONTIGUOUS        ((size_t)(-1))
 
 /*!Indicates the number of contiguous elements allocated by boost_cont_multialloc_nodes or boost_cont_multialloc_arrays
-   should be selected by those functions.*/
+should be selected by those functions.*/
 #define BOOST_CONTAINER_DL_MULTIALLOC_DEFAULT_CONTIGUOUS    ((size_t)(0))
 
 typedef struct boost_cont_malloc_stats_impl
 {
-   size_t max_system_bytes;
-   size_t system_bytes;
-   size_t in_use_bytes;
+size_t max_system_bytes;
+size_t system_bytes;
+size_t in_use_bytes;
 } boost_cont_malloc_stats_t;
 
 typedef unsigned int allocation_type;
 
 enum
 {
-   // constants for allocation commands
-   BOOST_CONTAINER_ALLOCATE_NEW          = 0X01,
-   BOOST_CONTAINER_EXPAND_FWD            = 0X02,
-   BOOST_CONTAINER_EXPAND_BWD            = 0X04,
-   BOOST_CONTAINER_SHRINK_IN_PLACE       = 0X08,
-   BOOST_CONTAINER_NOTHROW_ALLOCATION    = 0X10,
+// constants for allocation commands
+BOOST_CONTAINER_ALLOCATE_NEW          = 0X01,
+BOOST_CONTAINER_EXPAND_FWD            = 0X02,
+BOOST_CONTAINER_EXPAND_BWD            = 0X04,
+BOOST_CONTAINER_SHRINK_IN_PLACE       = 0X08,
+BOOST_CONTAINER_NOTHROW_ALLOCATION    = 0X10,
 //   BOOST_CONTAINER_ZERO_MEMORY           = 0X20,
-   BOOST_CONTAINER_TRY_SHRINK_IN_PLACE   = 0X40,
-   BOOST_CONTAINER_EXPAND_BOTH           = BOOST_CONTAINER_EXPAND_FWD | BOOST_CONTAINER_EXPAND_BWD,
-   BOOST_CONTAINER_EXPAND_OR_NEW         = BOOST_CONTAINER_ALLOCATE_NEW | BOOST_CONTAINER_EXPAND_BOTH
+BOOST_CONTAINER_TRY_SHRINK_IN_PLACE   = 0X40,
+BOOST_CONTAINER_EXPAND_BOTH           = BOOST_CONTAINER_EXPAND_FWD | BOOST_CONTAINER_EXPAND_BWD,
+BOOST_CONTAINER_EXPAND_OR_NEW         = BOOST_CONTAINER_ALLOCATE_NEW | BOOST_CONTAINER_EXPAND_BOTH
 };
 
 //#define BOOST_CONTAINER_DLMALLOC_FOOTERS
@@ -234,8 +234,8 @@ enum {   BOOST_CONTAINER_ALLOCATION_PAYLOAD = sizeof(size_t)*2   };
 
 typedef struct boost_cont_command_ret_impl
 {
-   void *first;
-   int   second;
+void *first;
+int   second;
 }boost_cont_command_ret_t;
 
 size_t boost_cont_size(const void *p);
@@ -247,10 +247,10 @@ void  boost_cont_free(void* mem);
 void* boost_cont_memalign(size_t bytes, size_t alignment);
 
 int boost_cont_multialloc_nodes
-   (size_t n_elements, size_t elem_size, size_t contiguous_elements, boost_cont_memchain *pchain);
+(size_t n_elements, size_t elem_size, size_t contiguous_elements, boost_cont_memchain *pchain);
 
 int boost_cont_multialloc_arrays
-   (size_t n_elements, const size_t *sizes, size_t sizeof_element, size_t contiguous_elements, boost_cont_memchain *pchain);
+(size_t n_elements, const size_t *sizes, size_t sizeof_element, size_t contiguous_elements, boost_cont_memchain *pchain);
 
 void boost_cont_multidealloc(boost_cont_memchain *pchain);
 
@@ -271,24 +271,24 @@ int boost_cont_trim(size_t pad);
 int boost_cont_mallopt(int parameter_number, int parameter_value);
 
 int boost_cont_grow
-   (void* oldmem, size_t minbytes, size_t maxbytes, size_t *received);
+(void* oldmem, size_t minbytes, size_t maxbytes, size_t *received);
 
 int boost_cont_shrink
-   (void* oldmem, size_t minbytes, size_t maxbytes, size_t *received, int do_commit);
+(void* oldmem, size_t minbytes, size_t maxbytes, size_t *received, int do_commit);
 
 void* boost_cont_alloc
-   (size_t minbytes, size_t preferred_bytes, size_t *received_bytes);
+(size_t minbytes, size_t preferred_bytes, size_t *received_bytes);
 
 int boost_cont_malloc_check();
 
 boost_cont_command_ret_t boost_cont_allocation_command
-   ( allocation_type command
-   , size_t sizeof_object
-   , size_t limit_objects
-   , size_t preferred_objects
-   , size_t *received_objects
-   , void *reuse_ptr
-   );
+( allocation_type command
+, size_t sizeof_object
+, size_t limit_objects
+, size_t preferred_objects
+, size_t *received_objects
+, void *reuse_ptr
+);
 
 void *boost_cont_sync_create();
 

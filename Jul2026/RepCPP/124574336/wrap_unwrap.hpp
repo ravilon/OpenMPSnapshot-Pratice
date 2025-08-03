@@ -23,62 +23,62 @@
 #include <boost/ref.hpp>
 
 namespace boost { namespace iostreams { namespace detail {
-                    
+
 //------------------Definition of wrap/unwrap traits--------------------------//
 
 template<typename T>
 struct wrapped_type 
-    : mpl::if_<is_std_io<T>, reference_wrapper<T>, T>
-    { };
+: mpl::if_<is_std_io<T>, reference_wrapper<T>, T>
+{ };
 
 template<typename T>
 struct unwrapped_type 
-    : unwrap_reference<T>
-    { };
+: unwrap_reference<T>
+{ };
 
 template<typename T>
 struct unwrap_ios 
-    : mpl::eval_if<
-          is_std_io<T>, 
-          unwrap_reference<T>, 
-          mpl::identity<T>
-      >
-    { };
+: mpl::eval_if<
+is_std_io<T>, 
+unwrap_reference<T>, 
+mpl::identity<T>
+>
+{ };
 
 //------------------Definition of wrap----------------------------------------//
 
 #ifndef BOOST_NO_SFINAE //----------------------------------------------------//
-    template<typename T>
-    inline T wrap(const T& t BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)) 
-    { return t; }
+template<typename T>
+inline T wrap(const T& t BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)) 
+{ return t; }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type
-    wrap(T& t BOOST_IOSTREAMS_ENABLE_IF_STREAM(T)) { return boost::ref(t); }
+template<typename T>
+inline typename wrapped_type<T>::type
+wrap(T& t BOOST_IOSTREAMS_ENABLE_IF_STREAM(T)) { return boost::ref(t); }
 #else // #ifndef BOOST_NO_SFINAE //-------------------------------------------//
-    template<typename T>
-    inline typename wrapped_type<T>::type // BCC 5.x needs namespace qualification.
-    wrap_impl(const T& t, mpl::true_) { return boost::ref(const_cast<T&>(t)); }
+template<typename T>
+inline typename wrapped_type<T>::type // BCC 5.x needs namespace qualification.
+wrap_impl(const T& t, mpl::true_) { return boost::ref(const_cast<T&>(t)); }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type // BCC 5.x needs namespace qualification.
-    wrap_impl(T& t, mpl::true_) { return boost::ref(t); }
+template<typename T>
+inline typename wrapped_type<T>::type // BCC 5.x needs namespace qualification.
+wrap_impl(T& t, mpl::true_) { return boost::ref(t); }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type 
-    wrap_impl(const T& t, mpl::false_) { return t; }
+template<typename T>
+inline typename wrapped_type<T>::type 
+wrap_impl(const T& t, mpl::false_) { return t; }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type 
-    wrap_impl(T& t, mpl::false_) { return t; }
+template<typename T>
+inline typename wrapped_type<T>::type 
+wrap_impl(T& t, mpl::false_) { return t; }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type 
-    wrap(const T& t) { return wrap_impl(t, is_std_io<T>()); }
+template<typename T>
+inline typename wrapped_type<T>::type 
+wrap(const T& t) { return wrap_impl(t, is_std_io<T>()); }
 
-    template<typename T>
-    inline typename wrapped_type<T>::type 
-    wrap(T& t) { return wrap_impl(t, is_std_io<T>()); }
+template<typename T>
+inline typename wrapped_type<T>::type 
+wrap(T& t) { return wrap_impl(t, is_std_io<T>()); }
 #endif // #ifndef BOOST_NO_SFINAE //------------------------------------------//
 
 //------------------Definition of unwrap--------------------------------------//

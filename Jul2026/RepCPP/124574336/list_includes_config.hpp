@@ -1,13 +1,13 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    Global application configuration of the list_includes sample
-    
-    http://www.boost.org/
+Global application configuration of the list_includes sample
 
-    Copyright (c) 2001-2010 Hartmut Kaiser. Distributed under the Boost 
-    Software License, Version 1.0. (See accompanying file 
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+http://www.boost.org/
+
+Copyright (c) 2001-2010 Hartmut Kaiser. Distributed under the Boost 
+Software License, Version 1.0. (See accompanying file 
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_LIST_INCLUDES_CONFIG_HPP_0DE80E47_8D50_4DFA_9C1C_0EECAA8A934A_INCLUDED)
@@ -25,10 +25,10 @@
 #if defined(BOOST_SPIRIT_DEBUG)
 
 #define BOOST_SPIRIT_DEBUG_FLAGS ( \
-        BOOST_SPIRIT_DEBUG_FLAGS_NODES | \
-        BOOST_SPIRIT_DEBUG_FLAGS_CLOSURES \
-    ) \
-    /**/
+BOOST_SPIRIT_DEBUG_FLAGS_NODES | \
+BOOST_SPIRIT_DEBUG_FLAGS_CLOSURES \
+) \
+/**/
 
 ///////////////////////////////////////////////////////////////////////////////
 //  debug flags for the pp-iterator library, possible flags (defined in 
@@ -43,9 +43,9 @@
 //  #define BOOST_SPIRIT_DEBUG_FLAGS_PREDEF_MACROS_GRAMMAR  0x0040
 
 #define BOOST_SPIRIT_DEBUG_FLAGS_CPP (\
-        /* insert the required flags from above */ \
-    ) \
-    /**/
+/* insert the required flags from above */ \
+) \
+/**/
 #endif 
 
 ///////////////////////////////////////////////////////////////////////////////

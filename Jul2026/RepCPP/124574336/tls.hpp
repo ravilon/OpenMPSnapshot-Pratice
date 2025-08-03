@@ -1,9 +1,9 @@
 /*
- * Copyright 2013 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2013 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_TLS_HPP_INCLUDED_
 #define BOOST_WINAPI_TLS_HPP_INCLUDED_
@@ -34,8 +34,8 @@ TlsGetValue(boost::winapi::DWORD_ dwTlsIndex);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 TlsSetValue(
-    boost::winapi::DWORD_ dwTlsIndex,
-    boost::winapi::LPVOID_ lpTlsValue);
+boost::winapi::DWORD_ dwTlsIndex,
+boost::winapi::LPVOID_ lpTlsValue);
 } // extern "C"
 #endif
 

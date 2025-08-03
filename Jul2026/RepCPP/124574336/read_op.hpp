@@ -31,37 +31,37 @@ template <typename MutableBufferSequence>
 class read_op
 {
 public:
-  static BOOST_ASIO_CONSTEXPR const char* tracking_name()
-  {
-    return "ssl::stream<>::async_read_some";
-  }
+static BOOST_ASIO_CONSTEXPR const char* tracking_name()
+{
+return "ssl::stream<>::async_read_some";
+}
 
-  read_op(const MutableBufferSequence& buffers)
-    : buffers_(buffers)
-  {
-  }
+read_op(const MutableBufferSequence& buffers)
+: buffers_(buffers)
+{
+}
 
-  engine::want operator()(engine& eng,
-      boost::system::error_code& ec,
-      std::size_t& bytes_transferred) const
-  {
-    boost::asio::mutable_buffer buffer =
-      boost::asio::detail::buffer_sequence_adapter<boost::asio::mutable_buffer,
-        MutableBufferSequence>::first(buffers_);
+engine::want operator()(engine& eng,
+boost::system::error_code& ec,
+std::size_t& bytes_transferred) const
+{
+boost::asio::mutable_buffer buffer =
+boost::asio::detail::buffer_sequence_adapter<boost::asio::mutable_buffer,
+MutableBufferSequence>::first(buffers_);
 
-    return eng.read(buffer, ec, bytes_transferred);
-  }
+return eng.read(buffer, ec, bytes_transferred);
+}
 
-  template <typename Handler>
-  void call_handler(Handler& handler,
-      const boost::system::error_code& ec,
-      const std::size_t& bytes_transferred) const
-  {
-    BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(ec, bytes_transferred);
-  }
+template <typename Handler>
+void call_handler(Handler& handler,
+const boost::system::error_code& ec,
+const std::size_t& bytes_transferred) const
+{
+BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(ec, bytes_transferred);
+}
 
 private:
-  MutableBufferSequence buffers_;
+MutableBufferSequence buffers_;
 };
 
 } // namespace detail

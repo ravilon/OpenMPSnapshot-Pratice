@@ -1,11 +1,11 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    http://www.boost.org/
+http://www.boost.org/
 
-    Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
-    Software License, Version 1.0. (See accompanying file
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
+Software License, Version 1.0. (See accompanying file
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_CPP_LITERAL_GRAMMAR_GEN_HPP_67794A6C_468A_4AAB_A757_DEDDB182F5A0_INCLUDED)
@@ -42,7 +42,7 @@ namespace grammars {
 template <typename TokenT>
 struct BOOST_WAVE_DECL intlit_grammar_gen {
 
-    static uint_literal_type evaluate(TokenT const &tok, bool &is_unsigned);
+static uint_literal_type evaluate(TokenT const &tok, bool &is_unsigned);
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ struct BOOST_WAVE_DECL intlit_grammar_gen {
 template <typename IntegralResult, typename TokenT>
 struct BOOST_WAVE_DECL chlit_grammar_gen {
 
-    static IntegralResult evaluate(TokenT const &tok, value_error& status);
+static IntegralResult evaluate(TokenT const &tok, value_error& status);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -38,11 +38,11 @@ namespace pmr {
 //!   choose a pass-through threshold larger than specified in this field.
 struct pool_options
 {
-   pool_options()
-      : max_blocks_per_chunk(0u), largest_required_pool_block(0u)
-   {}
-   std::size_t max_blocks_per_chunk;
-   std::size_t largest_required_pool_block;
+pool_options()
+: max_blocks_per_chunk(0u), largest_required_pool_block(0u)
+{}
+std::size_t max_blocks_per_chunk;
+std::size_t largest_required_pool_block;
 };
 
 }  //namespace pmr {

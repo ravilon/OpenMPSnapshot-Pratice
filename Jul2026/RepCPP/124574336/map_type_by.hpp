@@ -32,14 +32,14 @@ The returned type is signature-compatible with std::pair.
 template< class Tag, class Bimap >
 struct map_type_by
 {
-    typedef typename Bimap::{side}_map_type type;
+typedef typename Bimap::{side}_map_type type;
 };
 
 \endcode
 
 See also member_at.
 \ingroup bimap_group
-                                                                    **/
+**/
 
 namespace boost {
 namespace bimaps {
@@ -49,9 +49,9 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    map_type_by,
-    left_map,
-    right_map
+map_type_by,
+left_map,
+right_map
 )
 
 

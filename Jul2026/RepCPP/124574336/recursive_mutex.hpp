@@ -29,12 +29,12 @@ namespace ipcdetail {
 
 //Windows mutex is already recursive
 class winapi_recursive_mutex
-   : public winapi_mutex
+: public winapi_mutex
 {
-   winapi_recursive_mutex(const winapi_recursive_mutex &);
-   winapi_recursive_mutex &operator=(const winapi_recursive_mutex &);
-   public:
-   winapi_recursive_mutex() : winapi_mutex() {}
+winapi_recursive_mutex(const winapi_recursive_mutex &);
+winapi_recursive_mutex &operator=(const winapi_recursive_mutex &);
+public:
+winapi_recursive_mutex() : winapi_mutex() {}
 };
 
 }  //namespace ipcdetail {

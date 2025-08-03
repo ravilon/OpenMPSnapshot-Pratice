@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_POSIX_STREAM_DESCRIPTOR) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/posix/basic_descriptor.hpp>
 
@@ -34,6 +34,6 @@ typedef basic_descriptor<> descriptor;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_POSIX_STREAM_DESCRIPTOR)
-       // || defined(GENERATING_DOCUMENTATION)
+// || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_POSIX_DESCRIPTOR_HPP

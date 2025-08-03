@@ -18,7 +18,7 @@ timestamp file
 
 
 #define BOOST_FT_OUT_FILE \
-      "../../../boost/function_types/detail/pp_cc_loop/preprocessed.hpp"
+"../../../boost/function_types/detail/pp_cc_loop/preprocessed.hpp"
 #pragma message(generating BOOST_FT_OUT_FILE)
 #pragma wave option(output: BOOST_FT_OUT_FILE, preserve: 2)
 #include <boost/function_types/detail/pp_cc_loop/master.hpp>

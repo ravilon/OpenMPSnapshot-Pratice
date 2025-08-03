@@ -33,48 +33,48 @@ namespace iterators {
 // replace &??? xml escape sequences with the corresponding characters
 template<class Base>
 class xml_unescape
-    : public unescape<xml_unescape<Base>, Base>
+: public unescape<xml_unescape<Base>, Base>
 {
-    friend class boost::iterator_core_access;
-    typedef xml_unescape<Base> this_t;
-    typedef unescape<this_t, Base> super_t;
-    typedef typename boost::iterator_reference<this_t> reference_type;
+friend class boost::iterator_core_access;
+typedef xml_unescape<Base> this_t;
+typedef unescape<this_t, Base> super_t;
+typedef typename boost::iterator_reference<this_t> reference_type;
 
-    reference_type dereference() const {
-        return unescape<xml_unescape<Base>, Base>::dereference();
-    }
+reference_type dereference() const {
+return unescape<xml_unescape<Base>, Base>::dereference();
+}
 public:
-    // msvc versions prior to 14.0 crash with and ICE
-    #if BOOST_WORKAROUND(BOOST_MSVC, < 1900)
-        typedef int value_type;
-    #else
-        typedef typename super_t::value_type value_type;
-    #endif
+// msvc versions prior to 14.0 crash with and ICE
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1900)
+typedef int value_type;
+#else
+typedef typename super_t::value_type value_type;
+#endif
 
-    void drain_residue(const char *literal);
-    value_type drain();
+void drain_residue(const char *literal);
+value_type drain();
 
-    template<class T>
-    xml_unescape(T start) :
-        super_t(Base(static_cast< T >(start)))
-    {}
-    // intel 7.1 doesn't like default copy constructor
-    xml_unescape(const xml_unescape & rhs) :
-        super_t(rhs.base_reference())
-    {}
+template<class T>
+xml_unescape(T start) :
+super_t(Base(static_cast< T >(start)))
+{}
+// intel 7.1 doesn't like default copy constructor
+xml_unescape(const xml_unescape & rhs) :
+super_t(rhs.base_reference())
+{}
 };
 
 template<class Base>
 void xml_unescape<Base>::drain_residue(const char * literal){
-    do{
-        if(* literal != * ++(this->base_reference()))
-            boost::serialization::throw_exception(
-                dataflow_exception(
-                    dataflow_exception::invalid_xml_escape_sequence
-                )
-            );
-    }
-    while('\0' != * ++literal);
+do{
+if(* literal != * ++(this->base_reference()))
+boost::serialization::throw_exception(
+dataflow_exception(
+dataflow_exception::invalid_xml_escape_sequence
+)
+);
+}
+while('\0' != * ++literal);
 }
 
 // note key constraint on this function is that can't "look ahead" any
@@ -85,39 +85,39 @@ template<class Base>
 typename xml_unescape<Base>::value_type
 //int
 xml_unescape<Base>::drain(){
-    value_type retval = * this->base_reference();
-    if('&' != retval){
-        return retval;
-    }
-    retval = * ++(this->base_reference());
-    switch(retval){
-    case 'l': // &lt;
-        drain_residue("t;");
-        retval = '<';
-        break;
-    case 'g': // &gt;
-        drain_residue("t;");
-        retval = '>';
-        break;
-    case 'a':
-        retval = * ++(this->base_reference());
-        switch(retval){
-        case 'p': // &apos;
-            drain_residue("os;");
-            retval = '\'';
-            break;
-        case 'm': // &amp;
-            drain_residue("p;");
-            retval = '&';
-            break;
-        }
-        break;
-    case 'q':
-        drain_residue("uot;");
-        retval = '"';
-        break;
-    }
-    return retval;
+value_type retval = * this->base_reference();
+if('&' != retval){
+return retval;
+}
+retval = * ++(this->base_reference());
+switch(retval){
+case 'l': // &lt;
+drain_residue("t;");
+retval = '<';
+break;
+case 'g': // &gt;
+drain_residue("t;");
+retval = '>';
+break;
+case 'a':
+retval = * ++(this->base_reference());
+switch(retval){
+case 'p': // &apos;
+drain_residue("os;");
+retval = '\'';
+break;
+case 'm': // &amp;
+drain_residue("p;");
+retval = '&';
+break;
+}
+break;
+case 'q':
+drain_residue("uot;");
+retval = '"';
+break;
+}
+return retval;
 }
 
 } // namespace iterators

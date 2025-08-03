@@ -20,7 +20,7 @@
 #include <boost/config.hpp>
 #if defined(BOOST_NO_STDC_NAMESPACE)
 namespace std{
-    using ::size_t;
+using ::size_t;
 } // namespace std
 #endif
 
@@ -35,10 +35,10 @@ namespace std{
 namespace std {
 inline std::size_t wcslen(const wchar_t * ws)
 {
-    const wchar_t * eows = ws;
-    while(* eows != 0)
-        ++eows;
-    return eows - ws;
+const wchar_t * eows = ws;
+while(* eows != 0)
+++eows;
+return eows - ws;
 }
 } // namespace std
 

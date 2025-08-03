@@ -28,21 +28,21 @@ namespace ssl {
 class stream_base
 {
 public:
-  /// Different handshake types.
-  enum handshake_type
-  {
-    /// Perform handshaking as a client.
-    client,
+/// Different handshake types.
+enum handshake_type
+{
+/// Perform handshaking as a client.
+client,
 
-    /// Perform handshaking as a server.
-    server
-  };
+/// Perform handshaking as a server.
+server
+};
 
 protected:
-  /// Protected destructor to prevent deletion through this type.
-  ~stream_base()
-  {
-  }
+/// Protected destructor to prevent deletion through this type.
+~stream_base()
+{
+}
 };
 
 } // namespace ssl

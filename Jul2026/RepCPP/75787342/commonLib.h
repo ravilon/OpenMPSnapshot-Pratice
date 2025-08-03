@@ -1,9 +1,9 @@
 /*  Taudem common function library header
 
-  David Tarboton, Dan Watson
-  Utah State University  
-  May 23, 2010
-  
+David Tarboton, Dan Watson
+Utah State University  
+May 23, 2010
+
 */
 
 /*  Copyright (C) 2010  David Tarboton, Utah State University
@@ -103,18 +103,18 @@ using std::sqrt;
 #define TDVERSION "5.3.9"
 
 enum DATA_TYPE {
-    SHORT_TYPE,
-    LONG_TYPE,
-    FLOAT_TYPE
+SHORT_TYPE,
+LONG_TYPE,
+FLOAT_TYPE
 };
 
 struct node {
-    int x;
-    int y;
+int x;
+int y;
 };
 inline bool operator==(const node& n1, const node& n2)
 {
-    return (n1.x == n2.x) && (n1.y == n2.y);
+return (n1.x == n2.x) && (n1.y == n2.y);
 }
 const double PI = 3.14159265359;
 const double SQRT2 = 1.4142135623730951;
@@ -156,22 +156,22 @@ void getLayername(char *inputogrfile, char *layername);
 const char *getOGRdrivername(char *datasrcnew);
 void getlayerfail(OGRDataSourceH hDS1, char *outletsds, int outletslyr);
 int readoutlets(char *outletsds,
-                char *lyrname,
-                int uselayername,
-                int outletslyr,
-                OGRSpatialReferenceH hSRSRaster,
-                int *noutlets,
-                double *&x,
-                double *&y);
+char *lyrname,
+int uselayername,
+int outletslyr,
+OGRSpatialReferenceH hSRSRaster,
+int *noutlets,
+double *&x,
+double *&y);
 int readoutlets(char *outletsds,
-                char *lyrname,
-                int uselayername,
-                int outletslyr,
-                OGRSpatialReferenceH hSRSraster,
-                int *noutlets,
-                double *&x,
-                double *&y,
-                int *&id);
+char *lyrname,
+int uselayername,
+int outletslyr,
+OGRSpatialReferenceH hSRSraster,
+int *noutlets,
+double *&x,
+double *&y,
+int *&id);
 
 // DGT 5/27/18  #include <queue>
 // DGT 5/27/18 #include "linearpart.h"
@@ -179,160 +179,160 @@ int readoutlets(char *outletsds,
 // DGT 5/27/18 bool pointsToMe(long col, long row, long ncol, long nrow, tdpartition *dirData);
 
 /* void initNeighborDinfup(tdpartition* neighbor,tdpartition* flowData,queue<node> *que,
-					  int nx,int ny,int useOutlets, int *outletsX,int *outletsY,long numOutlets);
+int nx,int ny,int useOutlets, int *outletsX,int *outletsY,long numOutlets);
 void initNeighborD8up(tdpartition* neighbor,tdpartition* flowData,queue<node> *que,
-					  int nx,int ny,int useOutlets, int *outletsX,int *outletsY,long numOutlets);  */
+int nx,int ny,int useOutlets, int *outletsX,int *outletsY,long numOutlets);  */
 
 /// release 1-D and 2-D arrays, added by Liangjun Zhu
 template<typename T>
 bool Initialize1DArray(int row, T *&data, T initialValue) {
-    if (nullptr != data) {
-        cout << "The input 1D array pointer is not nullptr, without initialized!" << endl;
-        return false;
-    }
-    data = new(nothrow)T[row];
-    if (nullptr == data) {
-        cout << "Bad memory allocated during 1D array initialization!" << endl;
-        return false;
-    }
-    for (int i = 0; i < row; i++) {
-        data[i] = initialValue;
-    }
-    return true;
+if (nullptr != data) {
+cout << "The input 1D array pointer is not nullptr, without initialized!" << endl;
+return false;
+}
+data = new(nothrow)T[row];
+if (nullptr == data) {
+cout << "Bad memory allocated during 1D array initialization!" << endl;
+return false;
+}
+for (int i = 0; i < row; i++) {
+data[i] = initialValue;
+}
+return true;
 }
 
 template<typename T>
 bool Initialize1DArray(int row, T *&data, const T *iniData) {
-    if (nullptr != data) {
-        cout << "The input 1D array pointer is not nullptr, without initialized!" << endl;
-        return false;
-    }
-    data = new(nothrow)T[row];
-    if (nullptr == data) {
-        cout << "Bad memory allocated during 1D array initialization!" << endl;
-        return false;
-    }
-    if (nullptr == iniData) {
-        cout << "The input parameter iniData MUST NOT be nullptr!" << endl;
-        return false;
-    }
-    for (int i = 0; i < row; i++) {
-        data[i] = iniData[i];
-    }
-    return true;
+if (nullptr != data) {
+cout << "The input 1D array pointer is not nullptr, without initialized!" << endl;
+return false;
+}
+data = new(nothrow)T[row];
+if (nullptr == data) {
+cout << "Bad memory allocated during 1D array initialization!" << endl;
+return false;
+}
+if (nullptr == iniData) {
+cout << "The input parameter iniData MUST NOT be nullptr!" << endl;
+return false;
+}
+for (int i = 0; i < row; i++) {
+data[i] = iniData[i];
+}
+return true;
 }
 
 template<typename T>
 bool Initialize2DArray(int row, int col, T **&data, T initialValue) {
-    if (nullptr != data) {
-        cout << "The input 2D array pointer is not nullptr, without initialized!" << endl;
-        return false;
-    }
-    data = new(nothrow)T *[row];
-    if (nullptr == data) {
-        cout << "Bad memory allocated during 2D array initialization!" << endl;
-        return false;
-    }
-    int badAlloc = 0;
-    for (int i = 0; i < row; i++) {
-        data[i] = new(nothrow)T[col];
-        if (nullptr == data[i]) {
-            badAlloc++;
-        }
-        for (int j = 0; j < col; j++) {
-            data[i][j] = initialValue;
-        }
-    }
-    if (badAlloc > 0) {
-        cout << "Bad memory allocated during 2D array initialization!" << endl;
-        Release2DArray(row, data);
-        return false;
-    }
-    return true;
+if (nullptr != data) {
+cout << "The input 2D array pointer is not nullptr, without initialized!" << endl;
+return false;
+}
+data = new(nothrow)T *[row];
+if (nullptr == data) {
+cout << "Bad memory allocated during 2D array initialization!" << endl;
+return false;
+}
+int badAlloc = 0;
+for (int i = 0; i < row; i++) {
+data[i] = new(nothrow)T[col];
+if (nullptr == data[i]) {
+badAlloc++;
+}
+for (int j = 0; j < col; j++) {
+data[i][j] = initialValue;
+}
+}
+if (badAlloc > 0) {
+cout << "Bad memory allocated during 2D array initialization!" << endl;
+Release2DArray(row, data);
+return false;
+}
+return true;
 }
 
 template<typename T>
 bool Initialize2DArray(int row, int col, T **&data, const T *const *iniData) {
-    if (nullptr != data) {
-        cout << "The input 2D array pointer is not nullptr, without initialized!" << endl;
-        return false;
-    }
-    data = new(nothrow)T *[row];
-    if (nullptr == data) {
-        cout << "Bad memory allocated during 2D array initialization!" << endl;
-        return false;
-    }
-    int badAlloc = 0;
-    int errorAccess = 0;
+if (nullptr != data) {
+cout << "The input 2D array pointer is not nullptr, without initialized!" << endl;
+return false;
+}
+data = new(nothrow)T *[row];
+if (nullptr == data) {
+cout << "Bad memory allocated during 2D array initialization!" << endl;
+return false;
+}
+int badAlloc = 0;
+int errorAccess = 0;
 #pragma omp parallel for reduction(+:badAlloc, errorAccess)
-    for (int i = 0; i < row; i++) {
-        data[i] = new(nothrow)T[col];
-        if (nullptr == data[i]) {
-            badAlloc++;
-        }
-        if (nullptr == iniData[i]) {
-            errorAccess++;
-        }
-        else {
-            for (int j = 0; j < col; j++) {
-                data[i][j] = iniData[i][j];
-            }
-        }
-    }
-    if (badAlloc > 0) {
-        cout << "Bad memory allocated during 2D array initialization!" << endl;
-        Release2DArray(row, data);
-        return false;
-    }
-    if (errorAccess > 0) {
-        cout << "nullptr pointer existed in iniData during 2D array initialization!" << endl;
-        Release2DArray(row, data);
-        return false;
-    }
-    return true;
+for (int i = 0; i < row; i++) {
+data[i] = new(nothrow)T[col];
+if (nullptr == data[i]) {
+badAlloc++;
+}
+if (nullptr == iniData[i]) {
+errorAccess++;
+}
+else {
+for (int j = 0; j < col; j++) {
+data[i][j] = iniData[i][j];
+}
+}
+}
+if (badAlloc > 0) {
+cout << "Bad memory allocated during 2D array initialization!" << endl;
+Release2DArray(row, data);
+return false;
+}
+if (errorAccess > 0) {
+cout << "nullptr pointer existed in iniData during 2D array initialization!" << endl;
+Release2DArray(row, data);
+return false;
+}
+return true;
 }
 /*!
- * \brief Release DT_Array1D data
- * \param[in] data
- */
+* \brief Release DT_Array1D data
+* \param[in] data
+*/
 template<typename T>
 void Release1DArray(T *&data) {
-    if (nullptr != data) {
-        delete[] data;
-        data = nullptr;
-    }
+if (nullptr != data) {
+delete[] data;
+data = nullptr;
+}
 }
 
 /*!
- * \brief Release DT_Array2D data
- *
- * \param[in] row Row
- * \param[in] col Column
- * \param[in] data
- */
+* \brief Release DT_Array2D data
+*
+* \param[in] row Row
+* \param[in] col Column
+* \param[in] data
+*/
 template<typename T>
 void Release2DArray(int row, T **&data) {
-    if (nullptr == data) {
-        return;
-    }
-    for (int i = 0; i < row; i++) {
-        if (data[i] != nullptr) {
-            delete[] data[i];
-            data[i] = nullptr;
-        }
-    }
-    delete[] data;
-    data = nullptr;
+if (nullptr == data) {
+return;
+}
+for (int i = 0; i < row; i++) {
+if (data[i] != nullptr) {
+delete[] data[i];
+data[i] = nullptr;
+}
+}
+delete[] data;
+data = nullptr;
 }
 /*
- * \brief convert string to char*
- */
+* \brief convert string to char*
+*/
 char* convertStringToCharPtr(const std::string& s);
 /*
- *\brief Counting time for Cross-platform
- * more precisely than time.clock()
- * added by Liangjun Zhu
- */
+*\brief Counting time for Cross-platform
+* more precisely than time.clock()
+* added by Liangjun Zhu
+*/
 double TimeCounting();
 // define some macro for string related built-in functions, by Liangjun
 #ifdef MSVC

@@ -27,7 +27,7 @@
 template< class Type >
 struct value_type_of
 {
-    typedef {UntaggedType} type;
+typedef {UntaggedType} type;
 };
 \endcode
 
@@ -36,7 +36,7 @@ tagged it return the same type. This allows to work consistently with tagged and
 untagged types.
 
 See also tagged, tag_of.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -52,13 +52,13 @@ namespace support {
 template< class Type >
 struct value_type_of
 {
-    typedef Type type;
+typedef Type type;
 };
 
 template< class Type, class Tag >
 struct value_type_of< tagged< Type, Tag > >
 {
-    typedef Type type;
+typedef Type type;
 };
 
 

@@ -25,90 +25,90 @@
 
 namespace boost { namespace spirit
 {
-    ///////////////////////////////////////////////////////////////////////////
-    // Enablers
-    ///////////////////////////////////////////////////////////////////////////
-    template <>
-    struct use_directive<karma::domain, tag::verbatim>   // enables verbatim[]
-      : mpl::true_ {};
+///////////////////////////////////////////////////////////////////////////
+// Enablers
+///////////////////////////////////////////////////////////////////////////
+template <>
+struct use_directive<karma::domain, tag::verbatim>   // enables verbatim[]
+: mpl::true_ {};
 
 }}
 
 namespace boost { namespace spirit { namespace karma
 {
 #ifndef BOOST_SPIRIT_NO_PREDEFINED_TERMINALS
-    using spirit::verbatim;
+using spirit::verbatim;
 #endif
-    using spirit::verbatim_type;
+using spirit::verbatim_type;
 
-    ///////////////////////////////////////////////////////////////////////////
-    //  The verbatim generator is used for verbatim[...] directives.
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Subject>
-    struct verbatim_generator : unary_generator<verbatim_generator<Subject> >
-    {
-        typedef Subject subject_type;
-        typedef typename subject_type::properties properties;
+///////////////////////////////////////////////////////////////////////////
+//  The verbatim generator is used for verbatim[...] directives.
+///////////////////////////////////////////////////////////////////////////
+template <typename Subject>
+struct verbatim_generator : unary_generator<verbatim_generator<Subject> >
+{
+typedef Subject subject_type;
+typedef typename subject_type::properties properties;
 
-        template <typename Context, typename Iterator>
-        struct attribute
-          : traits::attribute_of<subject_type, Context, Iterator>
-        {};
+template <typename Context, typename Iterator>
+struct attribute
+: traits::attribute_of<subject_type, Context, Iterator>
+{};
 
-        verbatim_generator(Subject const& subject)
-          : subject(subject) {}
+verbatim_generator(Subject const& subject)
+: subject(subject) {}
 
-        template <typename OutputIterator, typename Context, typename Delimiter
-          , typename Attribute>
-        bool generate(OutputIterator& sink, Context& ctx, Delimiter const& d
-          , Attribute const& attr) const
-        {
-            //  the verbatim generator simply dispatches to the embedded 
-            //  generator while supplying unused_delimiter as the new delimiter
-            //  to avoid delimiting down the generator stream
-            typedef detail::unused_delimiter<Delimiter> unused_delimiter;
+template <typename OutputIterator, typename Context, typename Delimiter
+, typename Attribute>
+bool generate(OutputIterator& sink, Context& ctx, Delimiter const& d
+, Attribute const& attr) const
+{
+//  the verbatim generator simply dispatches to the embedded 
+//  generator while supplying unused_delimiter as the new delimiter
+//  to avoid delimiting down the generator stream
+typedef detail::unused_delimiter<Delimiter> unused_delimiter;
 
-            return subject.generate(sink, ctx, unused_delimiter(d), attr) &&
-                   karma::delimit_out(sink, d);     // always do post-delimiting 
-        }
+return subject.generate(sink, ctx, unused_delimiter(d), attr) &&
+karma::delimit_out(sink, d);     // always do post-delimiting 
+}
 
-        template <typename Context>
-        info what(Context& context) const
-        {
-            return info("verbatim", subject.what(context));
-        }
+template <typename Context>
+info what(Context& context) const
+{
+return info("verbatim", subject.what(context));
+}
 
-        Subject subject;
-    };
+Subject subject;
+};
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Generator generators: make_xxx function (objects)
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Subject, typename Modifiers>
-    struct make_directive<tag::verbatim, Subject, Modifiers>
-    {
-        typedef verbatim_generator<Subject> result_type;
-        result_type operator()(unused_type, Subject const& subject, unused_type) const
-        {
-            return result_type(subject);
-        }
-    };
+///////////////////////////////////////////////////////////////////////////
+// Generator generators: make_xxx function (objects)
+///////////////////////////////////////////////////////////////////////////
+template <typename Subject, typename Modifiers>
+struct make_directive<tag::verbatim, Subject, Modifiers>
+{
+typedef verbatim_generator<Subject> result_type;
+result_type operator()(unused_type, Subject const& subject, unused_type) const
+{
+return result_type(subject);
+}
+};
 
 }}}
 
 namespace boost { namespace spirit { namespace traits
 {
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Subject>
-    struct has_semantic_action<karma::verbatim_generator<Subject> >
-      : unary_has_semantic_action<Subject> {};
+///////////////////////////////////////////////////////////////////////////
+template <typename Subject>
+struct has_semantic_action<karma::verbatim_generator<Subject> >
+: unary_has_semantic_action<Subject> {};
 
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename Subject, typename Attribute, typename Context
-        , typename Iterator>
-    struct handles_container<karma::verbatim_generator<Subject>, Attribute
-        , Context, Iterator>
-      : unary_handles_container<Subject, Attribute, Context, Iterator> {};
+///////////////////////////////////////////////////////////////////////////
+template <typename Subject, typename Attribute, typename Context
+, typename Iterator>
+struct handles_container<karma::verbatim_generator<Subject>, Attribute
+, Context, Iterator>
+: unary_handles_container<Subject, Attribute, Context, Iterator> {};
 }}}
 
 #endif

@@ -26,13 +26,13 @@ namespace ssl {
 
 /// Bitmask type for peer verification.
 /**
- * Possible values are:
- *
- * @li @ref verify_none
- * @li @ref verify_peer
- * @li @ref verify_fail_if_no_peer_cert
- * @li @ref verify_client_once
- */
+* Possible values are:
+*
+* @li @ref verify_none
+* @li @ref verify_peer
+* @li @ref verify_fail_if_no_peer_cert
+* @li @ref verify_client_once
+*/
 typedef int verify_mode;
 
 #if defined(GENERATING_DOCUMENTATION)

@@ -27,67 +27,67 @@ namespace boost { namespace gil {
 /// Input iterator to read images.
 template <typename Reader>
 class scanline_read_iterator
-    : public boost::iterator_facade<scanline_read_iterator<Reader>, byte_t*, std::input_iterator_tag>
+: public boost::iterator_facade<scanline_read_iterator<Reader>, byte_t*, std::input_iterator_tag>
 {
 private:
-    using base_t = boost::iterator_facade
-        <
-            scanline_read_iterator<Reader>,
-            byte_t*,
-            std::input_iterator_tag
-        >;
+using base_t = boost::iterator_facade
+<
+scanline_read_iterator<Reader>,
+byte_t*,
+std::input_iterator_tag
+>;
 public:
-    scanline_read_iterator(Reader& reader, int pos = 0)
-        : reader_(reader), pos_(pos)
-    {
-        buffer_       = std::make_shared<buffer_t>(buffer_t(reader_._scanline_length));
-        buffer_start_ = &buffer_->front();
-    }
+scanline_read_iterator(Reader& reader, int pos = 0)
+: reader_(reader), pos_(pos)
+{
+buffer_       = std::make_shared<buffer_t>(buffer_t(reader_._scanline_length));
+buffer_start_ = &buffer_->front();
+}
 
 private:
-    friend class boost::iterator_core_access;
+friend class boost::iterator_core_access;
 
-    void increment()
-    {
-        if (skip_scanline_)
-        {
-            reader_.skip(buffer_start_, pos_);
-        }
+void increment()
+{
+if (skip_scanline_)
+{
+reader_.skip(buffer_start_, pos_);
+}
 
-        ++pos_;
+++pos_;
 
-        skip_scanline_ = true;
-        read_scanline_ = true;
-    }
+skip_scanline_ = true;
+read_scanline_ = true;
+}
 
-    bool equal(scanline_read_iterator const& rhs) const
-    {
-        return pos_ == rhs.pos_;
-    }
+bool equal(scanline_read_iterator const& rhs) const
+{
+return pos_ == rhs.pos_;
+}
 
-    typename base_t::reference dereference() const
-    {
-        if (read_scanline_)
-        {
-            reader_.read(buffer_start_, pos_);
-        }
-        skip_scanline_ = false;
-        read_scanline_ = false;
+typename base_t::reference dereference() const
+{
+if (read_scanline_)
+{
+reader_.read(buffer_start_, pos_);
+}
+skip_scanline_ = false;
+read_scanline_ = false;
 
-        return buffer_start_;
-    }
+return buffer_start_;
+}
 
 private:
-    Reader& reader_;
+Reader& reader_;
 
-    mutable int pos_            = 0;
-    mutable bool read_scanline_ = true;
-    mutable bool skip_scanline_ = true;
+mutable int pos_            = 0;
+mutable bool read_scanline_ = true;
+mutable bool skip_scanline_ = true;
 
-    using buffer_t     = std::vector<byte_t>;
-    using buffer_ptr_t = std::shared_ptr<buffer_t>;
-    buffer_ptr_t buffer_;
-    mutable byte_t* buffer_start_ = nullptr;
+using buffer_t     = std::vector<byte_t>;
+using buffer_ptr_t = std::shared_ptr<buffer_t>;
+buffer_ptr_t buffer_;
+mutable byte_t* buffer_start_ = nullptr;
 };
 
 #if BOOST_WORKAROUND(BOOST_MSVC, >= 1400)

@@ -59,75 +59,75 @@ namespace pmr {
 //! external synchronization and may have thread-specific pools to reduce
 //! synchronization costs.
 class BOOST_CONTAINER_DECL synchronized_pool_resource
-   : public memory_resource
+: public memory_resource
 {
-   dtl::thread_mutex m_mut;
-   pool_resource     m_pool_resource;
+dtl::thread_mutex m_mut;
+pool_resource     m_pool_resource;
 
-   public:
+public:
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(const pool_options&,memory_resource*)
-   synchronized_pool_resource(const pool_options& opts, memory_resource* upstream) BOOST_NOEXCEPT;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(const pool_options&,memory_resource*)
+synchronized_pool_resource(const pool_options& opts, memory_resource* upstream) BOOST_NOEXCEPT;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource()
-   synchronized_pool_resource() BOOST_NOEXCEPT;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource()
+synchronized_pool_resource() BOOST_NOEXCEPT;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(memory_resource*)
-   explicit synchronized_pool_resource(memory_resource* upstream) BOOST_NOEXCEPT;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(memory_resource*)
+explicit synchronized_pool_resource(memory_resource* upstream) BOOST_NOEXCEPT;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(const pool_options&)
-   explicit synchronized_pool_resource(const pool_options& opts) BOOST_NOEXCEPT;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::unsynchronized_pool_resource(const pool_options&)
+explicit synchronized_pool_resource(const pool_options& opts) BOOST_NOEXCEPT;
 
-   #if !defined(BOOST_NO_CXX11_DELETED_FUNCTIONS) || defined(BOOST_CONTAINER_DOXYGEN_INVOKED)
-   synchronized_pool_resource(const synchronized_pool_resource&) = delete;
-   synchronized_pool_resource operator=(const synchronized_pool_resource&) = delete;
-   #else
-   private:
-   synchronized_pool_resource          (const synchronized_pool_resource&);
-   synchronized_pool_resource operator=(const synchronized_pool_resource&);
-   public:
-   #endif
+#if !defined(BOOST_NO_CXX11_DELETED_FUNCTIONS) || defined(BOOST_CONTAINER_DOXYGEN_INVOKED)
+synchronized_pool_resource(const synchronized_pool_resource&) = delete;
+synchronized_pool_resource operator=(const synchronized_pool_resource&) = delete;
+#else
+private:
+synchronized_pool_resource          (const synchronized_pool_resource&);
+synchronized_pool_resource operator=(const synchronized_pool_resource&);
+public:
+#endif
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::~unsynchronized_pool_resource()
-   ~synchronized_pool_resource() BOOST_OVERRIDE;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::~unsynchronized_pool_resource()
+~synchronized_pool_resource() BOOST_OVERRIDE;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::release()
-   void release();
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::release()
+void release();
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::upstream_resource()const
-   memory_resource* upstream_resource() const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::upstream_resource()const
+memory_resource* upstream_resource() const;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::options()const
-   pool_options options() const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::options()const
+pool_options options() const;
 
-   protected:
+protected:
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_allocate()
-   void* do_allocate(std::size_t bytes, std::size_t alignment) BOOST_OVERRIDE;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_allocate()
+void* do_allocate(std::size_t bytes, std::size_t alignment) BOOST_OVERRIDE;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_deallocate(void*,std::size_t,std::size_t)
-   void do_deallocate(void* p, std::size_t bytes, std::size_t alignment) BOOST_OVERRIDE;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_deallocate(void*,std::size_t,std::size_t)
+void do_deallocate(void* p, std::size_t bytes, std::size_t alignment) BOOST_OVERRIDE;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_is_equal(const memory_resource&)const
-   bool do_is_equal(const memory_resource& other) const BOOST_NOEXCEPT BOOST_OVERRIDE;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::do_is_equal(const memory_resource&)const
+bool do_is_equal(const memory_resource& other) const BOOST_NOEXCEPT BOOST_OVERRIDE;
 
-   //Non-standard observers
-   public:
-   
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_count()
-   std::size_t pool_count() const;
+//Non-standard observers
+public:
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_index(std::size_t)const
-   std::size_t pool_index(std::size_t bytes) const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_count()
+std::size_t pool_count() const;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_next_blocks_per_chunk(std::size_t)const
-   std::size_t pool_next_blocks_per_chunk(std::size_t pool_idx) const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_index(std::size_t)const
+std::size_t pool_index(std::size_t bytes) const;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_block(std::size_t)const
-   std::size_t pool_block(std::size_t pool_idx) const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_next_blocks_per_chunk(std::size_t)const
+std::size_t pool_next_blocks_per_chunk(std::size_t pool_idx) const;
 
-   //! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_cached_blocks(std::size_t)const
-   std::size_t pool_cached_blocks(std::size_t pool_idx) const;
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_block(std::size_t)const
+std::size_t pool_block(std::size_t pool_idx) const;
+
+//! @copydoc ::boost::container::pmr::unsynchronized_pool_resource::pool_cached_blocks(std::size_t)const
+std::size_t pool_cached_blocks(std::size_t pool_idx) const;
 };
 
 }  //namespace pmr {

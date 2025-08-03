@@ -32,7 +32,7 @@
 // I have no idea when Dinkumware added it, probably a lot
 // earlier than this check.
 #if BOOST_LIB_STD_DINKUMWARE >= BOOST_VERSION_NUMBER(6, 50, 0) ||              \
-  BOOST_COMP_MSVC >= BOOST_VERSION_NUMBER(17, 0, 0)
+BOOST_COMP_MSVC >= BOOST_VERSION_NUMBER(17, 0, 0)
 #define BOOST_UNORDERED_HAVE_PIECEWISE_CONSTRUCT 1
 #endif
 #endif
@@ -47,17 +47,17 @@
 #endif
 
 namespace boost {
-  namespace unordered {
+namespace unordered {
 #if BOOST_UNORDERED_HAVE_PIECEWISE_CONSTRUCT
-    using std::piecewise_construct_t;
-    using std::piecewise_construct;
+using std::piecewise_construct_t;
+using std::piecewise_construct;
 #else
-    struct piecewise_construct_t
-    {
-    };
-    const piecewise_construct_t piecewise_construct = piecewise_construct_t();
+struct piecewise_construct_t
+{
+};
+const piecewise_construct_t piecewise_construct = piecewise_construct_t();
 #endif
-  }
+}
 }
 
 #endif

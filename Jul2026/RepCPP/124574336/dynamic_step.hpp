@@ -38,11 +38,11 @@ namespace boost { namespace gil {
 template <typename T>
 struct HasDynamicXStepTypeConcept
 {
-    void constraints()
-    {
-        using type = typename dynamic_x_step_type<T>::type;
-        ignore_unused_variable_warning(type{});
-    }
+void constraints()
+{
+using type = typename dynamic_x_step_type<T>::type;
+ignore_unused_variable_warning(type{});
+}
 };
 
 /// \ingroup PixelLocatorConcept
@@ -58,11 +58,11 @@ struct HasDynamicXStepTypeConcept
 template <typename T>
 struct HasDynamicYStepTypeConcept
 {
-    void constraints()
-    {
-        using type = typename dynamic_y_step_type<T>::type;
-        ignore_unused_variable_warning(type{});
-    }
+void constraints()
+{
+using type = typename dynamic_y_step_type<T>::type;
+ignore_unused_variable_warning(type{});
+}
 };
 
 }} // namespace boost::gil

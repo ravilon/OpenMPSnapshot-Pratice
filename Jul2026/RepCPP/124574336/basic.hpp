@@ -42,10 +42,10 @@ namespace boost { namespace gil {
 template <typename T>
 struct DefaultConstructible
 {
-    void constraints()
-    {
-        function_requires<boost::DefaultConstructibleConcept<T>>();
-    }
+void constraints()
+{
+function_requires<boost::DefaultConstructibleConcept<T>>();
+}
 };
 
 /// \brief Concept of copy construction requirement.
@@ -61,10 +61,10 @@ struct DefaultConstructible
 template <typename T>
 struct CopyConstructible
 {
-    void constraints()
-    {
-        function_requires<boost::CopyConstructibleConcept<T>>();
-    }
+void constraints()
+{
+function_requires<boost::CopyConstructibleConcept<T>>();
+}
 };
 
 /// \brief Concept of copy assignment requirement.
@@ -80,10 +80,10 @@ struct CopyConstructible
 template <typename T>
 struct Assignable
 {
-    void constraints()
-    {
-        function_requires<boost::AssignableConcept<T>>();
-    }
+void constraints()
+{
+function_requires<boost::AssignableConcept<T>>();
+}
 };
 
 /// \brief Concept of == and != comparability requirement.
@@ -99,10 +99,10 @@ struct Assignable
 template <typename T>
 struct EqualityComparable
 {
-    void constraints()
-    {
-        function_requires<boost::EqualityComparableConcept<T>>();
-    }
+void constraints()
+{
+function_requires<boost::EqualityComparableConcept<T>>();
+}
 };
 
 /// \brief Concept of swap operation requirement.
@@ -117,12 +117,12 @@ struct EqualityComparable
 template <typename T>
 struct Swappable
 {
-    void constraints()
-    {
-        using std::swap;
-        swap(x,y);
-    }
-    T x,y;
+void constraints()
+{
+using std::swap;
+swap(x,y);
+}
+T x,y;
 };
 
 /// \brief Concept for type regularity requirement.
@@ -140,14 +140,14 @@ struct Swappable
 template <typename T>
 struct Regular
 {
-    void constraints()
-    {
-        gil_function_requires< boost::DefaultConstructibleConcept<T>>();
-        gil_function_requires< boost::CopyConstructibleConcept<T>>();
-        gil_function_requires< boost::EqualityComparableConcept<T>>(); // ==, !=
-        gil_function_requires< boost::AssignableConcept<T>>();
-        gil_function_requires< Swappable<T>>();
-    }
+void constraints()
+{
+gil_function_requires< boost::DefaultConstructibleConcept<T>>();
+gil_function_requires< boost::CopyConstructibleConcept<T>>();
+gil_function_requires< boost::EqualityComparableConcept<T>>(); // ==, !=
+gil_function_requires< boost::AssignableConcept<T>>();
+gil_function_requires< Swappable<T>>();
+}
 };
 
 /// \brief Concept for type as metafunction requirement.
@@ -162,10 +162,10 @@ struct Regular
 template <typename T>
 struct Metafunction
 {
-    void constraints()
-    {
-        using type = typename T::type;
-    }
+void constraints()
+{
+using type = typename T::type;
+}
 };
 
 /// \brief Concept of types equivalence requirement.
@@ -177,10 +177,10 @@ struct Metafunction
 template <typename T, typename U>
 struct SameType
 {
-    void constraints()
-    {
-        static_assert(std::is_same<T, U>::value, "");
-    }
+void constraints()
+{
+static_assert(std::is_same<T, U>::value, "");
+}
 };
 
 }} // namespace boost::gil

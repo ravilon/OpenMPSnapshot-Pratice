@@ -47,10 +47,10 @@ class bad_weak_ptr: public std::exception
 {
 public:
 
-    char const * what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
-    {
-        return "tr1::bad_weak_ptr";
-    }
+char const * what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
+{
+return "tr1::bad_weak_ptr";
+}
 };
 
 #if defined(BOOST_CLANG)

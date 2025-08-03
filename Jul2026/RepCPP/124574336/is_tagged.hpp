@@ -28,12 +28,12 @@
 template< class Type >
 struct is_tagged
 {
-    typedef {mpl::true_/mpl::false_} type;
+typedef {mpl::true_/mpl::false_} type;
 };
 \endcode
 
 See also tagged.
-                                                                                **/
+**/
 
 #ifndef BOOST_BIMAP_DOXYGEN_WILL_NOT_PROCESS_THE_FOLLOWING_LINES
 
@@ -47,11 +47,11 @@ namespace support {
 
 template< class Type >
 struct is_tagged :
-    ::boost::mpl::false_ {};
+::boost::mpl::false_ {};
 
 template< class Type, class Tag >
 struct is_tagged< tagged< Type, Tag > > :
-    ::boost::mpl::true_ {};
+::boost::mpl::true_ {};
 
 } // namespace support
 } // namespace tags

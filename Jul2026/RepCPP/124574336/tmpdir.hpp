@@ -22,7 +22,7 @@
 #include <boost/config.hpp>
 #ifdef BOOST_NO_STDC_NAMESPACE
 namespace std {
-    using ::getenv;
+using ::getenv;
 }
 #endif
 
@@ -30,17 +30,17 @@ namespace boost {
 namespace archive {
 
 inline const char * tmpdir(){
-    const char *dirname;
-    dirname = std::getenv("TMP");
-    if(NULL == dirname)
-        dirname = std::getenv("TMPDIR");
-    if(NULL == dirname)
-        dirname = std::getenv("TEMP");
-    if(NULL == dirname){
-        //BOOST_ASSERT(false); // no temp directory found
-        dirname = ".";
-    }
-    return dirname;
+const char *dirname;
+dirname = std::getenv("TMP");
+if(NULL == dirname)
+dirname = std::getenv("TMPDIR");
+if(NULL == dirname)
+dirname = std::getenv("TEMP");
+if(NULL == dirname){
+//BOOST_ASSERT(false); // no temp directory found
+dirname = ".";
+}
+return dirname;
 }
 
 } // archive

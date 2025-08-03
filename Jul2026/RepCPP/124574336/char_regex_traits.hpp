@@ -1,20 +1,20 @@
 /*
- *
- * Copyright (c) 2002
- * John Maddock
- *
- * Use, modification and distribution are subject to the
- * Boost Software License, Version 1.0. (See accompanying file
- * LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
- *
- */
+*
+* Copyright (c) 2002
+* John Maddock
+*
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+*
+*/
 
- /*
-  *   LOCATION:    see http://www.boost.org for most recent version.
-  *   FILE         char_regex_traits.cpp
-  *   VERSION      see <boost/version.hpp>
-  *   DESCRIPTION: Declares deprecated traits classes char_regex_traits<>.
-  */
+/*
+*   LOCATION:    see http://www.boost.org for most recent version.
+*   FILE         char_regex_traits.cpp
+*   VERSION      see <boost/version.hpp>
+*   DESCRIPTION: Declares deprecated traits classes char_regex_traits<>.
+*/
 
 
 #ifndef BOOST_REGEX_V4_CHAR_REGEX_TRAITS_HPP
@@ -44,10 +44,10 @@ template<>
 class char_regex_traits_i<char> : public regex_traits<char>
 {
 public:
-   typedef char char_type;
-   typedef unsigned char uchar_type;
-   typedef unsigned int size_type;
-   typedef regex_traits<char> base_type;
+typedef char char_type;
+typedef unsigned char uchar_type;
+typedef unsigned int size_type;
+typedef regex_traits<char> base_type;
 
 };
 
@@ -56,10 +56,10 @@ template<>
 class char_regex_traits_i<wchar_t> : public regex_traits<wchar_t>
 {
 public:
-   typedef wchar_t char_type;
-   typedef unsigned short uchar_type;
-   typedef unsigned int size_type;
-   typedef regex_traits<wchar_t> base_type;
+typedef wchar_t char_type;
+typedef unsigned short uchar_type;
+typedef unsigned int size_type;
+typedef regex_traits<wchar_t> base_type;
 
 };
 #endif

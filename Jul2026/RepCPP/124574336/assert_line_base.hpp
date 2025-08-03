@@ -20,27 +20,27 @@
 namespace boost { namespace xpressive { namespace detail
 {
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // assert_line_base
-    //
-    template<typename Traits>
-    struct assert_line_base
-        : quant_style_assertion
-    {
-        typedef typename Traits::char_type char_type;
-        typedef typename Traits::char_class_type char_class_type;
+///////////////////////////////////////////////////////////////////////////////
+// assert_line_base
+//
+template<typename Traits>
+struct assert_line_base
+: quant_style_assertion
+{
+typedef typename Traits::char_type char_type;
+typedef typename Traits::char_class_type char_class_type;
 
-    protected:
-        assert_line_base(Traits const &tr)
-            : newline_(lookup_classname(tr, "newline"))
-            , nl_(tr.widen('\n'))
-            , cr_(tr.widen('\r'))
-        {
-        }
+protected:
+assert_line_base(Traits const &tr)
+: newline_(lookup_classname(tr, "newline"))
+, nl_(tr.widen('\n'))
+, cr_(tr.widen('\r'))
+{
+}
 
-        char_class_type newline_;
-        char_type nl_, cr_;
-    };
+char_class_type newline_;
+char_type nl_, cr_;
+};
 
 }}}
 

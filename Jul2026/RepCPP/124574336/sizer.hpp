@@ -20,15 +20,15 @@
 
 namespace boost 
 {
-    //////////////////////////////////////////////////////////////////////
-    // constant array size
-    //////////////////////////////////////////////////////////////////////
-    
-    template< typename T, std::size_t sz >
-    char (& sizer( const T BOOST_RANGE_ARRAY_REF()[sz] ) )[sz];
-    
-    template< typename T, std::size_t sz >
-    char (& sizer( T BOOST_RANGE_ARRAY_REF()[sz] ) )[sz];
+//////////////////////////////////////////////////////////////////////
+// constant array size
+//////////////////////////////////////////////////////////////////////
+
+template< typename T, std::size_t sz >
+char (& sizer( const T BOOST_RANGE_ARRAY_REF()[sz] ) )[sz];
+
+template< typename T, std::size_t sz >
+char (& sizer( T BOOST_RANGE_ARRAY_REF()[sz] ) )[sz];
 
 } // namespace 'boost'
 

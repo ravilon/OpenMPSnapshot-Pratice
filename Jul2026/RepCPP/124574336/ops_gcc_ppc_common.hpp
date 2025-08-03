@@ -1,17 +1,17 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2009 Helge Bahmann
- * Copyright (c) 2013 Tim Blechmann
- * Copyright (c) 2014 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2009 Helge Bahmann
+* Copyright (c) 2013 Tim Blechmann
+* Copyright (c) 2014 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/ops_gcc_ppc_common.hpp
- *
- * This header contains basic utilities for gcc PowerPC backend.
- */
+* \file   atomic/detail/ops_gcc_ppc_common.hpp
+*
+* This header contains basic utilities for gcc PowerPC backend.
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_OPS_GCC_PPC_COMMON_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_OPS_GCC_PPC_COMMON_HPP_INCLUDED_
@@ -41,27 +41,27 @@ namespace detail {
 
 struct core_arch_operations_gcc_ppc_base
 {
-    static BOOST_CONSTEXPR_OR_CONST bool full_cas_based = false;
-    static BOOST_CONSTEXPR_OR_CONST bool is_always_lock_free = true;
+static BOOST_CONSTEXPR_OR_CONST bool full_cas_based = false;
+static BOOST_CONSTEXPR_OR_CONST bool is_always_lock_free = true;
 
-    static BOOST_FORCEINLINE void fence_before(memory_order order) BOOST_NOEXCEPT
-    {
+static BOOST_FORCEINLINE void fence_before(memory_order order) BOOST_NOEXCEPT
+{
 #if defined(__powerpc64__) || defined(__PPC64__)
-        if (order == memory_order_seq_cst)
-            __asm__ __volatile__ ("sync" ::: "memory");
-        else if ((static_cast< unsigned int >(order) & static_cast< unsigned int >(memory_order_release)) != 0u)
-            __asm__ __volatile__ ("lwsync" ::: "memory");
+if (order == memory_order_seq_cst)
+__asm__ __volatile__ ("sync" ::: "memory");
+else if ((static_cast< unsigned int >(order) & static_cast< unsigned int >(memory_order_release)) != 0u)
+__asm__ __volatile__ ("lwsync" ::: "memory");
 #else
-        if ((static_cast< unsigned int >(order) & static_cast< unsigned int >(memory_order_release)) != 0u)
-            __asm__ __volatile__ ("sync" ::: "memory");
+if ((static_cast< unsigned int >(order) & static_cast< unsigned int >(memory_order_release)) != 0u)
+__asm__ __volatile__ ("sync" ::: "memory");
 #endif
-    }
+}
 
-    static BOOST_FORCEINLINE void fence_after(memory_order order) BOOST_NOEXCEPT
-    {
-        if ((static_cast< unsigned int >(order) & (static_cast< unsigned int >(memory_order_consume) | static_cast< unsigned int >(memory_order_acquire))) != 0u)
-            __asm__ __volatile__ ("isync" ::: "memory");
-    }
+static BOOST_FORCEINLINE void fence_after(memory_order order) BOOST_NOEXCEPT
+{
+if ((static_cast< unsigned int >(order) & (static_cast< unsigned int >(memory_order_consume) | static_cast< unsigned int >(memory_order_acquire))) != 0u)
+__asm__ __volatile__ ("isync" ::: "memory");
+}
 };
 
 } // namespace detail

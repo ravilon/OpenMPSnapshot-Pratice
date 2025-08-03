@@ -43,17 +43,17 @@ namespace detail
 
 template<> struct mp_and_impl<>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T> struct mp_and_impl<T>
 {
-    using type = T;
+using type = T;
 };
 
 template<class T1, class... T> struct mp_and_impl<T1, T...>
 {
-    using type = mp_eval_if< mp_not<T1>, T1, mp_and, T... >;
+using type = mp_eval_if< mp_not<T1>, T1, mp_and, T... >;
 };
 
 } // namespace detail
@@ -65,12 +65,12 @@ namespace detail
 
 template<class L, class E = void> struct mp_and_impl
 {
-    using type = mp_false;
+using type = mp_false;
 };
 
 template<class... T> struct mp_and_impl< mp_list<T...>, mp_void<mp_if<T, void>...> >
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 } // namespace detail
@@ -106,17 +106,17 @@ namespace detail
 
 template<> struct mp_or_impl<>
 {
-    using type = mp_false;
+using type = mp_false;
 };
 
 template<class T> struct mp_or_impl<T>
 {
-    using type = T;
+using type = T;
 };
 
 template<class T1, class... T> struct mp_or_impl<T1, T...>
 {
-    using type = mp_eval_if< T1, T1, mp_or, T... >;
+using type = mp_eval_if< T1, T1, mp_or, T... >;
 };
 
 } // namespace detail
@@ -141,12 +141,12 @@ template<class... T> struct mp_same_impl;
 
 template<> struct mp_same_impl<>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T1, class... T> struct mp_same_impl<T1, T...>
 {
-    using type = mp_bool< mp_count<mp_list<T...>, T1>::value == sizeof...(T) >;
+using type = mp_bool< mp_count<mp_list<T...>, T1>::value == sizeof...(T) >;
 };
 
 } // namespace detail
@@ -161,37 +161,37 @@ template<class... T> struct mp_similar_impl;
 
 template<> struct mp_similar_impl<>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T> struct mp_similar_impl<T>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T> struct mp_similar_impl<T, T>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T1, class T2> struct mp_similar_impl<T1, T2>
 {
-    using type = mp_false;
+using type = mp_false;
 };
 
 template<template<class...> class L, class... T1, class... T2> struct mp_similar_impl<L<T1...>, L<T2...>>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<template<class...> class L, class... T> struct mp_similar_impl<L<T...>, L<T...>>
 {
-    using type = mp_true;
+using type = mp_true;
 };
 
 template<class T1, class T2, class T3, class... T> struct mp_similar_impl<T1, T2, T3, T...>
 {
-    using type = mp_all< typename mp_similar_impl<T1, T2>::type, typename mp_similar_impl<T1, T3>::type, typename mp_similar_impl<T1, T>::type... >;
+using type = mp_all< typename mp_similar_impl<T1, T2>::type, typename mp_similar_impl<T1, T3>::type, typename mp_similar_impl<T1, T>::type... >;
 };
 
 } // namespace detail

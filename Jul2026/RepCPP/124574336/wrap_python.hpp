@@ -23,9 +23,9 @@
 #ifdef _DEBUG
 # ifndef BOOST_DEBUG_PYTHON
 #  ifdef _MSC_VER  
-    // VC8.0 will complain if system headers are #included both with
-    // and without _DEBUG defined, so we have to #include all the
-    // system headers used by pyconfig.h right here.
+// VC8.0 will complain if system headers are #included both with
+// and without _DEBUG defined, so we have to #include all the
+// system headers used by pyconfig.h right here.
 #   include <stddef.h>
 #   include <stdarg.h>
 #   include <stdio.h>
@@ -215,7 +215,7 @@ typedef int pid_t;
 
 #if !defined(PY_MAJOR_VERSION) || PY_MAJOR_VERSION < 2
 # define PyObject_INIT(op, typeobj) \
-        ( (op)->ob_type = (typeobj), _Py_NewReference((PyObject *)(op)), (op) )
+( (op)->ob_type = (typeobj), _Py_NewReference((PyObject *)(op)), (op) )
 #endif
 
 // Define Python 3 macros for Python 2.x
@@ -226,7 +226,7 @@ typedef int pid_t;
 # define Py_SIZE(o)    (((PyVarObject*)(o))->ob_size)
 
 # define PyVarObject_HEAD_INIT(type, size) \
-        PyObject_HEAD_INIT(type) size,
+PyObject_HEAD_INIT(type) size,
 #endif
 
 #if PY_VERSION_HEX < 0x030900A4

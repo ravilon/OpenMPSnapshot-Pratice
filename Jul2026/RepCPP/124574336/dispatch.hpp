@@ -19,22 +19,22 @@
 #include <boost/type_traits/is_convertible.hpp>         
 
 namespace boost { namespace iostreams {namespace detail {
-    
+
 template< typename T, typename Tag1, typename Tag2,
-          typename Tag3 = mpl::void_, typename Tag4 = mpl::void_,
-          typename Tag5 = mpl::void_, typename Tag6 = mpl::void_,
-          typename Category = 
-              BOOST_DEDUCED_TYPENAME category_of<T>::type >
+typename Tag3 = mpl::void_, typename Tag4 = mpl::void_,
+typename Tag5 = mpl::void_, typename Tag6 = mpl::void_,
+typename Category = 
+BOOST_DEDUCED_TYPENAME category_of<T>::type >
 struct dispatch 
-    : iostreams::select<  // Disambiguation for Tru64.
-          is_convertible<Category, Tag1>, Tag1,
-          is_convertible<Category, Tag2>, Tag2,
-          is_convertible<Category, Tag3>, Tag3,
-          is_convertible<Category, Tag4>, Tag4,
-          is_convertible<Category, Tag5>, Tag5,
-          is_convertible<Category, Tag6>, Tag6
-      >
-    { };
+: iostreams::select<  // Disambiguation for Tru64.
+is_convertible<Category, Tag1>, Tag1,
+is_convertible<Category, Tag2>, Tag2,
+is_convertible<Category, Tag3>, Tag3,
+is_convertible<Category, Tag4>, Tag4,
+is_convertible<Category, Tag5>, Tag5,
+is_convertible<Category, Tag6>, Tag6
+>
+{ };
 
 } } } // End namespaces detail, iostreams, boost.
 

@@ -35,7 +35,7 @@ namespace detail
 \brief Assign the four points of a 2D box
 \ingroup assign
 \note The order is crucial. Most logical is LOWER, UPPER and sub-order LEFT, RIGHT
-    so this is how it is implemented.
+so this is how it is implemented.
 \tparam Box \tparam_box
 \tparam Point \tparam_point
 \param box \param_box
@@ -51,20 +51,20 @@ namespace detail
 */
 template <typename Box, typename Point>
 inline void assign_box_corners(Box const& box,
-        Point& lower_left, Point& lower_right,
-        Point& upper_left, Point& upper_right)
+Point& lower_left, Point& lower_right,
+Point& upper_left, Point& upper_right)
 {
-    concepts::check<Box const>();
-    concepts::check<Point>();
+concepts::check<Box const>();
+concepts::check<Point>();
 
-    detail::assign::assign_box_2d_corner
-            <min_corner, min_corner>(box, lower_left);
-    detail::assign::assign_box_2d_corner
-            <max_corner, min_corner>(box, lower_right);
-    detail::assign::assign_box_2d_corner
-            <min_corner, max_corner>(box, upper_left);
-    detail::assign::assign_box_2d_corner
-            <max_corner, max_corner>(box, upper_right);
+detail::assign::assign_box_2d_corner
+<min_corner, min_corner>(box, lower_left);
+detail::assign::assign_box_2d_corner
+<max_corner, min_corner>(box, lower_right);
+detail::assign::assign_box_2d_corner
+<min_corner, max_corner>(box, upper_left);
+detail::assign::assign_box_2d_corner
+<max_corner, max_corner>(box, upper_right);
 }
 
 // Silence warning C4127: conditional expression is constant
@@ -77,20 +77,20 @@ inline void assign_box_corners(Box const& box,
 template <bool Reverse, typename Box, typename Range>
 inline void assign_box_corners_oriented(Box const& box, Range& corners)
 {
-    if (Reverse)
-    {
-        // make counterclockwise ll,lr,ur,ul
-        assign_box_corners(box,
-                           range::at(corners, 0), range::at(corners, 1),
-                           range::at(corners, 3), range::at(corners, 2));
-    }
-    else
-    {
-        // make clockwise ll,ul,ur,lr
-        assign_box_corners(box,
-                           range::at(corners, 0), range::at(corners, 3),
-                           range::at(corners, 1), range::at(corners, 2));
-    }
+if (Reverse)
+{
+// make counterclockwise ll,lr,ur,ul
+assign_box_corners(box,
+range::at(corners, 0), range::at(corners, 1),
+range::at(corners, 3), range::at(corners, 2));
+}
+else
+{
+// make clockwise ll,ul,ur,lr
+assign_box_corners(box,
+range::at(corners, 0), range::at(corners, 3),
+range::at(corners, 1), range::at(corners, 2));
+}
 }
 #if defined(_MSC_VER)
 #pragma warning(pop)

@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_FILE) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/basic_random_access_file.hpp>
 
@@ -32,6 +32,6 @@ typedef basic_random_access_file<> random_access_file;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_FILE)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_RANDOM_ACCESS_FILE_HPP

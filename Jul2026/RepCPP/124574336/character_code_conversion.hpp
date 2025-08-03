@@ -1,9 +1,9 @@
 /*
- * Copyright 2016 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_CHARACTER_CODE_CONVERSION_HPP_INCLUDED_
 #define BOOST_WINAPI_CHARACTER_CODE_CONVERSION_HPP_INCLUDED_
@@ -20,23 +20,23 @@ extern "C" {
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM int BOOST_WINAPI_WINAPI_CC
 MultiByteToWideChar(
-    boost::winapi::UINT_ CodePage,
-    boost::winapi::DWORD_ dwFlags,
-    boost::winapi::LPCSTR_ lpMultiByteStr,
-    int cbMultiByte,
-    boost::winapi::LPWSTR_ lpWideCharStr,
-    int cchWideChar);
+boost::winapi::UINT_ CodePage,
+boost::winapi::DWORD_ dwFlags,
+boost::winapi::LPCSTR_ lpMultiByteStr,
+int cbMultiByte,
+boost::winapi::LPWSTR_ lpWideCharStr,
+int cchWideChar);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM int BOOST_WINAPI_WINAPI_CC
 WideCharToMultiByte(
-    boost::winapi::UINT_ CodePage,
-    boost::winapi::DWORD_ dwFlags,
-    boost::winapi::LPCWSTR_ lpWideCharStr,
-    int cchWideChar,
-    boost::winapi::LPSTR_ lpMultiByteStr,
-    int cbMultiByte,
-    boost::winapi::LPCSTR_ lpDefaultChar,
-    boost::winapi::LPBOOL_ lpUsedDefaultChar);
+boost::winapi::UINT_ CodePage,
+boost::winapi::DWORD_ dwFlags,
+boost::winapi::LPCWSTR_ lpWideCharStr,
+int cchWideChar,
+boost::winapi::LPSTR_ lpMultiByteStr,
+int cbMultiByte,
+boost::winapi::LPCSTR_ lpDefaultChar,
+boost::winapi::LPBOOL_ lpUsedDefaultChar);
 
 } // extern "C"
 #endif // #if !defined( BOOST_USE_WINDOWS_H )

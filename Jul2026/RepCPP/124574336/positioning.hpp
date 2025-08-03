@@ -30,7 +30,7 @@ namespace std { using ::fpos_t; }
 #endif
 
 namespace boost { namespace iostreams {
-                    
+
 //------------------Definition of stream_offset-------------------------------//
 
 typedef boost::intmax_t stream_offset;
@@ -83,9 +83,9 @@ inline stream_offset position_to_offset(std::streampos pos) { return pos; }
 inline stream_offset fpos_t_to_offset(std::fpos_t pos)
 {
 #  if defined(_POSIX_) || (_INTEGRAL_MAX_BITS >= 64) || defined(__IBMCPP__)
-    return pos;
+return pos;
 #  else
-    return BOOST_IOSTREAMS_FPOSOFF(pos);
+return BOOST_IOSTREAMS_FPOSOFF(pos);
 #  endif
 }
 
@@ -93,19 +93,19 @@ inline stream_offset fpos_t_to_offset(std::fpos_t pos)
 inline std::fpos_t streampos_to_fpos_t(std::streampos pos)
 {
 #  if defined (_CPPLIB_VER) || defined(__IBMCPP__)
-    return pos.seekpos();
+return pos.seekpos();
 #  else
-    return pos.get_fpos_t();
+return pos.get_fpos_t();
 #  endif
 }
 
 inline stream_offset position_to_offset(std::streampos pos)
 {
-    return fpos_t_to_offset(streampos_to_fpos_t(pos)) +
-        static_cast<stream_offset>(
-            static_cast<std::streamoff>(pos) -
-            BOOST_IOSTREAMS_FPOSOFF(streampos_to_fpos_t(pos))
-        );
+return fpos_t_to_offset(streampos_to_fpos_t(pos)) +
+static_cast<stream_offset>(
+static_cast<std::streamoff>(pos) -
+BOOST_IOSTREAMS_FPOSOFF(streampos_to_fpos_t(pos))
+);
 }
 
 # endif // # ifndef BOOST_IOSTREAMS_HAS_DINKUMWARE_FPOS 

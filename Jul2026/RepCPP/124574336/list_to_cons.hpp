@@ -1,8 +1,8 @@
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 ==============================================================================*/
 #if !defined(FUSION_LIST_TO_CONS_07172005_1041)
 #define FUSION_LIST_TO_CONS_07172005_1041
@@ -19,8 +19,8 @@
 
 namespace boost { namespace fusion
 {
-    struct nil_;
-    struct void_;
+struct nil_;
+struct void_;
 }}
 
 #if !defined(BOOST_FUSION_DONT_USE_PREPROCESSED_FILES)
@@ -31,12 +31,12 @@ namespace boost { namespace fusion
 #endif
 
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-    This is an auto-generated file. Do not edit!
+This is an auto-generated file. Do not edit!
 ==============================================================================*/
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -45,25 +45,25 @@ namespace boost { namespace fusion
 
 namespace boost { namespace fusion { namespace detail
 {
-    template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_LIST_SIZE, typename T)>
-    struct list_to_cons
-    {
-        typedef T0 head_type;
-        typedef list_to_cons<
-            BOOST_PP_ENUM_SHIFTED_PARAMS(FUSION_MAX_LIST_SIZE, T), void_>
-        tail_list_to_cons;
-        typedef typename tail_list_to_cons::type tail_type;
+template <BOOST_PP_ENUM_PARAMS(FUSION_MAX_LIST_SIZE, typename T)>
+struct list_to_cons
+{
+typedef T0 head_type;
+typedef list_to_cons<
+BOOST_PP_ENUM_SHIFTED_PARAMS(FUSION_MAX_LIST_SIZE, T), void_>
+tail_list_to_cons;
+typedef typename tail_list_to_cons::type tail_type;
 
-        typedef cons<head_type, tail_type> type;
+typedef cons<head_type, tail_type> type;
 
-        #include <boost/fusion/container/list/detail/cpp03/list_to_cons_call.hpp>
-    };
+#include <boost/fusion/container/list/detail/cpp03/list_to_cons_call.hpp>
+};
 
-    template <>
-    struct list_to_cons<BOOST_PP_ENUM(FUSION_MAX_LIST_SIZE, FUSION_VOID, _)>
-    {
-        typedef nil_ type;
-    };
+template <>
+struct list_to_cons<BOOST_PP_ENUM(FUSION_MAX_LIST_SIZE, FUSION_VOID, _)>
+{
+typedef nil_ type;
+};
 }}}
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)

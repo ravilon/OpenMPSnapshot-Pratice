@@ -33,58 +33,58 @@ class typeinfo
 {
 private:
 
-    typeinfo( typeinfo const& );
-    typeinfo& operator=( typeinfo const& );
+typeinfo( typeinfo const& );
+typeinfo& operator=( typeinfo const& );
 
-    char const * name_;
-    void (*lib_id_)();
+char const * name_;
+void (*lib_id_)();
 
 public:
 
-    typeinfo( char const * name, void (*lib_id)() ): name_( name ), lib_id_( lib_id )
-    {
-    }
+typeinfo( char const * name, void (*lib_id)() ): name_( name ), lib_id_( lib_id )
+{
+}
 
-    bool operator==( typeinfo const& rhs ) const
-    {
+bool operator==( typeinfo const& rhs ) const
+{
 #if ( defined(_WIN32) || defined(__CYGWIN__) ) && ( defined(__GNUC__) || defined(__clang__) ) && !defined(BOOST_DISABLE_CURRENT_FUNCTION)
 
-        return lib_id_ == rhs.lib_id_? this == &rhs: std::strcmp( name_, rhs.name_ ) == 0;
+return lib_id_ == rhs.lib_id_? this == &rhs: std::strcmp( name_, rhs.name_ ) == 0;
 
 #else
 
-        return this == &rhs;
+return this == &rhs;
 
 #endif
-    }
+}
 
-    bool operator!=( typeinfo const& rhs ) const
-    {
-        return !( *this == rhs );
-    }
+bool operator!=( typeinfo const& rhs ) const
+{
+return !( *this == rhs );
+}
 
-    bool before( typeinfo const& rhs ) const
-    {
+bool before( typeinfo const& rhs ) const
+{
 #if ( defined(_WIN32) || defined(__CYGWIN__) ) && ( defined(__GNUC__) || defined(__clang__) ) && !defined(BOOST_DISABLE_CURRENT_FUNCTION)
 
-        return lib_id_ == rhs.lib_id_? std::less< typeinfo const* >()( this, &rhs ): std::strcmp( name_, rhs.name_ ) < 0;
+return lib_id_ == rhs.lib_id_? std::less< typeinfo const* >()( this, &rhs ): std::strcmp( name_, rhs.name_ ) < 0;
 
 #else
 
-        return std::less< typeinfo const* >()( this, &rhs );
+return std::less< typeinfo const* >()( this, &rhs );
 
 #endif
-    }
+}
 
-    char const* name() const
-    {
-        return name_;
-    }
+char const* name() const
+{
+return name_;
+}
 };
 
 inline char const * demangled_name( core::typeinfo const & ti )
 {
-    return ti.name();
+return ti.name();
 }
 
 } // namespace core
@@ -94,12 +94,12 @@ namespace detail
 
 template<class T> struct BOOST_SYMBOL_VISIBLE core_typeid_
 {
-    static boost::core::typeinfo ti_;
+static boost::core::typeinfo ti_;
 
-    static char const * name()
-    {
-        return BOOST_CURRENT_FUNCTION;
-    }
+static char const * name()
+{
+return BOOST_CURRENT_FUNCTION;
+}
 };
 
 BOOST_SYMBOL_VISIBLE inline void core_typeid_lib_id()
@@ -153,7 +153,7 @@ typedef std::type_info typeinfo;
 
 inline std::string demangled_name( core::typeinfo const & ti )
 {
-    return core::demangle( ti.name() );
+return core::demangle( ti.name() );
 }
 
 } // namespace core

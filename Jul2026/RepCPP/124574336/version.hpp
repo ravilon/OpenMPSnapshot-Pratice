@@ -35,21 +35,21 @@ struct basic_traits;
 template<class T>
 struct version
 {
-    template<class U>
-    struct traits_class_version {
-        typedef typename U::version type;
-    };
+template<class U>
+struct traits_class_version {
+typedef typename U::version type;
+};
 
-    typedef mpl::integral_c_tag tag;
-    // note: at least one compiler complained w/o the full qualification
-    // on basic traits below
-    typedef
-        typename mpl::eval_if<
-            is_base_and_derived<boost::serialization::basic_traits,T>,
-            traits_class_version< T >,
-            mpl::int_<0>
-        >::type type;
-    BOOST_STATIC_CONSTANT(int, value = version::type::value);
+typedef mpl::integral_c_tag tag;
+// note: at least one compiler complained w/o the full qualification
+// on basic traits below
+typedef
+typename mpl::eval_if<
+is_base_and_derived<boost::serialization::basic_traits,T>,
+traits_class_version< T >,
+mpl::int_<0>
+>::type type;
+BOOST_STATIC_CONSTANT(int, value = version::type::value);
 };
 
 #ifndef BOOST_NO_INCLASS_MEMBER_INITIALIZATION
@@ -61,14 +61,14 @@ const int version<T>::value;
 } // namespace boost
 
 /* note: at first it seemed that this would be a good place to trap
- * as an error an attempt to set a version # for a class which doesn't
- * save its class information (including version #) in the archive.
- * However, this imposes a requirement that the version be set after
- * the implemention level which would be pretty confusing.  If this
- * is to be done, do this check in the input or output operators when
- * ALL the serialization traits are available.  Included the implementation
- * here with this comment as a reminder not to do this!
- */
+* as an error an attempt to set a version # for a class which doesn't
+* save its class information (including version #) in the archive.
+* However, this imposes a requirement that the version be set after
+* the implemention level which would be pretty confusing.  If this
+* is to be done, do this check in the input or output operators when
+* ALL the serialization traits are available.  Included the implementation
+* here with this comment as a reminder not to do this!
+*/
 
 #include <boost/mpl/less.hpp>
 #include <boost/mpl/comparison.hpp>
@@ -81,23 +81,23 @@ namespace serialization {                                              \
 template<>                                                             \
 struct version<T >                                                     \
 {                                                                      \
-    typedef mpl::int_<N> type;                                         \
-    typedef mpl::integral_c_tag tag;                                   \
-    BOOST_STATIC_CONSTANT(int, value = version::type::value);          \
-    BOOST_MPL_ASSERT((                                                 \
-        boost::mpl::less<                                              \
-            boost::mpl::int_<N>,                                       \
-            boost::mpl::int_<256>                                      \
-        >                                                              \
-    ));                                                                \
-    /*                                                                 \
-    BOOST_MPL_ASSERT((                                                 \
-        mpl::equal_to<                                                 \
-            :implementation_level<T >,                                 \
-            mpl::int_<object_class_info>                               \
-        >::value                                                       \
-    ));                                                                \
-    */                                                                 \
+typedef mpl::int_<N> type;                                         \
+typedef mpl::integral_c_tag tag;                                   \
+BOOST_STATIC_CONSTANT(int, value = version::type::value);          \
+BOOST_MPL_ASSERT((                                                 \
+boost::mpl::less<                                              \
+boost::mpl::int_<N>,                                       \
+boost::mpl::int_<256>                                      \
+>                                                              \
+));                                                                \
+/*                                                                 \
+BOOST_MPL_ASSERT((                                                 \
+mpl::equal_to<                                                 \
+:implementation_level<T >,                                 \
+mpl::int_<object_class_info>                               \
+>::value                                                       \
+));                                                                \
+*/                                                                 \
 };                                                                     \
 }                                                                      \
 }

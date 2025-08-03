@@ -51,28 +51,28 @@ namespace dtl {
 template <class Container>
 struct is_contiguous_container
 {
-   static const bool value =
-      boost::container::is_contiguous_container_detail::
-         has_member_function_callable_with_data<Container>::value && 
-      boost::container::is_contiguous_container_detail::
-         has_member_function_callable_with_data<const Container>::value;
+static const bool value =
+boost::container::is_contiguous_container_detail::
+has_member_function_callable_with_data<Container>::value && 
+boost::container::is_contiguous_container_detail::
+has_member_function_callable_with_data<const Container>::value;
 };
 
 
 template < class Container
-         , bool = boost::container::back_free_capacity_detail::
-                     has_member_function_callable_with_back_free_capacity<const Container>::value>
+, bool = boost::container::back_free_capacity_detail::
+has_member_function_callable_with_back_free_capacity<const Container>::value>
 struct back_free_capacity
 {
-   static typename Container::size_type get(const Container &c)
-   {  return c.back_free_capacity();  }
+static typename Container::size_type get(const Container &c)
+{  return c.back_free_capacity();  }
 };
 
 template < class Container>
 struct back_free_capacity<Container, false>
 {
-   static typename Container::size_type get(const Container &c)
-   {  return c.capacity() - c.size();  }
+static typename Container::size_type get(const Container &c)
+{  return c.capacity() - c.size();  }
 };
 
 }  //namespace dtl {

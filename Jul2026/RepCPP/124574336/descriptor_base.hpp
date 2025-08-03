@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_POSIX_STREAM_DESCRIPTOR) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/detail/io_control.hpp>
 #include <boost/asio/detail/socket_option.hpp>
@@ -34,50 +34,50 @@ namespace posix {
 class descriptor_base
 {
 public:
-  /// Wait types.
-  /**
-   * For use with descriptor::wait() and descriptor::async_wait().
-   */
-  enum wait_type
-  {
-    /// Wait for a descriptor to become ready to read.
-    wait_read,
+/// Wait types.
+/**
+* For use with descriptor::wait() and descriptor::async_wait().
+*/
+enum wait_type
+{
+/// Wait for a descriptor to become ready to read.
+wait_read,
 
-    /// Wait for a descriptor to become ready to write.
-    wait_write,
+/// Wait for a descriptor to become ready to write.
+wait_write,
 
-    /// Wait for a descriptor to have error conditions pending.
-    wait_error
-  };
+/// Wait for a descriptor to have error conditions pending.
+wait_error
+};
 
-  /// IO control command to get the amount of data that can be read without
-  /// blocking.
-  /**
-   * Implements the FIONREAD IO control command.
-   *
-   * @par Example
-   * @code
-   * boost::asio::posix::stream_descriptor descriptor(my_context);
-   * ...
-   * boost::asio::descriptor_base::bytes_readable command(true);
-   * descriptor.io_control(command);
-   * std::size_t bytes_readable = command.get();
-   * @endcode
-   *
-   * @par Concepts:
-   * IoControlCommand.
-   */
+/// IO control command to get the amount of data that can be read without
+/// blocking.
+/**
+* Implements the FIONREAD IO control command.
+*
+* @par Example
+* @code
+* boost::asio::posix::stream_descriptor descriptor(my_context);
+* ...
+* boost::asio::descriptor_base::bytes_readable command(true);
+* descriptor.io_control(command);
+* std::size_t bytes_readable = command.get();
+* @endcode
+*
+* @par Concepts:
+* IoControlCommand.
+*/
 #if defined(GENERATING_DOCUMENTATION)
-  typedef implementation_defined bytes_readable;
+typedef implementation_defined bytes_readable;
 #else
-  typedef boost::asio::detail::io_control::bytes_readable bytes_readable;
+typedef boost::asio::detail::io_control::bytes_readable bytes_readable;
 #endif
 
 protected:
-  /// Protected destructor to prevent deletion through this type.
-  ~descriptor_base()
-  {
-  }
+/// Protected destructor to prevent deletion through this type.
+~descriptor_base()
+{
+}
 };
 
 } // namespace posix
@@ -87,6 +87,6 @@ protected:
 #include <boost/asio/detail/pop_options.hpp>
 
 #endif // defined(BOOST_ASIO_HAS_POSIX_STREAM_DESCRIPTOR)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_POSIX_DESCRIPTOR_BASE_HPP

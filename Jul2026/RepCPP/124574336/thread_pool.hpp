@@ -1,9 +1,9 @@
 /*
- * Copyright 2013 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2013 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_THREAD_POOL_HPP_INCLUDED_
 #define BOOST_WINAPI_THREAD_POOL_HPP_INCLUDED_
@@ -23,17 +23,17 @@
 extern "C" {
 #if BOOST_WINAPI_PARTITION_DESKTOP
 typedef boost::winapi::VOID_ (BOOST_WINAPI_NTAPI_CC *WAITORTIMERCALLBACKFUNC)
-    (boost::winapi::PVOID_, boost::winapi::BOOLEAN_);
+(boost::winapi::PVOID_, boost::winapi::BOOLEAN_);
 typedef WAITORTIMERCALLBACKFUNC WAITORTIMERCALLBACK;
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 RegisterWaitForSingleObject(
-    boost::winapi::PHANDLE_ phNewWaitObject,
-    boost::winapi::HANDLE_ hObject,
-    WAITORTIMERCALLBACK Callback,
-    boost::winapi::PVOID_ Context,
-    boost::winapi::ULONG_ dwMilliseconds,
-    boost::winapi::ULONG_ dwFlags);
+boost::winapi::PHANDLE_ phNewWaitObject,
+boost::winapi::HANDLE_ hObject,
+WAITORTIMERCALLBACK Callback,
+boost::winapi::PVOID_ Context,
+boost::winapi::ULONG_ dwMilliseconds,
+boost::winapi::ULONG_ dwFlags);
 #endif
 } // extern "C"
 #endif
@@ -49,8 +49,8 @@ UnregisterWait(boost::winapi::HANDLE_ WaitHandle);
 #if BOOST_WINAPI_PARTITION_DESKTOP || BOOST_WINAPI_PARTITION_SYSTEM
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 UnregisterWaitEx(
-    boost::winapi::HANDLE_ WaitHandle,
-    boost::winapi::HANDLE_ CompletionEvent);
+boost::winapi::HANDLE_ WaitHandle,
+boost::winapi::HANDLE_ CompletionEvent);
 #endif
 } // extern "C"
 #endif
@@ -107,9 +107,9 @@ BOOST_CONSTEXPR_OR_CONST ULONG_ WT_TRANSFER_IMPERSONATION_ = 0x00000100;
 
 BOOST_FORCEINLINE BOOST_CONSTEXPR ULONG_ wt_set_max_threadpool_threads(ULONG_ flags, ULONG_ limit) BOOST_NOEXCEPT
 {
-    // Note: We don't use WT_SET_MAX_THREADPOOL_THREADS here because the way it's defined
-    //       the function no longer meets C++11 constexpr requirements.
-    return flags | (limit << 16);
+// Note: We don't use WT_SET_MAX_THREADPOOL_THREADS here because the way it's defined
+//       the function no longer meets C++11 constexpr requirements.
+return flags | (limit << 16);
 }
 
 BOOST_CONSTEXPR_OR_CONST ULONG_ wt_execute_default = WT_EXECUTEDEFAULT_;

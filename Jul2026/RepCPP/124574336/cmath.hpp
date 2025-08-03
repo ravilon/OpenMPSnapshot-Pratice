@@ -42,71 +42,71 @@ int const fp_nan = 4;
 
 template<class T> bool isfinite( T x )
 {
-    return x <= (std::numeric_limits<T>::max)() && x >= -(std::numeric_limits<T>::max)();
+return x <= (std::numeric_limits<T>::max)() && x >= -(std::numeric_limits<T>::max)();
 }
 
 template<class T> bool isinf( T x )
 {
-    return x > (std::numeric_limits<T>::max)() || x < -(std::numeric_limits<T>::max)();
+return x > (std::numeric_limits<T>::max)() || x < -(std::numeric_limits<T>::max)();
 }
 
 template<class T> bool isnan( T x )
 {
-    return !isfinite( x ) && !isinf( x );
+return !isfinite( x ) && !isinf( x );
 }
 
 template<class T> bool isnormal( T x )
 {
-    return isfinite( x ) && ( x >= (std::numeric_limits<T>::min)() || x <= -(std::numeric_limits<T>::min)() );
+return isfinite( x ) && ( x >= (std::numeric_limits<T>::min)() || x <= -(std::numeric_limits<T>::min)() );
 }
 
 template<class T> int fpclassify( T x )
 {
-    if( x == 0 ) return fp_zero;
+if( x == 0 ) return fp_zero;
 
-    if( x < 0 ) x = -x;
+if( x < 0 ) x = -x;
 
-    if( x > (std::numeric_limits<T>::max)() ) return fp_infinite;
+if( x > (std::numeric_limits<T>::max)() ) return fp_infinite;
 
-    if( x >= (std::numeric_limits<T>::min)() ) return fp_normal;
+if( x >= (std::numeric_limits<T>::min)() ) return fp_normal;
 
-    if( x < (std::numeric_limits<T>::min)() ) return fp_subnormal;
+if( x < (std::numeric_limits<T>::min)() ) return fp_subnormal;
 
-    return fp_nan;
+return fp_nan;
 }
 
 // Sign manipulation functions
 
 inline bool signbit( float x )
 {
-    boost::int32_t y;
+boost::int32_t y;
 
-    BOOST_STATIC_ASSERT( sizeof( x ) == sizeof( y ) );
+BOOST_STATIC_ASSERT( sizeof( x ) == sizeof( y ) );
 
-    std::memcpy( &y, &x, sizeof( y ) );
+std::memcpy( &y, &x, sizeof( y ) );
 
-    return y < 0;
+return y < 0;
 }
 
 inline bool signbit( double x )
 {
-    boost::int64_t y;
+boost::int64_t y;
 
-    BOOST_STATIC_ASSERT( sizeof( x ) == sizeof( y ) );
+BOOST_STATIC_ASSERT( sizeof( x ) == sizeof( y ) );
 
-    std::memcpy( &y, &x, sizeof( y ) );
+std::memcpy( &y, &x, sizeof( y ) );
 
-    return y < 0;
+return y < 0;
 }
 
 inline bool signbit( long double x )
 {
-    return signbit( static_cast<double>( x ) );
+return signbit( static_cast<double>( x ) );
 }
 
 template<class T> T copysign( T x, T y )
 {
-    return signbit( x ) == signbit( y )? x: -x;
+return signbit( x ) == signbit( y )? x: -x;
 }
 
 } // namespace core
@@ -126,45 +126,45 @@ namespace core
 
 template<class T> T copysign( T x, T y )
 {
-    return static_cast<T>( _copysign( static_cast<double>( x ), static_cast<double>( y ) ) );
+return static_cast<T>( _copysign( static_cast<double>( x ), static_cast<double>( y ) ) );
 }
 
 template<class T> bool isnan( T x )
 {
-    return _isnan( static_cast<double>( x ) ) != 0;
+return _isnan( static_cast<double>( x ) ) != 0;
 }
 
 template<class T> bool isfinite( T x )
 {
-    return _finite( static_cast<double>( x ) ) != 0;
+return _finite( static_cast<double>( x ) ) != 0;
 }
 
 template<class T> bool isinf( T x )
 {
-    return ( _fpclass( static_cast<double>( x ) ) & ( _FPCLASS_PINF | _FPCLASS_NINF ) ) != 0;
+return ( _fpclass( static_cast<double>( x ) ) & ( _FPCLASS_PINF | _FPCLASS_NINF ) ) != 0;
 }
 
 inline bool isnormal( float x )
 {
-    // no _fpclassf in 32 bit mode
-    unsigned y = reinterpret_cast< unsigned const& >( x );
-    unsigned exp = ( y >> 23 ) & 0xFF;
-    return exp != 0 && exp != 0xFF;
+// no _fpclassf in 32 bit mode
+unsigned y = reinterpret_cast< unsigned const& >( x );
+unsigned exp = ( y >> 23 ) & 0xFF;
+return exp != 0 && exp != 0xFF;
 }
 
 inline bool isnormal( double x )
 {
-    return ( _fpclass( x ) & ( _FPCLASS_PN | _FPCLASS_NN ) ) != 0;
+return ( _fpclass( x ) & ( _FPCLASS_PN | _FPCLASS_NN ) ) != 0;
 }
 
 inline bool isnormal( long double x )
 {
-    return boost::core::isnormal( static_cast<double>( x ) );
+return boost::core::isnormal( static_cast<double>( x ) );
 }
 
 template<class T> bool signbit( T x )
 {
-    return _copysign( 1.0, static_cast<double>( x ) ) < 0.0;
+return _copysign( 1.0, static_cast<double>( x ) ) < 0.0;
 }
 
 int const fp_zero = 0;
@@ -175,62 +175,62 @@ int const fp_nan = 4;
 
 inline int fpclassify( float x )
 {
-    switch( _fpclass( x ) )
-    {
-    case _FPCLASS_SNAN:
-    case _FPCLASS_QNAN:
+switch( _fpclass( x ) )
+{
+case _FPCLASS_SNAN:
+case _FPCLASS_QNAN:
 
-        return fp_nan;
+return fp_nan;
 
-    case _FPCLASS_NINF:
-    case _FPCLASS_PINF:
+case _FPCLASS_NINF:
+case _FPCLASS_PINF:
 
-        return fp_infinite;
+return fp_infinite;
 
-    case _FPCLASS_NZ:
-    case _FPCLASS_PZ:
+case _FPCLASS_NZ:
+case _FPCLASS_PZ:
 
-        return fp_zero;
+return fp_zero;
 
-    default:
+default:
 
-        return boost::core::isnormal( x )? fp_normal: fp_subnormal;
-    }
+return boost::core::isnormal( x )? fp_normal: fp_subnormal;
+}
 }
 
 inline int fpclassify( double x )
 {
-    switch( _fpclass( x ) )
-    {
-    case _FPCLASS_SNAN:
-    case _FPCLASS_QNAN:
+switch( _fpclass( x ) )
+{
+case _FPCLASS_SNAN:
+case _FPCLASS_QNAN:
 
-        return fp_nan;
+return fp_nan;
 
-    case _FPCLASS_NINF:
-    case _FPCLASS_PINF:
+case _FPCLASS_NINF:
+case _FPCLASS_PINF:
 
-        return fp_infinite;
+return fp_infinite;
 
-    case _FPCLASS_NZ:
-    case _FPCLASS_PZ:
+case _FPCLASS_NZ:
+case _FPCLASS_PZ:
 
-        return fp_zero;
+return fp_zero;
 
-    case _FPCLASS_ND:
-    case _FPCLASS_PD:
+case _FPCLASS_ND:
+case _FPCLASS_PD:
 
-        return fp_subnormal;
+return fp_subnormal;
 
-    default:
+default:
 
-        return fp_normal;
-    }
+return fp_normal;
+}
 }
 
 inline int fpclassify( long double x )
 {
-    return boost::core::fpclassify( static_cast<double>( x ) );
+return boost::core::fpclassify( static_cast<double>( x ) );
 }
 
 #else
@@ -255,7 +255,7 @@ using std::signbit;
 
 template<class T> T copysign( T x, T y )
 {
-    return std::copysign( x, y );
+return std::copysign( x, y );
 }
 
 #else
@@ -267,24 +267,24 @@ namespace detail
 
 inline float copysign_impl( float x, float y )
 {
-    return __builtin_copysignf( x, y );
+return __builtin_copysignf( x, y );
 }
 
 inline double copysign_impl( double x, double y )
 {
-    return __builtin_copysign( x, y );
+return __builtin_copysign( x, y );
 }
 
 inline long double copysign_impl( long double x, long double y )
 {
-    return __builtin_copysignl( x, y );
+return __builtin_copysignl( x, y );
 }
 
 } // namespace detail
 
 template<class T> T copysign( T x, T y )
 {
-    return boost::core::detail::copysign_impl( x, y );
+return boost::core::detail::copysign_impl( x, y );
 }
 
 #endif // !defined(__GNUC__)

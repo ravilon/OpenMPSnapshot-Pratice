@@ -18,7 +18,7 @@ timestamp file
 
 
 #define BOOST_FT_OUT_FILE \
-      "../../../boost/function_types/detail/pp_tags/preprocessed.hpp"
+"../../../boost/function_types/detail/pp_tags/preprocessed.hpp"
 #pragma message(generating BOOST_FT_OUT_FILE)
 #pragma wave option(output: BOOST_FT_OUT_FILE, preserve: 2)
 #include <boost/function_types/detail/pp_tags/master.hpp>
@@ -26,7 +26,7 @@ timestamp file
 #undef  BOOST_FT_OUT_FILE
 
 #define BOOST_FT_OUT_FILE \
-      "../../../boost/function_types/detail/pp_variate_loop/preprocessed.hpp"
+"../../../boost/function_types/detail/pp_variate_loop/preprocessed.hpp"
 #pragma message(generating BOOST_FT_OUT_FILE)
 #pragma wave option(output: BOOST_FT_OUT_FILE, preserve: 2)
 #include <boost/function_types/detail/pp_variate_loop/master.hpp>
@@ -34,7 +34,7 @@ timestamp file
 #undef  BOOST_FT_OUT_FILE
 
 #define BOOST_FT_OUT_FILE \
-      "../../../boost/function_types/detail/pp_retag_default_cc/preprocessed.hpp"
+"../../../boost/function_types/detail/pp_retag_default_cc/preprocessed.hpp"
 #pragma message(generating BOOST_FT_OUT_FILE)
 #pragma wave option(output: BOOST_FT_OUT_FILE, preserve: 2)
 #include <boost/function_types/detail/pp_retag_default_cc/master.hpp>

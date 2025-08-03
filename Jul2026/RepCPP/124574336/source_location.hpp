@@ -21,72 +21,72 @@ struct source_location
 {
 private:
 
-    char const * file_;
-    char const * function_;
-    boost::uint_least32_t line_;
-    boost::uint_least32_t column_;
+char const * file_;
+char const * function_;
+boost::uint_least32_t line_;
+boost::uint_least32_t column_;
 
 public:
 
-    BOOST_CONSTEXPR source_location() BOOST_NOEXCEPT: file_( "(unknown)" ), function_( "(unknown)" ), line_( 0 ), column_( 0 )
-    {
-    }
+BOOST_CONSTEXPR source_location() BOOST_NOEXCEPT: file_( "(unknown)" ), function_( "(unknown)" ), line_( 0 ), column_( 0 )
+{
+}
 
-    BOOST_CONSTEXPR source_location( char const * file, boost::uint_least32_t ln, char const * function, boost::uint_least32_t col = 0 ) BOOST_NOEXCEPT: file_( file ), function_( function ), line_( ln ), column_( col )
-    {
-    }
+BOOST_CONSTEXPR source_location( char const * file, boost::uint_least32_t ln, char const * function, boost::uint_least32_t col = 0 ) BOOST_NOEXCEPT: file_( file ), function_( function ), line_( ln ), column_( col )
+{
+}
 
-    BOOST_CONSTEXPR char const * file_name() const BOOST_NOEXCEPT
-    {
-        return file_;
-    }
+BOOST_CONSTEXPR char const * file_name() const BOOST_NOEXCEPT
+{
+return file_;
+}
 
-    BOOST_CONSTEXPR char const * function_name() const BOOST_NOEXCEPT
-    {
-        return function_;
-    }
+BOOST_CONSTEXPR char const * function_name() const BOOST_NOEXCEPT
+{
+return function_;
+}
 
-    BOOST_CONSTEXPR boost::uint_least32_t line() const BOOST_NOEXCEPT
-    {
-        return line_;
-    }
+BOOST_CONSTEXPR boost::uint_least32_t line() const BOOST_NOEXCEPT
+{
+return line_;
+}
 
-    BOOST_CONSTEXPR boost::uint_least32_t column() const BOOST_NOEXCEPT
-    {
-        return column_;
-    }
+BOOST_CONSTEXPR boost::uint_least32_t column() const BOOST_NOEXCEPT
+{
+return column_;
+}
 
 #if defined(BOOST_MSVC)
 # pragma warning( push )
 # pragma warning( disable: 4996 )
 #endif
 
-    std::string to_string() const
-    {
-        if( line() == 0 )
-        {
-            return "(unknown source location)";
-        }
+std::string to_string() const
+{
+if( line() == 0 )
+{
+return "(unknown source location)";
+}
 
-        std::string r = file_name();
+std::string r = file_name();
 
-        char buffer[ 16 ];
+char buffer[ 16 ];
 
-        std::sprintf( buffer, ":%ld", static_cast<long>( line() ) );
-        r += buffer;
+std::sprintf( buffer, ":%ld", static_cast<long>( line() ) );
+r += buffer;
 
-        if( column() )
-        {
-            std::sprintf( buffer, ":%ld", static_cast<long>( column() ) );
-            r += buffer;
-        }
+if( column() )
+{
+std::sprintf( buffer, ":%ld", static_cast<long>( column() ) );
+r += buffer;
+}
 
-        r += " in function '";
-        r += function_name();
-        r += '\'';
+r += " in function '";
+r += function_name();
+r += '\'';
 
-        return r;
-    }
+return r;
+}
 
 #if defined(BOOST_MSVC)
 # pragma warning( pop )
@@ -96,8 +96,8 @@ public:
 
 template<class E, class T> std::basic_ostream<E, T> & operator<<( std::basic_ostream<E, T> & os, source_location const & loc )
 {
-    os << loc.to_string();
-    return os;
+os << loc.to_string();
+return os;
 }
 
 } // namespace boost

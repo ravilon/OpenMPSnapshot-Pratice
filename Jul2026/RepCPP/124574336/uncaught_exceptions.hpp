@@ -1,20 +1,20 @@
 /*
- *          Copyright Andrey Semashev 2018 - 2020.
- * Distributed under the Boost Software License, Version 1.0.
- *    (See accompanying file LICENSE_1_0.txt or copy at
- *          https://www.boost.org/LICENSE_1_0.txt)
- */
+*          Copyright Andrey Semashev 2018 - 2020.
+* Distributed under the Boost Software License, Version 1.0.
+*    (See accompanying file LICENSE_1_0.txt or copy at
+*          https://www.boost.org/LICENSE_1_0.txt)
+*/
 /*!
- * \file   uncaught_exceptions.hpp
- * \author Andrey Semashev
- * \date   2018-11-10
- *
- * \brief  This header provides an `uncaught_exceptions` function implementation, which was introduced in C++17.
- *
- * The code in this file is based on the implementation by Evgeny Panasyuk:
- *
- * https://github.com/panaseleus/stack_unwinding/blob/master/boost/exception/uncaught_exception_count.hpp
- */
+* \file   uncaught_exceptions.hpp
+* \author Andrey Semashev
+* \date   2018-11-10
+*
+* \brief  This header provides an `uncaught_exceptions` function implementation, which was introduced in C++17.
+*
+* The code in this file is based on the implementation by Evgeny Panasyuk:
+*
+* https://github.com/panaseleus/stack_unwinding/blob/master/boost/exception/uncaught_exception_count.hpp
+*/
 
 #ifndef BOOST_CORE_UNCAUGHT_EXCEPTIONS_HPP_INCLUDED_
 #define BOOST_CORE_UNCAUGHT_EXCEPTIONS_HPP_INCLUDED_
@@ -36,7 +36,7 @@
 // - watchOS >= 3.0
 // https://github.com/boostorg/core/issues/80
 #if (defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED >= 101200) || \
-    (defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= 100000)
+(defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED >= 100000)
 #define BOOST_CORE_HAS_UNCAUGHT_EXCEPTIONS
 #endif
 #else
@@ -63,9 +63,9 @@
 // Just disable it for now and fall back to std::uncaught_exception().
 // On AIX, xlclang++ does have cxxabi.h but doesn't have __cxa_get_globals (https://github.com/boostorg/core/issues/78).
 #if !( \
-        (defined(__MINGW32__) && (defined(__GNUC__) && (__GNUC__ * 100 + __GNUC_MINOR__) < 405)) || \
-        defined(__ibmxl__) \
-    )
+(defined(__MINGW32__) && (defined(__GNUC__) && (__GNUC__ * 100 + __GNUC_MINOR__) < 405)) || \
+defined(__ibmxl__) \
+)
 #include <cxxabi.h>
 #include <cstring>
 #define BOOST_CORE_HAS_CXA_GET_GLOBALS
@@ -80,12 +80,12 @@
 // of __cxa_get_globals but it is also patched by QNX developers to not define _LIBCPPABI_VERSION. Older QNX SDP versions, up to and including 6.6, don't provide LLVM and libc++abi.
 // See https://github.com/boostorg/core/issues/59.
 #if !defined(__FreeBSD__) && \
-    ( \
-        (defined(__GNUC__) && (__GNUC__ * 100 + __GNUC_MINOR__) < 407) || \
-        defined(__OpenBSD__) || \
-        (defined(__QNXNTO__) && !defined(__GLIBCXX__) && !defined(__GLIBCPP__)) || \
-        defined(_LIBCPPABI_VERSION) \
-    )
+( \
+(defined(__GNUC__) && (__GNUC__ * 100 + __GNUC_MINOR__) < 407) || \
+defined(__OpenBSD__) || \
+(defined(__QNXNTO__) && !defined(__GLIBCXX__) && !defined(__GLIBCPP__)) || \
+defined(_LIBCPPABI_VERSION) \
+)
 namespace __cxxabiv1 {
 struct __cxa_eh_globals;
 #if defined(__OpenBSD__)
@@ -125,21 +125,21 @@ namespace core {
 inline unsigned int uncaught_exceptions() BOOST_NOEXCEPT
 {
 #if defined(BOOST_CORE_HAS_UNCAUGHT_EXCEPTIONS)
-    // C++17 implementation
-    return static_cast< unsigned int >(std::uncaught_exceptions());
+// C++17 implementation
+return static_cast< unsigned int >(std::uncaught_exceptions());
 #elif defined(BOOST_CORE_HAS_CXA_GET_GLOBALS)
-    // Tested on {clang 3.2,GCC 3.5.6,GCC 4.1.2,GCC 4.4.6,GCC 4.4.7}x{x32,x64}
-    unsigned int count;
-    std::memcpy(&count, reinterpret_cast< const unsigned char* >(::abi::__cxa_get_globals()) + sizeof(void*), sizeof(count)); // __cxa_eh_globals::uncaughtExceptions, x32 offset - 0x4, x64 - 0x8
-    return count;
+// Tested on {clang 3.2,GCC 3.5.6,GCC 4.1.2,GCC 4.4.6,GCC 4.4.7}x{x32,x64}
+unsigned int count;
+std::memcpy(&count, reinterpret_cast< const unsigned char* >(::abi::__cxa_get_globals()) + sizeof(void*), sizeof(count)); // __cxa_eh_globals::uncaughtExceptions, x32 offset - 0x4, x64 - 0x8
+return count;
 #elif defined(BOOST_CORE_HAS_GETPTD)
-    // MSVC specific. Tested on {MSVC2005SP1,MSVC2008SP1,MSVC2010SP1,MSVC2012}x{x32,x64}.
-    unsigned int count;
-    std::memcpy(&count, static_cast< const unsigned char* >(boost::core::detail::_getptd()) + (sizeof(void*) == 8u ? 0x100 : 0x90), sizeof(count)); // _tiddata::_ProcessingThrow, x32 offset - 0x90, x64 - 0x100
-    return count;
+// MSVC specific. Tested on {MSVC2005SP1,MSVC2008SP1,MSVC2010SP1,MSVC2012}x{x32,x64}.
+unsigned int count;
+std::memcpy(&count, static_cast< const unsigned char* >(boost::core::detail::_getptd()) + (sizeof(void*) == 8u ? 0x100 : 0x90), sizeof(count)); // _tiddata::_ProcessingThrow, x32 offset - 0x90, x64 - 0x100
+return count;
 #else
-    // Portable C++03 implementation. Does not allow to detect multiple nested exceptions.
-    return static_cast< unsigned int >(std::uncaught_exception());
+// Portable C++03 implementation. Does not allow to detect multiple nested exceptions.
+return static_cast< unsigned int >(std::uncaught_exception());
 #endif
 }
 

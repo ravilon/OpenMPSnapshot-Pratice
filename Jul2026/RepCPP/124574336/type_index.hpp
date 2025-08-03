@@ -118,20 +118,20 @@ namespace boost { namespace typeindex {
 #define BOOST_TYPE_INDEX_CTTI_USER_DEFINED_PARSING (0, 0, false, "")
 
 
-    /// Depending on a compiler flags, optimal implementation of type_index will be used 
-    /// as a default boost::typeindex::type_index.
-    ///
-    /// Could be a boost::typeindex::stl_type_index, boost::typeindex::ctti_type_index or 
-    /// user defined type_index class.
-    ///
-    /// \b See boost::typeindex::type_index_facade for a full description of type_index functions.
-    typedef platform_specific type_index;
+/// Depending on a compiler flags, optimal implementation of type_index will be used 
+/// as a default boost::typeindex::type_index.
+///
+/// Could be a boost::typeindex::stl_type_index, boost::typeindex::ctti_type_index or 
+/// user defined type_index class.
+///
+/// \b See boost::typeindex::type_index_facade for a full description of type_index functions.
+typedef platform_specific type_index;
 #elif defined(BOOST_TYPE_INDEX_USER_TYPEINDEX)
-    // Nothing to do
+// Nothing to do
 #elif (!defined(BOOST_NO_RTTI) && !defined(BOOST_TYPE_INDEX_FORCE_NO_RTTI_COMPATIBILITY)) || defined(BOOST_MSVC)
-    typedef boost::typeindex::stl_type_index type_index;
+typedef boost::typeindex::stl_type_index type_index;
 #else 
-    typedef boost::typeindex::ctti_type_index type_index;
+typedef boost::typeindex::ctti_type_index type_index;
 #endif
 
 /// Depending on a compiler flags, optimal implementation of type_info will be used 
@@ -209,7 +209,7 @@ typedef type_index::type_info_t type_info;
 /// \return boost::typeindex::type_index with information about the specified type T.
 template <class T>
 inline type_index type_id() BOOST_NOEXCEPT {
-    return type_index::type_id<T>();
+return type_index::type_id<T>();
 }
 
 /// Function for constructing boost::typeindex::type_index instance for type T. 
@@ -229,7 +229,7 @@ inline type_index type_id() BOOST_NOEXCEPT {
 /// \return boost::typeindex::type_index with information about the specified type T.
 template <class T>
 inline type_index type_id_with_cvr() BOOST_NOEXCEPT {
-    return type_index::type_id_with_cvr<T>();
+return type_index::type_id_with_cvr<T>();
 }
 
 /// Function that works exactly like C++ typeid(rtti_val) call, but returns boost::type_index.
@@ -254,7 +254,7 @@ inline type_index type_id_with_cvr() BOOST_NOEXCEPT {
 /// \return boost::typeindex::type_index with information about the specified variable.
 template <class T>
 inline type_index type_id_runtime(const T& runtime_val) BOOST_NOEXCEPT {
-    return type_index::type_id_runtime(runtime_val);
+return type_index::type_id_runtime(runtime_val);
 }
 
 }} // namespace boost::typeindex

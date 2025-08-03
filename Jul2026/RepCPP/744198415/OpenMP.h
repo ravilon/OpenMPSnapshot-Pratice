@@ -1,7 +1,7 @@
-﻿#pragma once
-
-namespace openmp
-{
-	void start();
-}
-
+﻿#pragma once
+
+namespace openmp
+{
+void start();
+}
+

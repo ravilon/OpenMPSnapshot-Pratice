@@ -37,48 +37,48 @@ BOOST_OUTCOME_V2_NAMESPACE_BEGIN
 
 namespace detail
 {
-  struct has_value_overload
-  {
-  };
-  struct as_failure_overload
-  {
-  };
-  struct assume_error_overload
-  {
-  };
-  struct error_overload
-  {
-  };
-  struct assume_value_overload
-  {
-  };
-  struct value_overload
-  {
-  };
-  //#ifdef __APPLE__
-  //  BOOST_OUTCOME_TEMPLATE(class T, class R = decltype(std::declval<T>()._xcode_workaround_as_failure()))
-  //#else
-  BOOST_OUTCOME_TEMPLATE(class T, class R = decltype(std::declval<T>().as_failure()))
-  //#endif
-  BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(BOOST_OUTCOME_V2_NAMESPACE::is_failure_type<R>))
-  constexpr inline bool has_as_failure(int /*unused */) { return true; }
-  template <class T> constexpr inline bool has_as_failure(...) { return false; }
-  BOOST_OUTCOME_TEMPLATE(class T)
-  BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().assume_error()))
-  constexpr inline bool has_assume_error(int /*unused */) { return true; }
-  template <class T> constexpr inline bool has_assume_error(...) { return false; }
-  BOOST_OUTCOME_TEMPLATE(class T)
-  BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().error()))
-  constexpr inline bool has_error(int /*unused */) { return true; }
-  template <class T> constexpr inline bool has_error(...) { return false; }
-  BOOST_OUTCOME_TEMPLATE(class T)
-  BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().assume_value()))
-  constexpr inline bool has_assume_value(int /*unused */) { return true; }
-  template <class T> constexpr inline bool has_assume_value(...) { return false; }
-  BOOST_OUTCOME_TEMPLATE(class T)
-  BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().value()))
-  constexpr inline bool has_value(int /*unused */) { return true; }
-  template <class T> constexpr inline bool has_value(...) { return false; }
+struct has_value_overload
+{
+};
+struct as_failure_overload
+{
+};
+struct assume_error_overload
+{
+};
+struct error_overload
+{
+};
+struct assume_value_overload
+{
+};
+struct value_overload
+{
+};
+//#ifdef __APPLE__
+//  BOOST_OUTCOME_TEMPLATE(class T, class R = decltype(std::declval<T>()._xcode_workaround_as_failure()))
+//#else
+BOOST_OUTCOME_TEMPLATE(class T, class R = decltype(std::declval<T>().as_failure()))
+//#endif
+BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(BOOST_OUTCOME_V2_NAMESPACE::is_failure_type<R>))
+constexpr inline bool has_as_failure(int /*unused */) { return true; }
+template <class T> constexpr inline bool has_as_failure(...) { return false; }
+BOOST_OUTCOME_TEMPLATE(class T)
+BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().assume_error()))
+constexpr inline bool has_assume_error(int /*unused */) { return true; }
+template <class T> constexpr inline bool has_assume_error(...) { return false; }
+BOOST_OUTCOME_TEMPLATE(class T)
+BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().error()))
+constexpr inline bool has_error(int /*unused */) { return true; }
+template <class T> constexpr inline bool has_error(...) { return false; }
+BOOST_OUTCOME_TEMPLATE(class T)
+BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().assume_value()))
+constexpr inline bool has_assume_value(int /*unused */) { return true; }
+template <class T> constexpr inline bool has_assume_value(...) { return false; }
+BOOST_OUTCOME_TEMPLATE(class T)
+BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().value()))
+constexpr inline bool has_value(int /*unused */) { return true; }
+template <class T> constexpr inline bool has_value(...) { return false; }
 }  // namespace detail
 
 /*! AWAITING HUGO JSON CONVERSION TOOL
@@ -88,7 +88,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TEXPR(std::declval<T>().has_value()))
 constexpr inline bool try_operation_has_value(T &&v, detail::has_value_overload = {})
 {
-  return v.has_value();
+return v.has_value();
 }
 
 /*! AWAITING HUGO JSON CONVERSION TOOL
@@ -98,7 +98,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(detail::has_as_failure<T>(5)))
 constexpr inline decltype(auto) try_operation_return_as(T &&v, detail::as_failure_overload = {})
 {
-  return static_cast<T &&>(v).as_failure();
+return static_cast<T &&>(v).as_failure();
 }
 /*! AWAITING HUGO JSON CONVERSION TOOL
 SIGNATURE NOT RECOGNISED
@@ -107,7 +107,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(!detail::has_as_failure<T>(5) && detail::has_assume_error<T>(5)))
 constexpr inline decltype(auto) try_operation_return_as(T &&v, detail::assume_error_overload = {})
 {
-  return failure(static_cast<T &&>(v).assume_error());
+return failure(static_cast<T &&>(v).assume_error());
 }
 /*! AWAITING HUGO JSON CONVERSION TOOL
 SIGNATURE NOT RECOGNISED
@@ -116,7 +116,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(!detail::has_as_failure<T>(5) && !detail::has_assume_error<T>(5) && detail::has_error<T>(5)))
 constexpr inline decltype(auto) try_operation_return_as(T &&v, detail::error_overload = {})
 {
-  return failure(static_cast<T &&>(v).error());
+return failure(static_cast<T &&>(v).error());
 }
 
 /*! AWAITING HUGO JSON CONVERSION TOOL
@@ -126,7 +126,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(detail::has_assume_value<T>(5)))
 constexpr inline decltype(auto) try_operation_extract_value(T &&v, detail::assume_value_overload = {})
 {
-  return static_cast<T &&>(v).assume_value();
+return static_cast<T &&>(v).assume_value();
 }
 /*! AWAITING HUGO JSON CONVERSION TOOL
 SIGNATURE NOT RECOGNISED
@@ -135,7 +135,7 @@ BOOST_OUTCOME_TEMPLATE(class T)
 BOOST_OUTCOME_TREQUIRES(BOOST_OUTCOME_TPRED(!detail::has_assume_value<T>(5) && detail::has_value<T>(5)))
 constexpr inline decltype(auto) try_operation_extract_value(T &&v, detail::value_overload = {})
 {
-  return static_cast<T &&>(v).value();
+return static_cast<T &&>(v).value();
 }
 
 BOOST_OUTCOME_V2_NAMESPACE_END
@@ -158,7 +158,7 @@ BOOST_OUTCOME_V2_NAMESPACE_END
 #define BOOST_OUTCOME_TRY_OVERLOAD_MACRO(name, count) BOOST_OUTCOME_TRY_OVERLOAD_MACRO1(name, count)
 #define BOOST_OUTCOME_TRY_OVERLOAD_GLUE(x, y) x y
 #define BOOST_OUTCOME_TRY_CALL_OVERLOAD(name, ...)                                                                                                                   \
-  BOOST_OUTCOME_TRY_OVERLOAD_GLUE(BOOST_OUTCOME_TRY_OVERLOAD_MACRO(name, BOOST_OUTCOME_TRY_COUNT_ARGS_MAX8(__VA_ARGS__)), (__VA_ARGS__))
+BOOST_OUTCOME_TRY_OVERLOAD_GLUE(BOOST_OUTCOME_TRY_OVERLOAD_MACRO(name, BOOST_OUTCOME_TRY_COUNT_ARGS_MAX8(__VA_ARGS__)), (__VA_ARGS__))
 
 #define _OUTCOME_TRY_RETURN_ARG_COUNT(_1_, _2_, _3_, _4_, _5_, _6_, _7_, _8_, count, ...) count
 #define _OUTCOME_TRY_EXPAND_ARGS(args) _OUTCOME_TRY_RETURN_ARG_COUNT args
@@ -168,7 +168,7 @@ BOOST_OUTCOME_V2_NAMESPACE_END
 #define _OUTCOME_TRY_OVERLOAD_MACRO(name, count) _OUTCOME_TRY_OVERLOAD_MACRO1(name, count)
 #define _OUTCOME_TRY_OVERLOAD_GLUE(x, y) x y
 #define _OUTCOME_TRY_CALL_OVERLOAD(name, ...)                                                                                                                  \
-  _OUTCOME_TRY_OVERLOAD_GLUE(_OUTCOME_TRY_OVERLOAD_MACRO(name, _OUTCOME_TRY_COUNT_ARGS_MAX8(__VA_ARGS__)), (__VA_ARGS__))
+_OUTCOME_TRY_OVERLOAD_GLUE(_OUTCOME_TRY_OVERLOAD_MACRO(name, _OUTCOME_TRY_COUNT_ARGS_MAX8(__VA_ARGS__)), (__VA_ARGS__))
 
 #ifndef BOOST_OUTCOME_TRY_LIKELY_IF
 #if(__cplusplus >= 202000L || _HAS_CXX20) && (!defined(__clang__) || __clang_major__ >= 12) && (!defined(__GNUC__) || defined(__clang__) || __GNUC__ >= 9)
@@ -187,32 +187,32 @@ BOOST_OUTCOME_V2_NAMESPACE_END
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED3(unique, x, y, ...) x unique = (__VA_ARGS__)
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED2(x) x
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED(unique, ...)                                                                                                    \
-  BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED2(BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED3(unique, __VA_ARGS__))
+BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED2(BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED3(unique, __VA_ARGS__))
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE1(...) BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_DEDUCE
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE2(...) BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_SPECIFIED
 #define BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE(unique, spec, ...)                                                                                                        \
-  _OUTCOME_TRY_CALL_OVERLOAD(BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE, BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_UNPACK spec)                                                           \
-  (unique, BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_UNPACK spec, __VA_ARGS__)
+_OUTCOME_TRY_CALL_OVERLOAD(BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE, BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_UNPACK spec)                                                           \
+(unique, BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_UNPACK spec, __VA_ARGS__)
 
 // Use if(!expr); else as some compilers assume else clauses are always unlikely
 #define BOOST_OUTCOME_TRYV2_SUCCESS_LIKELY(unique, retstmt, spec, ...)                                                                                               \
-  BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE(unique, spec, __VA_ARGS__);                                                                                                     \
-  BOOST_OUTCOME_TRY_LIKELY_IF(::BOOST_OUTCOME_V2_NAMESPACE::try_operation_has_value(unique));                                                                                \
-  else retstmt ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_return_as(static_cast<decltype(unique) &&>(unique))
+BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE(unique, spec, __VA_ARGS__);                                                                                                     \
+BOOST_OUTCOME_TRY_LIKELY_IF(::BOOST_OUTCOME_V2_NAMESPACE::try_operation_has_value(unique));                                                                                \
+else retstmt ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_return_as(static_cast<decltype(unique) &&>(unique))
 #define BOOST_OUTCOME_TRYV3_FAILURE_LIKELY(unique, retstmt, spec, ...)                                                                                               \
-  BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE(unique, spec, __VA_ARGS__);                                                                                                     \
-  BOOST_OUTCOME_TRY_LIKELY_IF(!BOOST_OUTCOME_V2_NAMESPACE::try_operation_has_value(unique))                                                                                \
-  retstmt ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_return_as(static_cast<decltype(unique) &&>(unique))
+BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE(unique, spec, __VA_ARGS__);                                                                                                     \
+BOOST_OUTCOME_TRY_LIKELY_IF(!BOOST_OUTCOME_V2_NAMESPACE::try_operation_has_value(unique))                                                                                \
+retstmt ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_return_as(static_cast<decltype(unique) &&>(unique))
 
 #define BOOST_OUTCOME_TRY2_VAR_SECOND2(x, var) var
 #define BOOST_OUTCOME_TRY2_VAR_SECOND3(x, y, ...) x y
 #define BOOST_OUTCOME_TRY2_VAR(spec) _OUTCOME_TRY_CALL_OVERLOAD(BOOST_OUTCOME_TRY2_VAR_SECOND, BOOST_OUTCOME_TRYV2_UNIQUE_STORAGE_UNPACK spec, spec)
 #define BOOST_OUTCOME_TRY2_SUCCESS_LIKELY(unique, retstmt, var, ...)                                                                                                 \
-  BOOST_OUTCOME_TRYV2_SUCCESS_LIKELY(unique, retstmt, var, __VA_ARGS__);                                                                                             \
-  BOOST_OUTCOME_TRY2_VAR(var) = ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique))
+BOOST_OUTCOME_TRYV2_SUCCESS_LIKELY(unique, retstmt, var, __VA_ARGS__);                                                                                             \
+BOOST_OUTCOME_TRY2_VAR(var) = ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique))
 #define BOOST_OUTCOME_TRY2_FAILURE_LIKELY(unique, retstmt, var, ...)                                                                                                 \
-  BOOST_OUTCOME_TRYV3_FAILURE_LIKELY(unique, retstmt, var, __VA_ARGS__);                                                                                             \
-  BOOST_OUTCOME_TRY2_VAR(var) = ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique))
+BOOST_OUTCOME_TRYV3_FAILURE_LIKELY(unique, retstmt, var, __VA_ARGS__);                                                                                             \
+BOOST_OUTCOME_TRY2_VAR(var) = ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique))
 
 /*! AWAITING HUGO JSON CONVERSION TOOL
 SIGNATURE NOT RECOGNISED
@@ -254,10 +254,10 @@ SIGNATURE NOT RECOGNISED
 #if defined(__GNUC__) || defined(__clang__)
 
 #define BOOST_OUTCOME_TRYX2(unique, retstmt, ...)                                                                                                                    \
-  ({                                                                                                                                                           \
-    BOOST_OUTCOME_TRYV2_SUCCESS_LIKELY(unique, retstmt, deduce, __VA_ARGS__);                                                                                        \
-    ::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique));                                                               \
-  })
+({                                                                                                                                                           \
+BOOST_OUTCOME_TRYV2_SUCCESS_LIKELY(unique, retstmt, deduce, __VA_ARGS__);                                                                                        \
+::BOOST_OUTCOME_V2_NAMESPACE::try_operation_extract_value(static_cast<decltype(unique) &&>(unique));                                                               \
+})
 
 /*! AWAITING HUGO JSON CONVERSION TOOL
 SIGNATURE NOT RECOGNISED

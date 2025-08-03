@@ -40,7 +40,7 @@ namespace detail
 
 inline void sp_thread_pause()
 {
-    BOOST_SP_PAUSE
+BOOST_SP_PAUSE
 }
 
 } // namespace detail

@@ -36,21 +36,21 @@ namespace detail {
 template<bool is_ref = true>
 struct is_function_chooser
 {
-   template< typename T > struct result_
-      : public false_type {};
+template< typename T > struct result_
+: public false_type {};
 };
 
 template <>
 struct is_function_chooser<false>
 {
-    template< typename T > struct result_
-        : public ::boost::type_traits::is_function_ptr_helper<T*> {};
+template< typename T > struct result_
+: public ::boost::type_traits::is_function_ptr_helper<T*> {};
 };
 
 template <typename T>
 struct is_function_impl
-    : public is_function_chooser< ::boost::is_reference<T>::value >
-        ::BOOST_NESTED_TEMPLATE result_<T>
+: public is_function_chooser< ::boost::is_reference<T>::value >
+::BOOST_NESTED_TEMPLATE result_<T>
 {
 };
 
@@ -63,11 +63,11 @@ struct is_function_impl
 #pragma warning(push)
 #pragma warning(disable:6334)
 #endif
-    static T* t;
-    BOOST_STATIC_CONSTANT(
-        bool, value = sizeof(::boost::type_traits::is_function_ptr_tester(t))
-        == sizeof(::boost::type_traits::yes_type)
-        );
+static T* t;
+BOOST_STATIC_CONSTANT(
+bool, value = sizeof(::boost::type_traits::is_function_ptr_tester(t))
+== sizeof(::boost::type_traits::yes_type)
+);
 #if BOOST_WORKAROUND(BOOST_MSVC_FULL_VER, >= 140050000)
 #pragma warning(pop)
 #endif

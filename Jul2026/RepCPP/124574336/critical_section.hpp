@@ -1,10 +1,10 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_CRITICAL_SECTION_HPP_INCLUDED_
 #define BOOST_WINAPI_CRITICAL_SECTION_HPP_INCLUDED_
@@ -28,7 +28,7 @@ struct CRITICAL_SECTION;
 namespace boost {
 namespace winapi {
 namespace detail {
-    typedef CRITICAL_SECTION winsdk_critical_section;
+typedef CRITICAL_SECTION winsdk_critical_section;
 }
 }
 }
@@ -37,7 +37,7 @@ struct _RTL_CRITICAL_SECTION;
 namespace boost {
 namespace winapi {
 namespace detail {
-    typedef _RTL_CRITICAL_SECTION winsdk_critical_section;
+typedef _RTL_CRITICAL_SECTION winsdk_critical_section;
 }
 }
 }
@@ -50,7 +50,7 @@ struct _CRITICAL_SECTION;
 namespace boost {
 namespace winapi {
 namespace detail {
-    typedef _CRITICAL_SECTION winapi_critical_section;
+typedef _CRITICAL_SECTION winapi_critical_section;
 }
 }
 }
@@ -73,21 +73,21 @@ LeaveCriticalSection(boost::winapi::detail::winsdk_critical_section* lpCriticalS
 #if BOOST_WINAPI_PARTITION_APP_SYSTEM
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 InitializeCriticalSectionAndSpinCount(
-    boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount);
+boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount);
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 SetCriticalSectionSpinCount(
-    boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount);
+boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount);
 #endif
 
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_WIN6
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 InitializeCriticalSectionEx(
-    boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount,
-    boost::winapi::DWORD_ Flags);
+boost::winapi::detail::winsdk_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount,
+boost::winapi::DWORD_ Flags);
 #endif
 #endif
 
@@ -113,21 +113,21 @@ LeaveCriticalSection(boost::winapi::detail::winapi_critical_section* lpCriticalS
 #if BOOST_USE_WINAPI_VERSION >= 0x0403
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 InitializeCriticalSectionAndSpinCount(
-    boost::winapi::detail::winapi_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount);
+boost::winapi::detail::winapi_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount);
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 SetCriticalSectionSpinCount(
-    boost::winapi::detail::winapi_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount);
+boost::winapi::detail::winapi_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount);
 #endif
 
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_WIN6
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 InitializeCriticalSectionEx(
-    boost::winapi::detail::winapi_critical_section* lpCriticalSection,
-    boost::winapi::DWORD_ dwSpinCount,
-    boost::winapi::DWORD_ Flags);
+boost::winapi::detail::winapi_critical_section* lpCriticalSection,
+boost::winapi::DWORD_ dwSpinCount,
+boost::winapi::DWORD_ Flags);
 #endif
 
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_NT4
@@ -153,23 +153,23 @@ namespace winapi {
 struct _RTL_CRITICAL_SECTION_DEBUG;
 
 typedef struct BOOST_MAY_ALIAS _RTL_CRITICAL_SECTION {
-    _RTL_CRITICAL_SECTION_DEBUG* DebugInfo;
-    LONG_ LockCount;
-    LONG_ RecursionCount;
-    HANDLE_ OwningThread;
-    HANDLE_ LockSemaphore;
-    ULONG_PTR_ SpinCount;
+_RTL_CRITICAL_SECTION_DEBUG* DebugInfo;
+LONG_ LockCount;
+LONG_ RecursionCount;
+HANDLE_ OwningThread;
+HANDLE_ LockSemaphore;
+ULONG_PTR_ SpinCount;
 } CRITICAL_SECTION_, *PCRITICAL_SECTION_;
 
 #else
 
 // Windows CE has different layout
 typedef struct BOOST_MAY_ALIAS CRITICAL_SECTION {
-    unsigned int LockCount;
-    HANDLE OwnerThread;
-    HANDLE hCrit;
-    DWORD needtrap;
-    DWORD dwContentions;
+unsigned int LockCount;
+HANDLE OwnerThread;
+HANDLE hCrit;
+DWORD needtrap;
+DWORD dwContentions;
 } CRITICAL_SECTION_, *LPCRITICAL_SECTION_;
 
 #endif
@@ -179,30 +179,30 @@ typedef struct BOOST_MAY_ALIAS CRITICAL_SECTION {
 #if BOOST_WINAPI_PARTITION_APP_SYSTEM
 BOOST_FORCEINLINE VOID_ InitializeCriticalSection(CRITICAL_SECTION_* lpCriticalSection)
 {
-    ::InitializeCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
+::InitializeCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
 }
 #endif
 
 BOOST_FORCEINLINE VOID_ EnterCriticalSection(CRITICAL_SECTION_* lpCriticalSection)
 {
-    ::EnterCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
+::EnterCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
 }
 
 BOOST_FORCEINLINE VOID_ LeaveCriticalSection(CRITICAL_SECTION_* lpCriticalSection)
 {
-    ::LeaveCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
+::LeaveCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
 }
 
 #if BOOST_USE_WINAPI_VERSION >= 0x0403
 #if BOOST_WINAPI_PARTITION_APP_SYSTEM
 BOOST_FORCEINLINE BOOL_ InitializeCriticalSectionAndSpinCount(CRITICAL_SECTION_* lpCriticalSection, DWORD_ dwSpinCount)
 {
-    return ::InitializeCriticalSectionAndSpinCount(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount);
+return ::InitializeCriticalSectionAndSpinCount(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount);
 }
 
 BOOST_FORCEINLINE DWORD_ SetCriticalSectionSpinCount(CRITICAL_SECTION_* lpCriticalSection, DWORD_ dwSpinCount)
 {
-    return ::SetCriticalSectionSpinCount(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount);
+return ::SetCriticalSectionSpinCount(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount);
 }
 #endif
 
@@ -215,7 +215,7 @@ BOOST_CONSTEXPR_OR_CONST DWORD_ CRITICAL_SECTION_FLAG_STATIC_INIT_ = 0x04000000;
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_WIN6
 BOOST_FORCEINLINE BOOL_ InitializeCriticalSectionEx(CRITICAL_SECTION_* lpCriticalSection, DWORD_ dwSpinCount, DWORD_ Flags)
 {
-    return ::InitializeCriticalSectionEx(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount, Flags);
+return ::InitializeCriticalSectionEx(winapi::detail::cast_ptr(lpCriticalSection), dwSpinCount, Flags);
 }
 #endif // BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_WIN6
 #endif // BOOST_USE_WINAPI_VERSION >= 0x0403
@@ -223,13 +223,13 @@ BOOST_FORCEINLINE BOOL_ InitializeCriticalSectionEx(CRITICAL_SECTION_* lpCritica
 #if BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_NT4
 BOOST_FORCEINLINE BOOL_ TryEnterCriticalSection(CRITICAL_SECTION_* lpCriticalSection)
 {
-    return ::TryEnterCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
+return ::TryEnterCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
 }
 #endif // BOOST_USE_WINAPI_VERSION >= BOOST_WINAPI_VERSION_NT4
 
 BOOST_FORCEINLINE VOID_ DeleteCriticalSection(CRITICAL_SECTION_* lpCriticalSection)
 {
-    ::DeleteCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
+::DeleteCriticalSection(winapi::detail::cast_ptr(lpCriticalSection));
 }
 
 }

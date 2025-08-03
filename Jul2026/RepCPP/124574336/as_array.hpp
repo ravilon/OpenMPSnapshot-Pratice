@@ -21,20 +21,20 @@
 namespace boost
 {
 
-    template< class R >
-    inline iterator_range< BOOST_DEDUCED_TYPENAME range_iterator<R>::type > 
-    as_array( R& r )
-    {
-        return boost::make_iterator_range( r );
-    }
+template< class R >
+inline iterator_range< BOOST_DEDUCED_TYPENAME range_iterator<R>::type > 
+as_array( R& r )
+{
+return boost::make_iterator_range( r );
+}
 
-    template< class Range >
-    inline boost::iterator_range< BOOST_DEDUCED_TYPENAME range_iterator<const Range>::type > 
-    as_array( const Range& r )
-    {
-        return boost::make_iterator_range( r );
-    }
-    
+template< class Range >
+inline boost::iterator_range< BOOST_DEDUCED_TYPENAME range_iterator<const Range>::type > 
+as_array( const Range& r )
+{
+return boost::make_iterator_range( r );
+}
+
 }
 
 #endif

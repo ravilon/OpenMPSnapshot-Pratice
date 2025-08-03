@@ -57,7 +57,7 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #ifndef BOOST_MATH_STANDALONE
 #include <boost/config.hpp>
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
 #  define BOOST_LIB_NAME boost_math_c99
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -65,7 +65,7 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #  include <boost/config/auto_link.hpp>
 #endif
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
 #  define BOOST_LIB_NAME boost_math_c99f
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -73,8 +73,8 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #  include <boost/config/auto_link.hpp>
 #endif
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus) \
-   && !defined(BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus) \
+&& !defined(BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS)
 #  define BOOST_LIB_NAME boost_math_c99l
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -82,7 +82,7 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #  include <boost/config/auto_link.hpp>
 #endif
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
 #  define BOOST_LIB_NAME boost_math_tr1
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -90,7 +90,7 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #  include <boost/config/auto_link.hpp>
 #endif
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus)
 #  define BOOST_LIB_NAME boost_math_tr1f
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -98,8 +98,8 @@ namespace boost{ namespace math{ namespace tr1{ extern "C"{
 #  include <boost/config/auto_link.hpp>
 #endif
 #if !defined(BOOST_MATH_TR1_NO_LIB) && !defined(BOOST_MATH_TR1_SOURCE) \
-   && !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus) \
-   && !defined(BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS)
+&& !defined(BOOST_ALL_NO_LIB) && defined(__cplusplus) \
+&& !defined(BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS)
 #  define BOOST_LIB_NAME boost_math_tr1l
 #  if defined(BOOST_MATH_TR1_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)
 #     define BOOST_DYN_LINK
@@ -774,7 +774,7 @@ template<> bool BOOST_MATH_TR1_DECL isnormal<double> NO_MACRO_EXPAND(double x);
 template<> bool BOOST_MATH_TR1_DECL isnormal<long double> NO_MACRO_EXPAND(long double x);
 
 #undef NO_MACRO_EXPAND   
-   
+
 // [5.2.1.1] associated Laguerre polynomials:
 inline float assoc_laguerref BOOST_PREVENT_MACRO_SUBSTITUTION(unsigned n, unsigned m, float x)
 { return boost::math::tr1::boost_assoc_laguerref BOOST_PREVENT_MACRO_SUBSTITUTION(n, m, x); }

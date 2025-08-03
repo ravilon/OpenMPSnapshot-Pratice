@@ -33,25 +33,25 @@ namespace archive {
 // via inhertance, derived from binary_oarchive_impl instead.  This will
 // preserve correct static polymorphism.
 class BOOST_SYMBOL_VISIBLE binary_oarchive :
-    public binary_oarchive_impl<
-        binary_oarchive, std::ostream::char_type, std::ostream::traits_type
-    >
+public binary_oarchive_impl<
+binary_oarchive, std::ostream::char_type, std::ostream::traits_type
+>
 {
 public:
-    binary_oarchive(std::ostream & os, unsigned int flags = 0) :
-        binary_oarchive_impl<
-            binary_oarchive, std::ostream::char_type, std::ostream::traits_type
-        >(os, flags)
-    {
-        init(flags);
-    }
-    binary_oarchive(std::streambuf & bsb, unsigned int flags = 0) :
-        binary_oarchive_impl<
-            binary_oarchive, std::ostream::char_type, std::ostream::traits_type
-        >(bsb, flags)
-    {
-        init(flags);
-    }
+binary_oarchive(std::ostream & os, unsigned int flags = 0) :
+binary_oarchive_impl<
+binary_oarchive, std::ostream::char_type, std::ostream::traits_type
+>(os, flags)
+{
+init(flags);
+}
+binary_oarchive(std::streambuf & bsb, unsigned int flags = 0) :
+binary_oarchive_impl<
+binary_oarchive, std::ostream::char_type, std::ostream::traits_type
+>(bsb, flags)
+{
+init(flags);
+}
 };
 
 } // namespace archive

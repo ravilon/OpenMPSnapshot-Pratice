@@ -1,10 +1,10 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_SECURITY_HPP_INCLUDED_
 #define BOOST_WINAPI_SECURITY_HPP_INCLUDED_
@@ -31,14 +31,14 @@ typedef boost::winapi::PVOID_ PSECURITY_DESCRIPTOR;
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 InitializeSecurityDescriptor(
-    PSECURITY_DESCRIPTOR pSecurityDescriptor,
-    boost::winapi::DWORD_ dwRevision);
+PSECURITY_DESCRIPTOR pSecurityDescriptor,
+boost::winapi::DWORD_ dwRevision);
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 SetSecurityDescriptorDacl(
-    PSECURITY_DESCRIPTOR pSecurityDescriptor,
-    boost::winapi::BOOL_ bDaclPresent,
-    ::_ACL* pDacl,
-    boost::winapi::BOOL_ bDaclDefaulted);
+PSECURITY_DESCRIPTOR pSecurityDescriptor,
+boost::winapi::BOOL_ bDaclPresent,
+::_ACL* pDacl,
+boost::winapi::BOOL_ bDaclDefaulted);
 }
 #endif
 
@@ -49,21 +49,21 @@ typedef PVOID_ PSID_;
 typedef WORD_ SECURITY_DESCRIPTOR_CONTROL_, *PSECURITY_DESCRIPTOR_CONTROL_;
 
 typedef struct BOOST_MAY_ALIAS _ACL {
-    BYTE_ AclRevision;
-    BYTE_ Sbz1;
-    WORD_ AclSize;
-    WORD_ AceCount;
-    WORD_ Sbz2;
+BYTE_ AclRevision;
+BYTE_ Sbz1;
+WORD_ AclSize;
+WORD_ AceCount;
+WORD_ Sbz2;
 } ACL_, *PACL_;
 
 typedef struct BOOST_MAY_ALIAS _SECURITY_DESCRIPTOR {
-    BYTE_ Revision;
-    BYTE_ Sbz1;
-    SECURITY_DESCRIPTOR_CONTROL_ Control;
-    PSID_ Owner;
-    PSID_ Group;
-    PACL_ Sacl;
-    PACL_ Dacl;
+BYTE_ Revision;
+BYTE_ Sbz1;
+SECURITY_DESCRIPTOR_CONTROL_ Control;
+PSID_ Owner;
+PSID_ Group;
+PACL_ Sacl;
+PACL_ Dacl;
 } SECURITY_DESCRIPTOR_, *PISECURITY_DESCRIPTOR_;
 
 // To abstract away the different ::PSECURITY_DESCRIPTOR on MinGW, we use PVOID_ universally here
@@ -72,12 +72,12 @@ typedef PVOID_ PSECURITY_DESCRIPTOR_;
 
 BOOST_FORCEINLINE BOOL_ InitializeSecurityDescriptor(PSECURITY_DESCRIPTOR_ pSecurityDescriptor, DWORD_ dwRevision)
 {
-    return ::InitializeSecurityDescriptor(reinterpret_cast< ::PSECURITY_DESCRIPTOR >(pSecurityDescriptor), dwRevision);
+return ::InitializeSecurityDescriptor(reinterpret_cast< ::PSECURITY_DESCRIPTOR >(pSecurityDescriptor), dwRevision);
 }
 
 BOOST_FORCEINLINE BOOL_ SetSecurityDescriptorDacl(PSECURITY_DESCRIPTOR_ pSecurityDescriptor, BOOL_ bDaclPresent, PACL_ pDacl, BOOL_ bDaclDefaulted)
 {
-    return ::SetSecurityDescriptorDacl(reinterpret_cast< ::PSECURITY_DESCRIPTOR >(pSecurityDescriptor), bDaclPresent, reinterpret_cast< ::_ACL* >(pDacl), bDaclDefaulted);
+return ::SetSecurityDescriptorDacl(reinterpret_cast< ::PSECURITY_DESCRIPTOR >(pSecurityDescriptor), bDaclPresent, reinterpret_cast< ::_ACL* >(pDacl), bDaclDefaulted);
 }
 
 }

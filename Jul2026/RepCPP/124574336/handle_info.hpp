@@ -1,9 +1,9 @@
 /*
- * Copyright 2016 Klemens D. Morgenstern
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Klemens D. Morgenstern
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_HANDLE_INFO_HPP_INCLUDED_
 #define BOOST_WINAPI_HANDLE_INFO_HPP_INCLUDED_
@@ -23,14 +23,14 @@ extern "C" {
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 GetHandleInformation(
-    boost::winapi::HANDLE_ hObject,
-    boost::winapi::LPDWORD_ lpdwFlags);
+boost::winapi::HANDLE_ hObject,
+boost::winapi::LPDWORD_ lpdwFlags);
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 SetHandleInformation(
-    boost::winapi::HANDLE_ hObject,
-    boost::winapi::DWORD_ dwMask,
-    boost::winapi::DWORD_ dwFlags);
+boost::winapi::HANDLE_ hObject,
+boost::winapi::DWORD_ dwMask,
+boost::winapi::DWORD_ dwFlags);
 
 } // extern "C"
 #endif

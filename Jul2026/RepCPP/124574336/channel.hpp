@@ -36,7 +36,7 @@ struct channel_traits;
 
 template <typename DstT, typename SrcT>
 auto channel_convert(SrcT const& val)
-    -> typename channel_traits<DstT>::value_type;
+-> typename channel_traits<DstT>::value_type;
 
 /// \ingroup ChannelConcept
 /// \brief A channel is the building block of a color.
@@ -73,21 +73,21 @@ auto channel_convert(SrcT const& val)
 template <typename T>
 struct ChannelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<boost::EqualityComparableConcept<T>>();
+void constraints()
+{
+gil_function_requires<boost::EqualityComparableConcept<T>>();
 
-        using v = typename channel_traits<T>::value_type;
-        using r = typename channel_traits<T>::reference;
-        using p = typename channel_traits<T>::pointer;
-        using cr = typename channel_traits<T>::const_reference;
-        using cp = typename channel_traits<T>::const_pointer;
+using v = typename channel_traits<T>::value_type;
+using r = typename channel_traits<T>::reference;
+using p = typename channel_traits<T>::pointer;
+using cr = typename channel_traits<T>::const_reference;
+using cp = typename channel_traits<T>::const_pointer;
 
-        channel_traits<T>::min_value();
-        channel_traits<T>::max_value();
-    }
+channel_traits<T>::min_value();
+channel_traits<T>::max_value();
+}
 
-     T c;
+T c;
 };
 
 namespace detail
@@ -97,14 +97,14 @@ namespace detail
 template <typename T>
 struct ChannelIsMutableConcept
 {
-    void constraints()
-    {
-        c1 = c2;
-        using std::swap;
-        swap(c1, c2);
-    }
-    T c1;
-    T c2;
+void constraints()
+{
+c1 = c2;
+using std::swap;
+swap(c1, c2);
+}
+T c1;
+T c2;
 };
 
 } // namespace detail
@@ -117,11 +117,11 @@ struct ChannelIsMutableConcept
 template <typename T>
 struct MutableChannelConcept
 {
-    void constraints()
-    {
-        gil_function_requires<ChannelConcept<T>>();
-        gil_function_requires<detail::ChannelIsMutableConcept<T>>();
-    }
+void constraints()
+{
+gil_function_requires<ChannelConcept<T>>();
+gil_function_requires<detail::ChannelIsMutableConcept<T>>();
+}
 };
 
 /// \brief A channel that supports default construction.
@@ -132,11 +132,11 @@ struct MutableChannelConcept
 template <typename T>
 struct ChannelValueConcept
 {
-    void constraints()
-    {
-        gil_function_requires<ChannelConcept<T>>();
-        gil_function_requires<Regular<T>>();
-    }
+void constraints()
+{
+gil_function_requires<ChannelConcept<T>>();
+gil_function_requires<Regular<T>>();
+}
 };
 
 /// \brief Predicate metafunction returning whether two channels are compatible
@@ -152,11 +152,11 @@ struct ChannelValueConcept
 /// \ingroup ChannelAlgorithm
 template <typename T1, typename T2>  // Models GIL Pixel
 struct channels_are_compatible
-    : std::is_same
-        <
-            typename channel_traits<T1>::value_type,
-            typename channel_traits<T2>::value_type
-        >
+: std::is_same
+<
+typename channel_traits<T1>::value_type,
+typename channel_traits<T2>::value_type
+>
 {
 };
 
@@ -172,10 +172,10 @@ struct channels_are_compatible
 template <typename Channel1, typename Channel2>
 struct ChannelsCompatibleConcept
 {
-    void constraints()
-    {
-        static_assert(channels_are_compatible<Channel1, Channel2>::value, "");
-    }
+void constraints()
+{
+static_assert(channels_are_compatible<Channel1, Channel2>::value, "");
+}
 };
 
 /// \brief A channel is convertible to another one if the \p channel_convert algorithm is defined for the two channels.
@@ -192,15 +192,15 @@ struct ChannelsCompatibleConcept
 template <typename SrcChannel, typename DstChannel>
 struct ChannelConvertibleConcept
 {
-    void constraints()
-    {
-        gil_function_requires<ChannelConcept<SrcChannel>>();
-        gil_function_requires<MutableChannelConcept<DstChannel>>();
-        dst = channel_convert<DstChannel, SrcChannel>(src);
-        ignore_unused_variable_warning(dst);
-    }
-    SrcChannel src;
-    DstChannel dst;
+void constraints()
+{
+gil_function_requires<ChannelConcept<SrcChannel>>();
+gil_function_requires<MutableChannelConcept<DstChannel>>();
+dst = channel_convert<DstChannel, SrcChannel>(src);
+ignore_unused_variable_warning(dst);
+}
+SrcChannel src;
+DstChannel dst;
 };
 
 }} // namespace boost::gil

@@ -34,20 +34,20 @@ class BOOST_SYMBOL_VISIBLE system_error_category: public error_category
 {
 public:
 
-    BOOST_SYSTEM_CONSTEXPR system_error_category() BOOST_NOEXCEPT:
-        error_category( detail::system_category_id )
-    {
-    }
+BOOST_SYSTEM_CONSTEXPR system_error_category() BOOST_NOEXCEPT:
+error_category( detail::system_category_id )
+{
+}
 
-    const char * name() const BOOST_NOEXCEPT BOOST_OVERRIDE
-    {
-        return "system";
-    }
+const char * name() const BOOST_NOEXCEPT BOOST_OVERRIDE
+{
+return "system";
+}
 
-    error_condition default_error_condition( int ev ) const BOOST_NOEXCEPT BOOST_OVERRIDE;
+error_condition default_error_condition( int ev ) const BOOST_NOEXCEPT BOOST_OVERRIDE;
 
-    std::string message( int ev ) const BOOST_OVERRIDE;
-    char const * message( int ev, char * buffer, std::size_t len ) const BOOST_NOEXCEPT BOOST_OVERRIDE;
+std::string message( int ev ) const BOOST_OVERRIDE;
+char const * message( int ev, char * buffer, std::size_t len ) const BOOST_NOEXCEPT BOOST_OVERRIDE;
 };
 
 #if ( defined( BOOST_GCC ) && BOOST_GCC >= 40600 ) || defined( BOOST_CLANG )
@@ -65,7 +65,7 @@ namespace detail
 
 template<class T> struct BOOST_SYMBOL_VISIBLE system_cat_holder
 {
-    static constexpr system_error_category instance{};
+static constexpr system_error_category instance{};
 };
 
 // Before C++17 it was mandatory to redeclare all static constexpr
@@ -77,7 +77,7 @@ template<class T> constexpr system_error_category system_cat_holder<T>::instance
 
 constexpr error_category const & system_category() BOOST_NOEXCEPT
 {
-    return detail::system_cat_holder<void>::instance;
+return detail::system_cat_holder<void>::instance;
 }
 
 #else // #if defined(BOOST_SYSTEM_HAS_CONSTEXPR)
@@ -88,8 +88,8 @@ inline error_category const & system_category() BOOST_NOEXCEPT BOOST_SYMBOL_VISI
 
 inline error_category const & system_category() BOOST_NOEXCEPT
 {
-    static const detail::system_error_category instance;
-    return instance;
+static const detail::system_error_category instance;
+return instance;
 }
 
 #endif // #if defined(BOOST_SYSTEM_HAS_CONSTEXPR)

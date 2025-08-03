@@ -32,28 +32,28 @@ namespace algo {
 
 class BOOST_FIBERS_DECL round_robin : public algorithm {
 private:
-    typedef scheduler::ready_queue_type rqueue_type;
+typedef scheduler::ready_queue_type rqueue_type;
 
-    rqueue_type                 rqueue_{};
-    std::mutex                  mtx_{};
-    std::condition_variable     cnd_{};
-    bool                        flag_{ false };
+rqueue_type                 rqueue_{};
+std::mutex                  mtx_{};
+std::condition_variable     cnd_{};
+bool                        flag_{ false };
 
 public:
-    round_robin() = default;
+round_robin() = default;
 
-    round_robin( round_robin const&) = delete;
-    round_robin & operator=( round_robin const&) = delete;
+round_robin( round_robin const&) = delete;
+round_robin & operator=( round_robin const&) = delete;
 
-    void awakened( context *) noexcept override;
+void awakened( context *) noexcept override;
 
-    context * pick_next() noexcept override;
+context * pick_next() noexcept override;
 
-    bool has_ready_fibers() const noexcept override;
+bool has_ready_fibers() const noexcept override;
 
-    void suspend_until( std::chrono::steady_clock::time_point const&) noexcept override;
+void suspend_until( std::chrono::steady_clock::time_point const&) noexcept override;
 
-    void notify() noexcept override;
+void notify() noexcept override;
 };
 
 }}}

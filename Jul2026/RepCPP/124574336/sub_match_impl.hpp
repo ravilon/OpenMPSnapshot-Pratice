@@ -27,19 +27,19 @@ namespace boost { namespace xpressive { namespace detail
 //
 template<typename BidiIter>
 struct sub_match_impl
-  : sub_match<BidiIter>
+: sub_match<BidiIter>
 {
-    unsigned int repeat_count_;
-    BidiIter begin_;
-    bool zero_width_;
+unsigned int repeat_count_;
+BidiIter begin_;
+bool zero_width_;
 
-    sub_match_impl(BidiIter const &begin)
-      : sub_match<BidiIter>(begin, begin)
-      , repeat_count_(0)
-      , begin_(begin)
-      , zero_width_(false)
-    {
-    }
+sub_match_impl(BidiIter const &begin)
+: sub_match<BidiIter>(begin, begin)
+, repeat_count_(0)
+, begin_(begin)
+, zero_width_(false)
+{
+}
 };
 
 }}} // namespace boost::xpressive::detail

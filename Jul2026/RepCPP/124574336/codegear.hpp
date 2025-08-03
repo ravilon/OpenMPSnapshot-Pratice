@@ -100,8 +100,8 @@
 // Specific settings for Embarcadero drivers
 #  define BOOST_EMBTC          __CODEGEARC__
 #  define BOOST_EMBTC_FULL_VER ((__clang_major__      << 16) | \
-                                (__clang_minor__      <<  8) | \
-                                 __clang_patchlevel__         )
+(__clang_minor__      <<  8) | \
+__clang_patchlevel__         )
 
 // Detecting which Embarcadero driver is being used
 #if defined(BOOST_EMBTC)
@@ -173,8 +173,8 @@
 #  define BOOST_NO_DEPENDENT_NESTED_DERIVATIONS
 #  define BOOST_NO_PRIVATE_IN_AGGREGATE
 #  define BOOST_NO_USING_DECLARATION_OVERLOADS_FROM_TYPENAME_BASE
-   // we shouldn't really need this - but too many things choke
-   // without it, this needs more investigation:
+// we shouldn't really need this - but too many things choke
+// without it, this needs more investigation:
 #  define BOOST_NO_LIMITS_COMPILE_TIME_CONSTANTS
 #  define BOOST_SP_NO_SP_CONVERTIBLE
 #endif
@@ -200,11 +200,11 @@
 #  define BOOST_NO_COMPLETE_VALUE_INITIALIZATION
 
 #  if defined(NDEBUG) && defined(__cplusplus)
-      // fix broken <cstring> so that Boost.test works:
+// fix broken <cstring> so that Boost.test works:
 #     include <cstring>
 #     undef strcmp
 #  endif
-   // fix broken errno declaration:
+// fix broken errno declaration:
 #  include <errno.h>
 #  ifndef errno
 #     define errno errno

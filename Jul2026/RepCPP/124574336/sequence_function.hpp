@@ -15,46 +15,46 @@
 
 namespace boost { namespace spirit { namespace lex { namespace detail
 {
-    template <typename LexerDef, typename String>
-    struct sequence_collect_function
-    {
-        sequence_collect_function(LexerDef& def_, String const& state_
-              , String const& targetstate_)
-          : def(def_), state(state_), targetstate(targetstate_) {}
+template <typename LexerDef, typename String>
+struct sequence_collect_function
+{
+sequence_collect_function(LexerDef& def_, String const& state_
+, String const& targetstate_)
+: def(def_), state(state_), targetstate(targetstate_) {}
 
-        template <typename Component>
-        bool operator()(Component const& component) const
-        {
-            component.collect(def, state, targetstate);
-            return false;     // execute for all sequence elements
-        }
+template <typename Component>
+bool operator()(Component const& component) const
+{
+component.collect(def, state, targetstate);
+return false;     // execute for all sequence elements
+}
 
-        LexerDef& def;
-        String const& state;
-        String const& targetstate;
+LexerDef& def;
+String const& state;
+String const& targetstate;
 
-        // silence MSVC warning C4512: assignment operator could not be generated
-        BOOST_DELETED_FUNCTION(sequence_collect_function& operator= (sequence_collect_function const&))
-    };
+// silence MSVC warning C4512: assignment operator could not be generated
+BOOST_DELETED_FUNCTION(sequence_collect_function& operator= (sequence_collect_function const&))
+};
 
-    template <typename LexerDef>
-    struct sequence_add_actions_function
-    {
-        sequence_add_actions_function(LexerDef& def_)
-          : def(def_) {}
+template <typename LexerDef>
+struct sequence_add_actions_function
+{
+sequence_add_actions_function(LexerDef& def_)
+: def(def_) {}
 
-        template <typename Component>
-        bool operator()(Component const& component) const
-        {
-            component.add_actions(def);
-            return false;     // execute for all sequence elements
-        }
+template <typename Component>
+bool operator()(Component const& component) const
+{
+component.add_actions(def);
+return false;     // execute for all sequence elements
+}
 
-        LexerDef& def;
+LexerDef& def;
 
-        // silence MSVC warning C4512: assignment operator could not be generated
-        BOOST_DELETED_FUNCTION(sequence_add_actions_function& operator= (sequence_add_actions_function const&))
-    };
+// silence MSVC warning C4512: assignment operator could not be generated
+BOOST_DELETED_FUNCTION(sequence_add_actions_function& operator= (sequence_add_actions_function const&))
+};
 
 }}}}
 

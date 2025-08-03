@@ -30,17 +30,17 @@ namespace intrusive {
 template <class T>
 struct twin
 {
-   typedef T type;
-   twin()
-      : first(), second()
-   {}
+typedef T type;
+twin()
+: first(), second()
+{}
 
-   twin(const type &f, const type &s)
-      : first(f), second(s)
-   {}
+twin(const type &f, const type &s)
+: first(f), second(s)
+{}
 
-   T first;
-   T second;
+T first;
+T second;
 };
 
 }  //namespace intrusive{

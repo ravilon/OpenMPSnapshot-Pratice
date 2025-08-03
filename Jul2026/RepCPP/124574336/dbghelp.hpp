@@ -1,11 +1,11 @@
 /*
- * Copyright 2015 Klemens Morgenstern
- * Copyright 2016 Jorge Lodos
- * Copyright 2016 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2015 Klemens Morgenstern
+* Copyright 2016 Jorge Lodos
+* Copyright 2016 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_DBGHELP_HPP_INCLUDED_
 #define BOOST_WINAPI_DBGHELP_HPP_INCLUDED_
@@ -54,18 +54,18 @@ struct API_VERSION;
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 UnDecorateSymbolName(
-    boost::winapi::LPCSTR_ DecoratedName,
-    boost::winapi::LPSTR_ UnDecoratedName,
-    boost::winapi::DWORD_ UndecoratedLength,
-    boost::winapi::DWORD_ Flags);
+boost::winapi::LPCSTR_ DecoratedName,
+boost::winapi::LPSTR_ UnDecoratedName,
+boost::winapi::DWORD_ UndecoratedLength,
+boost::winapi::DWORD_ Flags);
 
 #if defined( BOOST_WINAPI_DETAIL_HAS_UNDECORATESYMBOLNAMEW )
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 UnDecorateSymbolNameW(
-    boost::winapi::LPCWSTR_ DecoratedName,
-    boost::winapi::LPWSTR_ UnDecoratedName,
-    boost::winapi::DWORD_ UndecoratedLength,
-    boost::winapi::DWORD_ Flags);
+boost::winapi::LPCWSTR_ DecoratedName,
+boost::winapi::LPWSTR_ UnDecoratedName,
+boost::winapi::DWORD_ UndecoratedLength,
+boost::winapi::DWORD_ Flags);
 #endif
 
 BOOST_WINAPI_IMPORT API_VERSION* BOOST_WINAPI_WINAPI_CC
@@ -125,43 +125,43 @@ using ::UnDecorateSymbolNameW;
 #endif
 
 typedef struct BOOST_MAY_ALIAS API_VERSION {
-    USHORT_  MajorVersion;
-    USHORT_  MinorVersion;
-    USHORT_  Revision;
-    USHORT_  Reserved;
+USHORT_  MajorVersion;
+USHORT_  MinorVersion;
+USHORT_  Revision;
+USHORT_  Reserved;
 } API_VERSION_, *LPAPI_VERSION_;
 
 BOOST_FORCEINLINE LPAPI_VERSION_ ImagehlpApiVersion()
 {
-    return reinterpret_cast<LPAPI_VERSION_>(::ImagehlpApiVersion());
+return reinterpret_cast<LPAPI_VERSION_>(::ImagehlpApiVersion());
 }
 
 BOOST_FORCEINLINE DWORD_ undecorate_symbol_name(
-    LPCSTR_ DecoratedName,
-    LPSTR_ UnDecoratedName,
-    DWORD_ UndecoratedLength,
-    DWORD_ Flags)
+LPCSTR_ DecoratedName,
+LPSTR_ UnDecoratedName,
+DWORD_ UndecoratedLength,
+DWORD_ Flags)
 {
-    return ::UnDecorateSymbolName(
-        DecoratedName,
-        UnDecoratedName,
-        UndecoratedLength,
-        Flags);
+return ::UnDecorateSymbolName(
+DecoratedName,
+UnDecoratedName,
+UndecoratedLength,
+Flags);
 }
 
 #if defined( BOOST_WINAPI_DETAIL_HAS_UNDECORATESYMBOLNAMEW )
 
 BOOST_FORCEINLINE DWORD_ undecorate_symbol_name(
-    LPCWSTR_ DecoratedName,
-    LPWSTR_ UnDecoratedName,
-    DWORD_ UndecoratedLength,
-    DWORD_ Flags)
+LPCWSTR_ DecoratedName,
+LPWSTR_ UnDecoratedName,
+DWORD_ UndecoratedLength,
+DWORD_ Flags)
 {
-    return ::UnDecorateSymbolNameW(
-        DecoratedName,
-        UnDecoratedName,
-        UndecoratedLength,
-        Flags);
+return ::UnDecorateSymbolNameW(
+DecoratedName,
+UnDecoratedName,
+UndecoratedLength,
+Flags);
 }
 
 #endif

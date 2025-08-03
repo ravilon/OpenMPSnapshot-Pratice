@@ -24,11 +24,11 @@
 #include <boost/interprocess/containers/containers_fwd.hpp>
 
 namespace boost {
-   namespace interprocess {
+namespace interprocess {
 
-      using boost::container::stable_vector;
+using boost::container::stable_vector;
 
-   }  //namespace interprocess {
+}  //namespace interprocess {
 }  //namespace boost {
 
 #include <boost/interprocess/detail/config_end.hpp>

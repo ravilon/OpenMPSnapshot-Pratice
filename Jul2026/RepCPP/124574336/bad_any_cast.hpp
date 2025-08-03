@@ -24,17 +24,17 @@ namespace boost {
 
 class BOOST_SYMBOL_VISIBLE bad_any_cast :
 #ifndef BOOST_NO_RTTI
-    public std::bad_cast
+public std::bad_cast
 #else
-    public std::exception
+public std::exception
 #endif
 {
 public:
-    const char * what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
-    {
-        return "boost::bad_any_cast: "
-               "failed conversion using boost::any_cast";
-    }
+const char * what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
+{
+return "boost::bad_any_cast: "
+"failed conversion using boost::any_cast";
+}
 };
 
 } // namespace boost

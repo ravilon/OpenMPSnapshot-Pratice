@@ -46,12 +46,12 @@ namespace boost
 
 enum class memory_order : unsigned int
 {
-    relaxed = 0,
-    consume = 1,
-    acquire = 2,
-    release = 4,
-    acq_rel = 6, // acquire | release
-    seq_cst = 14 // acq_rel | 8
+relaxed = 0,
+consume = 1,
+acquire = 2,
+release = 4,
+acq_rel = 6, // acquire | release
+seq_cst = 14 // acq_rel | 8
 };
 
 BOOST_INLINE_VARIABLE BOOST_CONSTEXPR_OR_CONST memory_order memory_order_relaxed = memory_order::relaxed;
@@ -67,12 +67,12 @@ BOOST_INLINE_VARIABLE BOOST_CONSTEXPR_OR_CONST memory_order memory_order_seq_cst
 
 enum memory_order
 {
-    memory_order_relaxed = 0,
-    memory_order_consume = 1,
-    memory_order_acquire = 2,
-    memory_order_release = 4,
-    memory_order_acq_rel = 6, // acquire | release
-    memory_order_seq_cst = 14 // acq_rel | 8
+memory_order_relaxed = 0,
+memory_order_consume = 1,
+memory_order_acquire = 2,
+memory_order_release = 4,
+memory_order_acq_rel = 6, // acquire | release
+memory_order_seq_cst = 14 // acq_rel | 8
 };
 
 #endif // !defined(BOOST_NO_CXX11_SCOPED_ENUMS)

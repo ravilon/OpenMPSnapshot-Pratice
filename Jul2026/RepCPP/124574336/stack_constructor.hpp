@@ -28,35 +28,35 @@ namespace detail {
 template<typename T >
 struct stack_allocate
 {
-    T * address() {
-        return static_cast<T*>(storage_.address());
-    }
-    T & reference() {
-        return * address();
-    }
+T * address() {
+return static_cast<T*>(storage_.address());
+}
+T & reference() {
+return * address();
+}
 private:
-    typedef typename boost::aligned_storage<
-        sizeof(T),
-        boost::alignment_of<T>::value
-    > type;
-    type storage_;
+typedef typename boost::aligned_storage<
+sizeof(T),
+boost::alignment_of<T>::value
+> type;
+type storage_;
 };
 
 // construct element on the stack
 template<class Archive, class T>
 struct stack_construct : public stack_allocate<T>
 {
-    stack_construct(Archive & ar, const unsigned int version){
-        // note borland emits a no-op without the explicit namespace
-        boost::serialization::load_construct_data_adl(
-            ar,
-            this->address(),
-            version
-        );
-    }
-    ~stack_construct(){
-        this->address()->~T(); // undo load_construct_data above
-    }
+stack_construct(Archive & ar, const unsigned int version){
+// note borland emits a no-op without the explicit namespace
+boost::serialization::load_construct_data_adl(
+ar,
+this->address(),
+version
+);
+}
+~stack_construct(){
+this->address()->~T(); // undo load_construct_data above
+}
 };
 
 } // detail

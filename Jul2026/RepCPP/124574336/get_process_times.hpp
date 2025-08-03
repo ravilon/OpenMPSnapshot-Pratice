@@ -1,9 +1,9 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_GET_PROCESS_TIMES_HPP_INCLUDED_
 #define BOOST_WINAPI_GET_PROCESS_TIMES_HPP_INCLUDED_
@@ -27,11 +27,11 @@
 extern "C" {
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 GetProcessTimes(
-    boost::winapi::HANDLE_ hProcess,
-    ::_FILETIME* lpCreationTime,
-    ::_FILETIME* lpExitTime,
-    ::_FILETIME* lpKernelTime,
-    ::_FILETIME* lpUserTime);
+boost::winapi::HANDLE_ hProcess,
+::_FILETIME* lpCreationTime,
+::_FILETIME* lpExitTime,
+::_FILETIME* lpKernelTime,
+::_FILETIME* lpUserTime);
 }
 #endif
 
@@ -39,18 +39,18 @@ namespace boost {
 namespace winapi {
 
 BOOST_FORCEINLINE BOOL_ GetProcessTimes(
-    HANDLE_ hProcess,
-    LPFILETIME_ lpCreationTime,
-    LPFILETIME_ lpExitTime,
-    LPFILETIME_ lpKernelTime,
-    LPFILETIME_ lpUserTime)
+HANDLE_ hProcess,
+LPFILETIME_ lpCreationTime,
+LPFILETIME_ lpExitTime,
+LPFILETIME_ lpKernelTime,
+LPFILETIME_ lpUserTime)
 {
-    return ::GetProcessTimes(
-        hProcess,
-        reinterpret_cast< ::_FILETIME* >(lpCreationTime),
-        reinterpret_cast< ::_FILETIME* >(lpExitTime),
-        reinterpret_cast< ::_FILETIME* >(lpKernelTime),
-        reinterpret_cast< ::_FILETIME* >(lpUserTime));
+return ::GetProcessTimes(
+hProcess,
+reinterpret_cast< ::_FILETIME* >(lpCreationTime),
+reinterpret_cast< ::_FILETIME* >(lpExitTime),
+reinterpret_cast< ::_FILETIME* >(lpKernelTime),
+reinterpret_cast< ::_FILETIME* >(lpUserTime));
 }
 
 }

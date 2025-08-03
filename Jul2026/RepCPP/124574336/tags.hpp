@@ -122,50 +122,50 @@ struct raw_unpack_function_name : property_base< std::string > {};
 template<>
 struct image_read_info< raw_tag >
 {
-    /// Default contructor.
-    image_read_info< raw_tag >()
-    : _valid( false )
-    {}
+/// Default contructor.
+image_read_info< raw_tag >()
+: _valid( false )
+{}
 
-    // Here, width and height of the image are the ones of the output height (ie after having been processed by dcraw emulator)
-    raw_image_width::type       _width;
-    raw_image_height::type      _height;
-    raw_samples_per_pixel::type _samples_per_pixel;
-    raw_bits_per_pixel::type    _bits_per_pixel;
+// Here, width and height of the image are the ones of the output height (ie after having been processed by dcraw emulator)
+raw_image_width::type       _width;
+raw_image_height::type      _height;
+raw_samples_per_pixel::type _samples_per_pixel;
+raw_bits_per_pixel::type    _bits_per_pixel;
 
-    raw_camera_manufacturer::type _camera_manufacturer;
-    raw_camera_model::type        _camera_model;
+raw_camera_manufacturer::type _camera_manufacturer;
+raw_camera_model::type        _camera_model;
 
-    raw_raw_images_count::type   _raw_images_count;
-    raw_dng_version::type        _dng_version;
-    raw_number_colors::type      _number_colors;
-    raw_colors_description::type _colors_description;
+raw_raw_images_count::type   _raw_images_count;
+raw_dng_version::type        _dng_version;
+raw_number_colors::type      _number_colors;
+raw_colors_description::type _colors_description;
 
-    raw_raw_width::type      _raw_width;
-    raw_raw_height::type     _raw_height;
-    raw_visible_width::type  _visible_width;
-    raw_visible_height::type _visible_height;
-    raw_top_margin::type     _top_margin;
-    raw_left_margin::type    _left_margin;
-    raw_output_width::type   _output_width;
-    raw_output_height::type  _output_height;
-    raw_pixel_aspect::type   _pixel_aspect;
-    raw_flip::type           _flip;
+raw_raw_width::type      _raw_width;
+raw_raw_height::type     _raw_height;
+raw_visible_width::type  _visible_width;
+raw_visible_height::type _visible_height;
+raw_top_margin::type     _top_margin;
+raw_left_margin::type    _left_margin;
+raw_output_width::type   _output_width;
+raw_output_height::type  _output_height;
+raw_pixel_aspect::type   _pixel_aspect;
+raw_flip::type           _flip;
 
-    raw_iso_speed::type         _iso_speed;
-    raw_shutter::type           _shutter;
-    raw_aperture::type          _aperture;
-    raw_focal_length::type      _focal_length;
-    raw_timestamp::type         _timestamp;
-    raw_shot_order::type        _shot_order;
-    raw_image_description::type _image_description;
-    raw_artist::type            _artist;
+raw_iso_speed::type         _iso_speed;
+raw_shutter::type           _shutter;
+raw_aperture::type          _aperture;
+raw_focal_length::type      _focal_length;
+raw_timestamp::type         _timestamp;
+raw_shot_order::type        _shot_order;
+raw_image_description::type _image_description;
+raw_artist::type            _artist;
 
-    raw_libraw_version::type       _libraw_version;
-    raw_unpack_function_name::type _unpack_function_name;
+raw_libraw_version::type       _libraw_version;
+raw_unpack_function_name::type _unpack_function_name;
 
-    /// Used internaly to identify if the header has been read.
-    bool _valid;
+/// Used internaly to identify if the header has been read.
+bool _valid;
 };
 
 /// Read settings for raw images.
@@ -174,21 +174,21 @@ struct image_read_info< raw_tag >
 template<>
 struct image_read_settings< raw_tag > : public image_read_settings_base
 {
-    /// Default constructor
-    image_read_settings()
-    : image_read_settings_base()
-    {}
+/// Default constructor
+image_read_settings()
+: image_read_settings_base()
+{}
 
-    /// Constructor
-    /// \param top_left Top left coordinate for reading partial image.
-    /// \param dim      Dimensions for reading partial image.
-    image_read_settings( const point_t& top_left
-                       , const point_t& dim
-                       )
-    : image_read_settings_base( top_left
-                              , dim
-                              )
-    {}
+/// Constructor
+/// \param top_left Top left coordinate for reading partial image.
+/// \param dim      Dimensions for reading partial image.
+image_read_settings( const point_t& top_left
+, const point_t& dim
+)
+: image_read_settings_base( top_left
+, dim
+)
+{}
 };
 
 /// Write information for raw images.

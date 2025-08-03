@@ -31,58 +31,58 @@ template <typename... Signatures>
 class channel_payload
 {
 public:
-  template <typename Signature>
-  channel_payload(BOOST_ASIO_MOVE_ARG(channel_message<Signature>) m)
-    : message_(BOOST_ASIO_MOVE_CAST(channel_message<Signature>)(m))
-  {
-  }
+template <typename Signature>
+channel_payload(BOOST_ASIO_MOVE_ARG(channel_message<Signature>) m)
+: message_(BOOST_ASIO_MOVE_CAST(channel_message<Signature>)(m))
+{
+}
 
-  template <typename Handler>
-  void receive(Handler& handler)
-  {
-    std::visit(
-        [&](auto& message)
-        {
-          message.receive(handler);
-        }, message_);
-  }
+template <typename Handler>
+void receive(Handler& handler)
+{
+std::visit(
+[&](auto& message)
+{
+message.receive(handler);
+}, message_);
+}
 
 private:
-  std::variant<channel_message<Signatures>...> message_;
+std::variant<channel_message<Signatures>...> message_;
 };
 
 template <typename R>
 class channel_payload<R()>
 {
 public:
-  explicit channel_payload(channel_message<R()>)
-  {
-  }
+explicit channel_payload(channel_message<R()>)
+{
+}
 
-  template <typename Handler>
-  void receive(Handler& handler)
-  {
-    BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)();
-  }
+template <typename Handler>
+void receive(Handler& handler)
+{
+BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)();
+}
 };
 
 template <typename Signature>
 class channel_payload<Signature>
 {
 public:
-  channel_payload(BOOST_ASIO_MOVE_ARG(channel_message<Signature>) m)
-    : message_(BOOST_ASIO_MOVE_CAST(channel_message<Signature>)(m))
-  {
-  }
+channel_payload(BOOST_ASIO_MOVE_ARG(channel_message<Signature>) m)
+: message_(BOOST_ASIO_MOVE_CAST(channel_message<Signature>)(m))
+{
+}
 
-  template <typename Handler>
-  void receive(Handler& handler)
-  {
-    message_.receive(handler);
-  }
+template <typename Handler>
+void receive(Handler& handler)
+{
+message_.receive(handler);
+}
 
 private:
-  channel_message<Signature> message_;
+channel_message<Signature> message_;
 };
 
 } // namespace detail

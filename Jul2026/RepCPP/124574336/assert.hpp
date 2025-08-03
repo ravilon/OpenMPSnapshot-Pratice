@@ -40,15 +40,15 @@
 #endif
 
 #if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x610)) \
-    || (BOOST_MPL_CFG_GCC != 0) \
-    || BOOST_WORKAROUND(__IBMCPP__, <= 600)
+|| (BOOST_MPL_CFG_GCC != 0) \
+|| BOOST_WORKAROUND(__IBMCPP__, <= 600)
 #   define BOOST_MPL_CFG_ASSERT_USE_RELATION_NAMES
 #endif
 
 #if BOOST_WORKAROUND(__MWERKS__, < 0x3202) \
-    || BOOST_WORKAROUND(__EDG_VERSION__, <= 238) \
-    || BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x610)) \
-    || BOOST_WORKAROUND(__DMC__, BOOST_TESTED_AT(0x840))
+|| BOOST_WORKAROUND(__EDG_VERSION__, <= 238) \
+|| BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x610)) \
+|| BOOST_WORKAROUND(__DMC__, BOOST_TESTED_AT(0x840))
 #   define BOOST_MPL_CFG_ASSERT_BROKEN_POINTER_TO_POINTER_TO_MEMBER
 #endif
 
@@ -56,7 +56,7 @@
 // and GCC (which issues "unused variable" warnings when static constants are used 
 // at a function scope)
 #if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x610)) \
-    || (BOOST_MPL_CFG_GCC != 0) || (BOOST_MPL_CFG_GPU != 0) || defined(__PGI)
+|| (BOOST_MPL_CFG_GCC != 0) || (BOOST_MPL_CFG_GPU != 0) || defined(__PGI)
 #   define BOOST_MPL_AUX_ASSERT_CONSTANT(T, expr) enum { expr }
 #else
 #   define BOOST_MPL_AUX_ASSERT_CONSTANT(T, expr) BOOST_STATIC_CONSTANT(T, expr)
@@ -85,22 +85,22 @@ int assertion_failed( typename assert<C>::type );
 template< bool C >
 struct assertion
 {
-    static int failed( assert<false> );
+static int failed( assert<false> );
 };
 
 template<>
 struct assertion<true>
 {
-    static int failed( void* );
+static int failed( void* );
 };
 
 struct assert_
 {
 #if !defined(BOOST_MPL_CFG_NO_DEFAULT_PARAMETERS_IN_NESTED_TEMPLATES)
-    template< typename T1, typename T2 = na, typename T3 = na, typename T4 = na > struct types {};
+template< typename T1, typename T2 = na, typename T3 = na, typename T4 = na > struct types {};
 #endif
-    static assert_ const arg;
-    enum relations { equal = 1, not_equal, greater, greater_equal, less, less_equal };
+static assert_ const arg;
+enum relations { equal = 1, not_equal, greater, greater_equal, less, less_equal };
 };
 
 
@@ -145,22 +145,22 @@ struct extract_assert_pred<void(Pred)> { typedef Pred type; };
 
 template<class Pred>
 struct eval_assert {
-    typedef typename extract_assert_pred<Pred>::type P;
-    typedef typename P::type p_type;
-    typedef typename ::boost::mpl::if_c<p_type::value,
-        AUX778076_ASSERT_ARG(assert<false>),
-        failed ************ P::************
-    >::type type;
+typedef typename extract_assert_pred<Pred>::type P;
+typedef typename P::type p_type;
+typedef typename ::boost::mpl::if_c<p_type::value,
+AUX778076_ASSERT_ARG(assert<false>),
+failed ************ P::************
+>::type type;
 };
 
 template<class Pred>
 struct eval_assert_not {
-    typedef typename extract_assert_pred<Pred>::type P;
-    typedef typename P::type p_type;
-    typedef typename ::boost::mpl::if_c<!p_type::value,
-        AUX778076_ASSERT_ARG(assert<false>),
-        failed ************ ::boost::mpl::not_<P>::************
-    >::type type;
+typedef typename extract_assert_pred<Pred>::type P;
+typedef typename P::type p_type;
+typedef typename ::boost::mpl::if_c<!p_type::value,
+AUX778076_ASSERT_ARG(assert<false>),
+failed ************ ::boost::mpl::not_<P>::************
+>::type type;
 };
 
 template< typename T >
@@ -173,15 +173,15 @@ template<> struct assert_arg_pred_impl<true> { typedef void* type; };
 
 template< typename P > struct assert_arg_pred
 {
-    typedef typename P::type p_type;
-    typedef typename assert_arg_pred_impl< p_type::value >::type type;
+typedef typename P::type p_type;
+typedef typename assert_arg_pred_impl< p_type::value >::type type;
 };
 
 template< typename P > struct assert_arg_pred_not
 {
-    typedef typename P::type p_type;
-    BOOST_MPL_AUX_ASSERT_CONSTANT( bool, p = !p_type::value );
-    typedef typename assert_arg_pred_impl<p>::type type;
+typedef typename P::type p_type;
+BOOST_MPL_AUX_ASSERT_CONSTANT( bool, p = !p_type::value );
+typedef typename assert_arg_pred_impl<p>::type type;
 };
 
 #if defined(BOOST_GCC) && BOOST_GCC >= 80000
@@ -192,13 +192,13 @@ template< typename P > struct assert_arg_pred_not
 
 template< typename Pred >
 failed ************ (Pred::************
-      assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
-    );
+assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+);
 
 template< typename Pred >
 failed ************ (boost::mpl::not_<Pred>::************
-      assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
-    );
+assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+);
 
 #ifdef BOOST_MPL_IGNORE_PARENTHESES_WARNING
 #undef BOOST_MPL_IGNORE_PARENTHESES_WARNING
@@ -215,20 +215,20 @@ assert_not_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type );
 
 
 #else // BOOST_MPL_CFG_ASSERT_BROKEN_POINTER_TO_POINTER_TO_MEMBER
-        
+
 template< bool c, typename Pred > struct assert_arg_type_impl
 {
-    typedef failed      ************ Pred::* mwcw83_wknd;
-    typedef mwcw83_wknd ************* type;
+typedef failed      ************ Pred::* mwcw83_wknd;
+typedef mwcw83_wknd ************* type;
 };
 
 template< typename Pred > struct assert_arg_type_impl<true,Pred>
 {
-    typedef AUX778076_ASSERT_ARG(assert<false>) type;
+typedef AUX778076_ASSERT_ARG(assert<false>) type;
 };
 
 template< typename Pred > struct assert_arg_type
-    : assert_arg_type_impl< BOOST_MPL_AUX_VALUE_WKND(BOOST_MPL_AUX_NESTED_TYPE_WKND(Pred))::value, Pred >
+: assert_arg_type_impl< BOOST_MPL_AUX_VALUE_WKND(BOOST_MPL_AUX_NESTED_TYPE_WKND(Pred))::value, Pred >
 {
 };
 
@@ -262,30 +262,30 @@ BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_CLOSE
 
 #define BOOST_MPL_ASSERT(pred) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-          boost::mpl::assertion_failed<false>( \
-              boost::mpl::make_assert_arg< \
-                  typename boost::mpl::eval_assert<void pred>::type \
-                >() \
-            ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<false>( \
+boost::mpl::make_assert_arg< \
+typename boost::mpl::eval_assert<void pred>::type \
+>() \
+) \
+) \
+) \
 /**/
 
 // BOOST_MPL_ASSERT_NOT((pred<x,...>))
 
 #define BOOST_MPL_ASSERT_NOT(pred) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-          boost::mpl::assertion_failed<false>( \
-              boost::mpl::make_assert_arg< \
-                  typename boost::mpl::eval_assert_not<void pred>::type \
-                >() \
-            ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<false>( \
+boost::mpl::make_assert_arg< \
+typename boost::mpl::eval_assert_not<void pred>::type \
+>() \
+) \
+) \
+) \
 /**/
 
 #else
@@ -294,13 +294,13 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
 
 #define BOOST_MPL_ASSERT(pred) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-          boost::mpl::assertion_failed<false>( \
-              boost::mpl::assert_arg( (void (*) pred)0, 1 ) \
-            ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<false>( \
+boost::mpl::assert_arg( (void (*) pred)0, 1 ) \
+) \
+) \
+) \
 /**/
 
 // BOOST_MPL_ASSERT_NOT((pred<x,...>))
@@ -308,23 +308,23 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1300)
 #   define BOOST_MPL_ASSERT_NOT(pred) \
 enum { \
-      BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-          boost::mpl::assertion<false>::failed( \
-              boost::mpl::assert_not_arg( (void (*) pred)0, 1 ) \
-            ) \
-        ) \
+BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion<false>::failed( \
+boost::mpl::assert_not_arg( (void (*) pred)0, 1 ) \
+) \
+) \
 }\
 /**/
 #else
 #   define BOOST_MPL_ASSERT_NOT(pred) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-          boost::mpl::assertion_failed<false>( \
-              boost::mpl::assert_not_arg( (void (*) pred)0, 1 ) \
-            ) \
-        ) \
-   ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<false>( \
+boost::mpl::assert_not_arg( (void (*) pred)0, 1 ) \
+) \
+) \
+) \
 /**/
 #endif
 
@@ -339,40 +339,40 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
 #   define BOOST_MPL_ASSERT_RELATION_IMPL(counter, x, rel, y)      \
 enum { BOOST_PP_CAT(mpl_assert_rel_value,counter) = (x rel y) }; \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
-        boost::mpl::assertion_failed<BOOST_PP_CAT(mpl_assert_rel_value,counter)>( \
-            (boost::mpl::failed ************ ( boost::mpl::assert_relation< \
-                  boost::mpl::assert_::relations( sizeof( \
-                      boost::mpl::assert_::arg rel boost::mpl::assert_::arg \
-                    ) ) \
-                , x \
-                , y \
-                >::************)) 0 ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
+boost::mpl::assertion_failed<BOOST_PP_CAT(mpl_assert_rel_value,counter)>( \
+(boost::mpl::failed ************ ( boost::mpl::assert_relation< \
+boost::mpl::assert_::relations( sizeof( \
+boost::mpl::assert_::arg rel boost::mpl::assert_::arg \
+) ) \
+, x \
+, y \
+>::************)) 0 ) \
+) \
+) \
 /**/
 #   else
 #   define BOOST_MPL_ASSERT_RELATION_IMPL(counter, x, rel, y)    \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assert_rel,counter) = sizeof( \
-          boost::mpl::assert_::arg rel boost::mpl::assert_::arg \
-        ) \
-    ); \
+std::size_t \
+, BOOST_PP_CAT(mpl_assert_rel,counter) = sizeof( \
+boost::mpl::assert_::arg rel boost::mpl::assert_::arg \
+) \
+); \
 BOOST_MPL_AUX_ASSERT_CONSTANT( bool, BOOST_PP_CAT(mpl_assert_rel_value,counter) = (x rel y) ); \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
-        boost::mpl::assertion_failed<BOOST_PP_CAT(mpl_assert_rel_value,counter)>( \
-              boost::mpl::assert_rel_arg( boost::mpl::assert_relation< \
-                  boost::mpl::assert_::relations(BOOST_PP_CAT(mpl_assert_rel,counter)) \
-                , x \
-                , y \
-                >() ) \
-            ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
+boost::mpl::assertion_failed<BOOST_PP_CAT(mpl_assert_rel_value,counter)>( \
+boost::mpl::assert_rel_arg( boost::mpl::assert_relation< \
+boost::mpl::assert_::relations(BOOST_PP_CAT(mpl_assert_rel,counter)) \
+, x \
+, y \
+>() ) \
+) \
+) \
+) \
 /**/
 #   endif
 
@@ -385,23 +385,23 @@ BOOST_MPL_ASSERT_RELATION_IMPL(BOOST_MPL_AUX_PP_COUNTER(), x, rel, y) \
 #   if defined(BOOST_MPL_CFG_ASSERT_BROKEN_POINTER_TO_POINTER_TO_MEMBER)
 #   define BOOST_MPL_ASSERT_RELATION(x, rel, y) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-        boost::mpl::assertion_failed<(x rel y)>( boost::mpl::assert_rel_arg( \
-              boost::mpl::BOOST_MPL_AUX_ASSERT_RELATION(x,y,(&boost::mpl::operator rel))() \
-            ) ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<(x rel y)>( boost::mpl::assert_rel_arg( \
+boost::mpl::BOOST_MPL_AUX_ASSERT_RELATION(x,y,(&boost::mpl::operator rel))() \
+) ) \
+) \
+) \
 /**/
 #   else
 #   define BOOST_MPL_ASSERT_RELATION(x, rel, y) \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
-        boost::mpl::assertion_failed<(x rel y)>( (boost::mpl::failed ************ ( \
-            boost::mpl::BOOST_MPL_AUX_ASSERT_RELATION(x,y,(&boost::mpl::operator rel))::************))0 ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,BOOST_MPL_AUX_PP_COUNTER()) = sizeof( \
+boost::mpl::assertion_failed<(x rel y)>( (boost::mpl::failed ************ ( \
+boost::mpl::BOOST_MPL_AUX_ASSERT_RELATION(x,y,(&boost::mpl::operator rel))::************))0 ) \
+) \
+) \
 /**/
 #   endif
 
@@ -415,31 +415,31 @@ BOOST_MPL_AUX_ASSERT_CONSTANT( \
 struct msg; \
 typedef struct BOOST_PP_CAT(msg,counter) : boost::mpl::assert_ \
 { \
-    using boost::mpl::assert_::types; \
-    static boost::mpl::failed ************ (msg::************ assert_arg()) types_ \
-    { return 0; } \
+using boost::mpl::assert_::types; \
+static boost::mpl::failed ************ (msg::************ assert_arg()) types_ \
+{ return 0; } \
 } BOOST_PP_CAT(mpl_assert_arg,counter); \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
-        boost::mpl::assertion<(c)>::failed( BOOST_PP_CAT(mpl_assert_arg,counter)::assert_arg() ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
+boost::mpl::assertion<(c)>::failed( BOOST_PP_CAT(mpl_assert_arg,counter)::assert_arg() ) \
+) \
+) \
 /**/
 #else
 #   define BOOST_MPL_ASSERT_MSG_IMPL( counter, c, msg, types_ )  \
 struct msg; \
 typedef struct BOOST_PP_CAT(msg,counter) : boost::mpl::assert_ \
 { \
-    static boost::mpl::failed ************ (msg::************ assert_arg()) types_ \
-    { return 0; } \
+static boost::mpl::failed ************ (msg::************ assert_arg()) types_ \
+{ return 0; } \
 } BOOST_PP_CAT(mpl_assert_arg,counter); \
 BOOST_MPL_AUX_ASSERT_CONSTANT( \
-      std::size_t \
-    , BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
-        boost::mpl::assertion_failed<(c)>( BOOST_PP_CAT(mpl_assert_arg,counter)::assert_arg() ) \
-        ) \
-    ) \
+std::size_t \
+, BOOST_PP_CAT(mpl_assertion_in_line_,counter) = sizeof( \
+boost::mpl::assertion_failed<(c)>( BOOST_PP_CAT(mpl_assert_arg,counter)::assert_arg() ) \
+) \
+) \
 /**/
 #endif
 

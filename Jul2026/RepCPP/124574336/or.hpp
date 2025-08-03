@@ -17,7 +17,7 @@
 #include <boost/mpl/aux_/config/use_preprocessed.hpp>
 
 #if !defined(BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS) \
-    && !defined(BOOST_MPL_PREPROCESSING_MODE)
+&& !defined(BOOST_MPL_PREPROCESSING_MODE)
 
 #   include <boost/mpl/bool.hpp>
 #   include <boost/mpl/aux_/nested_type_wknd.hpp>

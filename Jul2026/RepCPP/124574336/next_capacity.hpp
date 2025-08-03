@@ -35,48 +35,48 @@ namespace dtl {
 template<unsigned Minimum, unsigned Numerator, unsigned Denominator>
 struct grow_factor_ratio
 {
-   BOOST_STATIC_ASSERT(Numerator > Denominator);
-   BOOST_STATIC_ASSERT(Numerator   < 100);
-   BOOST_STATIC_ASSERT(Denominator < 100);
-   BOOST_STATIC_ASSERT(Denominator == 1 || (0 != Numerator % Denominator));
+BOOST_STATIC_ASSERT(Numerator > Denominator);
+BOOST_STATIC_ASSERT(Numerator   < 100);
+BOOST_STATIC_ASSERT(Denominator < 100);
+BOOST_STATIC_ASSERT(Denominator == 1 || (0 != Numerator % Denominator));
 
-   template<class SizeType>
-   SizeType operator()(const SizeType cur_cap, const SizeType add_min_cap, const SizeType max_cap) const
-   {
-      const SizeType overflow_limit  = ((SizeType)-1) / Numerator;
+template<class SizeType>
+SizeType operator()(const SizeType cur_cap, const SizeType add_min_cap, const SizeType max_cap) const
+{
+const SizeType overflow_limit  = ((SizeType)-1) / Numerator;
 
-      SizeType new_cap = 0;
+SizeType new_cap = 0;
 
-      if(cur_cap <= overflow_limit){
-         new_cap = SizeType(cur_cap * Numerator / Denominator);
-      }
-      else if(Denominator == 1 || (SizeType(new_cap = cur_cap) / Denominator) > overflow_limit){
-         new_cap = (SizeType)-1;
-      }
-      else{
-         new_cap = SizeType(new_cap*Numerator);
-      }
-      return max_value<SizeType>
-               ( SizeType(Minimum)
-               , max_value<SizeType>
-                  ( SizeType(cur_cap+add_min_cap)
-                  , min_value<SizeType>(max_cap, new_cap))
-               );
-   }
+if(cur_cap <= overflow_limit){
+new_cap = SizeType(cur_cap * Numerator / Denominator);
+}
+else if(Denominator == 1 || (SizeType(new_cap = cur_cap) / Denominator) > overflow_limit){
+new_cap = (SizeType)-1;
+}
+else{
+new_cap = SizeType(new_cap*Numerator);
+}
+return max_value<SizeType>
+( SizeType(Minimum)
+, max_value<SizeType>
+( SizeType(cur_cap+add_min_cap)
+, min_value<SizeType>(max_cap, new_cap))
+);
+}
 };
 
 }  //namespace dtl {
 
 struct growth_factor_50
-   : dtl::grow_factor_ratio<0, 3, 2>
+: dtl::grow_factor_ratio<0, 3, 2>
 {};
 
 struct growth_factor_60
-   : dtl::grow_factor_ratio<0, 8, 5>
+: dtl::grow_factor_ratio<0, 8, 5>
 {};
 
 struct growth_factor_100
-   : dtl::grow_factor_ratio<0, 2, 1>
+: dtl::grow_factor_ratio<0, 2, 1>
 {};
 
 template<class SizeType>
@@ -86,8 +86,8 @@ BOOST_CONTAINER_FORCEINLINE void clamp_by_stored_size_type(SizeType &, SizeType)
 template<class SizeType, class SomeStoredSizeType>
 BOOST_CONTAINER_FORCEINLINE void clamp_by_stored_size_type(SizeType &s, SomeStoredSizeType)
 {
-   if (s >= SomeStoredSizeType(-1) ) 
-      s = SomeStoredSizeType(-1);
+if (s >= SomeStoredSizeType(-1) ) 
+s = SomeStoredSizeType(-1);
 }
 
 }  //namespace container {

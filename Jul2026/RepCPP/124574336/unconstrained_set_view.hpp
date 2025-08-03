@@ -27,12 +27,12 @@ namespace views {
 template< class CoreIndex >
 class unconstrained_set_view
 {
-    public:
-    template< class T >
-    unconstrained_set_view(const T &) {}
+public:
+template< class T >
+unconstrained_set_view(const T &) {}
 
-    typedef void iterator;
-    typedef void const_iterator;
+typedef void iterator;
+typedef void const_iterator;
 };
 
 } // namespace views

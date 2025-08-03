@@ -1,14 +1,14 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    Sample: Print out the preprocessed tokens returned by the Wave iterator
-            Configuration data
-        
-    http://www.boost.org/
+Sample: Print out the preprocessed tokens returned by the Wave iterator
+Configuration data
 
-    Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost 
-    Software License, Version 1.0. (See accompanying file 
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+http://www.boost.org/
+
+Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost 
+Software License, Version 1.0. (See accompanying file 
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_CPP_TOKENS_HPP_7C0F1F14_6ACA_4439_A073_32C61C0DB6C5_INCLUDED)
@@ -34,9 +34,9 @@
 //  #define BOOST_SPIRIT_DEBUG_FLAGS_PREDEF_MACROS_GRAMMAR  0x0040
 
 #define BOOST_SPIRIT_DEBUG_FLAGS_CPP (\
-        /* insert the required flags from above */ \
-    ) \
-    /**/
+/* insert the required flags from above */ \
+) \
+/**/
 #endif 
 
 ///////////////////////////////////////////////////////////////////////////////

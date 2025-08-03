@@ -35,47 +35,47 @@ class algorithm;
 
 class BOOST_FIBERS_DECL fiber_properties {
 protected:
-    // initialized by constructor
-    context         *   ctx_;
-    // set every time this fiber becomes READY
-    algo::algorithm *   algo_{ nullptr };
+// initialized by constructor
+context         *   ctx_;
+// set every time this fiber becomes READY
+algo::algorithm *   algo_{ nullptr };
 
-    // Inform the relevant algorithm instance that something important
-    // has changed, so it can (presumably) adjust its data structures
-    // accordingly.
-    void notify() noexcept;
+// Inform the relevant algorithm instance that something important
+// has changed, so it can (presumably) adjust its data structures
+// accordingly.
+void notify() noexcept;
 
 public:
-    // Any specific property setter method, after updating the relevant
-    // instance variable, can/should call notify().
+// Any specific property setter method, after updating the relevant
+// instance variable, can/should call notify().
 
-    // fiber_properties, and by implication every subclass, must accept a back
-    // pointer to its context.
+// fiber_properties, and by implication every subclass, must accept a back
+// pointer to its context.
 
-    // For fiber_properties passed to fiber constructors, nullptr must be
-    // used here.
-    explicit fiber_properties( context * ctx) noexcept :
-        ctx_{ ctx } {
-    }
+// For fiber_properties passed to fiber constructors, nullptr must be
+// used here.
+explicit fiber_properties( context * ctx) noexcept :
+ctx_{ ctx } {
+}
 
-    // We need a virtual destructor (hence a vtable) because fiber_properties
-    // is stored polymorphically (as fiber_properties*) in context, and
-    // destroyed via that pointer.
-    virtual ~fiber_properties() = default;
+// We need a virtual destructor (hence a vtable) because fiber_properties
+// is stored polymorphically (as fiber_properties*) in context, and
+// destroyed via that pointer.
+virtual ~fiber_properties() = default;
 
-    // not really intended for public use, but algorithm_with_properties
-    // must be able to call this
-    void set_algorithm( algo::algorithm * algo) noexcept {
-        algo_ = algo;
-    }
+// not really intended for public use, but algorithm_with_properties
+// must be able to call this
+void set_algorithm( algo::algorithm * algo) noexcept {
+algo_ = algo;
+}
 
-    // not really intended for public use, but required to set properties
-    // on fiber/context construction.
-    void set_context( context* ctx ) noexcept {
-        BOOST_ASSERT( ctx_ == nullptr );
-        BOOST_ASSERT( ctx != nullptr );
-        ctx_ = ctx;
-    }
+// not really intended for public use, but required to set properties
+// on fiber/context construction.
+void set_context( context* ctx ) noexcept {
+BOOST_ASSERT( ctx_ == nullptr );
+BOOST_ASSERT( ctx != nullptr );
+ctx_ = ctx;
+}
 };
 
 }} // namespace boost::fibers

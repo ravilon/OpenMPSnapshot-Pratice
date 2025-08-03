@@ -33,44 +33,44 @@ This class uses container_adaptor and iterator_adaptor to wrapped a index of the
 multi_index bimap core so it can be used as a std::unordered_multiset.
 
 See also const_unordered_multiset_view.
-                                                                                    **/
+**/
 
 template< class CoreIndex >
 class unordered_multiset_view
 :
-    public BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
-        unordered_multiset_adaptor,
-        CoreIndex,
-        local_iterator,
-        const_local_iterator
+public BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
+unordered_multiset_adaptor,
+CoreIndex,
+local_iterator,
+const_local_iterator
 
-    ),
+),
 
-    public ::boost::bimaps::detail::
-                set_view_base< unordered_multiset_view< CoreIndex >, CoreIndex >
+public ::boost::bimaps::detail::
+set_view_base< unordered_multiset_view< CoreIndex >, CoreIndex >
 {
-    BOOST_BIMAP_SET_VIEW_BASE_FRIEND(unordered_multiset_view,CoreIndex)
+BOOST_BIMAP_SET_VIEW_BASE_FRIEND(unordered_multiset_view,CoreIndex)
 
-    typedef BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
-        unordered_multiset_adaptor,
-        CoreIndex,
-        local_iterator,
-        const_local_iterator
+typedef BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
+unordered_multiset_adaptor,
+CoreIndex,
+local_iterator,
+const_local_iterator
 
-    ) base_;
+) base_;
 
-    public:
+public:
 
-    unordered_multiset_view(BOOST_DEDUCED_TYPENAME base_::base_type & c)
-        : base_(c) {}
+unordered_multiset_view(BOOST_DEDUCED_TYPENAME base_::base_type & c)
+: base_(c) {}
 
-    BOOST_BIMAP_NON_UNIQUE_VIEW_INSERT_FUNCTIONS
+BOOST_BIMAP_NON_UNIQUE_VIEW_INSERT_FUNCTIONS
 
-    unordered_multiset_view & operator=(const unordered_multiset_view & v)
-    {
-        this->base() = v.base();
-        return *this;
-    }
+unordered_multiset_view & operator=(const unordered_multiset_view & v)
+{
+this->base() = v.base();
+return *this;
+}
 };
 
 

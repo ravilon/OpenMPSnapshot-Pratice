@@ -30,19 +30,19 @@ namespace detail {
 
 struct storage
 {
-    storage() {}
+storage() {}
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
-    storage(storage& other) : data(other.data) {}
-    storage(const storage& other) : data(other.data) {}
-    storage(storage&& other) : data(other.data) {}
-    storage& operator=(const storage& other) { data = other.data; return *this; }
-    template<class T>
-    explicit storage(T&& arg) : data(new typename boost::decay<T>::type(std::forward<T>(arg))) {}
+storage(storage& other) : data(other.data) {}
+storage(const storage& other) : data(other.data) {}
+storage(storage&& other) : data(other.data) {}
+storage& operator=(const storage& other) { data = other.data; return *this; }
+template<class T>
+explicit storage(T&& arg) : data(new typename boost::decay<T>::type(std::forward<T>(arg))) {}
 #else
-    template<class T>
-    explicit storage(const T& arg) : data(new typename boost::decay<T>::type(arg)) {}
+template<class T>
+explicit storage(const T& arg) : data(new typename boost::decay<T>::type(arg)) {}
 #endif
-    void* data;
+void* data;
 };
 
 
@@ -61,13 +61,13 @@ T extract(T arg) { return arg; }
 template<class T>
 T extract(storage& arg)
 {
-    return *static_cast<typename ::boost::remove_reference<T>::type*>(arg.data);
+return *static_cast<typename ::boost::remove_reference<T>::type*>(arg.data);
 }
 
 template<class T>
 T extract(const storage& arg)
 {
-    return *static_cast<const typename ::boost::remove_reference<T>::type*>(arg.data);
+return *static_cast<const typename ::boost::remove_reference<T>::type*>(arg.data);
 }
 
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
@@ -75,7 +75,7 @@ T extract(const storage& arg)
 template<class T>
 T extract(storage&& arg)
 {
-    return std::move(*static_cast<typename ::boost::remove_reference<T>::type*>(arg.data));
+return std::move(*static_cast<typename ::boost::remove_reference<T>::type*>(arg.data));
 }
 
 #endif

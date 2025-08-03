@@ -16,15 +16,15 @@ namespace move_ptrs {
 #pragma warning(push)    
 #pragma warning(disable:4512)  
 #endif  
-    
+
 template<typename Ptr>
 class move_source {
 public:
-    move_source(Ptr& ptr) : ptr_(ptr) {}
-    Ptr& ptr() const { return ptr_; }
+move_source(Ptr& ptr) : ptr_(ptr) {}
+Ptr& ptr() const { return ptr_; }
 private:
-    Ptr& ptr_;
-    move_source(const Ptr&);
+Ptr& ptr_;
+move_source(const Ptr&);
 };
 
 #if BOOST_WORKAROUND(BOOST_MSVC, >= 1400)    

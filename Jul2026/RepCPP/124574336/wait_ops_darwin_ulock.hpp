@@ -1,18 +1,18 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2021 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2021 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/wait_ops_darwin_ulock.hpp
- *
- * This header contains implementation of the waiting/notifying atomic operations based on Darwin systems using ulock syscalls.
- *
- * https://github.com/apple/darwin-xnu/blob/master/bsd/sys/ulock.h
- * https://github.com/apple/darwin-xnu/blob/master/bsd/kern/sys_ulock.c
- */
+* \file   atomic/detail/wait_ops_darwin_ulock.hpp
+*
+* This header contains implementation of the waiting/notifying atomic operations based on Darwin systems using ulock syscalls.
+*
+* https://github.com/apple/darwin-xnu/blob/master/bsd/sys/ulock.h
+* https://github.com/apple/darwin-xnu/blob/master/bsd/kern/sys_ulock.c
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_WAIT_OPS_DARWIN_ULOCK_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_WAIT_OPS_DARWIN_ULOCK_HPP_INCLUDED_
@@ -45,78 +45,78 @@ int __ulock_wake(uint32_t operation, void* addr, uint64_t wake_value);
 
 enum ulock_op
 {
-    ulock_op_compare_and_wait = 1,
+ulock_op_compare_and_wait = 1,
 #if defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK_SHARED)
-    ulock_op_compare_and_wait_shared = 3,
+ulock_op_compare_and_wait_shared = 3,
 #endif // defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK_SHARED)
 #if defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK64)
-    ulock_op_compare_and_wait64 = 5,
+ulock_op_compare_and_wait64 = 5,
 #if defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK_SHARED)
-    ulock_op_compare_and_wait64_shared = 6,
+ulock_op_compare_and_wait64_shared = 6,
 #endif // defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK_SHARED)
 #endif // defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK64)
 
-    // Flags for __ulock_wake
-    ulock_flag_wake_all = 0x00000100,
+// Flags for __ulock_wake
+ulock_flag_wake_all = 0x00000100,
 
-    // Generic flags
-    ulock_flag_no_errno = 0x01000000
+// Generic flags
+ulock_flag_no_errno = 0x01000000
 };
 
 template< typename Base, uint32_t Opcode >
 struct wait_operations_darwin_ulock_common :
-    public Base
+public Base
 {
-    typedef Base base_type;
-    typedef typename base_type::storage_type storage_type;
+typedef Base base_type;
+typedef typename base_type::storage_type storage_type;
 
-    static BOOST_CONSTEXPR_OR_CONST bool always_has_native_wait_notify = true;
+static BOOST_CONSTEXPR_OR_CONST bool always_has_native_wait_notify = true;
 
-    static BOOST_FORCEINLINE bool has_native_wait_notify(storage_type const volatile&) BOOST_NOEXCEPT
-    {
-        return true;
-    }
+static BOOST_FORCEINLINE bool has_native_wait_notify(storage_type const volatile&) BOOST_NOEXCEPT
+{
+return true;
+}
 
-    static BOOST_FORCEINLINE storage_type wait(storage_type const volatile& storage, storage_type old_val, memory_order order) BOOST_NOEXCEPT
-    {
-        storage_type new_val = base_type::load(storage, order);
-        while (new_val == old_val)
-        {
+static BOOST_FORCEINLINE storage_type wait(storage_type const volatile& storage, storage_type old_val, memory_order order) BOOST_NOEXCEPT
+{
+storage_type new_val = base_type::load(storage, order);
+while (new_val == old_val)
+{
 #if defined(BOOST_ATOMIC_DETAIL_HAS_DARWIN_ULOCK_WAIT2)
-            __ulock_wait2(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), old_val, 0u, 0u);
+__ulock_wait2(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), old_val, 0u, 0u);
 #else
-            __ulock_wait(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), old_val, 0u);
+__ulock_wait(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), old_val, 0u);
 #endif
-            new_val = base_type::load(storage, order);
-        }
+new_val = base_type::load(storage, order);
+}
 
-        return new_val;
-    }
+return new_val;
+}
 
-    static BOOST_FORCEINLINE void notify_one(storage_type volatile& storage) BOOST_NOEXCEPT
-    {
-        while (true)
-        {
-            const int res = __ulock_wake(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), 0u);
-            if (BOOST_LIKELY(res != -EINTR))
-                break;
-        }
-    }
+static BOOST_FORCEINLINE void notify_one(storage_type volatile& storage) BOOST_NOEXCEPT
+{
+while (true)
+{
+const int res = __ulock_wake(Opcode | ulock_flag_no_errno, const_cast< storage_type* >(&storage), 0u);
+if (BOOST_LIKELY(res != -EINTR))
+break;
+}
+}
 
-    static BOOST_FORCEINLINE void notify_all(storage_type volatile& storage) BOOST_NOEXCEPT
-    {
-        while (true)
-        {
-            const int res = __ulock_wake(Opcode | ulock_flag_wake_all | ulock_flag_no_errno, const_cast< storage_type* >(&storage), 0u);
-            if (BOOST_LIKELY(res != -EINTR))
-                break;
-        }
-    }
+static BOOST_FORCEINLINE void notify_all(storage_type volatile& storage) BOOST_NOEXCEPT
+{
+while (true)
+{
+const int res = __ulock_wake(Opcode | ulock_flag_wake_all | ulock_flag_no_errno, const_cast< storage_type* >(&storage), 0u);
+if (BOOST_LIKELY(res != -EINTR))
+break;
+}
+}
 };
 
 template< typename Base >
 struct wait_operations< Base, sizeof(uint32_t), true, false > :
-    public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait >
+public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait >
 {
 };
 
@@ -124,7 +124,7 @@ struct wait_operations< Base, sizeof(uint32_t), true, false > :
 
 template< typename Base >
 struct wait_operations< Base, sizeof(uint32_t), true, true > :
-    public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait_shared >
+public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait_shared >
 {
 };
 
@@ -134,7 +134,7 @@ struct wait_operations< Base, sizeof(uint32_t), true, true > :
 
 template< typename Base >
 struct wait_operations< Base, sizeof(uint64_t), true, false > :
-    public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait64 >
+public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait64 >
 {
 };
 
@@ -142,7 +142,7 @@ struct wait_operations< Base, sizeof(uint64_t), true, false > :
 
 template< typename Base >
 struct wait_operations< Base, sizeof(uint64_t), true, true > :
-    public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait64_shared >
+public wait_operations_darwin_ulock_common< Base, ulock_op_compare_and_wait64_shared >
 {
 };
 

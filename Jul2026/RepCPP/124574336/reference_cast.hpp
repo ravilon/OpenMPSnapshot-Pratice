@@ -38,12 +38,12 @@ struct bad_runtime_cast : std::exception
 /// suitably offset from u. If no such conversion exists, throws boost::typeindex::bad_runtime_cast.
 template<typename T, typename U>
 typename boost::add_reference<T>::type runtime_cast(U& u) {
-    typedef typename boost::remove_reference<T>::type impl_type;
-    impl_type* value = detail::runtime_cast_impl<impl_type>(
-        boost::addressof(u), boost::is_base_and_derived<T, U>());
-    if(!value)
-        BOOST_THROW_EXCEPTION(bad_runtime_cast());
-    return *value;
+typedef typename boost::remove_reference<T>::type impl_type;
+impl_type* value = detail::runtime_cast_impl<impl_type>(
+boost::addressof(u), boost::is_base_and_derived<T, U>());
+if(!value)
+BOOST_THROW_EXCEPTION(bad_runtime_cast());
+return *value;
 }
 
 /// \brief Safely converts references to classes up, down, and sideways along the inheritance hierarchy.
@@ -53,12 +53,12 @@ typename boost::add_reference<T>::type runtime_cast(U& u) {
 /// suitably offset from u. If no such conversion exists, throws boost::typeindex::bad_runtime_cast.
 template<typename T, typename U>
 typename boost::add_reference<const T>::type runtime_cast(U const& u) {
-    typedef typename boost::remove_reference<T>::type impl_type;
-    impl_type* value = detail::runtime_cast_impl<impl_type>(
-        boost::addressof(u), boost::is_base_and_derived<T, U>());
-    if(!value)
-        BOOST_THROW_EXCEPTION(bad_runtime_cast());
-    return *value;
+typedef typename boost::remove_reference<T>::type impl_type;
+impl_type* value = detail::runtime_cast_impl<impl_type>(
+boost::addressof(u), boost::is_base_and_derived<T, U>());
+if(!value)
+BOOST_THROW_EXCEPTION(bad_runtime_cast());
+return *value;
 }
 
 }} // namespace boost::typeindex

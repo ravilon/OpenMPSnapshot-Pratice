@@ -15,59 +15,59 @@
 
 namespace boost { namespace spirit { namespace karma { namespace detail
 {
-    template <typename Char>
-    bool string_compare(Char const* attr, Char const* lit)
-    {
-        Char ch_attr = *attr;
-        Char ch_lit = *lit;
+template <typename Char>
+bool string_compare(Char const* attr, Char const* lit)
+{
+Char ch_attr = *attr;
+Char ch_lit = *lit;
 
-        while (!!ch_lit && !!ch_attr)
-        {
-            if (ch_attr != ch_lit)
-                return false;
+while (!!ch_lit && !!ch_attr)
+{
+if (ch_attr != ch_lit)
+return false;
 
-            ch_attr = *++attr;
-            ch_lit = *++lit;
-        }
+ch_attr = *++attr;
+ch_lit = *++lit;
+}
 
-        return !ch_lit && !ch_attr;
-    }
+return !ch_lit && !ch_attr;
+}
 
-    template <typename Char>
-    bool string_compare(Char const* attr, Char const* lit, unused_type, unused_type)
-    {
-        return string_compare(attr, lit);
-    }
+template <typename Char>
+bool string_compare(Char const* attr, Char const* lit, unused_type, unused_type)
+{
+return string_compare(attr, lit);
+}
 
-    template <typename Char>
-    bool string_compare(unused_type, Char const*, unused_type, unused_type)
-    {
-        return true;
-    }
+template <typename Char>
+bool string_compare(unused_type, Char const*, unused_type, unused_type)
+{
+return true;
+}
 
-    template <typename Char, typename CharEncoding, typename Tag>
-    bool string_compare(Char const* attr, Char const* lit, CharEncoding, Tag)
-    {
-        Char ch_attr = *attr;
-        Char ch_lit = spirit::char_class::convert<CharEncoding>::to(Tag(), *lit);
+template <typename Char, typename CharEncoding, typename Tag>
+bool string_compare(Char const* attr, Char const* lit, CharEncoding, Tag)
+{
+Char ch_attr = *attr;
+Char ch_lit = spirit::char_class::convert<CharEncoding>::to(Tag(), *lit);
 
-        while (!!ch_lit && !!ch_attr)
-        {
-            if (ch_attr != ch_lit)
-                return false;
+while (!!ch_lit && !!ch_attr)
+{
+if (ch_attr != ch_lit)
+return false;
 
-            ch_attr = *++attr;
-            ch_lit = spirit::char_class::convert<CharEncoding>::to(Tag(), *++lit);
-        }
+ch_attr = *++attr;
+ch_lit = spirit::char_class::convert<CharEncoding>::to(Tag(), *++lit);
+}
 
-        return !ch_lit && !ch_attr;
-    }
+return !ch_lit && !ch_attr;
+}
 
-    template <typename Char, typename CharEncoding, typename Tag>
-    bool string_compare(unused_type, Char const*, CharEncoding, Tag)
-    {
-        return true;
-    }
+template <typename Char, typename CharEncoding, typename Tag>
+bool string_compare(unused_type, Char const*, CharEncoding, Tag)
+{
+return true;
+}
 
 }}}}
 

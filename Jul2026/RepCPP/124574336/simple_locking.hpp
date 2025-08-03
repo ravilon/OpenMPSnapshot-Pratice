@@ -1,10 +1,10 @@
 /* Copyright 2006-2008 Joaquin M Lopez Munoz.
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * See http://www.boost.org/libs/flyweight for library home page.
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* See http://www.boost.org/libs/flyweight for library home page.
+*/
 
 #ifndef BOOST_FLYWEIGHT_SIMPLE_LOCKING_HPP
 #define BOOST_FLYWEIGHT_SIMPLE_LOCKING_HPP
@@ -26,8 +26,8 @@ namespace flyweights{
 
 struct simple_locking:locking_marker
 {
-  typedef detail::recursive_lightweight_mutex mutex_type;
-  typedef mutex_type::scoped_lock             lock_type;
+typedef detail::recursive_lightweight_mutex mutex_type;
+typedef mutex_type::scoped_lock             lock_type;
 };
 
 } /* namespace flyweights */

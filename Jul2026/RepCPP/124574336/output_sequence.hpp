@@ -34,8 +34,8 @@ struct output_sequence_impl;
 
 template<typename T>
 inline std::pair<
-    BOOST_DEDUCED_TYPENAME char_type_of<T>::type*,
-    BOOST_DEDUCED_TYPENAME char_type_of<T>::type*
+BOOST_DEDUCED_TYPENAME char_type_of<T>::type*,
+BOOST_DEDUCED_TYPENAME char_type_of<T>::type*
 >
 output_sequence(T& t)
 { return detail::output_sequence_impl<T>::output_sequence(t); }
@@ -46,21 +46,21 @@ namespace detail {
 
 template<typename T>
 struct output_sequence_impl
-    : mpl::if_<
-          detail::is_custom<T>,
-          operations<T>,
-          output_sequence_impl<direct_tag>
-      >::type
-    { };
+: mpl::if_<
+detail::is_custom<T>,
+operations<T>,
+output_sequence_impl<direct_tag>
+>::type
+{ };
 
 template<>
 struct output_sequence_impl<direct_tag> {
-    template<typename U>
-    static std::pair<
-        BOOST_DEDUCED_TYPENAME char_type_of<U>::type*,
-        BOOST_DEDUCED_TYPENAME char_type_of<U>::type*
-    >
-    output_sequence(U& u) { return u.output_sequence(); }
+template<typename U>
+static std::pair<
+BOOST_DEDUCED_TYPENAME char_type_of<U>::type*,
+BOOST_DEDUCED_TYPENAME char_type_of<U>::type*
+>
+output_sequence(U& u) { return u.output_sequence(); }
 };
 
 } // End namespace detail.

@@ -31,11 +31,11 @@ template <int Signal = SIGPIPE>
 class signal_init
 {
 public:
-  // Constructor.
-  signal_init()
-  {
-    std::signal(Signal, SIG_IGN);
-  }
+// Constructor.
+signal_init()
+{
+std::signal(Signal, SIG_IGN);
+}
 };
 
 } // namespace detail

@@ -25,30 +25,30 @@ BOOST_PP_EXPAND(#) define BOOST_FT_mfp 0
 BOOST_PP_EXPAND(#) define BOOST_FT_syntax BOOST_FT_type_function
 
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_non_variadic
+BOOST_FT_function|BOOST_FT_non_variadic
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_variadic
+BOOST_FT_function|BOOST_FT_variadic
 #   include __FILE__
 
 BOOST_PP_EXPAND(#) if !BOOST_FT_NO_CV_FUNC_SUPPORT
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_const
+BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_const
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_const
+BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_const
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_volatile
+BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_volatile
+BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_const|BOOST_FT_volatile
+BOOST_FT_function|BOOST_FT_non_variadic|BOOST_FT_const|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_const|BOOST_FT_volatile
+BOOST_FT_function|BOOST_FT_variadic|BOOST_FT_const|BOOST_FT_volatile
 #   include __FILE__
 BOOST_PP_EXPAND(#) endif
 
@@ -57,20 +57,20 @@ BOOST_PP_EXPAND(#) undef  BOOST_FT_syntax
 BOOST_PP_EXPAND(#) define BOOST_FT_syntax BOOST_FT_type_function_pointer
 
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_pointer|BOOST_FT_non_variadic
+BOOST_FT_pointer|BOOST_FT_non_variadic
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_pointer|BOOST_FT_variadic
+BOOST_FT_pointer|BOOST_FT_variadic
 #   include __FILE__
 
 BOOST_PP_EXPAND(#) undef  BOOST_FT_syntax
 BOOST_PP_EXPAND(#) define BOOST_FT_syntax BOOST_FT_type_function_reference
 
 #   define BOOST_PP_VALUE \
-      BOOST_FT_reference|BOOST_FT_non_variadic
+BOOST_FT_reference|BOOST_FT_non_variadic
 #   include __FILE__
 #   define BOOST_PP_VALUE \
-      BOOST_FT_reference|BOOST_FT_variadic
+BOOST_FT_reference|BOOST_FT_variadic
 #   include __FILE__
 
 BOOST_PP_EXPAND(#) undef  BOOST_FT_syntax
@@ -80,28 +80,28 @@ BOOST_PP_EXPAND(#) define BOOST_FT_mfp 1
 BOOST_PP_EXPAND(#) define BOOST_FT_syntax BOOST_FT_type_member_function_pointer
 
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_non_variadic
+BOOST_FT_member_function_pointer|BOOST_FT_non_variadic
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_variadic
+BOOST_FT_member_function_pointer|BOOST_FT_variadic
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_const
+BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_const
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_const
+BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_const
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_volatile
+BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_volatile
+BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_const|BOOST_FT_volatile
+BOOST_FT_member_function_pointer|BOOST_FT_non_variadic|BOOST_FT_const|BOOST_FT_volatile
 #   include __FILE__
 #   define  BOOST_PP_VALUE \
-      BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_const|BOOST_FT_volatile
+BOOST_FT_member_function_pointer|BOOST_FT_variadic|BOOST_FT_const|BOOST_FT_volatile
 #   include __FILE__
 
 BOOST_PP_EXPAND(#) undef  BOOST_FT_syntax

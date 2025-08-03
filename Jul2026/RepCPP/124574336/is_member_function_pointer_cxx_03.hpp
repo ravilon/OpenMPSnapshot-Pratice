@@ -12,11 +12,11 @@
 #define BOOST_TT_IS_MEMBER_FUNCTION_POINTER_CXX_03_HPP_INCLUDED
 
 #if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
-   //
-   // Note: we use the "workaround" version for MSVC because it works for 
-   // __stdcall etc function types, where as the partial specialisation
-   // version does not do so.
-   //
+//
+// Note: we use the "workaround" version for MSVC because it works for 
+// __stdcall etc function types, where as the partial specialisation
+// version does not do so.
+//
 #   include <boost/type_traits/detail/is_mem_fun_pointer_impl.hpp>
 #   include <boost/type_traits/remove_cv.hpp>
 #   include <boost/type_traits/integral_constant.hpp>
@@ -34,7 +34,7 @@ template <class T> struct is_member_function_pointer : public integral_constant<
 #elif !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
 
 template <class T> struct is_member_function_pointer 
-   : public ::boost::integral_constant<bool, ::boost::type_traits::is_mem_fun_pointer_impl<typename remove_cv<T>::type>::value>{};
+: public ::boost::integral_constant<bool, ::boost::type_traits::is_mem_fun_pointer_impl<typename remove_cv<T>::type>::value>{};
 
 #else
 
@@ -45,35 +45,35 @@ namespace detail {
 template <bool>
 struct is_mem_fun_pointer_select
 {
-   template <class T> struct result_ : public false_type{};
+template <class T> struct result_ : public false_type{};
 };
 
 template <>
 struct is_mem_fun_pointer_select<false>
 {
-    template <typename T> struct result_
-    {
+template <typename T> struct result_
+{
 #if BOOST_WORKAROUND(BOOST_MSVC_FULL_VER, >= 140050000)
 #pragma warning(push)
 #pragma warning(disable:6334)
 #endif
-        static T* make_t;
-        typedef result_<T> self_type;
+static T* make_t;
+typedef result_<T> self_type;
 
-        BOOST_STATIC_CONSTANT(
-            bool, value = (
-                1 == sizeof(::boost::type_traits::is_mem_fun_pointer_tester(self_type::make_t))
-            ));
+BOOST_STATIC_CONSTANT(
+bool, value = (
+1 == sizeof(::boost::type_traits::is_mem_fun_pointer_tester(self_type::make_t))
+));
 #if BOOST_WORKAROUND(BOOST_MSVC_FULL_VER, >= 140050000)
 #pragma warning(pop)
 #endif
-    };
+};
 };
 
 template <typename T>
 struct is_member_function_pointer_impl
-    : public is_mem_fun_pointer_select< 
-      ::boost::is_reference<T>::value || ::boost::is_array<T>::value>::template result_<T>{};
+: public is_mem_fun_pointer_select< 
+::boost::is_reference<T>::value || ::boost::is_array<T>::value>::template result_<T>{};
 
 template <typename T>
 struct is_member_function_pointer_impl<T&> : public false_type{};
@@ -83,16 +83,16 @@ struct is_member_function_pointer_impl<T&> : public false_type{};
 template <typename T>
 struct is_member_function_pointer_impl
 {
-   static T* m_t;
-   BOOST_STATIC_CONSTANT(
-              bool, value =
-               (1 == sizeof(type_traits::is_mem_fun_pointer_tester(m_t))) );
+static T* m_t;
+BOOST_STATIC_CONSTANT(
+bool, value =
+(1 == sizeof(type_traits::is_mem_fun_pointer_tester(m_t))) );
 };
 
 template <typename T>
 struct is_member_function_pointer_impl<T&>
 {
-   BOOST_STATIC_CONSTANT(bool, value = false);
+BOOST_STATIC_CONSTANT(bool, value = false);
 };
 
 #endif
@@ -108,7 +108,7 @@ template<> struct is_member_function_pointer_impl<void volatile> : public false_
 
 template <class T>
 struct is_member_function_pointer
-   : public integral_constant<bool, ::boost::detail::is_member_function_pointer_impl<T>::value>{};
+: public integral_constant<bool, ::boost::detail::is_member_function_pointer_impl<T>::value>{};
 
 #endif
 

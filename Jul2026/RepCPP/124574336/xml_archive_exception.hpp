@@ -32,21 +32,21 @@ namespace archive {
 // exceptions thrown by xml archives
 //
 class BOOST_SYMBOL_VISIBLE xml_archive_exception :
-    public virtual boost::archive::archive_exception
+public virtual boost::archive::archive_exception
 {
 public:
-    typedef enum {
-        xml_archive_parsing_error,    // see save_register
-        xml_archive_tag_mismatch,
-        xml_archive_tag_name_error
-    } exception_code;
-    BOOST_ARCHIVE_DECL xml_archive_exception(
-        exception_code c,
-        const char * e1 = NULL,
-        const char * e2 = NULL
-    );
-    BOOST_ARCHIVE_DECL xml_archive_exception(xml_archive_exception const &);
-    BOOST_ARCHIVE_DECL ~xml_archive_exception() BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE;
+typedef enum {
+xml_archive_parsing_error,    // see save_register
+xml_archive_tag_mismatch,
+xml_archive_tag_name_error
+} exception_code;
+BOOST_ARCHIVE_DECL xml_archive_exception(
+exception_code c,
+const char * e1 = NULL,
+const char * e2 = NULL
+);
+BOOST_ARCHIVE_DECL xml_archive_exception(xml_archive_exception const &);
+BOOST_ARCHIVE_DECL ~xml_archive_exception() BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE;
 };
 
 }// namespace archive

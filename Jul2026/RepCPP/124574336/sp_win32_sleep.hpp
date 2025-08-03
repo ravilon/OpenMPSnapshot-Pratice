@@ -34,9 +34,9 @@ namespace detail
 #endif
 
 #if defined(__LP64__) // Cygwin 64
-  extern "C" __declspec(dllimport) void BOOST_SP_STDCALL Sleep( unsigned int ms );
+extern "C" __declspec(dllimport) void BOOST_SP_STDCALL Sleep( unsigned int ms );
 #else
-  extern "C" __declspec(dllimport) void BOOST_SP_STDCALL Sleep( unsigned long ms );
+extern "C" __declspec(dllimport) void BOOST_SP_STDCALL Sleep( unsigned long ms );
 #endif
 
 #undef BOOST_SP_STDCALL

@@ -1,10 +1,10 @@
 /*=============================================================================
-    Copyright (c) 2001-2003 Hartmut Kaiser
-    http://spirit.sourceforge.net/
+Copyright (c) 2001-2003 Hartmut Kaiser
+http://spirit.sourceforge.net/
 
-    Use, modification and distribution is subject to the Boost Software
-    License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
-    http://www.boost.org/LICENSE_1_0.txt)
+Use, modification and distribution is subject to the Boost Software
+License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 ///////////////////////////////////////////////////////////////////////////////
 // This sample show the usage of parser parameters.
@@ -42,56 +42,56 @@ using namespace std;
 class declaration_type
 {
 public:
-    enum vartype {
-        vartype_unknown = 0,        // unknown variable type
-        vartype_int = 1,            // 'int'
-        vartype_real = 2            // 'real'
-    };
+enum vartype {
+vartype_unknown = 0,        // unknown variable type
+vartype_int = 1,            // 'int'
+vartype_real = 2            // 'real'
+};
 
-    declaration_type() : type(vartype_unknown)
-    {
-    }
-    template <typename ItT>
-    declaration_type(ItT const &first, ItT const &last)
-    {
-        init(string(first, last-first-1));
-    }
-    declaration_type(declaration_type const &type_) : type(type_.type)
-    {
-    }
-    declaration_type(string const &type_) : type(vartype_unknown)
-    {
-        init(type_);
-    }
+declaration_type() : type(vartype_unknown)
+{
+}
+template <typename ItT>
+declaration_type(ItT const &first, ItT const &last)
+{
+init(string(first, last-first-1));
+}
+declaration_type(declaration_type const &type_) : type(type_.type)
+{
+}
+declaration_type(string const &type_) : type(vartype_unknown)
+{
+init(type_);
+}
 
 // access to the variable type
-    operator vartype const &() const { return type; }
-    operator string ()
-    {
-        switch(type) {
-        default:
-        case vartype_unknown:   break;
-        case vartype_int:       return string("int");
-        case vartype_real:      return string("real");
-        }
-        return string ("unknown");
-    }
+operator vartype const &() const { return type; }
+operator string ()
+{
+switch(type) {
+default:
+case vartype_unknown:   break;
+case vartype_int:       return string("int");
+case vartype_real:      return string("real");
+}
+return string ("unknown");
+}
 
-    void swap(declaration_type &s) { std::swap(type, s.type); }
+void swap(declaration_type &s) { std::swap(type, s.type); }
 
 protected:
-    void init (string const &type_)
-    {
-        if (type_ == "int")
-            type = vartype_int;
-        else if (type_ == "real")
-            type = vartype_real;
-        else
-            type = vartype_unknown;
-    }
+void init (string const &type_)
+{
+if (type_ == "int")
+type = vartype_int;
+else if (type_ == "real")
+type = vartype_real;
+else
+type = vartype_unknown;
+}
 
 private:
-    vartype type;
+vartype type;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ private:
 ///////////////////////////////////////////////////////////////////////////////
 struct var_decl_closure : BOOST_SPIRIT_CLASSIC_NS::closure<var_decl_closure, declaration_type>
 {
-    member1 val;
+member1 val;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -115,81 +115,81 @@ template <typename T, typename InitT>
 class symbols_with_data
 {
 public:
-    typedef
-        symbol_inserter<T, BOOST_SPIRIT_CLASSIC_NS::impl::tst<T, char> >
-        symbol_inserter_t;
+typedef
+symbol_inserter<T, BOOST_SPIRIT_CLASSIC_NS::impl::tst<T, char> >
+symbol_inserter_t;
 
-    symbols_with_data(symbol_inserter_t const &add_, InitT const &data_) :
-        add(add_), data(as_actor<InitT>::convert(data_))
-    {
-    }
+symbols_with_data(symbol_inserter_t const &add_, InitT const &data_) :
+add(add_), data(as_actor<InitT>::convert(data_))
+{
+}
 
-    template <typename IteratorT>
-    symbol_inserter_t const &
-    operator()(IteratorT const &first_, IteratorT const &last) const
-    {
-        IteratorT first = first_;
-        return add(first, last, data());
-    }
+template <typename IteratorT>
+symbol_inserter_t const &
+operator()(IteratorT const &first_, IteratorT const &last) const
+{
+IteratorT first = first_;
+return add(first, last, data());
+}
 
 private:
-    symbol_inserter_t const &add;
-    typename as_actor<InitT>::type data;
+symbol_inserter_t const &add;
+typename as_actor<InitT>::type data;
 };
 
 template <typename T, typename CharT, typename InitT>
 inline
 symbols_with_data<T, InitT>
 symbols_gen(symbol_inserter<T, BOOST_SPIRIT_CLASSIC_NS::impl::tst<T, CharT> > const &add_,
-    InitT const &data_)
+InitT const &data_)
 {
-    return symbols_with_data<T, InitT>(add_, data_);
+return symbols_with_data<T, InitT>(add_, data_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // The var_decl_list grammar parses variable declaration list
 
 struct var_decl_list :
-    public grammar<var_decl_list, var_decl_closure::context_t>
+public grammar<var_decl_list, var_decl_closure::context_t>
 {
-    template <typename ScannerT>
-    struct definition
-    {
-        definition(var_decl_list const &self)
-        {
-        // pass variable type returned from 'type' to list closure member 0
-            decl = type[self.val = arg1] >> +space_p >> list(self.val);
+template <typename ScannerT>
+struct definition
+{
+definition(var_decl_list const &self)
+{
+// pass variable type returned from 'type' to list closure member 0
+decl = type[self.val = arg1] >> +space_p >> list(self.val);
 
-        // m0 to access arg 0 of list --> passing variable type down to ident
-            list = ident(list.val) >> *(',' >> ident(list.val));
+// m0 to access arg 0 of list --> passing variable type down to ident
+list = ident(list.val) >> *(',' >> ident(list.val));
 
-        // store identifier and type into the symbol table
-            ident = (*alnum_p)[symbols_gen(symtab.add, ident.val)];
+// store identifier and type into the symbol table
+ident = (*alnum_p)[symbols_gen(symtab.add, ident.val)];
 
-        // the type of the decl is returned in type's closure member 0
-            type =
-                    str_p("int")[type.val = construct_<string>(arg1, arg2)]
-                |   str_p("real")[type.val = construct_<string>(arg1, arg2)]
-                ;
+// the type of the decl is returned in type's closure member 0
+type =
+str_p("int")[type.val = construct_<string>(arg1, arg2)]
+|   str_p("real")[type.val = construct_<string>(arg1, arg2)]
+;
 
-            BOOST_SPIRIT_DEBUG_RULE(decl);
-            BOOST_SPIRIT_DEBUG_RULE(list);
-            BOOST_SPIRIT_DEBUG_RULE(ident);
-            BOOST_SPIRIT_DEBUG_RULE(type);
-        }
+BOOST_SPIRIT_DEBUG_RULE(decl);
+BOOST_SPIRIT_DEBUG_RULE(list);
+BOOST_SPIRIT_DEBUG_RULE(ident);
+BOOST_SPIRIT_DEBUG_RULE(type);
+}
 
-        rule<ScannerT> const&
-        start() const { return decl; }
+rule<ScannerT> const&
+start() const { return decl; }
 
-    private:
-        typedef rule<ScannerT, var_decl_closure::context_t> rule_t;
-        rule_t type;
-        rule_t list;
-        rule_t ident;
-        symbols<declaration_type> symtab;
+private:
+typedef rule<ScannerT, var_decl_closure::context_t> rule_t;
+rule_t type;
+rule_t list;
+rule_t ident;
+symbols<declaration_type> symtab;
 
-        rule<ScannerT> decl;        // start rule
-    };
+rule<ScannerT> decl;        // start rule
+};
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -200,17 +200,17 @@ var_decl_list decl;
 declaration_type type;
 char const *pbegin = "int  var1";
 
-    if (parse (pbegin, decl[assign(type)]).full) {
-        cout << endl
-             << "Parsed variable declarations successfully!" << endl
-             << "Detected type: " << declaration_type::vartype(type)
-             << " (" << string(type) << ")"
-             << endl;
-    } else {
-        cout << endl
-             << "Parsing the input stream failed!"
-             << endl;
-    }
-    return 0;
+if (parse (pbegin, decl[assign(type)]).full) {
+cout << endl
+<< "Parsed variable declarations successfully!" << endl
+<< "Detected type: " << declaration_type::vartype(type)
+<< " (" << string(type) << ")"
+<< endl;
+} else {
+cout << endl
+<< "Parsing the input stream failed!"
+<< endl;
+}
+return 0;
 }
 

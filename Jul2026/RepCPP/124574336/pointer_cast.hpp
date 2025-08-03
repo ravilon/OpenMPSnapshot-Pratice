@@ -30,8 +30,8 @@ namespace boost { namespace typeindex {
 /// an address suitably offset from u. If no such conversion exists, returns NULL.
 template<typename T, typename U>
 T runtime_cast(U* u) BOOST_NOEXCEPT {
-    typedef typename boost::remove_pointer<T>::type impl_type;
-    return detail::runtime_cast_impl<impl_type>(u, boost::is_base_and_derived<T, U>());
+typedef typename boost::remove_pointer<T>::type impl_type;
+return detail::runtime_cast_impl<impl_type>(u, boost::is_base_and_derived<T, U>());
 }
 
 /// \brief Safely converts pointers to classes up, down, and sideways along the inheritance hierarchy.
@@ -41,8 +41,8 @@ T runtime_cast(U* u) BOOST_NOEXCEPT {
 /// an address suitably offset from u. If no such conversion exists, returns NULL.
 template<typename T, typename U>
 T runtime_cast(U const* u) BOOST_NOEXCEPT {
-    typedef typename boost::remove_pointer<T>::type impl_type;
-    return detail::runtime_cast_impl<impl_type>(u, boost::is_base_and_derived<T, U>());
+typedef typename boost::remove_pointer<T>::type impl_type;
+return detail::runtime_cast_impl<impl_type>(u, boost::is_base_and_derived<T, U>());
 }
 
 /// \brief Safely converts pointers to classes up, down, and sideways along the inheritance
@@ -54,7 +54,7 @@ T runtime_cast(U const* u) BOOST_NOEXCEPT {
 /// If no such conversion exists, returns NULL.
 template<typename T, typename U>
 T* runtime_pointer_cast(U* u) BOOST_NOEXCEPT {
-    return detail::runtime_cast_impl<T>(u, boost::is_base_and_derived<T, U>());
+return detail::runtime_cast_impl<T>(u, boost::is_base_and_derived<T, U>());
 }
 
 /// \brief Safely converts pointers to classes up, down, and sideways along the inheritance
@@ -66,7 +66,7 @@ T* runtime_pointer_cast(U* u) BOOST_NOEXCEPT {
 /// If no such conversion exists, returns NULL.
 template<typename T, typename U>
 T const* runtime_pointer_cast(U const* u) BOOST_NOEXCEPT {
-    return detail::runtime_cast_impl<T>(u, boost::is_base_and_derived<T, U>());
+return detail::runtime_cast_impl<T>(u, boost::is_base_and_derived<T, U>());
 }
 
 }} // namespace boost::typeindex

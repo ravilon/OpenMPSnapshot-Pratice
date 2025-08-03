@@ -1,9 +1,9 @@
 /*
- * Copyright 2016 Klemens D. Morgenstern
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Klemens D. Morgenstern
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_GET_SYSTEM_DIRECTORY_HPP_INCLUDED_
 #define BOOST_WINAPI_GET_SYSTEM_DIRECTORY_HPP_INCLUDED_
@@ -23,14 +23,14 @@ extern "C" {
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_WINAPI_IMPORT boost::winapi::UINT_ BOOST_WINAPI_WINAPI_CC
 GetSystemDirectoryA(
-    boost::winapi::LPSTR_  lpBuffer,
-    boost::winapi::UINT_   uSize);
+boost::winapi::LPSTR_  lpBuffer,
+boost::winapi::UINT_   uSize);
 #endif
 
 BOOST_WINAPI_IMPORT boost::winapi::UINT_ BOOST_WINAPI_WINAPI_CC
 GetSystemDirectoryW(
-    boost::winapi::LPWSTR_ lpBuffer,
-    boost::winapi::UINT_   uSize);
+boost::winapi::LPWSTR_ lpBuffer,
+boost::winapi::UINT_   uSize);
 } // extern "C"
 #endif
 
@@ -45,13 +45,13 @@ using ::GetSystemDirectoryW;
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_FORCEINLINE UINT_ get_system_directory(LPSTR_ lpBuffer,  UINT_ uSize)
 {
-    return ::GetSystemDirectoryA(lpBuffer, uSize);
+return ::GetSystemDirectoryA(lpBuffer, uSize);
 }
 #endif
 
 BOOST_FORCEINLINE UINT_ get_system_directory(LPWSTR_ lpBuffer,  UINT_ uSize)
 {
-    return ::GetSystemDirectoryW(lpBuffer, uSize);
+return ::GetSystemDirectoryW(lpBuffer, uSize);
 }
 
 }

@@ -1,18 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2008-2020 The Khronos Group Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
+* Copyright (c) 2008-2020 The Khronos Group Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+******************************************************************************/
 
 #ifndef __OPENCL_CL_D3D11_H
 #define __OPENCL_CL_D3D11_H
@@ -37,7 +37,7 @@ extern "C" {
 #endif
 
 /******************************************************************************
- * cl_khr_d3d11_sharing                                                       */
+* cl_khr_d3d11_sharing                                                       */
 #define cl_khr_d3d11_sharing 1
 
 typedef cl_uint cl_d3d11_device_source_khr;
@@ -76,49 +76,49 @@ typedef cl_uint cl_d3d11_device_set_khr;
 /******************************************************************************/
 
 typedef cl_int (CL_API_CALL *clGetDeviceIDsFromD3D11KHR_fn)(
-    cl_platform_id             platform,
-    cl_d3d11_device_source_khr d3d_device_source,
-    void *                     d3d_object,
-    cl_d3d11_device_set_khr    d3d_device_set,
-    cl_uint                    num_entries,
-    cl_device_id *             devices,
-    cl_uint *                  num_devices) CL_API_SUFFIX__VERSION_1_2;
+cl_platform_id             platform,
+cl_d3d11_device_source_khr d3d_device_source,
+void *                     d3d_object,
+cl_d3d11_device_set_khr    d3d_device_set,
+cl_uint                    num_entries,
+cl_device_id *             devices,
+cl_uint *                  num_devices) CL_API_SUFFIX__VERSION_1_2;
 
 typedef cl_mem (CL_API_CALL *clCreateFromD3D11BufferKHR_fn)(
-    cl_context     context,
-    cl_mem_flags   flags,
-    ID3D11Buffer * resource,
-    cl_int *       errcode_ret) CL_API_SUFFIX__VERSION_1_2;
+cl_context     context,
+cl_mem_flags   flags,
+ID3D11Buffer * resource,
+cl_int *       errcode_ret) CL_API_SUFFIX__VERSION_1_2;
 
 typedef cl_mem (CL_API_CALL *clCreateFromD3D11Texture2DKHR_fn)(
-    cl_context        context,
-    cl_mem_flags      flags,
-    ID3D11Texture2D * resource,
-    UINT              subresource,
-    cl_int *          errcode_ret) CL_API_SUFFIX__VERSION_1_2;
+cl_context        context,
+cl_mem_flags      flags,
+ID3D11Texture2D * resource,
+UINT              subresource,
+cl_int *          errcode_ret) CL_API_SUFFIX__VERSION_1_2;
 
 typedef cl_mem (CL_API_CALL *clCreateFromD3D11Texture3DKHR_fn)(
-    cl_context        context,
-    cl_mem_flags      flags,
-    ID3D11Texture3D * resource,
-    UINT              subresource,
-    cl_int *          errcode_ret) CL_API_SUFFIX__VERSION_1_2;
+cl_context        context,
+cl_mem_flags      flags,
+ID3D11Texture3D * resource,
+UINT              subresource,
+cl_int *          errcode_ret) CL_API_SUFFIX__VERSION_1_2;
 
 typedef cl_int (CL_API_CALL *clEnqueueAcquireD3D11ObjectsKHR_fn)(
-    cl_command_queue command_queue,
-    cl_uint          num_objects,
-    const cl_mem *   mem_objects,
-    cl_uint          num_events_in_wait_list,
-    const cl_event * event_wait_list,
-    cl_event *       event) CL_API_SUFFIX__VERSION_1_2;
+cl_command_queue command_queue,
+cl_uint          num_objects,
+const cl_mem *   mem_objects,
+cl_uint          num_events_in_wait_list,
+const cl_event * event_wait_list,
+cl_event *       event) CL_API_SUFFIX__VERSION_1_2;
 
 typedef cl_int (CL_API_CALL *clEnqueueReleaseD3D11ObjectsKHR_fn)(
-    cl_command_queue command_queue,
-    cl_uint          num_objects,
-    const cl_mem *   mem_objects,
-    cl_uint          num_events_in_wait_list,
-    const cl_event * event_wait_list,
-    cl_event *       event) CL_API_SUFFIX__VERSION_1_2;
+cl_command_queue command_queue,
+cl_uint          num_objects,
+const cl_mem *   mem_objects,
+cl_uint          num_events_in_wait_list,
+const cl_event * event_wait_list,
+cl_event *       event) CL_API_SUFFIX__VERSION_1_2;
 
 #ifdef __cplusplus
 }

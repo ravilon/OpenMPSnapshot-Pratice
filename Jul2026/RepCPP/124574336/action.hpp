@@ -19,20 +19,20 @@
 namespace boost { namespace xpressive { namespace detail
 {
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // actionable
-    //
-    struct actionable
-    {
-        virtual ~actionable() {}
-        virtual void execute(action_args_type *) const {}
+///////////////////////////////////////////////////////////////////////////////
+// actionable
+//
+struct actionable
+{
+virtual ~actionable() {}
+virtual void execute(action_args_type *) const {}
 
-        actionable()
-          : next(0)
-        {}
+actionable()
+: next(0)
+{}
 
-        actionable const *next;
-    };
+actionable const *next;
+};
 
 }}} // namespace boost::xpressive::detail
 

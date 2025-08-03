@@ -15,10 +15,10 @@
 
 #if defined(_MSC_VER) || defined(__GNUC__)
 #define BOOST_IOSTREAMS_UNREACHABLE_RETURN(x) \
-    BOOST_UNREACHABLE_RETURN(x)
+BOOST_UNREACHABLE_RETURN(x)
 #else
 #define BOOST_IOSTREAMS_UNREACHABLE_RETURN(x) \
-    return x;
+return x;
 #endif
 
 #endif

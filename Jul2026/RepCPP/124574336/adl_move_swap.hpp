@@ -27,25 +27,25 @@
 
 //Try to avoid including <algorithm>, as it's quite big
 #if defined(_MSC_VER) && defined(BOOST_DINKUMWARE_STDLIB)
-   #include <utility>   //Dinkum libraries define std::swap in utility which is lighter than algorithm
+#include <utility>   //Dinkum libraries define std::swap in utility which is lighter than algorithm
 #elif defined(BOOST_GNU_STDLIB)
-   //For non-GCC compilers, where GNUC version is not very reliable, or old GCC versions
-   //use the good old stl_algobase header, which is quite lightweight
-   #if !defined(BOOST_GCC) || ((__GNUC__ < 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ < 3)))
-      #include <bits/stl_algobase.h>
-   #elif (__GNUC__ == 4) && (__GNUC_MINOR__ == 3)
-      //In GCC 4.3 a tiny stl_move.h was created with swap and move utilities
-      #include <bits/stl_move.h>
-   #else
-      //In GCC 4.4 stl_move.h was renamed to move.h
-      #include <bits/move.h>
-   #endif
-#elif defined(_LIBCPP_VERSION)
-   #include <type_traits>  //The initial import of libc++ defines std::swap and still there
-#elif __cplusplus >= 201103L
-   #include <utility>    //Fallback for C++ >= 2011
+//For non-GCC compilers, where GNUC version is not very reliable, or old GCC versions
+//use the good old stl_algobase header, which is quite lightweight
+#if !defined(BOOST_GCC) || ((__GNUC__ < 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ < 3)))
+#include <bits/stl_algobase.h>
+#elif (__GNUC__ == 4) && (__GNUC_MINOR__ == 3)
+//In GCC 4.3 a tiny stl_move.h was created with swap and move utilities
+#include <bits/stl_move.h>
 #else
-   #include <algorithm>  //Fallback for C++98/03
+//In GCC 4.4 stl_move.h was renamed to move.h
+#include <bits/move.h>
+#endif
+#elif defined(_LIBCPP_VERSION)
+#include <type_traits>  //The initial import of libc++ defines std::swap and still there
+#elif __cplusplus >= 201103L
+#include <utility>    //Fallback for C++ >= 2011
+#else
+#include <algorithm>  //Fallback for C++98/03
 #endif
 
 #include <boost/move/utility_core.hpp> //for boost::move
@@ -57,13 +57,13 @@ namespace boost_move_member_swap {
 
 struct dont_care
 {
-   dont_care(...);
+dont_care(...);
 };
 
 struct private_type
 {
-   static private_type p;
-   private_type const &operator,(int) const;
+static private_type p;
+private_type const &operator,(int) const;
 };
 
 typedef char yes_type;            
@@ -77,49 +77,49 @@ yes_type is_private_type(private_type const &);
 template <typename Type>
 class has_member_function_named_swap
 {
-   struct BaseMixin
-   {
-      void swap();
-   };
+struct BaseMixin
+{
+void swap();
+};
 
-   struct Base : public Type, public BaseMixin { Base(); };
-   template <typename T, T t> class Helper{};
+struct Base : public Type, public BaseMixin { Base(); };
+template <typename T, T t> class Helper{};
 
-   template <typename U>
-   static no_type deduce(U*, Helper<void (BaseMixin::*)(), &U::swap>* = 0);
-   static yes_type deduce(...);
+template <typename U>
+static no_type deduce(U*, Helper<void (BaseMixin::*)(), &U::swap>* = 0);
+static yes_type deduce(...);
 
-   public:
-   static const bool value = sizeof(yes_type) == sizeof(deduce((Base*)(0)));
+public:
+static const bool value = sizeof(yes_type) == sizeof(deduce((Base*)(0)));
 };
 
 template<typename Fun, bool HasFunc>
 struct has_member_swap_impl
 {
-   static const bool value = false;
+static const bool value = false;
 };
 
 template<typename Fun>
 struct has_member_swap_impl<Fun, true>
 {
-   struct FunWrap : Fun
-   {
-      FunWrap();
+struct FunWrap : Fun
+{
+FunWrap();
 
-      using Fun::swap;
-      private_type swap(dont_care) const;
-   };
+using Fun::swap;
+private_type swap(dont_care) const;
+};
 
-   static Fun &declval_fun();
-   static FunWrap declval_wrap();
+static Fun &declval_fun();
+static FunWrap declval_wrap();
 
-   static bool const value =
-      sizeof(no_type) == sizeof(is_private_type( (declval_wrap().swap(declval_fun()), 0)) );
+static bool const value =
+sizeof(no_type) == sizeof(is_private_type( (declval_wrap().swap(declval_fun()), 0)) );
 };
 
 template<typename Fun>
 struct has_member_swap : public has_member_swap_impl
-      <Fun, has_member_function_named_swap<Fun>::value>
+<Fun, has_member_function_named_swap<Fun>::value>
 {};
 
 }  //namespace boost_move_member_swap
@@ -136,7 +136,7 @@ struct and_op_impl<P1, P2, true>
 
 template<class P1, class P2>
 struct and_op
-   : and_op_impl<P1, P2>
+: and_op_impl<P1, P2>
 {};
 
 //////
@@ -151,31 +151,31 @@ struct and_op_not_impl<P1, P2, true>
 
 template<class P1, class P2>
 struct and_op_not
-   : and_op_not_impl<P1, P2>
+: and_op_not_impl<P1, P2>
 {};
 
 template<class T>
 BOOST_MOVE_FORCEINLINE void swap_proxy(T& x, T& y, typename boost::move_detail::enable_if_c<!boost::move_detail::has_move_emulation_enabled_impl<T>::value>::type* = 0)
 {
-   //use std::swap if argument dependent lookup fails
-   //Use using directive ("using namespace xxx;") instead as some older compilers
-   //don't do ADL with using declarations ("using ns::func;").
-   using namespace std;
-   swap(x, y);
+//use std::swap if argument dependent lookup fails
+//Use using directive ("using namespace xxx;") instead as some older compilers
+//don't do ADL with using declarations ("using ns::func;").
+using namespace std;
+swap(x, y);
 }
 
 template<class T>
 BOOST_MOVE_FORCEINLINE void swap_proxy(T& x, T& y
-               , typename boost::move_detail::enable_if< and_op_not_impl<boost::move_detail::has_move_emulation_enabled_impl<T>
-                                                                        , boost_move_member_swap::has_member_swap<T> >
-                                                       >::type* = 0)
+, typename boost::move_detail::enable_if< and_op_not_impl<boost::move_detail::has_move_emulation_enabled_impl<T>
+, boost_move_member_swap::has_member_swap<T> >
+>::type* = 0)
 {  T t(::boost::move(x)); x = ::boost::move(y); y = ::boost::move(t);  }
 
 template<class T>
 BOOST_MOVE_FORCEINLINE void swap_proxy(T& x, T& y
-               , typename boost::move_detail::enable_if< and_op_impl< boost::move_detail::has_move_emulation_enabled_impl<T>
-                                                                    , boost_move_member_swap::has_member_swap<T> >
-                                                       >::type* = 0)
+, typename boost::move_detail::enable_if< and_op_impl< boost::move_detail::has_move_emulation_enabled_impl<T>
+, boost_move_member_swap::has_member_swap<T> >
+>::type* = 0)
 {  x.swap(y);  }
 
 }  //namespace boost_move_adl_swap{
@@ -187,8 +187,8 @@ namespace boost_move_adl_swap{
 template<class T>
 BOOST_MOVE_FORCEINLINE void swap_proxy(T& x, T& y)
 {
-   using std::swap;
-   swap(x, y);
+using std::swap;
+swap(x, y);
 }
 
 }  //namespace boost_move_adl_swap{
@@ -200,9 +200,9 @@ namespace boost_move_adl_swap{
 template<class T, std::size_t N>
 void swap_proxy(T (& x)[N], T (& y)[N])
 {
-   for (std::size_t i = 0; i < N; ++i){
-      ::boost_move_adl_swap::swap_proxy(x[i], y[i]);
-   }
+for (std::size_t i = 0; i < N; ++i){
+::boost_move_adl_swap::swap_proxy(x[i], y[i]);
+}
 }
 
 }  //namespace boost_move_adl_swap {
@@ -224,7 +224,7 @@ namespace boost{
 template<class T>
 BOOST_MOVE_FORCEINLINE void adl_move_swap(T& x, T& y)
 {
-   ::boost_move_adl_swap::swap_proxy(x, y);
+::boost_move_adl_swap::swap_proxy(x, y);
 }
 
 //! Exchanges elements between range [first1, last1) and another range starting at first2
@@ -244,27 +244,27 @@ BOOST_MOVE_FORCEINLINE void adl_move_swap(T& x, T& y)
 template<class ForwardIt1, class ForwardIt2>
 ForwardIt2 adl_move_swap_ranges(ForwardIt1 first1, ForwardIt1 last1, ForwardIt2 first2)
 {
-    while (first1 != last1) {
-      ::boost::adl_move_swap(*first1, *first2);
-      ++first1;
-      ++first2;
-    }
-   return first2;
+while (first1 != last1) {
+::boost::adl_move_swap(*first1, *first2);
+++first1;
+++first2;
+}
+return first2;
 }
 
 template<class BidirIt1, class BidirIt2>
 BidirIt2 adl_move_swap_ranges_backward(BidirIt1 first1, BidirIt1 last1, BidirIt2 last2)
 {
-   while (first1 != last1) {
-      ::boost::adl_move_swap(*(--last1), *(--last2));
-   }
-   return last2;
+while (first1 != last1) {
+::boost::adl_move_swap(*(--last1), *(--last2));
+}
+return last2;
 }
 
 template<class ForwardIt1, class ForwardIt2>
 void adl_move_iter_swap(ForwardIt1 a, ForwardIt2 b)
 {
-   boost::adl_move_swap(*a, *b); 
+boost::adl_move_swap(*a, *b); 
 }
 
 }  //namespace boost{

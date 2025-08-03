@@ -24,7 +24,7 @@
 #if defined( WIN32 ) || defined( _WIN32 ) || defined( __WIN32__ ) || defined( __CYGWIN__ )
 
 #if defined(BOOST_SP_REPORT_IMPLEMENTATION)
-  BOOST_PRAGMA_MESSAGE("Using Sleep(1) in sp_thread_sleep")
+BOOST_PRAGMA_MESSAGE("Using Sleep(1) in sp_thread_sleep")
 #endif
 
 #include <boost/smart_ptr/detail/sp_win32_sleep.hpp>
@@ -37,7 +37,7 @@ namespace detail
 
 inline void sp_thread_sleep()
 {
-    Sleep( 1 );
+Sleep( 1 );
 }
 
 } // namespace detail
@@ -47,7 +47,7 @@ inline void sp_thread_sleep()
 #elif defined(BOOST_HAS_NANOSLEEP)
 
 #if defined(BOOST_SP_REPORT_IMPLEMENTATION)
-  BOOST_PRAGMA_MESSAGE("Using nanosleep() in sp_thread_sleep")
+BOOST_PRAGMA_MESSAGE("Using nanosleep() in sp_thread_sleep")
 #endif
 
 #include <time.h>
@@ -60,16 +60,16 @@ namespace detail
 
 inline void sp_thread_sleep()
 {
-    // g++ -Wextra warns on {} or {0}
-    struct timespec rqtp = { 0, 0 };
+// g++ -Wextra warns on {} or {0}
+struct timespec rqtp = { 0, 0 };
 
-    // POSIX says that timespec has tv_sec and tv_nsec
-    // But it doesn't guarantee order or placement
+// POSIX says that timespec has tv_sec and tv_nsec
+// But it doesn't guarantee order or placement
 
-    rqtp.tv_sec = 0;
-    rqtp.tv_nsec = 1000;
+rqtp.tv_sec = 0;
+rqtp.tv_nsec = 1000;
 
-    nanosleep( &rqtp, 0 );
+nanosleep( &rqtp, 0 );
 }
 
 } // namespace detail
@@ -79,7 +79,7 @@ inline void sp_thread_sleep()
 #else
 
 #if defined(BOOST_SP_REPORT_IMPLEMENTATION)
-  BOOST_PRAGMA_MESSAGE("Using sp_thread_yield() in sp_thread_sleep")
+BOOST_PRAGMA_MESSAGE("Using sp_thread_yield() in sp_thread_sleep")
 #endif
 
 #include <boost/smart_ptr/detail/sp_thread_yield.hpp>
@@ -92,7 +92,7 @@ namespace detail
 
 inline void sp_thread_sleep()
 {
-    sp_thread_yield();
+sp_thread_yield();
 }
 
 } // namespace detail

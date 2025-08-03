@@ -33,21 +33,21 @@ namespace serialization {
 // there is only one table entry per type
 template<class T>
 struct type_info_implementation {
-    template<class U>
-    struct traits_class_typeinfo_implementation {
-      typedef typename U::type_info_implementation::type type;
-    };
-    // note: at least one compiler complained w/o the full qualification
-    // on basic traits below
-    typedef
-        typename mpl::eval_if<
-            is_base_and_derived<boost::serialization::basic_traits, T>,
-            traits_class_typeinfo_implementation< T >,
-        //else
-            mpl::identity<
-                typename extended_type_info_impl< T >::type
-            >
-        >::type type;
+template<class U>
+struct traits_class_typeinfo_implementation {
+typedef typename U::type_info_implementation::type type;
+};
+// note: at least one compiler complained w/o the full qualification
+// on basic traits below
+typedef
+typename mpl::eval_if<
+is_base_and_derived<boost::serialization::basic_traits, T>,
+traits_class_typeinfo_implementation< T >,
+//else
+mpl::identity<
+typename extended_type_info_impl< T >::type
+>
+>::type type;
 };
 
 } // namespace serialization
@@ -60,11 +60,11 @@ namespace boost {                                  \
 namespace serialization {                          \
 template<>                                         \
 struct type_info_implementation< T > {             \
-    typedef ETI type;                              \
+typedef ETI type;                              \
 };                                                 \
 template<>                                         \
 struct type_info_implementation< const T > {       \
-    typedef ETI type;                              \
+typedef ETI type;                              \
 };                                                 \
 }                                                  \
 }                                                  \

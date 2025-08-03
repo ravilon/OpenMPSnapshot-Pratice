@@ -1,10 +1,10 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_APC_HPP_INCLUDED_
 #define BOOST_WINAPI_APC_HPP_INCLUDED_
@@ -27,9 +27,9 @@ typedef boost::winapi::VOID_ (BOOST_WINAPI_NTAPI_CC *PAPCFUNC)(boost::winapi::UL
 
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 QueueUserAPC(
-    PAPCFUNC pfnAPC,
-    boost::winapi::HANDLE_ hThread,
-    boost::winapi::ULONG_PTR_ dwData);
+PAPCFUNC pfnAPC,
+boost::winapi::HANDLE_ hThread,
+boost::winapi::ULONG_PTR_ dwData);
 }
 #endif
 

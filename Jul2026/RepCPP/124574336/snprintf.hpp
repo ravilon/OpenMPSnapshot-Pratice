@@ -32,15 +32,15 @@ inline void snprintf( char * buffer, std::size_t len, char const * format, ... )
 #  pragma warning( disable: 4996 )
 # endif
 
-    if( len == 0 ) return;
+if( len == 0 ) return;
 
-    va_list args;
-    va_start( args, format );
+va_list args;
+va_start( args, format );
 
-    _vsnprintf( buffer, len - 1, format, args );
-    buffer[ len - 1 ] = 0;
+_vsnprintf( buffer, len - 1, format, args );
+buffer[ len - 1 ] = 0;
 
-    va_end( args );
+va_end( args );
 
 # if defined( BOOST_MSVC )
 #  pragma warning( pop )
@@ -54,12 +54,12 @@ __attribute__((__format__ (__printf__, 3, 4)))
 #endif
 inline void snprintf( char * buffer, std::size_t len, char const * format, ... )
 {
-    va_list args;
-    va_start( args, format );
+va_list args;
+va_start( args, format );
 
-    std::vsnprintf( buffer, len, format, args );
+std::vsnprintf( buffer, len, format, args );
 
-    va_end( args );
+va_end( args );
 }
 
 #endif

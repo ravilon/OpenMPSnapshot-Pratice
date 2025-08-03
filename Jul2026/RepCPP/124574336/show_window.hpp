@@ -1,9 +1,9 @@
 /*
- * Copyright 2016 Klemens D. Morgenstern
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2016 Klemens D. Morgenstern
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_SHOW_WINDOW_HPP_INCLUDED_
 #define BOOST_WINAPI_SHOW_WINDOW_HPP_INCLUDED_
@@ -23,12 +23,12 @@ extern "C" {
 BOOST_WINAPI_DETAIL_DECLARE_HANDLE(HWND);
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC ShowWindow(
-    HWND hWnd,
-    int nCmdShow);
+HWND hWnd,
+int nCmdShow);
 
 BOOST_WINAPI_IMPORT boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC ShowWindowAsync(
-    HWND hWnd,
-    int nCmdShow);
+HWND hWnd,
+int nCmdShow);
 } // extern "C"
 #endif // BOOST_USE_WINDOWS_H
 

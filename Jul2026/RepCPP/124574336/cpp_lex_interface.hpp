@@ -1,13 +1,13 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    Definition of the abstract lexer interface
+Definition of the abstract lexer interface
 
-    http://www.boost.org/
+http://www.boost.org/
 
-    Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
-    Software License, Version 1.0. (See accompanying file
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
+Software License, Version 1.0. (See accompanying file
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_CPP_LEX_INTERFACE_HPP_E83F52A4_90AC_4FBE_A9A7_B65F7F94C497_INCLUDED)
@@ -44,15 +44,15 @@ namespace cpplexer {
 template <typename TokenT>
 struct lex_input_interface
 {
-    typedef typename TokenT::position_type position_type;
+typedef typename TokenT::position_type position_type;
 
-    lex_input_interface() {}
-    virtual ~lex_input_interface() {}
+lex_input_interface() {}
+virtual ~lex_input_interface() {}
 
-    virtual TokenT& get(TokenT&) = 0;
-    virtual void set_position(position_type const &pos) = 0;
+virtual TokenT& get(TokenT&) = 0;
+virtual void set_position(position_type const &pos) = 0;
 #if BOOST_WAVE_SUPPORT_PRAGMA_ONCE != 0
-    virtual bool has_include_guards(std::string& guard_name) const = 0;
+virtual bool has_include_guards(std::string& guard_name) const = 0;
 #endif
 };
 

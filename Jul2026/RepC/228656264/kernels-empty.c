@@ -1,6 +1,6 @@
-int
-main (void)
-{
-#pragma acc kernels
-  ;
-}
+int
+main (void)
+{
+#pragma acc kernels
+;
+}

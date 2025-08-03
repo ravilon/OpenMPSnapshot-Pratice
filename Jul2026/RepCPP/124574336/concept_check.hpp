@@ -43,16 +43,16 @@ namespace boost { namespace gil {
 // TODO: What is gil_function_requires for; Why not function_requires?
 
 #ifdef BOOST_GIL_USE_CONCEPT_CHECK
-    #define BOOST_GIL_CLASS_REQUIRE(type_var, ns, concept) \
-        BOOST_CLASS_REQUIRE(type_var, ns, concept);
+#define BOOST_GIL_CLASS_REQUIRE(type_var, ns, concept) \
+BOOST_CLASS_REQUIRE(type_var, ns, concept);
 
-    template <typename Concept>
-    void gil_function_requires() { function_requires<Concept>(); }
+template <typename Concept>
+void gil_function_requires() { function_requires<Concept>(); }
 #else
-    #define BOOST_GIL_CLASS_REQUIRE(type_var, ns, concept)
+#define BOOST_GIL_CLASS_REQUIRE(type_var, ns, concept)
 
-    template <typename C>
-    void gil_function_requires() {}
+template <typename C>
+void gil_function_requires() {}
 #endif
 
 }} // namespace boost::gil:

@@ -46,7 +46,7 @@ tagged types.
 and user-friendly. With the use of the defined metafunctions the library
 writer can enjoy the coding too.
 
-                                                                            **/
+**/
 
 namespace tags {
 
@@ -76,12 +76,12 @@ The are other useful metafunctions there too.
 See also value_type_of, tag_of, is_tagged, apply_to_value_type.
 
 \ingroup tagged_group
-                                                                                    **/
+**/
 template< class Type, class Tag >
 struct tagged
 {
-    typedef Type value_type;
-    typedef Tag tag;
+typedef Type value_type;
+typedef Tag tag;
 };
 
 } // namespace tags
@@ -98,7 +98,7 @@ and consistent way.
 default_tagged and overwrite_tagged allows to work with the tag of a tagged type,
 and apply_to_value_type is a higher order metafunction that allow the user to change
 the type of a TaggedType.
-                                                                                    **/
+**/
 
 #endif // BOOST_BIMAP_TAGS_TAGGED_HPP
 

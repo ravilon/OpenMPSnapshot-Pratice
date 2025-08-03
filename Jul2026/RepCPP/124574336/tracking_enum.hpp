@@ -26,13 +26,13 @@ namespace serialization {
 // names for each tracking level
 enum tracking_type
 {
-    // never track this type
-    track_never = 0,
-    // track objects of this type if the object is serialized through a
-    // pointer.
-    track_selectively = 1,
-    // always track this type
-    track_always = 2
+// never track this type
+track_never = 0,
+// track objects of this type if the object is serialized through a
+// pointer.
+track_selectively = 1,
+// always track this type
+track_always = 2
 };
 
 } // namespace serialization

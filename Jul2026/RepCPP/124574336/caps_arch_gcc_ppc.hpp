@@ -1,17 +1,17 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2009 Helge Bahmann
- * Copyright (c) 2013 Tim Blechmann
- * Copyright (c) 2014 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2009 Helge Bahmann
+* Copyright (c) 2013 Tim Blechmann
+* Copyright (c) 2014 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/caps_arch_gcc_ppc.hpp
- *
- * This header defines feature capabilities macros
- */
+* \file   atomic/detail/caps_arch_gcc_ppc.hpp
+*
+* This header defines feature capabilities macros
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_CAPS_ARCH_GCC_PPC_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_CAPS_ARCH_GCC_PPC_HPP_INCLUDED_

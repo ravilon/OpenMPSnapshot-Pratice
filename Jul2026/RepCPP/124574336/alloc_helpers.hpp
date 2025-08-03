@@ -28,7 +28,7 @@ namespace dtl {
 
 template<class AllocatorType>
 BOOST_CONTAINER_FORCEINLINE void swap_alloc(AllocatorType &, AllocatorType &, dtl::false_type)
-   BOOST_NOEXCEPT_OR_NOTHROW
+BOOST_NOEXCEPT_OR_NOTHROW
 {}
 
 template<class AllocatorType>
@@ -37,7 +37,7 @@ BOOST_CONTAINER_FORCEINLINE void swap_alloc(AllocatorType &l, AllocatorType &r, 
 
 template<class AllocatorType>
 BOOST_CONTAINER_FORCEINLINE void assign_alloc(AllocatorType &, const AllocatorType &, dtl::false_type)
-   BOOST_NOEXCEPT_OR_NOTHROW
+BOOST_NOEXCEPT_OR_NOTHROW
 {}
 
 template<class AllocatorType>
@@ -46,7 +46,7 @@ BOOST_CONTAINER_FORCEINLINE void assign_alloc(AllocatorType &l, const AllocatorT
 
 template<class AllocatorType>
 BOOST_CONTAINER_FORCEINLINE void move_alloc(AllocatorType &, AllocatorType &, dtl::false_type)
-   BOOST_NOEXCEPT_OR_NOTHROW
+BOOST_NOEXCEPT_OR_NOTHROW
 {}
 
 template<class AllocatorType>

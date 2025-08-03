@@ -29,17 +29,17 @@ class scheduler_operation;
 class scheduler_task
 {
 public:
-  // Run the task once until interrupted or events are ready to be dispatched.
-  virtual void run(long usec, op_queue<scheduler_operation>& ops) = 0;
+// Run the task once until interrupted or events are ready to be dispatched.
+virtual void run(long usec, op_queue<scheduler_operation>& ops) = 0;
 
-  // Interrupt the task.
-  virtual void interrupt() = 0;
+// Interrupt the task.
+virtual void interrupt() = 0;
 
 protected:
-  // Prevent deletion through this type.
-  ~scheduler_task()
-  {
-  }
+// Prevent deletion through this type.
+~scheduler_task()
+{
+}
 };
 
 } // namespace detail

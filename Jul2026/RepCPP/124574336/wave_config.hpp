@@ -1,13 +1,13 @@
 /*=============================================================================
-    Boost.Wave: A Standard compliant C++ preprocessor library
+Boost.Wave: A Standard compliant C++ preprocessor library
 
-    Global application configuration
+Global application configuration
 
-    http://www.boost.org/
+http://www.boost.org/
 
-    Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
-    Software License, Version 1.0. (See accompanying file
-    LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Copyright (c) 2001-2012 Hartmut Kaiser. Distributed under the Boost
+Software License, Version 1.0. (See accompanying file
+LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
 
 #if !defined(BOOST_WAVE_CONFIG_HPP_F143F90A_A63F_4B27_AC41_9CA4F14F538D_INCLUDED)
@@ -253,8 +253,8 @@
 // CW up to 8.3 chokes as well *sigh*
 // Tru64/CXX has linker problems when using flex_string
 #if BOOST_WORKAROUND(__MWERKS__, < 0x3200) || \
-    (defined(__DECCXX) && defined(__alpha)) || \
-    defined(BOOST_WAVE_STRINGTYPE_USE_STDSTRING)
+(defined(__DECCXX) && defined(__alpha)) || \
+defined(BOOST_WAVE_STRINGTYPE_USE_STDSTRING)
 
 #define BOOST_WAVE_STRINGTYPE std::string
 
@@ -266,12 +266,12 @@
 
 // use the following, if you have a fast std::allocator<char>
 #define BOOST_WAVE_STRINGTYPE boost::wave::util::flex_string<                 \
-        char, std::char_traits<char>, std::allocator<char>,                   \
-        boost::wave::util::CowString<                                         \
-            boost::wave::util::AllocatorStringStorage<char>                   \
-        >                                                                     \
-    >                                                                         \
-    /**/
+char, std::char_traits<char>, std::allocator<char>,                   \
+boost::wave::util::CowString<                                         \
+boost::wave::util::AllocatorStringStorage<char>                   \
+>                                                                     \
+>                                                                         \
+/**/
 
 //  This include is needed for the flex_string class used in the
 //  BOOST_WAVE_STRINGTYPE above.
@@ -343,7 +343,7 @@
 #define BOOST_WAVE_DUMP_CONDITIONAL_EXPRESSIONS 0
 #endif
 #if BOOST_WAVE_DUMP_CONDITIONAL_EXPRESSIONS != 0 && \
-   !defined(BOOST_WAVE_DUMP_CONDITIONAL_EXPRESSIONS_OUT)
+!defined(BOOST_WAVE_DUMP_CONDITIONAL_EXPRESSIONS_OUT)
 #define BOOST_WAVE_DUMP_CONDITIONAL_EXPRESSIONS_OUT std::cerr
 #endif
 
@@ -443,12 +443,12 @@
 namespace boost { namespace wave
 {
 #if defined(BOOST_HAS_LONG_LONG) && \
-    BOOST_WAVE_SUPPORT_LONGLONG_INTEGER_LITERALS != 0
-    typedef boost::long_long_type int_literal_type;
-    typedef boost::ulong_long_type uint_literal_type;
+BOOST_WAVE_SUPPORT_LONGLONG_INTEGER_LITERALS != 0
+typedef boost::long_long_type int_literal_type;
+typedef boost::ulong_long_type uint_literal_type;
 #else
-    typedef long int_literal_type;
-    typedef unsigned long uint_literal_type;
+typedef long int_literal_type;
+typedef unsigned long uint_literal_type;
 #endif
 }}
 
@@ -482,7 +482,7 @@ namespace boost { namespace wave
 ///////////////////////////////////////////////////////////////////////////////
 //  Set up dll import/export options
 #if (defined(BOOST_WAVE_DYN_LINK) || defined(BOOST_ALL_DYN_LINK)) && \
-    !defined(BOOST_WAVE_STATIC_LINK)
+!defined(BOOST_WAVE_STATIC_LINK)
 
 #if defined(BOOST_WAVE_SOURCE)
 #define BOOST_WAVE_DECL BOOST_SYMBOL_EXPORT
@@ -502,7 +502,7 @@ namespace boost { namespace wave
 #if BOOST_VERSION >= 103100
 // auto link features work beginning from Boost V1.31.0
 #if !defined(BOOST_WAVE_SOURCE) && !defined(BOOST_ALL_NO_LIB) && \
-    !defined(BOOST_WAVE_NO_LIB)
+!defined(BOOST_WAVE_NO_LIB)
 
 #define BOOST_LIB_NAME boost_wave
 
@@ -521,8 +521,8 @@ namespace boost { namespace wave
 ///////////////////////////////////////////////////////////////////////////////
 
 #if defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) || defined(BOOST_NO_CXX11_RVALUE_REFERENCES) \
-    || defined(BOOST_NO_CXX11_HDR_THREAD) \
-    || defined(BOOST_NO_CXX11_HDR_MUTEX) || defined(BOOST_NO_CXX11_HDR_REGEX)
+|| defined(BOOST_NO_CXX11_HDR_THREAD) \
+|| defined(BOOST_NO_CXX11_HDR_MUTEX) || defined(BOOST_NO_CXX11_HDR_REGEX)
 
 BOOST_PRAGMA_MESSAGE("C++03 support is deprecated in Boost.Wave 1.74 and will be removed in Boost.Wave 1.77.")
 
@@ -539,7 +539,7 @@ BOOST_PRAGMA_MESSAGE("C++03 support is deprecated in Boost.Wave 1.74 and will be
 //  The old hook signatures are no longer available as of Boost 1.76.
 //
 #if defined(BOOST_WAVE_USE_DEPRECIATED_PREPROCESSING_HOOKS) && \
-    BOOST_WAVE_USE_DEPRECIATED_PREPROCESSING_HOOKS != 0
+BOOST_WAVE_USE_DEPRECIATED_PREPROCESSING_HOOKS != 0
 #error "The old preprocessing hooks were deprecated in Boost 1.35 and removed in 1.76."
 #endif
 

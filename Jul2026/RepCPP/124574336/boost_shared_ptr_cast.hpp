@@ -21,7 +21,7 @@
 #endif
 
 namespace boost {
-    template<class T> class shared_ptr;
+template<class T> class shared_ptr;
 }
 
 namespace boost { namespace typeindex {
@@ -38,10 +38,10 @@ namespace boost { namespace typeindex {
 /// If no such conversion exists, returns boost::shared_ptr<T>();
 template<typename T, typename U>
 boost::shared_ptr<T> runtime_pointer_cast(boost::shared_ptr<U> const& u) {
-    T* value = detail::runtime_cast_impl<T>(u.get(), boost::is_base_and_derived<T, U>());
-    if(value)
-        return boost::shared_ptr<T>(u, value);
-    return boost::shared_ptr<T>();
+T* value = detail::runtime_cast_impl<T>(u.get(), boost::is_base_and_derived<T, U>());
+if(value)
+return boost::shared_ptr<T>(u, value);
+return boost::shared_ptr<T>();
 }
 
 }} // namespace boost::typeindex

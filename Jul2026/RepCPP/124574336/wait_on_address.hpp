@@ -1,9 +1,9 @@
 /*
- * Copyright 2020 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2020 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_WAIT_ON_ADDRESS_HPP_INCLUDED_
 #define BOOST_WINAPI_WAIT_ON_ADDRESS_HPP_INCLUDED_
@@ -25,10 +25,10 @@ extern "C" {
 // Note: These functions are not dllimport
 boost::winapi::BOOL_ BOOST_WINAPI_WINAPI_CC
 WaitOnAddress(
-    volatile boost::winapi::VOID_* addr,
-    boost::winapi::PVOID_ compare_addr,
-    boost::winapi::SIZE_T_ size,
-    boost::winapi::DWORD_ timeout_ms);
+volatile boost::winapi::VOID_* addr,
+boost::winapi::PVOID_ compare_addr,
+boost::winapi::SIZE_T_ size,
+boost::winapi::DWORD_ timeout_ms);
 
 boost::winapi::VOID_ BOOST_WINAPI_WINAPI_CC
 WakeByAddressSingle(boost::winapi::PVOID_ addr);

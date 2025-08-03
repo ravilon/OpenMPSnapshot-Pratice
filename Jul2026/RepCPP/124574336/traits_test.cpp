@@ -49,21 +49,21 @@ template<class T, class S> struct my_udt_builtin_mixture ;
 // It defines the specialization of the helper traits used by 'generate_expected_traits'
 //
 #define DEFINE_CONVERSION(Target,Source,Trivial,Mixture,SignMixture,UdtMixture,SubRanged) \
-                                                          \
-        template<> struct my_is_subranged<Target,Source>  \
-          { typedef mpl::bool_< (SubRanged) > type ; } ; \
-                                                         \
-        template<> struct my_is_trivial<Target,Source>   \
-          { typedef mpl::bool_< (Trivial) > type ; } ;  \
-                                                                                                 \
-        template<> struct my_int_float_mixture<Target,Source>                                    \
-          { typedef mpl::integral_c<boost::numeric::int_float_mixture_enum, (Mixture) > type ; } ;    \
-                                                                                                 \
-        template<> struct my_sign_mixture<Target,Source>                                         \
-          { typedef mpl::integral_c<boost::numeric::sign_mixture_enum, (SignMixture) > type ; } ;     \
-                                                                                                 \
-        template<> struct my_udt_builtin_mixture<Target,Source>                                  \
-          { typedef mpl::integral_c<boost::numeric::udt_builtin_mixture_enum, (UdtMixture) > type ; }
+\
+template<> struct my_is_subranged<Target,Source>  \
+{ typedef mpl::bool_< (SubRanged) > type ; } ; \
+\
+template<> struct my_is_trivial<Target,Source>   \
+{ typedef mpl::bool_< (Trivial) > type ; } ;  \
+\
+template<> struct my_int_float_mixture<Target,Source>                                    \
+{ typedef mpl::integral_c<boost::numeric::int_float_mixture_enum, (Mixture) > type ; } ;    \
+\
+template<> struct my_sign_mixture<Target,Source>                                         \
+{ typedef mpl::integral_c<boost::numeric::sign_mixture_enum, (SignMixture) > type ; } ;     \
+\
+template<> struct my_udt_builtin_mixture<Target,Source>                                  \
+{ typedef mpl::integral_c<boost::numeric::udt_builtin_mixture_enum, (UdtMixture) > type ; }
 
 
 #define cSubRanged true
@@ -215,22 +215,22 @@ DEFINE_CONVERSION(MyFloat         , MyFloat,  cTrivial, float_to_float   , signe
 // of the built-in arithmetic types.
 //
 template<class T,
-         class S,
-         class Supertype,
-         class Subtype,
-         class Subranged,
-         class Trivial
-        >
+class S,
+class Supertype,
+class Subtype,
+class Subranged,
+class Trivial
+>
 struct expected_traits
 {
-  typedef typename my_int_float_mixture   <T,S>::type int_float_mixture ;
-  typedef typename my_sign_mixture        <T,S>::type sign_mixture ;
-  typedef typename my_udt_builtin_mixture <T,S>::type udt_builtin_mixture ;
+typedef typename my_int_float_mixture   <T,S>::type int_float_mixture ;
+typedef typename my_sign_mixture        <T,S>::type sign_mixture ;
+typedef typename my_udt_builtin_mixture <T,S>::type udt_builtin_mixture ;
 
-  typedef Subranged subranged ;
-  typedef Trivial   trivial   ;
-  typedef Supertype supertype ;
-  typedef Subtype   subtype   ;
+typedef Subranged subranged ;
+typedef Trivial   trivial   ;
+typedef Supertype supertype ;
+typedef Subtype   subtype   ;
 } ;
 
 // This is used by the test engine to generate a expected_traits from T and S.
@@ -238,16 +238,16 @@ struct expected_traits
 template<class T, class S>
 struct generate_expected_traits
 {
-  typedef expected_traits<T, S, T, S, mpl::false_, mpl::true_  > trivial ;
-  typedef expected_traits<T, S, S, T, mpl::true_ , mpl::false_ > subranged ;
-  typedef expected_traits<T, S, T, S, mpl::false_, mpl::false_ > non_subranged ;
+typedef expected_traits<T, S, T, S, mpl::false_, mpl::true_  > trivial ;
+typedef expected_traits<T, S, S, T, mpl::true_ , mpl::false_ > subranged ;
+typedef expected_traits<T, S, T, S, mpl::false_, mpl::false_ > non_subranged ;
 
-  typedef typename my_is_subranged<T,S>::type IsSubranged ;
-  typedef typename my_is_trivial  <T,S>::type IsTrivial   ;
+typedef typename my_is_subranged<T,S>::type IsSubranged ;
+typedef typename my_is_trivial  <T,S>::type IsTrivial   ;
 
-  typedef typename mpl::if_<IsSubranged,subranged,non_subranged>::type non_trivial ;
+typedef typename mpl::if_<IsSubranged,subranged,non_subranged>::type non_trivial ;
 
-  typedef typename mpl::if_<IsTrivial,trivial,non_trivial>::type  type ;
+typedef typename mpl::if_<IsTrivial,trivial,non_trivial>::type  type ;
 } ;
 
 // This macro generates the code that compares a non-type field
@@ -256,18 +256,18 @@ struct generate_expected_traits
 //
 
 #define TEST_VALUE_FIELD(Name) \
-        typedef typename traits::Name   BOOST_PP_CAT(t,Name) ; \
-        typedef typename expected::Name BOOST_PP_CAT(x,Name) ; \
-        BOOST_TEST( ( BOOST_PP_CAT(t,Name)::value == BOOST_PP_CAT(x,Name)::value ) ) ;
+typedef typename traits::Name   BOOST_PP_CAT(t,Name) ; \
+typedef typename expected::Name BOOST_PP_CAT(x,Name) ; \
+BOOST_TEST( ( BOOST_PP_CAT(t,Name)::value == BOOST_PP_CAT(x,Name)::value ) ) ;
 
 // This macro generates the code that compares a type field
 // in numeric::conversion_traits<> with its corresponding field
 // in expected_traits<>
 //
 #define TEST_TYPE_FIELD(Name) \
-        typedef typename traits::Name   BOOST_PP_CAT(t,Name) ; \
-        typedef typename expected::Name BOOST_PP_CAT(x,Name) ; \
-        BOOST_TEST ( ( typeid(BOOST_PP_CAT(t,Name)) == typeid(BOOST_PP_CAT(x,Name)) ) ) ;
+typedef typename traits::Name   BOOST_PP_CAT(t,Name) ; \
+typedef typename expected::Name BOOST_PP_CAT(x,Name) ; \
+BOOST_TEST ( ( typeid(BOOST_PP_CAT(t,Name)) == typeid(BOOST_PP_CAT(x,Name)) ) ) ;
 
 //
 // Test core.
@@ -277,57 +277,57 @@ struct generate_expected_traits
 template<class T, class S>
 void test_traits_base(  MATCH_FNTPL_ARG(T),  MATCH_FNTPL_ARG(S) )
 {
-  typedef boost::numeric::conversion_traits<T,S> traits ;
-  typedef typename generate_expected_traits<T,S>::type expected ;
+typedef boost::numeric::conversion_traits<T,S> traits ;
+typedef typename generate_expected_traits<T,S>::type expected ;
 
-  TEST_VALUE_FIELD(int_float_mixture) ;
-  TEST_VALUE_FIELD(sign_mixture) ;
-  TEST_VALUE_FIELD(udt_builtin_mixture) ;
-  TEST_VALUE_FIELD(subranged) ;
-  TEST_VALUE_FIELD(trivial) ;
-  TEST_TYPE_FIELD (supertype) ;
-  TEST_TYPE_FIELD (subtype) ;
+TEST_VALUE_FIELD(int_float_mixture) ;
+TEST_VALUE_FIELD(sign_mixture) ;
+TEST_VALUE_FIELD(udt_builtin_mixture) ;
+TEST_VALUE_FIELD(subranged) ;
+TEST_VALUE_FIELD(trivial) ;
+TEST_TYPE_FIELD (supertype) ;
+TEST_TYPE_FIELD (subtype) ;
 }
 
 
 template<class S>
 void test_traits_from(  MATCH_FNTPL_ARG(S) )
 {
-  test_traits_base( SET_FNTPL_ARG(boost::uint8_t)  ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(boost::int8_t)   ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(boost::uint16_t) ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(boost::int16_t)  ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(boost::uint32_t) ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(boost::int32_t)  ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(float)           ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(double)          ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(long double)     ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(MyInt)           ,SET_FNTPL_ARG(S) );
-  test_traits_base( SET_FNTPL_ARG(MyFloat)         ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::uint8_t)  ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::int8_t)   ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::uint16_t) ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::int16_t)  ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::uint32_t) ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(boost::int32_t)  ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(float)           ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(double)          ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(long double)     ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(MyInt)           ,SET_FNTPL_ARG(S) );
+test_traits_base( SET_FNTPL_ARG(MyFloat)         ,SET_FNTPL_ARG(S) );
 }
 
 void test_traits()
 {
-  test_traits_from( SET_FNTPL_ARG(boost::uint8_t)  );
-  test_traits_from( SET_FNTPL_ARG(boost::int8_t)   );
-  test_traits_from( SET_FNTPL_ARG(boost::uint16_t) );
-  test_traits_from( SET_FNTPL_ARG(boost::int16_t)  );
-  test_traits_from( SET_FNTPL_ARG(boost::uint32_t) );
-  test_traits_from( SET_FNTPL_ARG(boost::int32_t)  );
-  test_traits_from( SET_FNTPL_ARG(float)           );
-  test_traits_from( SET_FNTPL_ARG(double)          );
-  test_traits_from( SET_FNTPL_ARG(long double)     );
-  test_traits_from( SET_FNTPL_ARG(MyInt)           );
-  test_traits_from( SET_FNTPL_ARG(MyFloat)         );
+test_traits_from( SET_FNTPL_ARG(boost::uint8_t)  );
+test_traits_from( SET_FNTPL_ARG(boost::int8_t)   );
+test_traits_from( SET_FNTPL_ARG(boost::uint16_t) );
+test_traits_from( SET_FNTPL_ARG(boost::int16_t)  );
+test_traits_from( SET_FNTPL_ARG(boost::uint32_t) );
+test_traits_from( SET_FNTPL_ARG(boost::int32_t)  );
+test_traits_from( SET_FNTPL_ARG(float)           );
+test_traits_from( SET_FNTPL_ARG(double)          );
+test_traits_from( SET_FNTPL_ARG(long double)     );
+test_traits_from( SET_FNTPL_ARG(MyInt)           );
+test_traits_from( SET_FNTPL_ARG(MyFloat)         );
 }
 
 int main()
 {
-  std::cout << std::setprecision( std::numeric_limits<long double>::digits10 ) ;
-  
-  test_traits();
+std::cout << std::setprecision( std::numeric_limits<long double>::digits10 ) ;
 
-  return boost::report_errors();
+test_traits();
+
+return boost::report_errors();
 }
 //---------------------------------------------------------------------------
 

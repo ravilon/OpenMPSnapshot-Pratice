@@ -27,7 +27,7 @@
 namespace boost {
 
 namespace serialization {
-    class extended_type_info;
+class extended_type_info;
 } // namespace serialization
 
 namespace archive {
@@ -38,11 +38,11 @@ class basic_serializer;
 template<class Archive>
 class BOOST_SYMBOL_VISIBLE archive_serializer_map {
 public:
-    static BOOST_ARCHIVE_OR_WARCHIVE_DECL bool insert(const basic_serializer * bs);
-    static BOOST_ARCHIVE_OR_WARCHIVE_DECL void erase(const basic_serializer * bs);
-    static BOOST_ARCHIVE_OR_WARCHIVE_DECL const basic_serializer * find(
-        const boost::serialization::extended_type_info & type_
-    );
+static BOOST_ARCHIVE_OR_WARCHIVE_DECL bool insert(const basic_serializer * bs);
+static BOOST_ARCHIVE_OR_WARCHIVE_DECL void erase(const basic_serializer * bs);
+static BOOST_ARCHIVE_OR_WARCHIVE_DECL const basic_serializer * find(
+const boost::serialization::extended_type_info & type_
+);
 };
 
 } // namespace detail

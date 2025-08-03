@@ -23,17 +23,17 @@ namespace boost { namespace iostreams { namespace detail {
 template<typename Mode, typename Ch, typename OutIt>
 class output_iterator_adapter {
 public:
-    BOOST_STATIC_ASSERT((is_convertible<Mode, output>::value));
-    typedef Ch        char_type;
-    typedef sink_tag  category;
-    explicit output_iterator_adapter(OutIt out) : out_(out) { }
-    std::streamsize write(const char_type* s, std::streamsize n) 
-    { 
-        std::copy(s, s + n, out_); 
-        return n; 
-    }
+BOOST_STATIC_ASSERT((is_convertible<Mode, output>::value));
+typedef Ch        char_type;
+typedef sink_tag  category;
+explicit output_iterator_adapter(OutIt out) : out_(out) { }
+std::streamsize write(const char_type* s, std::streamsize n) 
+{ 
+std::copy(s, s + n, out_); 
+return n; 
+}
 private:
-    OutIt out_;
+OutIt out_;
 };
 
 } } } // End namespaces detail, iostreams, boost.

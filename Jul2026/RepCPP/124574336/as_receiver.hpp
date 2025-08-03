@@ -31,36 +31,36 @@ namespace detail {
 template <typename Function, typename>
 struct as_receiver
 {
-  Function f_;
+Function f_;
 
-  template <typename F>
-  explicit as_receiver(BOOST_ASIO_MOVE_ARG(F) f, int)
-    : f_(BOOST_ASIO_MOVE_CAST(F)(f))
-  {
-  }
+template <typename F>
+explicit as_receiver(BOOST_ASIO_MOVE_ARG(F) f, int)
+: f_(BOOST_ASIO_MOVE_CAST(F)(f))
+{
+}
 
 #if defined(BOOST_ASIO_MSVC) && defined(BOOST_ASIO_HAS_MOVE)
-  as_receiver(as_receiver&& other)
-    : f_(BOOST_ASIO_MOVE_CAST(Function)(other.f_))
-  {
-  }
+as_receiver(as_receiver&& other)
+: f_(BOOST_ASIO_MOVE_CAST(Function)(other.f_))
+{
+}
 #endif // defined(BOOST_ASIO_MSVC) && defined(BOOST_ASIO_HAS_MOVE)
 
-  void set_value()
-    BOOST_ASIO_NOEXCEPT_IF(noexcept(declval<Function&>()()))
-  {
-    f_();
-  }
+void set_value()
+BOOST_ASIO_NOEXCEPT_IF(noexcept(declval<Function&>()()))
+{
+f_();
+}
 
-  template <typename E>
-  void set_error(E) BOOST_ASIO_NOEXCEPT
-  {
-    std::terminate();
-  }
+template <typename E>
+void set_error(E) BOOST_ASIO_NOEXCEPT
+{
+std::terminate();
+}
 
-  void set_done() BOOST_ASIO_NOEXCEPT
-  {
-  }
+void set_done() BOOST_ASIO_NOEXCEPT
+{
+}
 };
 
 template <typename T>
@@ -81,16 +81,16 @@ namespace traits {
 
 template <typename Function, typename T>
 struct set_value_member<
-    boost::asio::execution::detail::as_receiver<Function, T>, void()>
+boost::asio::execution::detail::as_receiver<Function, T>, void()>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
 #if defined(BOOST_ASIO_HAS_NOEXCEPT)
-  BOOST_ASIO_STATIC_CONSTEXPR(bool,
-      is_noexcept = noexcept(declval<Function&>()()));
+BOOST_ASIO_STATIC_CONSTEXPR(bool,
+is_noexcept = noexcept(declval<Function&>()()));
 #else // defined(BOOST_ASIO_HAS_NOEXCEPT)
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
 #endif // defined(BOOST_ASIO_HAS_NOEXCEPT)
-  typedef void result_type;
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_VALUE_MEMBER_TRAIT)
@@ -99,11 +99,11 @@ struct set_value_member<
 
 template <typename Function, typename T, typename E>
 struct set_error_member<
-    boost::asio::execution::detail::as_receiver<Function, T>, E>
+boost::asio::execution::detail::as_receiver<Function, T>, E>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_ERROR_MEMBER_TRAIT)
@@ -112,11 +112,11 @@ struct set_error_member<
 
 template <typename Function, typename T>
 struct set_done_member<
-    boost::asio::execution::detail::as_receiver<Function, T> >
+boost::asio::execution::detail::as_receiver<Function, T> >
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
-  typedef void result_type;
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = true);
+typedef void result_type;
 };
 
 #endif // !defined(BOOST_ASIO_HAS_DEDUCED_SET_DONE_MEMBER_TRAIT)

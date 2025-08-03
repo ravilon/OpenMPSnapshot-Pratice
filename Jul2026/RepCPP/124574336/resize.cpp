@@ -11,7 +11,7 @@
 
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-    #pragma warning(disable:4996)
+#pragma warning(disable:4996)
 #endif
 
 #define BOOST_TEST_MODULE odeint_nt2_resize
@@ -30,16 +30,16 @@ BOOST_AUTO_TEST_SUITE( nt2_resize )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_resize, T, fp_types )
 {
-  nt2::table<T> x;
-  x.resize(nt2::of_size(10,10));
+nt2::table<T> x;
+x.resize(nt2::of_size(10,10));
 
-  nt2::table<T> y;
+nt2::table<T> y;
 
-  BOOST_CHECK_EQUAL(same_size(x,y),false);
+BOOST_CHECK_EQUAL(same_size(x,y),false);
 
-  resize(y,x);
+resize(y,x);
 
-  BOOST_CHECK_EQUAL(same_size(x,y),true);
+BOOST_CHECK_EQUAL(same_size(x,y),true);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

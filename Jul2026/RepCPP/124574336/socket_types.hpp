@@ -58,9 +58,9 @@
 #else
 # include <sys/ioctl.h>
 # if (defined(__MACH__) && defined(__APPLE__)) \
-   || defined(__FreeBSD__) || defined(__NetBSD__) \
-   || defined(__OpenBSD__) || defined(__linux__) \
-   || defined(__EMSCRIPTEN__)
+|| defined(__FreeBSD__) || defined(__NetBSD__) \
+|| defined(__OpenBSD__) || defined(__linux__) \
+|| defined(__EMSCRIPTEN__)
 #  include <poll.h>
 # elif !defined(__SYMBIAN32__)
 #  include <sys/poll.h>
@@ -106,19 +106,19 @@ struct in4_addr_type { u_long_type s_addr; };
 struct in4_mreq_type { in4_addr_type imr_multiaddr, imr_interface; };
 struct in6_addr_type { unsigned char s6_addr[16]; };
 struct in6_mreq_type { in6_addr_type ipv6mr_multiaddr;
-  unsigned long ipv6mr_interface; };
+unsigned long ipv6mr_interface; };
 struct socket_addr_type { int sa_family; };
 struct sockaddr_in4_type { int sin_family;
-  in4_addr_type sin_addr; u_short_type sin_port; };
+in4_addr_type sin_addr; u_short_type sin_port; };
 struct sockaddr_in6_type { int sin6_family;
-  in6_addr_type sin6_addr; u_short_type sin6_port;
-  u_long_type sin6_flowinfo; u_long_type sin6_scope_id; };
+in6_addr_type sin6_addr; u_short_type sin6_port;
+u_long_type sin6_flowinfo; u_long_type sin6_scope_id; };
 struct sockaddr_storage_type { int ss_family;
-  unsigned char ss_bytes[128 - sizeof(int)]; };
+unsigned char ss_bytes[128 - sizeof(int)]; };
 struct addrinfo_type { int ai_flags;
-  int ai_family, ai_socktype, ai_protocol;
-  int ai_addrlen; const void* ai_addr;
-  const char* ai_canonname; addrinfo_type* ai_next; };
+int ai_family, ai_socktype, ai_protocol;
+int ai_addrlen; const void* ai_addr;
+const char* ai_canonname; addrinfo_type* ai_next; };
 struct linger_type { u_short_type l_onoff, l_linger; };
 typedef u_long_type ioctl_arg_type;
 typedef int signed_size_type;
@@ -302,8 +302,8 @@ typedef in_addr in4_addr_type;
 // HP-UX doesn't provide ip_mreq when _XOPEN_SOURCE_EXTENDED is defined.
 struct in4_mreq_type
 {
-  struct in_addr imr_multiaddr;
-  struct in_addr imr_interface;
+struct in_addr imr_multiaddr;
+struct in_addr imr_interface;
 };
 # else
 typedef ip_mreq in4_mreq_type;

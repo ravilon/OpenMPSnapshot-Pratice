@@ -51,46 +51,46 @@ namespace interprocess {
 //!or sets key to IPC_PRIVATE using the default constructor.
 class xsi_key
 {
-   public:
+public:
 
-   //!Default constructor.
-   //!Represents a private xsi_key.
-   xsi_key()
-      : m_key(IPC_PRIVATE)
-   {}
+//!Default constructor.
+//!Represents a private xsi_key.
+xsi_key()
+: m_key(IPC_PRIVATE)
+{}
 
-   //!Creates a new XSI key using a specified value. Constructor is explicit to avoid ambiguity with shmid.
-   explicit xsi_key(key_t key)
-      : m_key(key)
-   {}
+//!Creates a new XSI key using a specified value. Constructor is explicit to avoid ambiguity with shmid.
+explicit xsi_key(key_t key)
+: m_key(key)
+{}
 
-   //!Creates a new XSI  shared memory with a key obtained from a call to ftok (with path
-   //!"path" and id "id"), of size "size" and permissions "perm".
-   //!If the shared memory previously exists, throws an error.
-   xsi_key(const char *path, boost::uint8_t id)
-   {
-      key_t key;
-      if(path){
-         key  = ::ftok(path, id);
-         if(((key_t)-1) == key){
-            error_info err = system_error_code();
-            throw interprocess_exception(err);
-         }
-      }
-      else{
-         key = IPC_PRIVATE;
-      }
-      m_key = key;
-   }
+//!Creates a new XSI  shared memory with a key obtained from a call to ftok (with path
+//!"path" and id "id"), of size "size" and permissions "perm".
+//!If the shared memory previously exists, throws an error.
+xsi_key(const char *path, boost::uint8_t id)
+{
+key_t key;
+if(path){
+key  = ::ftok(path, id);
+if(((key_t)-1) == key){
+error_info err = system_error_code();
+throw interprocess_exception(err);
+}
+}
+else{
+key = IPC_PRIVATE;
+}
+m_key = key;
+}
 
-   //!Returns the internal key_t value
-   key_t get_key() const
-   {  return m_key;  }
+//!Returns the internal key_t value
+key_t get_key() const
+{  return m_key;  }
 
-   #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
-   private:
-   key_t m_key;
-   #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
+#if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
+private:
+key_t m_key;
+#endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED
 };
 
 }  //namespace interprocess {

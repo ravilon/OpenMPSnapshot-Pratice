@@ -52,37 +52,37 @@ class BOOST_SYMBOL_VISIBLE error_category
 {
 private:
 
-    friend std::size_t hash_value( error_code const & ec );
-    friend BOOST_SYSTEM_CONSTEXPR bool detail::failed_impl( int ev, error_category const & cat );
+friend std::size_t hash_value( error_code const & ec );
+friend BOOST_SYSTEM_CONSTEXPR bool detail::failed_impl( int ev, error_category const & cat );
 
-    friend class error_code;
-    friend class error_condition;
+friend class error_code;
+friend class error_condition;
 
 #if !defined(BOOST_NO_CXX11_DELETED_FUNCTIONS)
 public:
 
-    error_category( error_category const & ) = delete;
-    error_category& operator=( error_category const & ) = delete;
+error_category( error_category const & ) = delete;
+error_category& operator=( error_category const & ) = delete;
 
 #else
 private:
 
-    error_category( error_category const & );
-    error_category& operator=( error_category const & );
+error_category( error_category const & );
+error_category& operator=( error_category const & );
 
 #endif
 
 private:
 
-    boost::ulong_long_type id_;
+boost::ulong_long_type id_;
 
 #if defined(BOOST_SYSTEM_HAS_SYSTEM_ERROR)
 
-    mutable std::atomic< boost::system::detail::std_category* > ps_;
+mutable std::atomic< boost::system::detail::std_category* > ps_;
 
 #else
 
-    boost::system::detail::std_category* ps_;
+boost::system::detail::std_category* ps_;
 
 #endif
 
@@ -90,78 +90,78 @@ protected:
 
 #if !defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS) && !defined(BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS)
 
-    ~error_category() = default;
+~error_category() = default;
 
 #else
 
-    // We'd like to make the destructor protected, to make code that deletes
-    // an error_category* not compile; unfortunately, doing the below makes
-    // the destructor user-provided and hence breaks use after main, as the
-    // categories may get destroyed before code that uses them
+// We'd like to make the destructor protected, to make code that deletes
+// an error_category* not compile; unfortunately, doing the below makes
+// the destructor user-provided and hence breaks use after main, as the
+// categories may get destroyed before code that uses them
 
-    // ~error_category() {}
+// ~error_category() {}
 
 #endif
 
-    BOOST_SYSTEM_CONSTEXPR error_category() BOOST_NOEXCEPT: id_( 0 ), ps_()
-    {
-    }
+BOOST_SYSTEM_CONSTEXPR error_category() BOOST_NOEXCEPT: id_( 0 ), ps_()
+{
+}
 
-    explicit BOOST_SYSTEM_CONSTEXPR error_category( boost::ulong_long_type id ) BOOST_NOEXCEPT: id_( id ), ps_()
-    {
-    }
+explicit BOOST_SYSTEM_CONSTEXPR error_category( boost::ulong_long_type id ) BOOST_NOEXCEPT: id_( id ), ps_()
+{
+}
 
 public:
 
-    virtual const char * name() const BOOST_NOEXCEPT = 0;
+virtual const char * name() const BOOST_NOEXCEPT = 0;
 
-    virtual error_condition default_error_condition( int ev ) const BOOST_NOEXCEPT;
-    virtual bool equivalent( int code, const error_condition & condition ) const BOOST_NOEXCEPT;
-    virtual bool equivalent( const error_code & code, int condition ) const BOOST_NOEXCEPT;
+virtual error_condition default_error_condition( int ev ) const BOOST_NOEXCEPT;
+virtual bool equivalent( int code, const error_condition & condition ) const BOOST_NOEXCEPT;
+virtual bool equivalent( const error_code & code, int condition ) const BOOST_NOEXCEPT;
 
-    virtual std::string message( int ev ) const = 0;
-    virtual char const * message( int ev, char * buffer, std::size_t len ) const BOOST_NOEXCEPT;
+virtual std::string message( int ev ) const = 0;
+virtual char const * message( int ev, char * buffer, std::size_t len ) const BOOST_NOEXCEPT;
 
-    virtual bool failed( int ev ) const BOOST_NOEXCEPT
-    {
-        return ev != 0;
-    }
+virtual bool failed( int ev ) const BOOST_NOEXCEPT
+{
+return ev != 0;
+}
 
-    friend BOOST_SYSTEM_CONSTEXPR bool operator==( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
-    {
-        return rhs.id_ == 0? &lhs == &rhs: lhs.id_ == rhs.id_;
-    }
+friend BOOST_SYSTEM_CONSTEXPR bool operator==( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
+{
+return rhs.id_ == 0? &lhs == &rhs: lhs.id_ == rhs.id_;
+}
 
-    friend BOOST_SYSTEM_CONSTEXPR bool operator!=( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
-    {
-        return !( lhs == rhs );
-    }
+friend BOOST_SYSTEM_CONSTEXPR bool operator!=( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
+{
+return !( lhs == rhs );
+}
 
-    friend BOOST_SYSTEM_CONSTEXPR bool operator<( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
-    {
-        if( lhs.id_ < rhs.id_ )
-        {
-            return true;
-        }
+friend BOOST_SYSTEM_CONSTEXPR bool operator<( error_category const & lhs, error_category const & rhs ) BOOST_NOEXCEPT
+{
+if( lhs.id_ < rhs.id_ )
+{
+return true;
+}
 
-        if( lhs.id_ > rhs.id_ )
-        {
-            return false;
-        }
+if( lhs.id_ > rhs.id_ )
+{
+return false;
+}
 
-        if( rhs.id_ != 0 )
-        {
-            return false; // equal
-        }
+if( rhs.id_ != 0 )
+{
+return false; // equal
+}
 
-        return std::less<error_category const *>()( &lhs, &rhs );
-    }
+return std::less<error_category const *>()( &lhs, &rhs );
+}
 
 #if defined(BOOST_SYSTEM_HAS_SYSTEM_ERROR)
 # if defined(__SUNPRO_CC) // trailing __global is not supported
-    operator std::error_category const & () const;
+operator std::error_category const & () const;
 # else
-    operator std::error_category const & () const BOOST_SYMBOL_VISIBLE;
+operator std::error_category const & () const BOOST_SYMBOL_VISIBLE;
 # endif
 #endif
 };
@@ -179,14 +179,14 @@ static const boost::ulong_long_type interop_category_id = generic_category_id + 
 
 BOOST_SYSTEM_CONSTEXPR inline bool failed_impl( int ev, error_category const & cat )
 {
-    if( cat.id_ == system_category_id || cat.id_ == generic_category_id )
-    {
-        return ev != 0;
-    }
-    else
-    {
-        return cat.failed( ev );
-    }
+if( cat.id_ == system_category_id || cat.id_ == generic_category_id )
+{
+return ev != 0;
+}
+else
+{
+return cat.failed( ev );
+}
 }
 
 } // namespace detail

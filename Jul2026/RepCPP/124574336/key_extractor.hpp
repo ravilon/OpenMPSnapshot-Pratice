@@ -28,10 +28,10 @@ namespace detail {
 template < class T >
 struct key_from_pair_extractor 
 {
-    typedef T argument_type;
-    typedef BOOST_DEDUCED_TYPENAME T::first_type result_type;
+typedef T argument_type;
+typedef BOOST_DEDUCED_TYPENAME T::first_type result_type;
 
-    result_type operator()( const T & p ) { return p.first; }
+result_type operator()( const T & p ) { return p.first; }
 };
 
 } // namespace detail

@@ -23,51 +23,51 @@ using namespace std;
 */
 class IUHCalculator {
 public:
-    IUHCalculator(string inputfile, string watershedfile,
-                  string stream_networkfile, string t0file, string deltafile);
+IUHCalculator(string inputfile, string watershedfile,
+string stream_networkfile, string t0file, string deltafile);
 
-    virtual ~IUHCalculator(void);
+virtual ~IUHCalculator(void);
 
 /**
-     @brief Calculate IUH
+@brief Calculate IUH
 */
-    virtual int calIUH(void) = 0;
+virtual int calIUH(void) = 0;
 
-    void setDt(int t) { dt = t; }
+void setDt(int t) { dt = t; }
 
 protected:
-    string inputFile;
-    string watershedFile;    // = subbasin file
-    string strnetworkFile;
-    string t0File;
-    string deltaFile;
-    //string runoffCoFile;   // used to calculate subbasin IUH
+string inputFile;
+string watershedFile;    // = subbasin file
+string strnetworkFile;
+string t0File;
+string deltaFile;
+//string runoffCoFile;   // used to calculate subbasin IUH
 
-    int mt;          //maximum length of IUH
-    int nRows, nCols;    //number of rows and columns
-    int dt;              //time interval in hours
-    int nSubs;           //number of sub-watersheds
-    int nCells;          //number of cells
-    int nLinks;          //number of links
+int mt;          //maximum length of IUH
+int nRows, nCols;    //number of rows and columns
+int dt;              //time interval in hours
+int nSubs;           //number of sub-watersheds
+int nCells;          //number of cells
+int nLinks;          //number of links
 
-    vector <vector<int>> watershed;  //value of subwatershed/subbasin
-    vector <vector<int>> strnetwork;  // value of stream network, used to define stream link
-    vector <vector<int>> link;   //calculated from watershed and stream network
-    vector <vector<double>> t0;          //flow time
-    vector <vector<double>> delta;       //standard deviation of flow time
-    //vector< vector<double> > runoffCo;    //potential runoff coefficient
-
-/**
-     @brief Read data 
-*/
-    virtual void readData();
+vector <vector<int>> watershed;  //value of subwatershed/subbasin
+vector <vector<int>> strnetwork;  // value of stream network, used to define stream link
+vector <vector<int>> link;   //calculated from watershed and stream network
+vector <vector<double>> t0;          //flow time
+vector <vector<double>> delta;       //standard deviation of flow time
+//vector< vector<double> > runoffCo;    //potential runoff coefficient
 
 /**
-     @brief Calculate IUH for time step ti
-
-	 @param double delta0:standard deviation of t00
-	 @param double t00:flow time to the watershed outlet from each grid cell
-	 @param double ti: time step, eg. hourly
+@brief Read data 
 */
-    double IUHti(double delta0, double t00, double ti);  //calculate IUH for time step ti
+virtual void readData();
+
+/**
+@brief Calculate IUH for time step ti
+
+@param double delta0:standard deviation of t00
+@param double t00:flow time to the watershed outlet from each grid cell
+@param double ti: time step, eg. hourly
+*/
+double IUHti(double delta0, double t00, double ti);  //calculate IUH for time step ti
 };

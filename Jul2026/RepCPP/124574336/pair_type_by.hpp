@@ -29,14 +29,14 @@
 template< class Tag, class Relation >
 struct pair_type_by
 {
-        typedef {signature-compatible with std::pair} type;
+typedef {signature-compatible with std::pair} type;
 };
 
 \endcode
 
 See also member_at, pair_by().
 \ingroup relation_group
-                                                                    **/
+**/
 
 namespace boost {
 namespace bimaps {
@@ -47,9 +47,9 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    pair_type_by,
-    left_pair,
-    right_pair
+pair_type_by,
+left_pair,
+right_pair
 )
 
 } // namespace support

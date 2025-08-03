@@ -68,72 +68,72 @@ namespace detail{
 template <class T>
 struct is_abstract_imp
 {
-   BOOST_STATIC_CONSTANT(bool, value = BOOST_IS_ABSTRACT(T));
+BOOST_STATIC_CONSTANT(bool, value = BOOST_IS_ABSTRACT(T));
 };
 #elif !defined(BOOST_NO_IS_ABSTRACT)
 template<class T>
 struct is_abstract_imp2
 {
-   // Deduction fails if T is void, function type, 
-   // reference type (14.8.2/2)or an abstract class type 
-   // according to review status issue #337
-   //
-   template<class U>
-   static type_traits::no_type check_sig(U (*)[1]);
-   template<class U>
-   static type_traits::yes_type check_sig(...);
-   //
-   // T must be a complete type, further if T is a template then
-   // it must be instantiated in order for us to get the right answer:
-   //
-   BOOST_STATIC_ASSERT(sizeof(T) != 0);
+// Deduction fails if T is void, function type, 
+// reference type (14.8.2/2)or an abstract class type 
+// according to review status issue #337
+//
+template<class U>
+static type_traits::no_type check_sig(U (*)[1]);
+template<class U>
+static type_traits::yes_type check_sig(...);
+//
+// T must be a complete type, further if T is a template then
+// it must be instantiated in order for us to get the right answer:
+//
+BOOST_STATIC_ASSERT(sizeof(T) != 0);
 
-   // GCC2 won't even parse this template if we embed the computation
-   // of s1 in the computation of value.
+// GCC2 won't even parse this template if we embed the computation
+// of s1 in the computation of value.
 #ifdef __GNUC__
-   BOOST_STATIC_CONSTANT(std::size_t, s1 = sizeof(is_abstract_imp2<T>::template check_sig<T>(0)));
+BOOST_STATIC_CONSTANT(std::size_t, s1 = sizeof(is_abstract_imp2<T>::template check_sig<T>(0)));
 #else
 #if BOOST_WORKAROUND(BOOST_MSVC_FULL_VER, >= 140050000)
 #pragma warning(push)
 #pragma warning(disable:6334)
 #endif
-   BOOST_STATIC_CONSTANT(std::size_t, s1 = sizeof(check_sig<T>(0)));
+BOOST_STATIC_CONSTANT(std::size_t, s1 = sizeof(check_sig<T>(0)));
 #if BOOST_WORKAROUND(BOOST_MSVC_FULL_VER, >= 140050000)
 #pragma warning(pop)
 #endif
 #endif
-    
-   BOOST_STATIC_CONSTANT(bool, value = 
-      (s1 == sizeof(type_traits::yes_type)));
+
+BOOST_STATIC_CONSTANT(bool, value = 
+(s1 == sizeof(type_traits::yes_type)));
 };
 
 template <bool v>
 struct is_abstract_select
 {
-   template <class T>
-   struct rebind
-   {
-      typedef is_abstract_imp2<T> type;
-   };
+template <class T>
+struct rebind
+{
+typedef is_abstract_imp2<T> type;
+};
 };
 template <>
 struct is_abstract_select<false>
 {
-   template <class T>
-   struct rebind
-   {
-      typedef false_type type;
-   };
+template <class T>
+struct rebind
+{
+typedef false_type type;
+};
 };
 
 template <class T>
 struct is_abstract_imp
 {
-   typedef is_abstract_select< ::boost::is_class<T>::value> selector;
-   typedef typename selector::template rebind<T> binder;
-   typedef typename binder::type type;
+typedef is_abstract_select< ::boost::is_class<T>::value> selector;
+typedef typename selector::template rebind<T> binder;
+typedef typename binder::type type;
 
-   BOOST_STATIC_CONSTANT(bool, value = type::value);
+BOOST_STATIC_CONSTANT(bool, value = type::value);
 };
 
 #endif

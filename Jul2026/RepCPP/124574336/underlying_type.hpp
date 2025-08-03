@@ -36,10 +36,10 @@ struct underlying_type_impl;
 template< typename EnumType >
 struct underlying_type_impl< EnumType, typename EnumType::is_boost_scoped_enum_tag >
 {
-    /**
-     * The member typedef type names the underlying type of EnumType. It is EnumType::underlying_type when the EnumType is an emulated scoped enum,
-     */
-    typedef typename EnumType::underlying_type type;
+/**
+* The member typedef type names the underlying type of EnumType. It is EnumType::underlying_type when the EnumType is an emulated scoped enum,
+*/
+typedef typename EnumType::underlying_type type;
 };
 
 #endif
@@ -49,7 +49,7 @@ struct underlying_type_impl< EnumType, typename EnumType::is_boost_scoped_enum_t
 template< typename EnumType, typename Void >
 struct underlying_type_impl
 {
-    typedef typename std::underlying_type< EnumType >::type type;
+typedef typename std::underlying_type< EnumType >::type type;
 };
 
 #endif
@@ -61,16 +61,16 @@ struct underlying_type_impl
 #endif
 
 /**
- * Meta-function to get the underlying type of a scoped enum.
- *
- * Requires EnumType must be an enum type or the emulation of a scoped enum.
- * If BOOST_NO_UNDERLYING_TYPE is defined, the implementation will not be able
- * to deduce the underlying type of enums. The user is expected to specialize
- * this trait in this case.
- */
+* Meta-function to get the underlying type of a scoped enum.
+*
+* Requires EnumType must be an enum type or the emulation of a scoped enum.
+* If BOOST_NO_UNDERLYING_TYPE is defined, the implementation will not be able
+* to deduce the underlying type of enums. The user is expected to specialize
+* this trait in this case.
+*/
 template< typename EnumType >
 struct underlying_type :
-    public detail::underlying_type_impl< EnumType >
+public detail::underlying_type_impl< EnumType >
 {
 };
 

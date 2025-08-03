@@ -29,36 +29,36 @@ namespace detail {
 class shutdown_op
 {
 public:
-  static BOOST_ASIO_CONSTEXPR const char* tracking_name()
-  {
-    return "ssl::stream<>::async_shutdown";
-  }
+static BOOST_ASIO_CONSTEXPR const char* tracking_name()
+{
+return "ssl::stream<>::async_shutdown";
+}
 
-  engine::want operator()(engine& eng,
-      boost::system::error_code& ec,
-      std::size_t& bytes_transferred) const
-  {
-    bytes_transferred = 0;
-    return eng.shutdown(ec);
-  }
+engine::want operator()(engine& eng,
+boost::system::error_code& ec,
+std::size_t& bytes_transferred) const
+{
+bytes_transferred = 0;
+return eng.shutdown(ec);
+}
 
-  template <typename Handler>
-  void call_handler(Handler& handler,
-      const boost::system::error_code& ec,
-      const std::size_t&) const
-  {
-    if (ec == boost::asio::error::eof)
-    {
-      // The engine only generates an eof when the shutdown notification has
-      // been received from the peer. This indicates that the shutdown has
-      // completed successfully, and thus need not be passed on to the handler.
-      BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(boost::system::error_code());
-    }
-    else
-    {
-      BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(ec);
-    }
-  }
+template <typename Handler>
+void call_handler(Handler& handler,
+const boost::system::error_code& ec,
+const std::size_t&) const
+{
+if (ec == boost::asio::error::eof)
+{
+// The engine only generates an eof when the shutdown notification has
+// been received from the peer. This indicates that the shutdown has
+// completed successfully, and thus need not be passed on to the handler.
+BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(boost::system::error_code());
+}
+else
+{
+BOOST_ASIO_MOVE_OR_LVALUE(Handler)(handler)(ec);
+}
+}
 };
 
 } // namespace detail

@@ -11,7 +11,7 @@
 #if defined(_MSC_VER)
 # pragma once
 #endif              
-                 
+
 #include <boost/iostreams/detail/config/wide_streams.hpp>
 #ifndef BOOST_IOSTREAMS_NO_STREAM_TEMPLATES
 # include <istream>

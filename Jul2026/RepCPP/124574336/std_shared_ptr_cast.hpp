@@ -35,10 +35,10 @@ namespace boost { namespace typeindex {
 /// If no such conversion exists, returns std::shared_ptr<T>();
 template<typename T, typename U>
 std::shared_ptr<T> runtime_pointer_cast(std::shared_ptr<U> const& u) {
-    T* value = detail::runtime_cast_impl<T>(u.get(), boost::is_base_and_derived<T, U>());
-    if(value)
-        return std::shared_ptr<T>(u, value);
-    return std::shared_ptr<T>();
+T* value = detail::runtime_cast_impl<T>(u.get(), boost::is_base_and_derived<T, U>());
+if(value)
+return std::shared_ptr<T>(u, value);
+return std::shared_ptr<T>();
 }
 
 }} // namespace boost::typeindex

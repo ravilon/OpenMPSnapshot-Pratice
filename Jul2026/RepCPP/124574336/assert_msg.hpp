@@ -24,17 +24,17 @@
 #if !defined(BOOST_NO_CXX11_STATIC_ASSERT) || BOOST_SPIRIT_DONT_USE_MPL_ASSERT_MSG != 0
 #include <boost/static_assert.hpp>
 #define BOOST_SPIRIT_ASSERT_MSG(Cond, Msg, Types)                             \
-        BOOST_STATIC_ASSERT_MSG(Cond, # Msg)
+BOOST_STATIC_ASSERT_MSG(Cond, # Msg)
 #else
 #include <boost/mpl/assert.hpp>
 #define BOOST_SPIRIT_ASSERT_MSG(Cond, Msg, Types)                             \
-        BOOST_MPL_ASSERT_MSG(Cond, Msg, Types)
+BOOST_MPL_ASSERT_MSG(Cond, Msg, Types)
 #endif
 
 #define BOOST_SPIRIT_ASSERT_MATCH(Domain, Expr)                               \
-        BOOST_SPIRIT_ASSERT_MSG((                                             \
-            boost::spirit::traits::matches< Domain, Expr >::value             \
-        ), error_invalid_expression, (Expr))
+BOOST_SPIRIT_ASSERT_MSG((                                             \
+boost::spirit::traits::matches< Domain, Expr >::value             \
+), error_invalid_expression, (Expr))
 
 // GCC 4.7 will overeagerly instantiate static_asserts in template functions,
 // if the assert condition does not depend on template parameters
@@ -47,8 +47,8 @@
 #include <boost/type_traits/is_same.hpp>
 
 #define BOOST_SPIRIT_ASSERT_FAIL(TemplateParam, Msg, Types)                   \
-        BOOST_SPIRIT_ASSERT_MSG((!boost::is_same<                             \
-            TemplateParam, TemplateParam >::value), Msg, Types)
+BOOST_SPIRIT_ASSERT_MSG((!boost::is_same<                             \
+TemplateParam, TemplateParam >::value), Msg, Types)
 
 #endif
 

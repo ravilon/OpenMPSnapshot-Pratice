@@ -22,65 +22,65 @@
 
 /*===========================================================================*/
 #define BOOST_BIMAP_GENERATE_RELATION_BINDER_0CP(                             \
-                                                                              \
-        SET_TYPE_OF                                                           \
-    )                                                                         \
-                                                                              \
-    template< class Relation >                                                \
-    struct bind_to                                                            \
-    {                                                                         \
-        typedef SET_TYPE_OF<Relation> type;                                   \
-                                                                              \
-    };
+\
+SET_TYPE_OF                                                           \
+)                                                                         \
+\
+template< class Relation >                                                \
+struct bind_to                                                            \
+{                                                                         \
+typedef SET_TYPE_OF<Relation> type;                                   \
+\
+};
 /*===========================================================================*/
 
 
 
 /*===========================================================================*/
 #define BOOST_BIMAP_GENERATE_RELATION_BINDER_1CP(                             \
-                                                                              \
-        SET_TYPE_OF,                                                          \
-        CP1                                                                   \
-    )                                                                         \
-                                                                              \
-    template< class Relation >                                                \
-    struct bind_to                                                            \
-    {                                                                         \
-        typedef SET_TYPE_OF                                                   \
-        <                                                                     \
-            Relation,                                                         \
-            BOOST_DEDUCED_TYPENAME mpl::apply<CP1,                            \
-                BOOST_DEDUCED_TYPENAME Relation::storage_base >::type         \
-                                                                              \
-        > type;                                                               \
-                                                                              \
-    };
+\
+SET_TYPE_OF,                                                          \
+CP1                                                                   \
+)                                                                         \
+\
+template< class Relation >                                                \
+struct bind_to                                                            \
+{                                                                         \
+typedef SET_TYPE_OF                                                   \
+<                                                                     \
+Relation,                                                         \
+BOOST_DEDUCED_TYPENAME mpl::apply<CP1,                            \
+BOOST_DEDUCED_TYPENAME Relation::storage_base >::type         \
+\
+> type;                                                               \
+\
+};
 /*===========================================================================*/
 
 
 
 /*===========================================================================*/
 #define BOOST_BIMAP_GENERATE_RELATION_BINDER_2CP(                             \
-                                                                              \
-        SET_TYPE_OF,                                                          \
-        CP1,                                                                  \
-        CP2                                                                   \
-    )                                                                         \
-                                                                              \
-    template< class Relation >                                                \
-    struct bind_to                                                            \
-    {                                                                         \
-        typedef SET_TYPE_OF                                                   \
-        <                                                                     \
-            Relation,                                                         \
-            BOOST_DEDUCED_TYPENAME mpl::apply<CP1,                            \
-                BOOST_DEDUCED_TYPENAME Relation::storage_base >::type,        \
-            BOOST_DEDUCED_TYPENAME mpl::apply<CP2,                            \
-                BOOST_DEDUCED_TYPENAME Relation::storage_base >::type         \
-                                                                              \
-        > type;                                                               \
-                                                                              \
-    };
+\
+SET_TYPE_OF,                                                          \
+CP1,                                                                  \
+CP2                                                                   \
+)                                                                         \
+\
+template< class Relation >                                                \
+struct bind_to                                                            \
+{                                                                         \
+typedef SET_TYPE_OF                                                   \
+<                                                                     \
+Relation,                                                         \
+BOOST_DEDUCED_TYPENAME mpl::apply<CP1,                            \
+BOOST_DEDUCED_TYPENAME Relation::storage_base >::type,        \
+BOOST_DEDUCED_TYPENAME mpl::apply<CP2,                            \
+BOOST_DEDUCED_TYPENAME Relation::storage_base >::type         \
+\
+> type;                                                               \
+\
+};
 /*===========================================================================*/
 
 

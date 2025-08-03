@@ -1,16 +1,16 @@
 /*!
- * \file basic.h
- * \brief Basic definitions.
- *        Part of the Common Cross-platform Geographic Library (CCGL)
- *
- * \remarks
- *   - 1. 2018-05-02 - lj - Initially implementation.
- *   - 2. 2018-06-21 - lj - Test on Intel C++ compiler.
- *   - 3. 2018-08-21 - lj - Doxygen comment style check.
- *
- * \author Liangjun Zhu, zlj(at)lreis.ac.cn
- * \version 1.1
- */
+* \file basic.h
+* \brief Basic definitions.
+*        Part of the Common Cross-platform Geographic Library (CCGL)
+*
+* \remarks
+*   - 1. 2018-05-02 - lj - Initially implementation.
+*   - 2. 2018-06-21 - lj - Test on Intel C++ compiler.
+*   - 3. 2018-08-21 - lj - Doxygen comment style check.
+*
+* \author Liangjun Zhu, zlj(at)lreis.ac.cn
+* \version 1.1
+*/
 #ifndef CCGL_BASIC_H
 #define CCGL_BASIC_H
 
@@ -168,8 +168,8 @@ using std::string;
 */
 #ifdef MSVC
 #define DLL_STL_LIST(STL_API, STL_TYPE) \
-    template class STL_API std::allocator< STL_TYPE >; \
-    template class STL_API std::vector<STL_TYPE, std::allocator< STL_TYPE > >;
+template class STL_API std::allocator< STL_TYPE >; \
+template class STL_API std::vector<STL_TYPE, std::allocator< STL_TYPE > >;
 #endif /* MSVC */
 
 #ifdef USE_GDAL
@@ -182,9 +182,9 @@ using std::string;
 #endif /* USE_GDAL */
 
 /*!
- * \namespace ccgl
- * \brief Common Cross-platform Geographic Library (CCGL)
- */
+* \namespace ccgl
+* \brief Common Cross-platform Geographic Library (CCGL)
+*/
 namespace ccgl {
 #if defined CPP_MSVC
 /// x86 and x64 Compatibility
@@ -372,127 +372,127 @@ typedef std::map<string, double> STRDBL_MAP;
 #endif
 
 /*!
- * \class NotCopyable
- * \brief Base class for classes that cannot be copied. By inheriting this
- *        class you can disable copying of your classes.
- *
- * \code
- *   class myClass: private NotCopyable {}
- *   // or
- *   class myClass: NotCopyable {}
- * \endcode
- */
+* \class NotCopyable
+* \brief Base class for classes that cannot be copied. By inheriting this
+*        class you can disable copying of your classes.
+*
+* \code
+*   class myClass: private NotCopyable {}
+*   // or
+*   class myClass: NotCopyable {}
+* \endcode
+*/
 class NotCopyable {
 private:
-    NotCopyable(const NotCopyable&);
+NotCopyable(const NotCopyable&);
 
-    NotCopyable& operator=(const NotCopyable&);
+NotCopyable& operator=(const NotCopyable&);
 public:
-    NotCopyable();
+NotCopyable();
 };
 
 /*!
- * \class Object
- * \brief Base of all classes.
- */
+* \class Object
+* \brief Base of all classes.
+*/
 class Object {
 public:
-    virtual ~Object();
+virtual ~Object();
 };
 
 /*!
- * \class Interface
- * \brief Base type of all interfaces. All interface types are encouraged to be virtual inherited.
- */
+* \class Interface
+* \brief Base type of all interfaces. All interface types are encouraged to be virtual inherited.
+*/
 class Interface: NotCopyable {
 public:
-    virtual ~Interface();
+virtual ~Interface();
 };
 
 /*!
- * \class ModelException
- * \brief Print the exception message
- */
+* \class ModelException
+* \brief Print the exception message
+*/
 class ModelException: public std::exception {
 public:
-    /*!
-     * \brief Constructor
-     * \param[in] class_name
-     * \param[in] function_name
-     * \param[in] msg
-     */
-    ModelException(const string& class_name, const string& function_name, const string& msg);
+/*!
+* \brief Constructor
+* \param[in] class_name
+* \param[in] function_name
+* \param[in] msg
+*/
+ModelException(const string& class_name, const string& function_name, const string& msg);
 
-    /*!
-     * \brief Construct error information (string version)
-     * \return error information
-     */
-    string ToString();
+/*!
+* \brief Construct error information (string version)
+* \return error information
+*/
+string ToString();
 
-    /*!
-     * \brief Overload function to construct error information
-     * \return \a char* error information
-     */
-    const char* what() const NOEXCEPT OVERRIDE;
+/*!
+* \brief Overload function to construct error information
+* \return \a char* error information
+*/
+const char* what() const NOEXCEPT OVERRIDE;
 
 private:
-    std::runtime_error runtime_error_;
+std::runtime_error runtime_error_;
 };
 
 /*!
- * \brief Check if the IP address is valid.
- * \param[in] ip \a char* IP address.
- */
+* \brief Check if the IP address is valid.
+* \param[in] ip \a char* IP address.
+*/
 bool IsIpAddress(const char* ip);
 
 /*!
- * \brief Writes an entry to the log file. Normally only used for debug
- * \param[in] msg \a string log message
- * \param[in] logpath \a string Optional
- */
+* \brief Writes an entry to the log file. Normally only used for debug
+* \param[in] msg \a string log message
+* \param[in] logpath \a string Optional
+*/
 void Log(const string& msg, const string& logpath = "debugInfo.log");
 
 /*!
- * \brief Detect the available threads number
- *
- * Reference:
- *   - 1. http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
- *   - 2. https://cmake.org/pipermail/cmake/2007-October/017286.html
- */
+* \brief Detect the available threads number
+*
+* Reference:
+*   - 1. http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+*   - 2. https://cmake.org/pipermail/cmake/2007-October/017286.html
+*/
 int GetAvailableThreadNum();
 
 /*!
- * \brief Set the default omp thread number if necessary
- */
+* \brief Set the default omp thread number if necessary
+*/
 void SetDefaultOpenMPThread();
 
 /*!
- * \brief Set the omp thread number by given thread number
- * \param[in] n Thread number greater than 1.
- */
+* \brief Set the omp thread number by given thread number
+* \param[in] n Thread number greater than 1.
+*/
 void SetOpenMPThread(int n);
 
 /*!
- * \brief Print status messages for Debug
- * \param[in] msg \a char* Message
- */
+* \brief Print status messages for Debug
+* \param[in] msg \a char* Message
+*/
 void StatusMessage(const char* msg);
 
 /*!
- * \brief Print status messages for Debug
- * \param[in] msg \a char* Message
- */
+* \brief Print status messages for Debug
+* \param[in] msg \a char* Message
+*/
 void StatusMessage(const string& msg);
 
 /*!
- * \brief Sleep milliseconds
- * \param[in] millisecs Sleep timespan.
- */
+* \brief Sleep milliseconds
+* \param[in] millisecs Sleep timespan.
+*/
 inline void SleepMs(const int millisecs) {
 #ifdef WINDOWS
-    Sleep(millisecs);
+Sleep(millisecs);
 #else
-    usleep(millisecs * 1000);   // usleep takes sleep time_funcs in us (1 millionth of a second)
+usleep(millisecs * 1000);   // usleep takes sleep time_funcs in us (1 millionth of a second)
 #endif
 }
 

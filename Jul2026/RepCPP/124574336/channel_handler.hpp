@@ -30,38 +30,38 @@ template <typename Payload, typename Handler>
 class channel_handler
 {
 public:
-  channel_handler(BOOST_ASIO_MOVE_ARG(Payload) p, Handler& h)
-    : payload_(BOOST_ASIO_MOVE_CAST(Payload)(p)),
-      handler_(BOOST_ASIO_MOVE_CAST(Handler)(h))
-  {
-  }
+channel_handler(BOOST_ASIO_MOVE_ARG(Payload) p, Handler& h)
+: payload_(BOOST_ASIO_MOVE_CAST(Payload)(p)),
+handler_(BOOST_ASIO_MOVE_CAST(Handler)(h))
+{
+}
 
-  void operator()()
-  {
-    payload_.receive(handler_);
-  }
+void operator()()
+{
+payload_.receive(handler_);
+}
 
 //private:
-  Payload payload_;
-  Handler handler_;
+Payload payload_;
+Handler handler_;
 };
 
 } // namespace detail
 } // namespace experimental
 
 template <template <typename, typename> class Associator,
-    typename Payload, typename Handler, typename DefaultCandidate>
+typename Payload, typename Handler, typename DefaultCandidate>
 struct associator<Associator,
-    experimental::detail::channel_handler<Payload, Handler>,
-    DefaultCandidate>
-  : Associator<Handler, DefaultCandidate>
+experimental::detail::channel_handler<Payload, Handler>,
+DefaultCandidate>
+: Associator<Handler, DefaultCandidate>
 {
-  static typename Associator<Handler, DefaultCandidate>::type get(
-      const experimental::detail::channel_handler<Payload, Handler>& h,
-      const DefaultCandidate& c = DefaultCandidate()) BOOST_ASIO_NOEXCEPT
-  {
-    return Associator<Handler, DefaultCandidate>::get(h.handler_, c);
-  }
+static typename Associator<Handler, DefaultCandidate>::type get(
+const experimental::detail::channel_handler<Payload, Handler>& h,
+const DefaultCandidate& c = DefaultCandidate()) BOOST_ASIO_NOEXCEPT
+{
+return Associator<Handler, DefaultCandidate>::get(h.handler_, c);
+}
 };
 
 } // namespace asio

@@ -32,12 +32,12 @@
 #include <functional> // for std::hash
 
 namespace std {
-    template < BOOST_VARIANT_ENUM_PARAMS(typename T) >
-    struct hash<boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) > > {
-        std::size_t operator()(const boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >& val) const {
-            return ::boost::hash_value(val);
-        }
-    };
+template < BOOST_VARIANT_ENUM_PARAMS(typename T) >
+struct hash<boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) > > {
+std::size_t operator()(const boost::variant< BOOST_VARIANT_ENUM_PARAMS(T) >& val) const {
+return ::boost::hash_value(val);
+}
+};
 }
 
 #endif // #if !defined(BOOST_VARIANT_DO_NOT_SPECIALIZE_STD_HASH) && !defined(BOOST_NO_CXX11_HDR_FUNCTIONAL)

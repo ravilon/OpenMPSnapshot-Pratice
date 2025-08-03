@@ -31,70 +31,70 @@ namespace intrusive {
 template<class Prev, class Next>
 struct do_pack
 {
-   //Use "pack" member template to pack options
-   typedef typename Next::template pack<Prev> type;
+//Use "pack" member template to pack options
+typedef typename Next::template pack<Prev> type;
 };
 
 template<class Prev>
 struct do_pack<Prev, void>
 {
-   //Avoid packing "void" to shorten template names
-   typedef Prev type;
+//Avoid packing "void" to shorten template names
+typedef Prev type;
 };
 
 template
-   < class DefaultOptions
-   , class O1         = void
-   , class O2         = void
-   , class O3         = void
-   , class O4         = void
-   , class O5         = void
-   , class O6         = void
-   , class O7         = void
-   , class O8         = void
-   , class O9         = void
-   , class O10        = void
-   , class O11        = void
-   >
+< class DefaultOptions
+, class O1         = void
+, class O2         = void
+, class O3         = void
+, class O4         = void
+, class O5         = void
+, class O6         = void
+, class O7         = void
+, class O8         = void
+, class O9         = void
+, class O10        = void
+, class O11        = void
+>
 struct pack_options
 {
-   // join options
-   typedef
-      typename do_pack
-      <  typename do_pack
-         <  typename do_pack
-            <  typename do_pack
-               <  typename do_pack
-                  <  typename do_pack
-                     <  typename do_pack
-                        <  typename do_pack
-                           <  typename do_pack
-                              <  typename do_pack
-                                 <  typename do_pack
-                                    < DefaultOptions
-                                    , O1
-                                    >::type
-                                 , O2
-                                 >::type
-                              , O3
-                              >::type
-                           , O4
-                           >::type
-                        , O5
-                        >::type
-                     , O6
-                     >::type
-                  , O7
-                  >::type
-               , O8
-               >::type
-            , O9
-            >::type
-         , O10
-         >::type
-      , O11
-      >::type
-   type;
+// join options
+typedef
+typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+<  typename do_pack
+< DefaultOptions
+, O1
+>::type
+, O2
+>::type
+, O3
+>::type
+, O4
+>::type
+, O5
+>::type
+, O6
+>::type
+, O7
+>::type
+, O8
+>::type
+, O9
+>::type
+, O10
+>::type
+, O11
+>::type
+type;
 };
 #else
 
@@ -108,7 +108,7 @@ struct build_number_seq;
 
 template<std::size_t Num, std::size_t... Indexes>
 struct build_number_seq<Num, index_tuple<Indexes...> >
-   : build_number_seq<Num - 1, index_tuple<Indexes..., sizeof...(Indexes)> >
+: build_number_seq<Num - 1, index_tuple<Indexes..., sizeof...(Indexes)> >
 {};
 
 template<std::size_t... Indexes>
@@ -129,20 +129,20 @@ struct typelist_element;
 template<std::size_t I, typename Head, typename... Tail>
 struct typelist_element<I, typelist<Head, Tail...> >
 {
-   typedef typename typelist_element<I-1, typelist<Tail...> >::type type;
+typedef typename typelist_element<I-1, typelist<Tail...> >::type type;
 };
 
 template<typename Head, typename... Tail>
 struct typelist_element<0, typelist<Head, Tail...> >
 {
-   typedef Head type;
+typedef Head type;
 };
 
 template<std::size_t ...Ints, class ...Types>
 typelist<typename typelist_element<(sizeof...(Types) - 1) - Ints, typelist<Types...> >::type...>
-   inverted_typelist(index_tuple<Ints...>, typelist<Types...>)
+inverted_typelist(index_tuple<Ints...>, typelist<Types...>)
 {
-   return typelist<typename typelist_element<(sizeof...(Types) - 1) - Ints, typelist<Types...> >::type...>();
+return typelist<typename typelist_element<(sizeof...(Types) - 1) - Ints, typelist<Types...> >::type...>();
 }
 
 //sizeof_typelist
@@ -152,7 +152,7 @@ struct sizeof_typelist;
 template<class ...Types>
 struct sizeof_typelist< typelist<Types...> >
 {
-   static const std::size_t value = sizeof...(Types);
+static const std::size_t value = sizeof...(Types);
 };
 
 //invert_typelist_impl
@@ -163,21 +163,21 @@ struct invert_typelist_impl;
 template<class Typelist, std::size_t ...Ints>
 struct invert_typelist_impl< Typelist, index_tuple<Ints...> >
 {
-   static const std::size_t last_idx = sizeof_typelist<Typelist>::value - 1;
-   typedef typelist
-      <typename typelist_element<last_idx - Ints, Typelist>::type...> type;
+static const std::size_t last_idx = sizeof_typelist<Typelist>::value - 1;
+typedef typelist
+<typename typelist_element<last_idx - Ints, Typelist>::type...> type;
 };
 
 template<class Typelist, std::size_t Int>
 struct invert_typelist_impl< Typelist, index_tuple<Int> >
 {
-   typedef Typelist type;
+typedef Typelist type;
 };
 
 template<class Typelist>
 struct invert_typelist_impl< Typelist, index_tuple<> >
 {
-   typedef Typelist type;
+typedef Typelist type;
 };
 
 //invert_typelist
@@ -187,9 +187,9 @@ struct invert_typelist;
 template<class ...Types>
 struct invert_typelist< typelist<Types...> >
 {
-   typedef typelist<Types...> typelist_t;
-   typedef typename build_number_seq<sizeof...(Types)>::type indexes_t;
-   typedef typename invert_typelist_impl<typelist_t, indexes_t>::type type;
+typedef typelist<Types...> typelist_t;
+typedef typename build_number_seq<sizeof...(Types)>::type indexes_t;
+typedef typename invert_typelist_impl<typelist_t, indexes_t>::type type;
 };
 
 //Do pack
@@ -202,35 +202,35 @@ struct do_pack<typelist<> >;
 template<class Prev>
 struct do_pack<typelist<Prev> >
 {
-   typedef Prev type;
+typedef Prev type;
 };
 
 template<class Prev, class Last>
 struct do_pack<typelist<Prev, Last> >
 {
-   typedef typename Prev::template pack<Last> type;
+typedef typename Prev::template pack<Last> type;
 };
 
 template<class ...Others>
 struct do_pack<typelist<void, Others...> >
 {
-   typedef typename do_pack<typelist<Others...> >::type type;
+typedef typename do_pack<typelist<Others...> >::type type;
 };
 
 template<class Prev, class ...Others>
 struct do_pack<typelist<Prev, Others...> >
 {
-   typedef typename Prev::template pack
-      <typename do_pack<typelist<Others...> >::type> type;
+typedef typename Prev::template pack
+<typename do_pack<typelist<Others...> >::type> type;
 };
 
 
 template<class DefaultOptions, class ...Options>
 struct pack_options
 {
-   typedef typelist<DefaultOptions, Options...> typelist_t;
-   typedef typename invert_typelist<typelist_t>::type inverted_typelist;
-   typedef typename do_pack<inverted_typelist>::type type;
+typedef typelist<DefaultOptions, Options...> typelist_t;
+typedef typename invert_typelist<typelist_t>::type inverted_typelist;
+typedef typename do_pack<inverted_typelist>::type type;
 };
 
 #endif   //!defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
@@ -239,11 +239,11 @@ struct pack_options
 template< class TYPE> \
 struct OPTION_NAME \
 { \
-   template<class Base> \
-   struct pack : Base \
-   { \
-      typedef TYPEDEF_EXPR TYPEDEF_NAME; \
-   }; \
+template<class Base> \
+struct pack : Base \
+{ \
+typedef TYPEDEF_EXPR TYPEDEF_NAME; \
+}; \
 }; \
 //
 
@@ -251,11 +251,11 @@ struct OPTION_NAME \
 template< TYPE VALUE> \
 struct OPTION_NAME \
 { \
-   template<class Base> \
-   struct pack : Base \
-   { \
-      static const TYPE CONSTANT_NAME = VALUE; \
-   }; \
+template<class Base> \
+struct pack : Base \
+{ \
+static const TYPE CONSTANT_NAME = VALUE; \
+}; \
 }; \
 //
 
@@ -308,7 +308,7 @@ struct OPTION_NAME \
 template<class DefaultOptions, class ...Options>
 struct pack_options
 {
-   typedef unspecified_type type;
+typedef unspecified_type type;
 };
 
 //! Defines an option class of name OPTION_NAME that can be used to specify a type

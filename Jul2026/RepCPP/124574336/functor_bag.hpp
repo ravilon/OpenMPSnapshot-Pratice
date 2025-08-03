@@ -46,44 +46,44 @@ namespace detail {
 This class is a generalization of a helper class explained in an article by
 Nathan C. Myers.\n
 See it at \link http://www.cantrip.org/emptyopt.html
-                                                                                    **/
+**/
 
 template < class Data, class FunctorList >
 struct data_with_functor_bag :
 
-    public mpl::inherit_linearly<
+public mpl::inherit_linearly<
 
-        FunctorList,
-        mpl::if_< is_base_of< mpl::_2, mpl::_1 >,
-        //   {
-                 mpl::_1,
-        //   }
-        //   else
-        //   {
-                 mpl::inherit< mpl::_1, mpl::_2 >
-        //   }
-        >
+FunctorList,
+mpl::if_< is_base_of< mpl::_2, mpl::_1 >,
+//   {
+mpl::_1,
+//   }
+//   else
+//   {
+mpl::inherit< mpl::_1, mpl::_2 >
+//   }
+>
 
-    >::type
+>::type
 {
-    Data data;
+Data data;
 
-    data_with_functor_bag() {}
+data_with_functor_bag() {}
 
-    data_with_functor_bag(BOOST_DEDUCED_TYPENAME add_reference<Data>::type d)
-        : data(d) {}
+data_with_functor_bag(BOOST_DEDUCED_TYPENAME add_reference<Data>::type d)
+: data(d) {}
 
-    template< class Functor >
-    Functor& functor()
-    {
-        return *(static_cast<Functor*>(this));
-    }
+template< class Functor >
+Functor& functor()
+{
+return *(static_cast<Functor*>(this));
+}
 
-    template< class Functor >
-    const Functor& functor() const
-    {
-        return *(static_cast<Functor const *>(this));
-    }
+template< class Functor >
+const Functor& functor() const
+{
+return *(static_cast<Functor const *>(this));
+}
 };
 
 } // namespace detail

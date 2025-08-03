@@ -19,7 +19,7 @@ namespace boost {
 
 template<class T> T * get_pointer(T * p)
 {
-    return p;
+return p;
 }
 
 // get_pointer(shared_ptr<T> const & p) has been moved to shared_ptr.hpp
@@ -47,7 +47,7 @@ template<class T> T * get_pointer(T * p)
 
 template<class T> T * get_pointer(std::auto_ptr<T> const& p)
 {
-    return p.get();
+return p.get();
 }
 
 #if defined( BOOST_CORE_DETAIL_DISABLE_LIBSTDCXX_DEPRECATED_WARNINGS )
@@ -61,12 +61,12 @@ template<class T> T * get_pointer(std::auto_ptr<T> const& p)
 
 template<class T> T * get_pointer( std::unique_ptr<T> const& p )
 {
-    return p.get();
+return p.get();
 }
 
 template<class T> T * get_pointer( std::shared_ptr<T> const& p )
 {
-    return p.get();
+return p.get();
 }
 
 #endif

@@ -15,29 +15,29 @@
 
 namespace boost { namespace spirit { namespace karma
 {
-    ///////////////////////////////////////////////////////////////////////////
-    //  Do delimiting. This is equivalent to p << d. The function is a
-    //  no-op if spirit::unused is passed as the delimiter-generator.
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename OutputIterator, typename Delimiter>
-    inline bool delimit_out(OutputIterator& sink, Delimiter const& d)
-    {
-        return d.generate(sink, unused, unused, unused);
-    }
+///////////////////////////////////////////////////////////////////////////
+//  Do delimiting. This is equivalent to p << d. The function is a
+//  no-op if spirit::unused is passed as the delimiter-generator.
+///////////////////////////////////////////////////////////////////////////
+template <typename OutputIterator, typename Delimiter>
+inline bool delimit_out(OutputIterator& sink, Delimiter const& d)
+{
+return d.generate(sink, unused, unused, unused);
+}
 
-    template <typename OutputIterator>
-    inline bool delimit_out(OutputIterator&, unused_type)
-    {
-        return true;
-    }
+template <typename OutputIterator>
+inline bool delimit_out(OutputIterator&, unused_type)
+{
+return true;
+}
 
-    ///////////////////////////////////////////////////////////////////////////
-    template <typename OutputIterator, typename Delimiter>
-    inline bool delimit_out(OutputIterator&
-      , detail::unused_delimiter<Delimiter> const&)
-    {
-        return true;
-    }
+///////////////////////////////////////////////////////////////////////////
+template <typename OutputIterator, typename Delimiter>
+inline bool delimit_out(OutputIterator&
+, detail::unused_delimiter<Delimiter> const&)
+{
+return true;
+}
 
 }}}
 

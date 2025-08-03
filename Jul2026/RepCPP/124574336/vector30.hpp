@@ -1,8 +1,8 @@
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 ==============================================================================*/
 #if !defined(FUSION_VECTOR30_05052005_0206)
 #define FUSION_VECTOR30_05052005_0206
@@ -44,12 +44,12 @@
 #endif
 
 /*=============================================================================
-    Copyright (c) 2001-2011 Joel de Guzman
+Copyright (c) 2001-2011 Joel de Guzman
 
-    Distributed under the Boost Software License, Version 1.0. (See accompanying
-    file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+Distributed under the Boost Software License, Version 1.0. (See accompanying
+file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-    This is an auto-generated file. Do not edit!
+This is an auto-generated file. Do not edit!
 ==============================================================================*/
 
 #if defined(__WAVE__) && defined(BOOST_FUSION_CREATE_PREPROCESSED_FILES)
@@ -58,9 +58,9 @@
 
 namespace boost { namespace fusion
 {
-    struct vector_tag;
-    struct fusion_sequence_tag;
-    struct random_access_traversal_tag;
+struct vector_tag;
+struct fusion_sequence_tag;
+struct random_access_traversal_tag;
 
 #define FUSION_HASH #
 // expand vector21 to vector30

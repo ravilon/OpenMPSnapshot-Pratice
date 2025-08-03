@@ -36,13 +36,13 @@ struct voider { typedef void type; };
 template<bool C, typename T1, typename T2>
 struct if_c
 {
-   typedef T1 type;
+typedef T1 type;
 };
 
 template<typename T1, typename T2>
 struct if_c<false,T1,T2>
 {
-   typedef T2 type;
+typedef T2 type;
 };
 
 //////////////////////////////////////
@@ -60,7 +60,7 @@ struct enable_if_nat{};
 template <bool B, class T = enable_if_nat>
 struct enable_if_c
 {
-   typedef T type;
+typedef T type;
 };
 
 template <class T>
@@ -77,7 +77,7 @@ struct enable_if : enable_if_c<Cond::value, T> {};
 //////////////////////////////////////
 template <bool B, class T = enable_if_nat>
 struct disable_if_c
-   : enable_if_c<!B, T>
+: enable_if_c<!B, T>
 {};
 
 //////////////////////////////////////
@@ -92,12 +92,12 @@ struct disable_if : enable_if_c<!Cond::value, T> {};
 template<class T, T v>
 struct integral_constant
 {
-   static const T value = v;
-   typedef T value_type;
-   typedef integral_constant<T, v> type;
+static const T value = v;
+typedef T value_type;
+typedef integral_constant<T, v> type;
 
-     operator T() const { return value; }
-   T operator()() const { return value; }
+operator T() const { return value; }
+T operator()() const { return value; }
 };
 
 typedef integral_constant<bool, true >  true_type;
@@ -110,13 +110,13 @@ typedef integral_constant<bool, false > false_type;
 template<class T, class U>
 struct is_same
 {
-   static const bool value = false;
+static const bool value = false;
 };
- 
+
 template<class T>
 struct is_same<T, T>
 {
-   static const bool value = true;
+static const bool value = true;
 };
 
 //////////////////////////////////////

@@ -1,6 +1,6 @@
-#pragma once
-
-#include <iostream>
-#include <vector>
-
-void Other2();
+#pragma once
+
+#include <iostream>
+#include <vector>
+
+void Other2();

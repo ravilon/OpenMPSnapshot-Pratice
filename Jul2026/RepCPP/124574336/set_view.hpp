@@ -32,68 +32,68 @@ This class uses container_adaptor and iterator_adaptor to wrapped a index of the
 multi_index bimap core so it can be used as a std::set.
 
 See also const_set_view.
-                                                                                    **/
+**/
 
 template< class CoreIndex >
 class set_view
 :
-    public BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
-        set_adaptor,
-        CoreIndex,
-        reverse_iterator, const_reverse_iterator
-    ),
+public BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
+set_adaptor,
+CoreIndex,
+reverse_iterator, const_reverse_iterator
+),
 
-    public ::boost::bimaps::detail::
-                set_view_base< set_view< CoreIndex >, CoreIndex >
+public ::boost::bimaps::detail::
+set_view_base< set_view< CoreIndex >, CoreIndex >
 {
-    typedef BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
-        set_adaptor,
-        CoreIndex,
-        reverse_iterator, const_reverse_iterator
+typedef BOOST_BIMAP_SET_VIEW_CONTAINER_ADAPTOR(
+set_adaptor,
+CoreIndex,
+reverse_iterator, const_reverse_iterator
 
-    ) base_;
+) base_;
 
-    BOOST_BIMAP_SET_VIEW_BASE_FRIEND(set_view,CoreIndex)
+BOOST_BIMAP_SET_VIEW_BASE_FRIEND(set_view,CoreIndex)
 
-    public:
+public:
 
-    set_view(BOOST_DEDUCED_TYPENAME base_::base_type & c) : base_(c) {}
+set_view(BOOST_DEDUCED_TYPENAME base_::base_type & c) : base_(c) {}
 
-    /*
-    template< class LowerBounder, class UpperBounder >
-    std::pair<BOOST_DEDUCED_TYPENAME base_::const_iterator,
-              BOOST_DEDUCED_TYPENAME base_::const_iterator>
-        range(LowerBounder lower,UpperBounder upper) const
-    {
-        return this->base().range(
+/*
+template< class LowerBounder, class UpperBounder >
+std::pair<BOOST_DEDUCED_TYPENAME base_::const_iterator,
+BOOST_DEDUCED_TYPENAME base_::const_iterator>
+range(LowerBounder lower,UpperBounder upper) const
+{
+return this->base().range(
 
-            ::boost::bimaps::container_adaptor::detail::unary_check_adaptor
-            <
-                LowerBounder,
-                BOOST_DEDUCED_TYPENAME base_::base_type::value_type,
-                BOOST_DEDUCED_TYPENAME base_::value_from_base
+::boost::bimaps::container_adaptor::detail::unary_check_adaptor
+<
+LowerBounder,
+BOOST_DEDUCED_TYPENAME base_::base_type::value_type,
+BOOST_DEDUCED_TYPENAME base_::value_from_base
 
-            >( lower, this->template functor<
-                            BOOST_DEDUCED_TYPENAME base_::value_from_base>() ),
+>( lower, this->template functor<
+BOOST_DEDUCED_TYPENAME base_::value_from_base>() ),
 
-            ::boost::bimaps::container_adaptor::detail::unary_check_adaptor
-            <
-                UpperBounder,
-                BOOST_DEDUCED_TYPENAME base_::base_type::value_type,
-                BOOST_DEDUCED_TYPENAME base_::value_from_base
+::boost::bimaps::container_adaptor::detail::unary_check_adaptor
+<
+UpperBounder,
+BOOST_DEDUCED_TYPENAME base_::base_type::value_type,
+BOOST_DEDUCED_TYPENAME base_::value_from_base
 
-            >( upper, this->template functor<
-                            BOOST_DEDUCED_TYPENAME base_::value_from_base>() )
+>( upper, this->template functor<
+BOOST_DEDUCED_TYPENAME base_::value_from_base>() )
 
-        );
-    }
-    */
+);
+}
+*/
 
-    set_view & operator=(const set_view & v) 
-    {
-        this->base() = v.base();
-        return *this;
-    }
+set_view & operator=(const set_view & v) 
+{
+this->base() = v.base();
+return *this;
+}
 };
 
 

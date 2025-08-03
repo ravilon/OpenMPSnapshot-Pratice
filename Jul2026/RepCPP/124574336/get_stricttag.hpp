@@ -16,18 +16,18 @@
 
 namespace boost { namespace spirit { namespace karma { namespace detail
 {
-    // the default mode for Karma is 'relaxed'
-    template <
-        typename Modifiers
-      , typename StrictModifier = typename mpl::or_<
-            has_modifier<Modifiers, tag::strict>
-          , has_modifier<Modifiers, tag::relaxed> >::type>
-    struct get_stricttag : mpl::false_ {};
+// the default mode for Karma is 'relaxed'
+template <
+typename Modifiers
+, typename StrictModifier = typename mpl::or_<
+has_modifier<Modifiers, tag::strict>
+, has_modifier<Modifiers, tag::relaxed> >::type>
+struct get_stricttag : mpl::false_ {};
 
-    // strict mode is enforced only when tag::strict is on the modifiers list
-    template <typename Modifiers>
-    struct get_stricttag<Modifiers, mpl::true_>
-      : has_modifier<Modifiers, tag::strict> {};
+// strict mode is enforced only when tag::strict is on the modifiers list
+template <typename Modifiers>
+struct get_stricttag<Modifiers, mpl::true_>
+: has_modifier<Modifiers, tag::strict> {};
 }}}}
 
 #endif

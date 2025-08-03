@@ -22,7 +22,7 @@
 #include <boost/config.hpp>
 #if defined(BOOST_NO_STDC_NAMESPACE)
 namespace std{
-    using ::size_t;
+using ::size_t;
 } // namespace std
 #endif
 
@@ -37,32 +37,32 @@ namespace boost {
 namespace serialization {
 
 struct binary_object :
-    public wrapper_traits<nvp<const binary_object> >
+public wrapper_traits<nvp<const binary_object> >
 {
-    void const * m_t;
-    std::size_t m_size;
-    template<class Archive>
-    void save(Archive & ar, const unsigned int /* file_version */) const {
-        ar.save_binary(m_t, m_size);
-    }
-    template<class Archive>
-    void load(Archive & ar, const unsigned int /* file_version */) const {
-        ar.load_binary(const_cast<void *>(m_t), m_size);
-    }
-    BOOST_SERIALIZATION_SPLIT_MEMBER()
-    binary_object & operator=(const binary_object & rhs) {
-        m_t = rhs.m_t;
-        m_size = rhs.m_size;
-        return *this;
-    }
-    binary_object(const void * const t, std::size_t size) :
-        m_t(t),
-        m_size(size)
-    {}
-    binary_object(const binary_object & rhs) :
-        m_t(rhs.m_t),
-        m_size(rhs.m_size)
-    {}
+void const * m_t;
+std::size_t m_size;
+template<class Archive>
+void save(Archive & ar, const unsigned int /* file_version */) const {
+ar.save_binary(m_t, m_size);
+}
+template<class Archive>
+void load(Archive & ar, const unsigned int /* file_version */) const {
+ar.load_binary(const_cast<void *>(m_t), m_size);
+}
+BOOST_SERIALIZATION_SPLIT_MEMBER()
+binary_object & operator=(const binary_object & rhs) {
+m_t = rhs.m_t;
+m_size = rhs.m_size;
+return *this;
+}
+binary_object(const void * const t, std::size_t size) :
+m_t(t),
+m_size(size)
+{}
+binary_object(const binary_object & rhs) :
+m_t(rhs.m_t),
+m_size(rhs.m_size)
+{}
 };
 
 // just a little helper to support the convention that all serialization
@@ -70,7 +70,7 @@ struct binary_object :
 inline
 const binary_object
 make_binary_object(const void * t, std::size_t size){
-    return binary_object(t, size);
+return binary_object(t, size);
 }
 
 } // namespace serialization

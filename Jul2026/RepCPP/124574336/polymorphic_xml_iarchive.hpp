@@ -29,13 +29,13 @@ namespace boost {
 namespace archive {
 
 class BOOST_SYMBOL_VISIBLE polymorphic_xml_iarchive :
-    public detail::polymorphic_iarchive_route<xml_iarchive>
+public detail::polymorphic_iarchive_route<xml_iarchive>
 {
 public:
-    polymorphic_xml_iarchive(std::istream & is, unsigned int flags = 0) :
-        detail::polymorphic_iarchive_route<xml_iarchive>(is, flags)
-    {}
-    ~polymorphic_xml_iarchive() BOOST_OVERRIDE {}
+polymorphic_xml_iarchive(std::istream & is, unsigned int flags = 0) :
+detail::polymorphic_iarchive_route<xml_iarchive>(is, flags)
+{}
+~polymorphic_xml_iarchive() BOOST_OVERRIDE {}
 };
 
 } // namespace archive
@@ -47,7 +47,7 @@ public:
 
 // required by export
 BOOST_SERIALIZATION_REGISTER_ARCHIVE(
-    boost::archive::polymorphic_xml_iarchive
+boost::archive::polymorphic_xml_iarchive
 )
 
 #endif // BOOST_ARCHIVE_POLYMORPHIC_XML_IARCHIVE_HPP

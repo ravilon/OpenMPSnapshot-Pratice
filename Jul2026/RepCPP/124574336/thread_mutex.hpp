@@ -46,32 +46,32 @@ namespace dtl {
 
 class thread_mutex
 {
-   public:
-   thread_mutex()
-   {
-      BOOST_VERIFY(pthread_mutex_init(&m_mut, 0) == 0);
-   }
+public:
+thread_mutex()
+{
+BOOST_VERIFY(pthread_mutex_init(&m_mut, 0) == 0);
+}
 
-   ~thread_mutex()
-   {
-     BOOST_VERIFY(pthread_mutex_destroy(&m_mut) == 0);
-   }
+~thread_mutex()
+{
+BOOST_VERIFY(pthread_mutex_destroy(&m_mut) == 0);
+}
 
-   void lock()
-   {
-      BOOST_VERIFY(pthread_mutex_lock( &m_mut) == 0);
-   }
+void lock()
+{
+BOOST_VERIFY(pthread_mutex_lock( &m_mut) == 0);
+}
 
-   void unlock()
-   {
-      BOOST_VERIFY(pthread_mutex_unlock(&m_mut) == 0);
-   }
+void unlock()
+{
+BOOST_VERIFY(pthread_mutex_unlock(&m_mut) == 0);
+}
 
-   private:
-   thread_mutex(thread_mutex const &);
-   thread_mutex & operator=(thread_mutex const &);
-   
-   pthread_mutex_t m_mut;
+private:
+thread_mutex(thread_mutex const &);
+thread_mutex & operator=(thread_mutex const &);
+
+pthread_mutex_t m_mut;
 };
 
 } // namespace dtl {
@@ -98,7 +98,7 @@ typedef ::CRITICAL_SECTION win_critical_section;
 
 struct _RTL_CRITICAL_SECTION_DEBUG;
 struct _RTL_CRITICAL_SECTION;
-   
+
 namespace boost{
 namespace container {
 namespace dtl {
@@ -114,16 +114,16 @@ extern "C" __declspec(dllimport) void __stdcall DeleteCriticalSection(::_RTL_CRI
 
 struct win_critical_section
 {
-   struct _RTL_CRITICAL_SECTION_DEBUG * DebugInfo;
-   long LockCount;
-   long RecursionCount;
-   void * OwningThread;
-   void * LockSemaphore;
-   #if defined(_WIN64)
-   unsigned __int64 SpinCount;
-   #else
-   unsigned long SpinCount;
-   #endif
+struct _RTL_CRITICAL_SECTION_DEBUG * DebugInfo;
+long LockCount;
+long RecursionCount;
+void * OwningThread;
+void * LockSemaphore;
+#if defined(_WIN64)
+unsigned __int64 SpinCount;
+#else
+unsigned long SpinCount;
+#endif
 };
 
 } // namespace dtl {
@@ -138,36 +138,36 @@ namespace dtl {
 
 class thread_mutex
 {
-   public:
-   thread_mutex()
-   {
-      #ifdef BOOST_PLAT_WINDOWS_UWP
-      (InitializeCriticalSectionEx)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect), 4000, 0);
-      #else
-      (InitializeCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
-      #endif
-   }
+public:
+thread_mutex()
+{
+#ifdef BOOST_PLAT_WINDOWS_UWP
+(InitializeCriticalSectionEx)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect), 4000, 0);
+#else
+(InitializeCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
+#endif
+}
 
-   void lock()
-   {
-      (EnterCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
-   }
+void lock()
+{
+(EnterCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
+}
 
-   void unlock()
-   {
-      (LeaveCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
-   }
+void unlock()
+{
+(LeaveCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
+}
 
-   ~thread_mutex()
-   {
-      (DeleteCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
-   }
-  
-   private:
-   thread_mutex(thread_mutex const &);
-   thread_mutex & operator=(thread_mutex const &);
-   
-   win_critical_section m_crit_sect;
+~thread_mutex()
+{
+(DeleteCriticalSection)(reinterpret_cast< ::_RTL_CRITICAL_SECTION* >(&m_crit_sect));
+}
+
+private:
+thread_mutex(thread_mutex const &);
+thread_mutex & operator=(thread_mutex const &);
+
+win_critical_section m_crit_sect;
 };
 
 } // namespace dtl {

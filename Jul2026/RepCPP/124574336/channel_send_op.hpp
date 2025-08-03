@@ -34,102 +34,102 @@ template <typename Payload>
 class channel_send : public channel_operation
 {
 public:
-  Payload get_payload()
-  {
-    return BOOST_ASIO_MOVE_CAST(Payload)(payload_);
-  }
+Payload get_payload()
+{
+return BOOST_ASIO_MOVE_CAST(Payload)(payload_);
+}
 
-  void complete()
-  {
-    func_(this, complete_op, 0);
-  }
+void complete()
+{
+func_(this, complete_op, 0);
+}
 
-  void cancel()
-  {
-    func_(this, cancel_op, 0);
-  }
+void cancel()
+{
+func_(this, cancel_op, 0);
+}
 
-  void close()
-  {
-    func_(this, close_op, 0);
-  }
+void close()
+{
+func_(this, close_op, 0);
+}
 
 protected:
-  channel_send(func_type func, BOOST_ASIO_MOVE_ARG(Payload) payload)
-    : channel_operation(func),
-      payload_(BOOST_ASIO_MOVE_CAST(Payload)(payload))
-  {
-  }
+channel_send(func_type func, BOOST_ASIO_MOVE_ARG(Payload) payload)
+: channel_operation(func),
+payload_(BOOST_ASIO_MOVE_CAST(Payload)(payload))
+{
+}
 
 private:
-  Payload payload_;
+Payload payload_;
 };
 
 template <typename Payload, typename Handler, typename IoExecutor>
 class channel_send_op : public channel_send<Payload>
 {
 public:
-  BOOST_ASIO_DEFINE_HANDLER_PTR(channel_send_op);
+BOOST_ASIO_DEFINE_HANDLER_PTR(channel_send_op);
 
-  channel_send_op(BOOST_ASIO_MOVE_ARG(Payload) payload,
-      Handler& handler, const IoExecutor& io_ex)
-    : channel_send<Payload>(&channel_send_op::do_action,
-        BOOST_ASIO_MOVE_CAST(Payload)(payload)),
-      handler_(BOOST_ASIO_MOVE_CAST(Handler)(handler)),
-      work_(handler_, io_ex)
-  {
-  }
+channel_send_op(BOOST_ASIO_MOVE_ARG(Payload) payload,
+Handler& handler, const IoExecutor& io_ex)
+: channel_send<Payload>(&channel_send_op::do_action,
+BOOST_ASIO_MOVE_CAST(Payload)(payload)),
+handler_(BOOST_ASIO_MOVE_CAST(Handler)(handler)),
+work_(handler_, io_ex)
+{
+}
 
-  static void do_action(channel_operation* base,
-      channel_operation::action a, void*)
-  {
-    // Take ownership of the operation object.
-    channel_send_op* o(static_cast<channel_send_op*>(base));
-    ptr p = { boost::asio::detail::addressof(o->handler_), o, o };
+static void do_action(channel_operation* base,
+channel_operation::action a, void*)
+{
+// Take ownership of the operation object.
+channel_send_op* o(static_cast<channel_send_op*>(base));
+ptr p = { boost::asio::detail::addressof(o->handler_), o, o };
 
-    BOOST_ASIO_HANDLER_COMPLETION((*o));
+BOOST_ASIO_HANDLER_COMPLETION((*o));
 
-    // Take ownership of the operation's outstanding work.
-    channel_operation::handler_work<Handler, IoExecutor> w(
-        BOOST_ASIO_MOVE_CAST2(channel_operation::handler_work<
-          Handler, IoExecutor>)(o->work_));
+// Take ownership of the operation's outstanding work.
+channel_operation::handler_work<Handler, IoExecutor> w(
+BOOST_ASIO_MOVE_CAST2(channel_operation::handler_work<
+Handler, IoExecutor>)(o->work_));
 
-    boost::system::error_code ec;
-    switch (a)
-    {
-    case channel_operation::cancel_op:
-      ec = error::channel_cancelled;
-      break;
-    case channel_operation::close_op:
-      ec = error::channel_closed;
-      break;
-    default:
-      break;
-    }
+boost::system::error_code ec;
+switch (a)
+{
+case channel_operation::cancel_op:
+ec = error::channel_cancelled;
+break;
+case channel_operation::close_op:
+ec = error::channel_closed;
+break;
+default:
+break;
+}
 
-    // Make a copy of the handler so that the memory can be deallocated before
-    // the handler is posted. Even if we're not about to post the handler, a
-    // sub-object of the handler may be the true owner of the memory associated
-    // with the handler. Consequently, a local copy of the handler is required
-    // to ensure that any owning sub-object remains valid until after we have
-    // deallocated the memory here.
-    boost::asio::detail::binder1<Handler, boost::system::error_code>
-      handler(o->handler_, ec);
-    p.h = boost::asio::detail::addressof(handler.handler_);
-    p.reset();
+// Make a copy of the handler so that the memory can be deallocated before
+// the handler is posted. Even if we're not about to post the handler, a
+// sub-object of the handler may be the true owner of the memory associated
+// with the handler. Consequently, a local copy of the handler is required
+// to ensure that any owning sub-object remains valid until after we have
+// deallocated the memory here.
+boost::asio::detail::binder1<Handler, boost::system::error_code>
+handler(o->handler_, ec);
+p.h = boost::asio::detail::addressof(handler.handler_);
+p.reset();
 
-    // Post the completion if required.
-    if (a != channel_operation::destroy_op)
-    {
-      BOOST_ASIO_HANDLER_INVOCATION_BEGIN((handler.arg1_));
-      w.complete(handler, handler.handler_);
-      BOOST_ASIO_HANDLER_INVOCATION_END;
-    }
-  }
+// Post the completion if required.
+if (a != channel_operation::destroy_op)
+{
+BOOST_ASIO_HANDLER_INVOCATION_BEGIN((handler.arg1_));
+w.complete(handler, handler.handler_);
+BOOST_ASIO_HANDLER_INVOCATION_END;
+}
+}
 
 private:
-  Handler handler_;
-  channel_operation::handler_work<Handler, IoExecutor> work_;
+Handler handler_;
+channel_operation::handler_work<Handler, IoExecutor> work_;
 };
 
 } // namespace detail

@@ -14,8 +14,8 @@
 
 namespace boost { namespace spirit { namespace repository
 {
-    // The distinct extended terminal
-    BOOST_SPIRIT_DEFINE_TERMINALS_NAME_EX(( distinct, distinct_type ))
+// The distinct extended terminal
+BOOST_SPIRIT_DEFINE_TERMINALS_NAME_EX(( distinct, distinct_type ))
 
 }}}
 

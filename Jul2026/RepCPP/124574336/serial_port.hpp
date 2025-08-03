@@ -19,7 +19,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_SERIAL_PORT) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/basic_serial_port.hpp>
 
@@ -33,6 +33,6 @@ typedef basic_serial_port<> serial_port;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_SERIAL_PORT)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_SERIAL_PORT_HPP

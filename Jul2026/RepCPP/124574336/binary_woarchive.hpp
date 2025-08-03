@@ -32,21 +32,21 @@ namespace archive {
 // via inhertance, derived from binary_oarchive_impl instead.  This will
 // preserve correct static polymorphism.
 class binary_woarchive :
-    public binary_oarchive_impl<
-            binary_woarchive, std::wostream::char_type, std::wostream::traits_type
-        >
+public binary_oarchive_impl<
+binary_woarchive, std::wostream::char_type, std::wostream::traits_type
+>
 {
 public:
-    binary_woarchive(std::wostream & os, unsigned int flags = 0) :
-        binary_oarchive_impl<
-            binary_woarchive, std::wostream::char_type, std::wostream::traits_type
-        >(os, flags)
-    {}
-    binary_woarchive(std::wstreambuf & bsb, unsigned int flags = 0) :
-        binary_oarchive_impl<
-            binary_woarchive, std::wostream::char_type, std::wostream::traits_type
-        >(bsb, flags)
-    {}
+binary_woarchive(std::wostream & os, unsigned int flags = 0) :
+binary_oarchive_impl<
+binary_woarchive, std::wostream::char_type, std::wostream::traits_type
+>(os, flags)
+{}
+binary_woarchive(std::wstreambuf & bsb, unsigned int flags = 0) :
+binary_oarchive_impl<
+binary_woarchive, std::wostream::char_type, std::wostream::traits_type
+>(bsb, flags)
+{}
 };
 
 } // namespace archive

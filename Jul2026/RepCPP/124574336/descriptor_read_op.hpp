@@ -37,106 +37,106 @@ template <typename MutableBufferSequence>
 class descriptor_read_op_base : public reactor_op
 {
 public:
-  descriptor_read_op_base(const boost::system::error_code& success_ec,
-      int descriptor, const MutableBufferSequence& buffers,
-      func_type complete_func)
-    : reactor_op(success_ec,
-        &descriptor_read_op_base::do_perform, complete_func),
-      descriptor_(descriptor),
-      buffers_(buffers)
-  {
-  }
+descriptor_read_op_base(const boost::system::error_code& success_ec,
+int descriptor, const MutableBufferSequence& buffers,
+func_type complete_func)
+: reactor_op(success_ec,
+&descriptor_read_op_base::do_perform, complete_func),
+descriptor_(descriptor),
+buffers_(buffers)
+{
+}
 
-  static status do_perform(reactor_op* base)
-  {
-    descriptor_read_op_base* o(static_cast<descriptor_read_op_base*>(base));
+static status do_perform(reactor_op* base)
+{
+descriptor_read_op_base* o(static_cast<descriptor_read_op_base*>(base));
 
-    typedef buffer_sequence_adapter<boost::asio::mutable_buffer,
-        MutableBufferSequence> bufs_type;
+typedef buffer_sequence_adapter<boost::asio::mutable_buffer,
+MutableBufferSequence> bufs_type;
 
-    status result;
-    if (bufs_type::is_single_buffer)
-    {
-      result = descriptor_ops::non_blocking_read1(o->descriptor_,
-          bufs_type::first(o->buffers_).data(),
-          bufs_type::first(o->buffers_).size(),
-          o->ec_, o->bytes_transferred_) ? done : not_done;
-    }
-    else
-    {
-      bufs_type bufs(o->buffers_);
-      result = descriptor_ops::non_blocking_read(o->descriptor_,
-          bufs.buffers(), bufs.count(), o->ec_, o->bytes_transferred_)
-        ? done : not_done;
-    }
+status result;
+if (bufs_type::is_single_buffer)
+{
+result = descriptor_ops::non_blocking_read1(o->descriptor_,
+bufs_type::first(o->buffers_).data(),
+bufs_type::first(o->buffers_).size(),
+o->ec_, o->bytes_transferred_) ? done : not_done;
+}
+else
+{
+bufs_type bufs(o->buffers_);
+result = descriptor_ops::non_blocking_read(o->descriptor_,
+bufs.buffers(), bufs.count(), o->ec_, o->bytes_transferred_)
+? done : not_done;
+}
 
-    BOOST_ASIO_HANDLER_REACTOR_OPERATION((*o, "non_blocking_read",
-          o->ec_, o->bytes_transferred_));
+BOOST_ASIO_HANDLER_REACTOR_OPERATION((*o, "non_blocking_read",
+o->ec_, o->bytes_transferred_));
 
-    return result;
-  }
+return result;
+}
 
 private:
-  int descriptor_;
-  MutableBufferSequence buffers_;
+int descriptor_;
+MutableBufferSequence buffers_;
 };
 
 template <typename MutableBufferSequence, typename Handler, typename IoExecutor>
 class descriptor_read_op
-  : public descriptor_read_op_base<MutableBufferSequence>
+: public descriptor_read_op_base<MutableBufferSequence>
 {
 public:
-  BOOST_ASIO_DEFINE_HANDLER_PTR(descriptor_read_op);
+BOOST_ASIO_DEFINE_HANDLER_PTR(descriptor_read_op);
 
-  descriptor_read_op(const boost::system::error_code& success_ec,
-      int descriptor, const MutableBufferSequence& buffers,
-      Handler& handler, const IoExecutor& io_ex)
-    : descriptor_read_op_base<MutableBufferSequence>(success_ec,
-        descriptor, buffers, &descriptor_read_op::do_complete),
-      handler_(BOOST_ASIO_MOVE_CAST(Handler)(handler)),
-      work_(handler_, io_ex)
-  {
-  }
+descriptor_read_op(const boost::system::error_code& success_ec,
+int descriptor, const MutableBufferSequence& buffers,
+Handler& handler, const IoExecutor& io_ex)
+: descriptor_read_op_base<MutableBufferSequence>(success_ec,
+descriptor, buffers, &descriptor_read_op::do_complete),
+handler_(BOOST_ASIO_MOVE_CAST(Handler)(handler)),
+work_(handler_, io_ex)
+{
+}
 
-  static void do_complete(void* owner, operation* base,
-      const boost::system::error_code& /*ec*/,
-      std::size_t /*bytes_transferred*/)
-  {
-    // Take ownership of the handler object.
-    descriptor_read_op* o(static_cast<descriptor_read_op*>(base));
-    ptr p = { boost::asio::detail::addressof(o->handler_), o, o };
+static void do_complete(void* owner, operation* base,
+const boost::system::error_code& /*ec*/,
+std::size_t /*bytes_transferred*/)
+{
+// Take ownership of the handler object.
+descriptor_read_op* o(static_cast<descriptor_read_op*>(base));
+ptr p = { boost::asio::detail::addressof(o->handler_), o, o };
 
-    BOOST_ASIO_HANDLER_COMPLETION((*o));
+BOOST_ASIO_HANDLER_COMPLETION((*o));
 
-    // Take ownership of the operation's outstanding work.
-    handler_work<Handler, IoExecutor> w(
-        BOOST_ASIO_MOVE_CAST2(handler_work<Handler, IoExecutor>)(
-          o->work_));
+// Take ownership of the operation's outstanding work.
+handler_work<Handler, IoExecutor> w(
+BOOST_ASIO_MOVE_CAST2(handler_work<Handler, IoExecutor>)(
+o->work_));
 
-    // Make a copy of the handler so that the memory can be deallocated before
-    // the upcall is made. Even if we're not about to make an upcall, a
-    // sub-object of the handler may be the true owner of the memory associated
-    // with the handler. Consequently, a local copy of the handler is required
-    // to ensure that any owning sub-object remains valid until after we have
-    // deallocated the memory here.
-    detail::binder2<Handler, boost::system::error_code, std::size_t>
-      handler(o->handler_, o->ec_, o->bytes_transferred_);
-    p.h = boost::asio::detail::addressof(handler.handler_);
-    p.reset();
+// Make a copy of the handler so that the memory can be deallocated before
+// the upcall is made. Even if we're not about to make an upcall, a
+// sub-object of the handler may be the true owner of the memory associated
+// with the handler. Consequently, a local copy of the handler is required
+// to ensure that any owning sub-object remains valid until after we have
+// deallocated the memory here.
+detail::binder2<Handler, boost::system::error_code, std::size_t>
+handler(o->handler_, o->ec_, o->bytes_transferred_);
+p.h = boost::asio::detail::addressof(handler.handler_);
+p.reset();
 
-    // Make the upcall if required.
-    if (owner)
-    {
-      fenced_block b(fenced_block::half);
-      BOOST_ASIO_HANDLER_INVOCATION_BEGIN((handler.arg1_, handler.arg2_));
-      w.complete(handler, handler.handler_);
-      BOOST_ASIO_HANDLER_INVOCATION_END;
-    }
-  }
+// Make the upcall if required.
+if (owner)
+{
+fenced_block b(fenced_block::half);
+BOOST_ASIO_HANDLER_INVOCATION_BEGIN((handler.arg1_, handler.arg2_));
+w.complete(handler, handler.handler_);
+BOOST_ASIO_HANDLER_INVOCATION_END;
+}
+}
 
 private:
-  Handler handler_;
-  handler_work<Handler, IoExecutor> work_;
+Handler handler_;
+handler_work<Handler, IoExecutor> work_;
 };
 
 } // namespace detail

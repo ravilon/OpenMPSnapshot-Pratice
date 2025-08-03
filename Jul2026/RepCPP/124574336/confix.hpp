@@ -14,8 +14,8 @@
 
 namespace boost { namespace spirit { namespace repository
 {
-    // The confix extended terminal
-    BOOST_SPIRIT_DEFINE_TERMINALS_NAME_EX(( confix, confix_type ))
+// The confix extended terminal
+BOOST_SPIRIT_DEFINE_TERMINALS_NAME_EX(( confix, confix_type ))
 
 }}}
 

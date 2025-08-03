@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_PIPE) \
-  || defined(GENERATING_DOCUMENTATION)
+|| defined(GENERATING_DOCUMENTATION)
 
 #include <boost/asio/basic_readable_pipe.hpp>
 
@@ -32,6 +32,6 @@ typedef basic_readable_pipe<> readable_pipe;
 } // namespace boost
 
 #endif // defined(BOOST_ASIO_HAS_PIPE)
-       //   || defined(GENERATING_DOCUMENTATION)
+//   || defined(GENERATING_DOCUMENTATION)
 
 #endif // BOOST_ASIO_READABLE_PIPE_HPP

@@ -23,39 +23,39 @@
 namespace boost { namespace xpressive { namespace detail
 {
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // modifier
-    template<typename Modifier>
-    struct modifier_op
-    {
-        typedef regex_constants::syntax_option_type opt_type;
+///////////////////////////////////////////////////////////////////////////////
+// modifier
+template<typename Modifier>
+struct modifier_op
+{
+typedef regex_constants::syntax_option_type opt_type;
 
-        template<typename Expr>
-        struct apply
-        {
-            typedef typename proto::binary_expr<
-                modifier_tag
-              , typename proto::terminal<Modifier>::type
-              , typename proto::result_of::as_child<Expr const>::type
-            >::type type;
-        };
+template<typename Expr>
+struct apply
+{
+typedef typename proto::binary_expr<
+modifier_tag
+, typename proto::terminal<Modifier>::type
+, typename proto::result_of::as_child<Expr const>::type
+>::type type;
+};
 
-        template<typename Expr>
-        typename apply<Expr>::type const
-        operator ()(Expr const &expr) const
-        {
-            typename apply<Expr>::type that = {{this->mod_}, proto::as_child(expr)};
-            return that;
-        }
+template<typename Expr>
+typename apply<Expr>::type const
+operator ()(Expr const &expr) const
+{
+typename apply<Expr>::type that = {{this->mod_}, proto::as_child(expr)};
+return that;
+}
 
-        operator opt_type() const
-        {
-            return this->opt_;
-        }
+operator opt_type() const
+{
+return this->opt_;
+}
 
-        Modifier mod_;
-        opt_type opt_;
-    };
+Modifier mod_;
+opt_type opt_;
+};
 
 }}}
 

@@ -30,12 +30,12 @@
 #ifndef BOOST_FT_ARITY_LOOP_IS_ITERATING
 
 #   define BOOST_FT_AL_PREPROCESSED \
-        BOOST_FT_AL_FILE(BOOST_FT_al_path,BOOST_FT_FROM_ARITY,BOOST_FT_mfp)
+BOOST_FT_AL_FILE(BOOST_FT_al_path,BOOST_FT_FROM_ARITY,BOOST_FT_mfp)
 
 #   define BOOST_FT_AL_FILE(base_path,max_arity,mfp) \
-        BOOST_FT_AL_FILE_I(base_path,max_arity,mfp)
+BOOST_FT_AL_FILE_I(base_path,max_arity,mfp)
 #   define BOOST_FT_AL_FILE_I(base_path,max_arity,mfp) \
-        <base_path/arity ## max_arity ## _ ## mfp.hpp>
+<base_path/arity ## max_arity ## _ ## mfp.hpp>
 
 #   if !defined(BOOST_FT_PREPROCESSING_MODE)
 
@@ -99,22 +99,22 @@ BOOST_PP_EXPAND(#) include BOOST_FT_AL_PREPROCESSED
 #     define BOOST_FT_n     BOOST_PP_INC(BOOST_FT_arity)
 
 #     define BOOST_FT_type \
-          BOOST_FT_syntax(BOOST_FT_cc,BOOST_FT_type_name BOOST_PP_EMPTY)\
-               (BOOST_FT_params(BOOST_PP_EMPTY) BOOST_FT_ell) BOOST_FT_cv
+BOOST_FT_syntax(BOOST_FT_cc,BOOST_FT_type_name BOOST_PP_EMPTY)\
+(BOOST_FT_params(BOOST_PP_EMPTY) BOOST_FT_ell) BOOST_FT_cv
 
 #     define BOOST_FT_tplargs(prefx) \
-          prefx() R BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_FT_arity,prefx() T)
+prefx() R BOOST_PP_ENUM_TRAILING_PARAMS(BOOST_FT_arity,prefx() T)
 
 #     if !BOOST_FT_mfp
 
 #       define BOOST_FT_params(prefx) \
-            BOOST_PP_IF(BOOST_FT_arity,BOOST_PP_ENUM_PARAMS, \
-                BOOST_FT_nullary_param BOOST_PP_TUPLE_EAT(2))( \
-                    BOOST_FT_arity,prefx() T) 
+BOOST_PP_IF(BOOST_FT_arity,BOOST_PP_ENUM_PARAMS, \
+BOOST_FT_nullary_param BOOST_PP_TUPLE_EAT(2))( \
+BOOST_FT_arity,prefx() T) 
 #     else
 
 #       define BOOST_FT_params(prefx) \
-            BOOST_PP_ENUM_SHIFTED_PARAMS(BOOST_FT_arity,prefx() T)
+BOOST_PP_ENUM_SHIFTED_PARAMS(BOOST_FT_arity,prefx() T)
 
 #     endif
 
@@ -122,7 +122,7 @@ BOOST_PP_EXPAND(#) include BOOST_FT_AL_PREPROCESSED
 #       define BOOST_PP_ITERATION_LIMITS (BOOST_FT_mfp, BOOST_FT_MAX_ARITY)
 #     else
 #       define BOOST_PP_ITERATION_LIMITS \
-            (BOOST_FT_FROM_ARITY+1, BOOST_FT_MAX_ARITY)
+(BOOST_FT_FROM_ARITY+1, BOOST_FT_MAX_ARITY)
 #     endif
 
 #     define BOOST_FT_ARITY_LOOP_IS_ITERATING 1

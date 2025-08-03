@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2018 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2018 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/float_sizes.hpp
- *
- * This header defines macros for testing buitin floating point type sizes
- */
+* \file   atomic/detail/float_sizes.hpp
+*
+* This header defines macros for testing buitin floating point type sizes
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_FLOAT_SIZES_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_FLOAT_SIZES_HPP_INCLUDED_
@@ -118,7 +118,7 @@
 #if !defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE)
 
 #define BOOST_ATOMIC_DETAIL_ALIGN_SIZE_TO_POWER_OF_2(x)\
-    ((x) == 1u ? 1u : ((x) == 2u ? 2u : ((x) <= 4u ? 4u : ((x) <= 8u ? 8u : ((x) <= 16u ? 16u : ((x) <= 32u ? 32u : (x)))))))
+((x) == 1u ? 1u : ((x) == 2u ? 2u : ((x) <= 4u ? 4u : ((x) <= 8u ? 8u : ((x) <= 16u ? 16u : ((x) <= 32u ? 32u : (x)))))))
 
 // Make our best guess. These sizes may not be accurate, but they are good enough to estimate the size of the storage required to hold these types.
 #if !defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT) && defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT_VALUE)
@@ -134,8 +134,8 @@
 #endif // !defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE)
 
 #if !defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT_VALUE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_FLOAT) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE_VALUE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE) ||\
-    !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE_VALUE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE)
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE_VALUE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_DOUBLE) ||\
+!defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE_VALUE) || !defined(BOOST_ATOMIC_DETAIL_SIZEOF_LONG_DOUBLE)
 #error Boost.Atomic: Failed to determine builtin floating point type sizes, the target platform is not supported. Please, report to the developers (patches are welcome).
 #endif
 

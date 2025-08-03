@@ -37,25 +37,25 @@ namespace boost { namespace container {
 
 #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
-   #if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
+#if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
 
-      template <typename OuterAlloc, typename ...InnerAllocs>
-      class scoped_allocator_adaptor;
+template <typename OuterAlloc, typename ...InnerAllocs>
+class scoped_allocator_adaptor;
 
-   #else // #if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
+#else // #if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
 
-      template <typename ...InnerAllocs>
-      class scoped_allocator_adaptor;
+template <typename ...InnerAllocs>
+class scoped_allocator_adaptor;
 
-      template <typename OuterAlloc, typename ...InnerAllocs>
-      class scoped_allocator_adaptor<OuterAlloc, InnerAllocs...>;
+template <typename OuterAlloc, typename ...InnerAllocs>
+class scoped_allocator_adaptor<OuterAlloc, InnerAllocs...>;
 
-   #endif   // #if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
+#endif   // #if !defined(BOOST_CONTAINER_UNIMPLEMENTED_PACK_EXPANSION_TO_FIXED_LIST)
 
 #else    // #if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
-   template <typename OuterAlloc, BOOST_MOVE_CLASSDFLT9>
-   class scoped_allocator_adaptor;
+template <typename OuterAlloc, BOOST_MOVE_CLASSDFLT9>
+class scoped_allocator_adaptor;
 
 #endif
 

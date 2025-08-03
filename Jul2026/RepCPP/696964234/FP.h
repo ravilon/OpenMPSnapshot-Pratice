@@ -1,3 +1,3 @@
-#pragma once
-
-typedef double FP;
+#pragma once
+
+typedef double FP;

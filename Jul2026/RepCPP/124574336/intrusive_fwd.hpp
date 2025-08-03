@@ -71,9 +71,9 @@ namespace intrusive {
 
 #if !defined(BOOST_INTERPROCESS_DOXYGEN_INVOKED)
 #  ifdef BOOST_HAS_INTPTR_T
-      using ::boost::uintptr_t;
+using ::boost::uintptr_t;
 #  else
-      typedef std::size_t uintptr_t;
+typedef std::size_t uintptr_t;
 #  endif
 #endif
 
@@ -116,14 +116,14 @@ class treap_algorithms;
 //slist
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -131,10 +131,10 @@ class slist;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -142,10 +142,10 @@ class slist_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -154,12 +154,12 @@ class slist_member_hook;
 //list
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -167,10 +167,10 @@ class list;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -178,10 +178,10 @@ class list_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -190,14 +190,14 @@ class list_member_hook;
 //rbtree/set/multiset
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -205,14 +205,14 @@ class rbtree;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -220,14 +220,14 @@ class set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -235,11 +235,11 @@ class multiset;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -247,11 +247,11 @@ class set_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -260,14 +260,14 @@ class set_member_hook;
 //splaytree/splay_set/splay_multiset
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -275,14 +275,14 @@ class splaytree;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -290,14 +290,14 @@ class splay_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -306,14 +306,14 @@ class splay_multiset;
 //avltree/avl_set/avl_multiset
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -321,14 +321,14 @@ class avltree;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -336,14 +336,14 @@ class avl_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -351,11 +351,11 @@ class avl_multiset;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -363,11 +363,11 @@ class avl_set_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -377,15 +377,15 @@ class avl_set_member_hook;
 //treap/treap_set/treap_multiset
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -393,15 +393,15 @@ class treap;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -409,15 +409,15 @@ class treap_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -426,14 +426,14 @@ class treap_multiset;
 //sgtree/sg_set/sg_multiset
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -441,14 +441,14 @@ class sgtree;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -456,14 +456,14 @@ class sg_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -471,14 +471,14 @@ class sg_multiset;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -486,14 +486,14 @@ class bstree;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -501,14 +501,14 @@ class bs_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -516,10 +516,10 @@ class bs_multiset;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -527,10 +527,10 @@ class bs_set_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -540,18 +540,18 @@ class bs_set_member_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   , class O8  = void
-   , class O9  = void
-   , class O10 = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+, class O8  = void
+, class O9  = void
+, class O10 = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -559,18 +559,18 @@ class hashtable;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   , class O8  = void
-   , class O9  = void
-   , class O10 = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+, class O8  = void
+, class O9  = void
+, class O10 = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -578,18 +578,18 @@ class unordered_set;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class T
-   , class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   , class O5  = void
-   , class O6  = void
-   , class O7  = void
-   , class O8  = void
-   , class O9  = void
-   , class O10 = void
-   >
+< class T
+, class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+, class O5  = void
+, class O6  = void
+, class O7  = void
+, class O8  = void
+, class O9  = void
+, class O10 = void
+>
 #else
 template<class T, class ...Options>
 #endif
@@ -597,11 +597,11 @@ class unordered_multiset;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -609,11 +609,11 @@ class unordered_set_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   , class O4  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+, class O4  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -621,10 +621,10 @@ class unordered_set_member_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -632,10 +632,10 @@ class any_base_hook;
 
 #if !defined(BOOST_INTRUSIVE_VARIADIC_TEMPLATES)
 template
-   < class O1  = void
-   , class O2  = void
-   , class O3  = void
-   >
+< class O1  = void
+, class O2  = void
+, class O3  = void
+>
 #else
 template<class ...Options>
 #endif
@@ -667,8 +667,8 @@ struct hash;
 template<typename ValueTraits> struct value_traits;
 
 template< typename Parent
-        , typename MemberHook
-        , MemberHook Parent::* PtrToMember>
+, typename MemberHook
+, MemberHook Parent::* PtrToMember>
 struct member_hook;
 
 template<typename Functor>
@@ -722,8 +722,8 @@ template<typename ValueTraits>
 struct value_traits;
 
 template< typename Parent
-        , typename MemberHook
-        , MemberHook Parent::* PtrToMember>
+, typename MemberHook
+, MemberHook Parent::* PtrToMember>
 struct member_hook;
 
 template< typename Functor>

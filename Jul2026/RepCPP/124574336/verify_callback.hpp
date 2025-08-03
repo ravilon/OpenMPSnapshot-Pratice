@@ -29,29 +29,29 @@ namespace detail {
 class verify_callback_base
 {
 public:
-  virtual ~verify_callback_base()
-  {
-  }
+virtual ~verify_callback_base()
+{
+}
 
-  virtual bool call(bool preverified, verify_context& ctx) = 0;
+virtual bool call(bool preverified, verify_context& ctx) = 0;
 };
 
 template <typename VerifyCallback>
 class verify_callback : public verify_callback_base
 {
 public:
-  explicit verify_callback(VerifyCallback callback)
-    : callback_(callback)
-  {
-  }
+explicit verify_callback(VerifyCallback callback)
+: callback_(callback)
+{
+}
 
-  virtual bool call(bool preverified, verify_context& ctx)
-  {
-    return callback_(preverified, ctx);
-  }
+virtual bool call(bool preverified, verify_context& ctx)
+{
+return callback_(preverified, ctx);
+}
 
 private:
-  VerifyCallback callback_;
+VerifyCallback callback_;
 };
 
 } // namespace detail

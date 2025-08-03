@@ -31,48 +31,48 @@ namespace detail
 {
 
 template< class T > inline void test_trait_impl( char const * trait, void (*)( T ),
-  bool expected, char const * file, int line, char const * function )
+bool expected, char const * file, int line, char const * function )
 {
-    if( T::value == expected )
-    {
-        test_results();
-    }
-    else
-    {
-        BOOST_LIGHTWEIGHT_TEST_OSTREAM
-            << file << "(" << line << "): predicate '" << trait << "' ["
-            << boost::core::type_name<T>() << "]"
-            << " test failed in function '" << function
-            << "' (should have been " << ( expected? "true": "false" ) << ")"
-            << std::endl;
+if( T::value == expected )
+{
+test_results();
+}
+else
+{
+BOOST_LIGHTWEIGHT_TEST_OSTREAM
+<< file << "(" << line << "): predicate '" << trait << "' ["
+<< boost::core::type_name<T>() << "]"
+<< " test failed in function '" << function
+<< "' (should have been " << ( expected? "true": "false" ) << ")"
+<< std::endl;
 
-        ++test_results().errors();
-    }
+++test_results().errors();
+}
 }
 
 template<class T> inline bool test_trait_same_impl_( T )
 {
-    return T::value;
+return T::value;
 }
 
 template<class T1, class T2> inline void test_trait_same_impl( char const * types,
-  boost::core::is_same<T1, T2> same, char const * file, int line, char const * function )
+boost::core::is_same<T1, T2> same, char const * file, int line, char const * function )
 {
-    if( test_trait_same_impl_( same ) )
-    {
-        test_results();
-    }
-    else
-    {
-        BOOST_LIGHTWEIGHT_TEST_OSTREAM
-            << file << "(" << line << "): test 'is_same<" << types << ">'"
-            << " failed in function '" << function
-            << "' ('" << boost::core::type_name<T1>()
-            << "' != '" << boost::core::type_name<T2>() << "')"
-            << std::endl;
+if( test_trait_same_impl_( same ) )
+{
+test_results();
+}
+else
+{
+BOOST_LIGHTWEIGHT_TEST_OSTREAM
+<< file << "(" << line << "): test 'is_same<" << types << ">'"
+<< " failed in function '" << function
+<< "' ('" << boost::core::type_name<T1>()
+<< "' != '" << boost::core::type_name<T2>() << "')"
+<< std::endl;
 
-        ++test_results().errors();
-    }
+++test_results().errors();
+}
 }
 
 } // namespace detail

@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2021 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2021 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/type_traits/has_unique_object_representations.hpp
- *
- * This header defines \c has_unique_object_representations type trait
- */
+* \file   atomic/detail/type_traits/has_unique_object_representations.hpp
+*
+* This header defines \c has_unique_object_representations type trait
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_TYPE_TRAITS_HAS_UNIQUE_OBJECT_REPRESENTATIONS_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_TYPE_TRAITS_HAS_UNIQUE_OBJECT_REPRESENTATIONS_HPP_INCLUDED_
@@ -24,7 +24,7 @@
 #endif
 
 #if (defined(__cpp_lib_has_unique_object_representations) && __cpp_lib_has_unique_object_representations >= 201606) || \
-    (defined(_CPPLIB_VER) && _CPPLIB_VER >= 650 && defined(_HAS_CXX17) && _HAS_CXX17 != 0)
+(defined(_CPPLIB_VER) && _CPPLIB_VER >= 650 && defined(_HAS_CXX17) && _HAS_CXX17 != 0)
 
 namespace boost {
 namespace atomics {
@@ -39,7 +39,7 @@ using std::has_unique_object_representations;
 #else // defined(__cpp_lib_has_unique_object_representations) ...
 
 #if (defined(__GNUC__) && __GNUC__ >= 7) || (defined(BOOST_MSVC) && BOOST_MSVC >= 1929) || \
-    (defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1900)
+(defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 1900)
 #define BOOST_ATOMIC_DETAIL_HAS_UNIQUE_OBJECT_REPRESENTATIONS(x) __has_unique_object_representations(x)
 #elif defined(__is_identifier)
 #if !__is_identifier(__has_unique_object_representations)
@@ -58,73 +58,73 @@ namespace detail {
 
 template< typename T >
 struct has_unique_object_representations :
-    public atomics::detail::integral_constant< bool, BOOST_ATOMIC_DETAIL_HAS_UNIQUE_OBJECT_REPRESENTATIONS(T) >
+public atomics::detail::integral_constant< bool, BOOST_ATOMIC_DETAIL_HAS_UNIQUE_OBJECT_REPRESENTATIONS(T) >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< T[] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T, std::size_t N >
 struct has_unique_object_representations< T[N] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< const T > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< volatile T > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< const volatile T > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< const T[] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< volatile T[] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T >
 struct has_unique_object_representations< const volatile T[] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T, std::size_t N >
 struct has_unique_object_representations< const T[N] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T, std::size_t N >
 struct has_unique_object_representations< volatile T[N] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 
 template< typename T, std::size_t N >
 struct has_unique_object_representations< const volatile T[N] > :
-    public atomics::detail::has_unique_object_representations< T >
+public atomics::detail::has_unique_object_representations< T >
 {
 };
 

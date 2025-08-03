@@ -58,13 +58,13 @@ template <class T> struct natify{};
 template<bool C, typename T1, typename T2>
 struct if_c
 {
-   typedef T1 type;
+typedef T1 type;
 };
 
 template<typename T1, typename T2>
 struct if_c<false,T1,T2>
 {
-   typedef T2 type;
+typedef T2 type;
 };
 
 //////////////////////////////////////
@@ -78,7 +78,7 @@ struct if_ : if_c<0 != T1::value, T2, T3>
 template <bool B, class T = nat>
 struct enable_if_c
 {
-   typedef T type;
+typedef T type;
 };
 
 //////////////////////////////////////
@@ -99,13 +99,13 @@ struct enable_if : public enable_if_c<Cond::value, T> {};
 template<class T>
 struct remove_reference
 {
-   typedef T type;
+typedef T type;
 };
 
 template<class T>
 struct remove_reference<T&>
 {
-   typedef T type;
+typedef T type;
 };
 
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
@@ -113,7 +113,7 @@ struct remove_reference<T&>
 template<class T>
 struct remove_reference<T&&>
 {
-   typedef T type;
+typedef T type;
 };
 
 #else
@@ -121,19 +121,19 @@ struct remove_reference<T&&>
 template<class T>
 struct remove_reference< rv<T> >
 {
-   typedef T type;
+typedef T type;
 };
 
 template<class T>
 struct remove_reference< rv<T> &>
 {
-   typedef T type;
+typedef T type;
 };
 
 template<class T>
 struct remove_reference< const rv<T> &>
 {
-   typedef T type;
+typedef T type;
 };
 
 
@@ -145,13 +145,13 @@ struct remove_reference< const rv<T> &>
 template< class T >
 struct remove_const
 {
-   typedef T type;
+typedef T type;
 };
 
 template< class T >
 struct remove_const<const T>
 {
-   typedef T type;
+typedef T type;
 };
 
 //////////////////////////////////////
@@ -160,13 +160,13 @@ struct remove_const<const T>
 template< class T >
 struct remove_volatile
 {
-   typedef T type;
+typedef T type;
 };
 
 template< class T >
 struct remove_volatile<volatile T>
 {
-   typedef T type;
+typedef T type;
 };
 
 //////////////////////////////////////
@@ -175,8 +175,8 @@ struct remove_volatile<volatile T>
 template< class T >
 struct remove_cv
 {
-    typedef typename remove_volatile
-      <typename remove_const<T>::type>::type type;
+typedef typename remove_volatile
+<typename remove_const<T>::type>::type type;
 };
 
 //////////////////////////////////////
@@ -185,19 +185,19 @@ struct remove_cv
 template<class T>
 struct remove_extent
 {
-   typedef T type;
+typedef T type;
 };
- 
+
 template<class T>
 struct remove_extent<T[]>
 {
-   typedef T type;
+typedef T type;
 };
- 
+
 template<class T, std::size_t N>
 struct remove_extent<T[N]>
 {
-   typedef T type;
+typedef T type;
 };
 
 //////////////////////////////////////
@@ -207,31 +207,31 @@ struct remove_extent<T[N]>
 template<class T, unsigned N = 0>
 struct extent
 {
-   static const std::size_t value = 0;
+static const std::size_t value = 0;
 };
- 
+
 template<class T>
 struct extent<T[], 0> 
 {
-   static const std::size_t value = 0;
+static const std::size_t value = 0;
 };
 
 template<class T, unsigned N>
 struct extent<T[], N>
 {
-   static const std::size_t value = extent<T, N-1>::value;
+static const std::size_t value = extent<T, N-1>::value;
 };
 
 template<class T, std::size_t N>
 struct extent<T[N], 0> 
 {
-   static const std::size_t value = N;
+static const std::size_t value = N;
 };
- 
+
 template<class T, std::size_t I, unsigned N>
 struct extent<T[I], N>
 {
-   static const std::size_t value = extent<T, N-1>::value;
+static const std::size_t value = extent<T, N-1>::value;
 };
 
 //////////////////////////////////////
@@ -240,46 +240,46 @@ struct extent<T[I], N>
 template<class T>
 struct add_lvalue_reference
 {
-   typedef T& type;
+typedef T& type;
 };
 
 template<class T>
 struct add_lvalue_reference<T&>
 {
-   typedef T& type;
+typedef T& type;
 };
 
 template<>
 struct add_lvalue_reference<void>
 {
-   typedef void type;
+typedef void type;
 };
 
 template<>
 struct add_lvalue_reference<const void>
 {
-   typedef const void type;
+typedef const void type;
 };
 
 template<>
 struct add_lvalue_reference<volatile void>
 {
-   typedef volatile void type;
+typedef volatile void type;
 };
 
 template<>
 struct add_lvalue_reference<const volatile void>
 {
-   typedef const volatile void type;
+typedef const volatile void type;
 };
 
 template<class T>
 struct add_const_lvalue_reference
 {
-   typedef typename remove_reference<T>::type   t_unreferenced;
-   typedef const t_unreferenced                 t_unreferenced_const;
-   typedef typename add_lvalue_reference
-      <t_unreferenced_const>::type              type;
+typedef typename remove_reference<T>::type   t_unreferenced;
+typedef const t_unreferenced                 t_unreferenced_const;
+typedef typename add_lvalue_reference
+<t_unreferenced_const>::type              type;
 };
 
 //////////////////////////////////////
@@ -288,13 +288,13 @@ struct add_const_lvalue_reference
 template<class T, class U>
 struct is_same
 {
-   static const bool value = false;
+static const bool value = false;
 };
- 
+
 template<class T>
 struct is_same<T, T>
 {
-   static const bool value = true;
+static const bool value = true;
 };
 
 //////////////////////////////////////
@@ -303,13 +303,13 @@ struct is_same<T, T>
 template< class T >
 struct is_pointer
 {
-    static const bool value = false;
+static const bool value = false;
 };
 
 template< class T >
 struct is_pointer<T*>
 {
-    static const bool value = true;
+static const bool value = true;
 };
 
 //////////////////////////////////////
@@ -318,13 +318,13 @@ struct is_pointer<T*>
 template< class T >
 struct is_reference
 {
-    static const bool value = false;
+static const bool value = false;
 };
 
 template< class T >
 struct is_reference<T&>
 {
-    static const bool value = true;
+static const bool value = true;
 };
 
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
@@ -332,7 +332,7 @@ struct is_reference<T&>
 template< class T >
 struct is_reference<T&&>
 {
-    static const bool value = true;
+static const bool value = true;
 };
 
 #endif
@@ -343,13 +343,13 @@ struct is_reference<T&&>
 template<class T>
 struct is_lvalue_reference
 {
-    static const bool value = false;
+static const bool value = false;
 };
 
 template<class T>
 struct is_lvalue_reference<T&>
 {
-    static const bool value = true;
+static const bool value = true;
 };
 
 //////////////////////////////////////
@@ -358,19 +358,19 @@ struct is_lvalue_reference<T&>
 template<class T>
 struct is_array
 {
-   static const bool value = false;
+static const bool value = false;
 };
- 
+
 template<class T>
 struct is_array<T[]>
 {
-   static const bool value = true;
+static const bool value = true;
 };
- 
+
 template<class T, std::size_t N>
 struct is_array<T[N]>
 {
-   static const bool value = true;
+static const bool value = true;
 };
 
 //////////////////////////////////////
@@ -379,10 +379,10 @@ struct is_array<T[N]>
 template <class T>
 struct has_pointer_type
 {
-   struct two { char c[2]; };
-   template <class U> static two test(...);
-   template <class U> static char test(typename U::pointer* = 0);
-   static const bool value = sizeof(test<T>(0)) == 1;
+struct two { char c[2]; };
+template <class U> static two test(...);
+template <class U> static char test(typename U::pointer* = 0);
+static const bool value = sizeof(test<T>(0)) == 1;
 };
 
 //////////////////////////////////////
@@ -391,20 +391,20 @@ struct has_pointer_type
 template <class T, class D, bool = has_pointer_type<D>::value>
 struct pointer_type_imp
 {
-    typedef typename D::pointer type;
+typedef typename D::pointer type;
 };
 
 template <class T, class D>
 struct pointer_type_imp<T, D, false>
 {
-    typedef T* type;
+typedef T* type;
 };
 
 template <class T, class D>
 struct pointer_type
 {
-    typedef typename pointer_type_imp
-      <typename remove_extent<T>::type, typename remove_reference<D>::type>::type type;
+typedef typename pointer_type_imp
+<typename remove_extent<T>::type, typename remove_reference<D>::type>::type type;
 };
 
 //////////////////////////////////////
@@ -417,7 +417,7 @@ struct pointer_type
 template <class T, class U>
 struct is_convertible
 {
-   static const bool value = __is_convertible_to(T, U);
+static const bool value = __is_convertible_to(T, U);
 };
 
 #else
@@ -425,14 +425,14 @@ struct is_convertible
 template <class T, class U>
 class is_convertible
 {
-   typedef typename add_lvalue_reference<T>::type t_reference;
-   typedef char true_t;
-   class false_t { char dummy[2]; };
-   static false_t dispatch(...);
-   static true_t  dispatch(U);
-   static t_reference       trigger();
-   public:
-   static const bool value = sizeof(dispatch(trigger())) == sizeof(true_t);
+typedef typename add_lvalue_reference<T>::type t_reference;
+typedef char true_t;
+class false_t { char dummy[2]; };
+static false_t dispatch(...);
+static true_t  dispatch(U);
+static t_reference       trigger();
+public:
+static const bool value = sizeof(dispatch(trigger())) == sizeof(true_t);
 };
 
 #endif
@@ -536,7 +536,7 @@ struct is_unary_function
 //       has_virtual_destructor
 //////////////////////////////////////
 #if (defined(BOOST_MSVC) && defined(BOOST_MSVC_FULL_VER) && (BOOST_MSVC_FULL_VER >=140050215))\
-         || (defined(BOOST_INTEL) && defined(_MSC_VER) && (_MSC_VER >= 1500))
+|| (defined(BOOST_INTEL) && defined(_MSC_VER) && (_MSC_VER >= 1500))
 #  define BOOST_MOVEUP_HAS_VIRTUAL_DESTRUCTOR(T) __has_virtual_destructor(T)
 #elif defined(BOOST_CLANG) && defined(__has_feature)
 #  if __has_feature(has_virtual_destructor)
@@ -551,12 +551,12 @@ struct is_unary_function
 #endif
 
 #ifdef BOOST_MOVEUP_HAS_VIRTUAL_DESTRUCTOR
-   template<class T>
-   struct has_virtual_destructor{   static const bool value = BOOST_MOVEUP_HAS_VIRTUAL_DESTRUCTOR(T);  };
+template<class T>
+struct has_virtual_destructor{   static const bool value = BOOST_MOVEUP_HAS_VIRTUAL_DESTRUCTOR(T);  };
 #else
-   //If no intrinsic is available you trust the programmer knows what is doing
-   template<class T>
-   struct has_virtual_destructor{   static const bool value = true;  };
+//If no intrinsic is available you trust the programmer knows what is doing
+template<class T>
+struct has_virtual_destructor{   static const bool value = true;  };
 #endif
 
 }  //namespace move_upmu {

@@ -1,9 +1,9 @@
 /*
- * Copyright 2017 Andrey Semashev
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2017 Andrey Semashev
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_STACK_BACKTRACE_HPP_INCLUDED_
 #define BOOST_WINAPI_STACK_BACKTRACE_HPP_INCLUDED_
@@ -31,10 +31,10 @@ extern "C" {
 
 BOOST_WINAPI_IMPORT boost::winapi::WORD_
 BOOST_WINAPI_NTAPI_CC RtlCaptureStackBackTrace(
-    boost::winapi::DWORD_ FramesToSkip,
-    boost::winapi::DWORD_ FramesToCapture,
-    boost::winapi::PVOID_* BackTrace,
-    boost::winapi::PDWORD_ BackTraceHash);
+boost::winapi::DWORD_ FramesToSkip,
+boost::winapi::DWORD_ FramesToCapture,
+boost::winapi::PVOID_* BackTrace,
+boost::winapi::PDWORD_ BackTraceHash);
 
 } // extern "C"
 #endif

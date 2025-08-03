@@ -39,55 +39,55 @@ namespace util
 
 
 /*!
-    \brief Meta-function to generate all the combination of pairs of types
-        from a given sequence Sequence except those that does not satisfy the
-        predicate Pred
-    \ingroup utility
-    \par Example
-    \code
-        typedef boost::mpl::vector<boost::mpl::int_<0>, boost::mpl::int_<1> > types;
-        typedef combine_if<types, types, always<true_> >::type combinations;
-        typedef boost::mpl::vector<
-            pair<boost::mpl::int_<1>, boost::mpl::int_<1> >,
-            pair<boost::mpl::int_<1>, boost::mpl::int_<0> >,
-            pair<boost::mpl::int_<0>, boost::mpl::int_<1> >,
-            pair<boost::mpl::int_<0>, boost::mpl::int_<0> >        
-        > result_types;
-        
-        BOOST_MPL_ASSERT(( boost::mpl::equal<combinations, result_types> ));
-    \endcode
+\brief Meta-function to generate all the combination of pairs of types
+from a given sequence Sequence except those that does not satisfy the
+predicate Pred
+\ingroup utility
+\par Example
+\code
+typedef boost::mpl::vector<boost::mpl::int_<0>, boost::mpl::int_<1> > types;
+typedef combine_if<types, types, always<true_> >::type combinations;
+typedef boost::mpl::vector<
+pair<boost::mpl::int_<1>, boost::mpl::int_<1> >,
+pair<boost::mpl::int_<1>, boost::mpl::int_<0> >,
+pair<boost::mpl::int_<0>, boost::mpl::int_<1> >,
+pair<boost::mpl::int_<0>, boost::mpl::int_<0> >        
+> result_types;
+
+BOOST_MPL_ASSERT(( boost::mpl::equal<combinations, result_types> ));
+\endcode
 */
 template <typename Sequence1, typename Sequence2, typename Pred>
 struct combine_if
 {
-    struct combine
-    {
-        template <typename Result, typename T>
-        struct apply
-        {
-            typedef typename boost::mpl::fold<Sequence2, Result,
-                boost::mpl::if_
-                <
-                    boost::mpl::bind
-                        <
-                            typename boost::mpl::lambda<Pred>::type,
-                            T,
-                            boost::mpl::_2
-                        >,
-                    boost::mpl::insert
-                        <
-                            boost::mpl::_1, boost::mpl::pair<T, boost::mpl::_2>
-                        >,
-                    boost::mpl::_1
-                >
-            >::type type;
-        };
-    };
+struct combine
+{
+template <typename Result, typename T>
+struct apply
+{
+typedef typename boost::mpl::fold<Sequence2, Result,
+boost::mpl::if_
+<
+boost::mpl::bind
+<
+typename boost::mpl::lambda<Pred>::type,
+T,
+boost::mpl::_2
+>,
+boost::mpl::insert
+<
+boost::mpl::_1, boost::mpl::pair<T, boost::mpl::_2>
+>,
+boost::mpl::_1
+>
+>::type type;
+};
+};
 
-    typedef typename boost::mpl::fold
-        <
-            Sequence1, boost::mpl::set0<>, combine
-        >::type type;
+typedef typename boost::mpl::fold
+<
+Sequence1, boost::mpl::set0<>, combine
+>::type type;
 };
 
 

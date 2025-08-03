@@ -43,17 +43,17 @@
 */
 int main()
 {
-   void* (*alloc_func_ptr)(size_t);
-   void* (*realloc_func_ptr)(void*, size_t, size_t);
-   void (*free_func_ptr)(void*, size_t);
+void* (*alloc_func_ptr)(size_t);
+void* (*realloc_func_ptr)(void*, size_t, size_t);
+void (*free_func_ptr)(void*, size_t);
 
-   mp_get_memory_functions(&alloc_func_ptr, &realloc_func_ptr, &free_func_ptr);
+mp_get_memory_functions(&alloc_func_ptr, &realloc_func_ptr, &free_func_ptr);
 
-   mpfr_buildopt_tls_p();
+mpfr_buildopt_tls_p();
 
-   mpc_t t;
-   mpc_init2(t, 128);
-   mpc_clear(t);
+mpc_t t;
+mpc_init2(t, 128);
+mpc_clear(t);
 
-   return 0;
+return 0;
 }

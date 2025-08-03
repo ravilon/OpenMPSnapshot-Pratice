@@ -40,76 +40,76 @@ class BOOST_SYMBOL_VISIBLE sp_counted_base
 {
 private:
 
-    sp_counted_base( sp_counted_base const & );
-    sp_counted_base & operator= ( sp_counted_base const & );
+sp_counted_base( sp_counted_base const & );
+sp_counted_base & operator= ( sp_counted_base const & );
 
-    boost::int_least32_t use_count_;        // #shared
-    boost::int_least32_t weak_count_;       // #weak + (#shared != 0)
+boost::int_least32_t use_count_;        // #shared
+boost::int_least32_t weak_count_;       // #weak + (#shared != 0)
 
 public:
 
-    sp_counted_base() BOOST_SP_NOEXCEPT: use_count_( 1 ), weak_count_( 1 )
-    {
-    }
+sp_counted_base() BOOST_SP_NOEXCEPT: use_count_( 1 ), weak_count_( 1 )
+{
+}
 
-    virtual ~sp_counted_base() /*BOOST_SP_NOEXCEPT*/
-    {
-    }
+virtual ~sp_counted_base() /*BOOST_SP_NOEXCEPT*/
+{
+}
 
-    // dispose() is called when use_count_ drops to zero, to release
-    // the resources managed by *this.
+// dispose() is called when use_count_ drops to zero, to release
+// the resources managed by *this.
 
-    virtual void dispose() BOOST_SP_NOEXCEPT = 0; // nothrow
+virtual void dispose() BOOST_SP_NOEXCEPT = 0; // nothrow
 
-    // destroy() is called when weak_count_ drops to zero.
+// destroy() is called when weak_count_ drops to zero.
 
-    virtual void destroy() BOOST_SP_NOEXCEPT // nothrow
-    {
-        delete this;
-    }
+virtual void destroy() BOOST_SP_NOEXCEPT // nothrow
+{
+delete this;
+}
 
-    virtual void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT = 0;
-    virtual void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT = 0;
-    virtual void * get_untyped_deleter() BOOST_SP_NOEXCEPT = 0;
+virtual void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT = 0;
+virtual void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT = 0;
+virtual void * get_untyped_deleter() BOOST_SP_NOEXCEPT = 0;
 
-    void add_ref_copy() BOOST_SP_NOEXCEPT
-    {
-        ++use_count_;
-    }
+void add_ref_copy() BOOST_SP_NOEXCEPT
+{
+++use_count_;
+}
 
-    bool add_ref_lock() BOOST_SP_NOEXCEPT // true on success
-    {
-        if( use_count_ == 0 ) return false;
-        ++use_count_;
-        return true;
-    }
+bool add_ref_lock() BOOST_SP_NOEXCEPT // true on success
+{
+if( use_count_ == 0 ) return false;
+++use_count_;
+return true;
+}
 
-    void release() BOOST_SP_NOEXCEPT
-    {
-        if( --use_count_ == 0 )
-        {
-            dispose();
-            weak_release();
-        }
-    }
+void release() BOOST_SP_NOEXCEPT
+{
+if( --use_count_ == 0 )
+{
+dispose();
+weak_release();
+}
+}
 
-    void weak_add_ref() BOOST_SP_NOEXCEPT
-    {
-        ++weak_count_;
-    }
+void weak_add_ref() BOOST_SP_NOEXCEPT
+{
+++weak_count_;
+}
 
-    void weak_release() BOOST_SP_NOEXCEPT
-    {
-        if( --weak_count_ == 0 )
-        {
-            destroy();
-        }
-    }
+void weak_release() BOOST_SP_NOEXCEPT
+{
+if( --weak_count_ == 0 )
+{
+destroy();
+}
+}
 
-    long use_count() const BOOST_SP_NOEXCEPT
-    {
-        return use_count_;
-    }
+long use_count() const BOOST_SP_NOEXCEPT
+{
+return use_count_;
+}
 };
 
 } // namespace detail

@@ -17,62 +17,62 @@
 
 namespace boost { namespace spirit
 {
-    ///////////////////////////////////////////////////////////////////////////
-    // Enablers
-    ///////////////////////////////////////////////////////////////////////////
-    template <>
-    struct use_directive<karma::domain, tag::strict>  // enables strict[]
-      : mpl::true_ {};
+///////////////////////////////////////////////////////////////////////////
+// Enablers
+///////////////////////////////////////////////////////////////////////////
+template <>
+struct use_directive<karma::domain, tag::strict>  // enables strict[]
+: mpl::true_ {};
 
-    template <>
-    struct use_directive<karma::domain, tag::relaxed> // enables relaxed[]
-      : mpl::true_ {};
+template <>
+struct use_directive<karma::domain, tag::relaxed> // enables relaxed[]
+: mpl::true_ {};
 
-    ///////////////////////////////////////////////////////////////////////////
-    template <>
-    struct is_modifier_directive<karma::domain, tag::strict>
-      : mpl::true_ {};
+///////////////////////////////////////////////////////////////////////////
+template <>
+struct is_modifier_directive<karma::domain, tag::strict>
+: mpl::true_ {};
 
-    template <>
-    struct is_modifier_directive<karma::domain, tag::relaxed>
-      : mpl::true_ {};
+template <>
+struct is_modifier_directive<karma::domain, tag::relaxed>
+: mpl::true_ {};
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Don't add tag::strict or tag::relaxed if there is already one of those 
-    // in the modifier list
-    template <typename Current>
-    struct compound_modifier<Current, tag::strict
-          , typename enable_if<has_modifier<Current, tag::relaxed> >::type>
-      : Current
-    {
-        compound_modifier()
-          : Current() {}
+///////////////////////////////////////////////////////////////////////////
+// Don't add tag::strict or tag::relaxed if there is already one of those 
+// in the modifier list
+template <typename Current>
+struct compound_modifier<Current, tag::strict
+, typename enable_if<has_modifier<Current, tag::relaxed> >::type>
+: Current
+{
+compound_modifier()
+: Current() {}
 
-        compound_modifier(Current const& current, tag::strict const&)
-          : Current(current) {}
-    };
+compound_modifier(Current const& current, tag::strict const&)
+: Current(current) {}
+};
 
-    template <typename Current>
-    struct compound_modifier<Current, tag::relaxed
-          , typename enable_if<has_modifier<Current, tag::strict> >::type>
-      : Current
-    {
-        compound_modifier()
-          : Current() {}
+template <typename Current>
+struct compound_modifier<Current, tag::relaxed
+, typename enable_if<has_modifier<Current, tag::strict> >::type>
+: Current
+{
+compound_modifier()
+: Current() {}
 
-        compound_modifier(Current const& current, tag::relaxed const&)
-          : Current(current) {}
-    };
+compound_modifier(Current const& current, tag::relaxed const&)
+: Current(current) {}
+};
 
-    namespace karma
-    {
+namespace karma
+{
 #ifndef BOOST_SPIRIT_NO_PREDEFINED_TERMINALS
-        using boost::spirit::strict;
-        using boost::spirit::relaxed;
+using boost::spirit::strict;
+using boost::spirit::relaxed;
 #endif
-        using boost::spirit::strict_type;
-        using boost::spirit::relaxed_type;
-    }
+using boost::spirit::strict_type;
+using boost::spirit::relaxed_type;
+}
 }}
 
 #endif

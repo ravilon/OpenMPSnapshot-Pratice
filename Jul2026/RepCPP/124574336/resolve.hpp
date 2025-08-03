@@ -46,12 +46,12 @@ namespace boost { namespace iostreams { namespace detail {
 
 template<typename Mode, typename Ch, typename T>
 struct resolve_traits {
-    typedef typename 
-            mpl::if_<
-                boost::detail::is_incrementable<T>,
-                output_iterator_adapter<Mode, Ch, T>,
-                const T&
-            >::type type;
+typedef typename 
+mpl::if_<
+boost::detail::is_incrementable<T>,
+output_iterator_adapter<Mode, Ch, T>,
+const T&
+>::type type;
 };
 
 # ifndef BOOST_IOSTREAMS_NO_STREAM_TEMPLATES //-------------------------------//
@@ -59,21 +59,21 @@ struct resolve_traits {
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type
 resolve( const T& t 
-         BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)
+BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)
 
-         // I suspect that the compilers which require this workaround may
-         // be correct, but I'm not sure why :(
-         #if BOOST_WORKAROUND(BOOST_INTEL_CXX_VERSION, BOOST_TESTED_AT(810)) ||\
-             BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3205)) || \
-             BOOST_WORKAROUND(BOOST_IOSTREAMS_GCC, BOOST_TESTED_AT(400)) ||\
-             BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(1110))
-             /**/
-         , typename disable_if< is_iterator_range<T> >::type* = 0
-         #endif
-         )
+// I suspect that the compilers which require this workaround may
+// be correct, but I'm not sure why :(
+#if BOOST_WORKAROUND(BOOST_INTEL_CXX_VERSION, BOOST_TESTED_AT(810)) ||\
+BOOST_WORKAROUND(__MWERKS__, BOOST_TESTED_AT(0x3205)) || \
+BOOST_WORKAROUND(BOOST_IOSTREAMS_GCC, BOOST_TESTED_AT(400)) ||\
+BOOST_WORKAROUND(__IBMCPP__, BOOST_TESTED_AT(1110))
+/**/
+, typename disable_if< is_iterator_range<T> >::type* = 0
+#endif
+)
 {
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(t);
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(t);
 }
 
 template<typename Mode, typename Ch, typename Tr>
@@ -110,14 +110,14 @@ resolve(const boost::iterator_range<Iter>& rng)
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type
 resolve( const T& t 
-         BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)
-         #if defined(__GNUC__)
-         , typename disable_if< is_iterator_range<T> >::type* = 0
-         #endif
-         )
+BOOST_IOSTREAMS_DISABLE_IF_STREAM(T)
+#if defined(__GNUC__)
+, typename disable_if< is_iterator_range<T> >::type* = 0
+#endif
+)
 {
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(t);
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(t);
 }
 
 template<typename Mode, typename Ch>
@@ -154,41 +154,41 @@ resolve(const boost::iterator_range<Iter>& rng)
 
 template<typename Mode, typename Ch, typename T>
 struct resolve_traits {
-    // Note: test for is_iterator_range must come before test for output
-    // iterator.
-    typedef typename 
-            iostreams::select<  // Disambiguation for Tru64.
-                is_std_io<T>,
-                mode_adapter<Mode, T>,
-                is_iterator_range<T>,
-                range_adapter<Mode, T>,
-                is_dereferenceable<T>,
-                output_iterator_adapter<Mode, Ch, T>,
-                is_array<T>,
-                array_adapter<Mode, T>,
-                else_,
-                #if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600)
-                    const T&
-                #else
-                    T
-                #endif
-            >::type type;
+// Note: test for is_iterator_range must come before test for output
+// iterator.
+typedef typename 
+iostreams::select<  // Disambiguation for Tru64.
+is_std_io<T>,
+mode_adapter<Mode, T>,
+is_iterator_range<T>,
+range_adapter<Mode, T>,
+is_dereferenceable<T>,
+output_iterator_adapter<Mode, Ch, T>,
+is_array<T>,
+array_adapter<Mode, T>,
+else_,
+#if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600)
+const T&
+#else
+T
+#endif
+>::type type;
 };
 
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type 
 resolve(const T& t, mpl::true_)
 {   // Bad overload resolution.
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(wrap(const_cast<T&>(t)));
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(wrap(const_cast<T&>(t)));
 }
 
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type 
 resolve(const T& t, mpl::false_)
 { 
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(t);
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(t);
 }
 
 template<typename Mode, typename Ch, typename T>
@@ -197,22 +197,22 @@ resolve(const T& t BOOST_IOSTREAMS_DISABLE_IF_STREAM(T))
 { return resolve<Mode, Ch>(t, is_std_io<T>()); }
 
 # if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && \
-     !defined(__GNUC__) // ---------------------------------------------------//
+!defined(__GNUC__) // ---------------------------------------------------//
 
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type 
 resolve(T& t, mpl::true_)
 { 
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(wrap(t));
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(wrap(t));
 }
 
 template<typename Mode, typename Ch, typename T>
 typename resolve_traits<Mode, Ch, T>::type 
 resolve(T& t, mpl::false_)
 { 
-    typedef typename resolve_traits<Mode, Ch, T>::type return_type;
-    return return_type(t);
+typedef typename resolve_traits<Mode, Ch, T>::type return_type;
+return return_type(t);
 }
 
 template<typename Mode, typename Ch, typename T>

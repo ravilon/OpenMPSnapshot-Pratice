@@ -31,7 +31,7 @@ This is the actual data type stored in the bimap.
 template< class Tag, class Bimap >
 struct data_type_by
 {
-    typedef typename Bimap::{side}_data_type type;
+typedef typename Bimap::{side}_data_type type;
 };
 
 \endcode
@@ -42,14 +42,14 @@ The following holds:
 
 BOOST_STATIC_ASSERT
 (
-    is_same< data_type_by< member_at::left, bimap<A,B> >::type, A >::value
+is_same< data_type_by< member_at::left, bimap<A,B> >::type, A >::value
 )
 
 \endcode
 
 See also member_at.
 \ingroup bimap_group
-                                                                    **/
+**/
 
 namespace boost {
 namespace bimaps {
@@ -59,9 +59,9 @@ namespace support {
 
 BOOST_BIMAP_SYMMETRIC_METADATA_ACCESS_BUILDER
 (
-    data_type_by,
-    left_data_type,
-    right_data_type
+data_type_by,
+left_data_type,
+right_data_type
 )
 
 } // namespace support

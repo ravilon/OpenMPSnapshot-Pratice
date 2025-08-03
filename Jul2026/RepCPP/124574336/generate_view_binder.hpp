@@ -22,35 +22,35 @@
 
 /*===========================================================================*/
 #define BOOST_BIMAP_GENERATE_MAP_VIEW_BINDER(                                 \
-                                                                              \
-    MAP_VIEW_TYPE                                                             \
-                                                                              \
+\
+MAP_VIEW_TYPE                                                             \
+\
 )                                                                             \
-                                                                              \
+\
 template< class Tag, class BimapType >                                        \
 struct map_view_bind                                                          \
 {                                                                             \
-    typedef MAP_VIEW_TYPE                                                     \
-    <                                                                         \
-        Tag,                                                                  \
-        BimapType                                                             \
-                                                                              \
-    > type;                                                                   \
+typedef MAP_VIEW_TYPE                                                     \
+<                                                                         \
+Tag,                                                                  \
+BimapType                                                             \
+\
+> type;                                                                   \
 };
 /*===========================================================================*/
 
 
 /*===========================================================================*/
 #define BOOST_BIMAP_GENERATE_SET_VIEW_BINDER(                                 \
-                                                                              \
-    SET_VIEW_TYPE                                                             \
-                                                                              \
+\
+SET_VIEW_TYPE                                                             \
+\
 )                                                                             \
-                                                                              \
+\
 template< class IndexType >                                                   \
 struct set_view_bind                                                          \
 {                                                                             \
-    typedef SET_VIEW_TYPE<IndexType> type;                                    \
+typedef SET_VIEW_TYPE<IndexType> type;                                    \
 };
 /*===========================================================================*/
 

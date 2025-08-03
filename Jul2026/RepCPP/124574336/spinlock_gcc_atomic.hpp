@@ -30,51 +30,51 @@ class spinlock
 {
 public:
 
-    unsigned char v_;
+unsigned char v_;
 
 public:
 
-    bool try_lock()
-    {
-        return __atomic_test_and_set( &v_, __ATOMIC_ACQUIRE ) == 0;
-    }
+bool try_lock()
+{
+return __atomic_test_and_set( &v_, __ATOMIC_ACQUIRE ) == 0;
+}
 
-    void lock()
-    {
-        for( unsigned k = 0; !try_lock(); ++k )
-        {
-            boost::detail::yield( k );
-        }
-    }
+void lock()
+{
+for( unsigned k = 0; !try_lock(); ++k )
+{
+boost::detail::yield( k );
+}
+}
 
-    void unlock()
-    {
-        __atomic_clear( &v_, __ATOMIC_RELEASE );
-    }
+void unlock()
+{
+__atomic_clear( &v_, __ATOMIC_RELEASE );
+}
 
 public:
 
-    class scoped_lock
-    {
-    private:
+class scoped_lock
+{
+private:
 
-        spinlock & sp_;
+spinlock & sp_;
 
-        scoped_lock( scoped_lock const & );
-        scoped_lock & operator=( scoped_lock const & );
+scoped_lock( scoped_lock const & );
+scoped_lock & operator=( scoped_lock const & );
 
-    public:
+public:
 
-        explicit scoped_lock( spinlock & sp ): sp_( sp )
-        {
-            sp.lock();
-        }
+explicit scoped_lock( spinlock & sp ): sp_( sp )
+{
+sp.lock();
+}
 
-        ~scoped_lock()
-        {
-            sp_.unlock();
-        }
-    };
+~scoped_lock()
+{
+sp_.unlock();
+}
+};
 };
 
 } // namespace detail

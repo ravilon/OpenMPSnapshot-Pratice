@@ -1,65 +1,65 @@
-/*
-	This file is part of Task-Aware HIP and is licensed under the terms contained in the COPYING and COPYING.LESSER files.
-
-	Copyright (C) 2021-2023 Barcelona Supercomputing Center (BSC)
-*/
-
-#include <TAHIP.h>
-
-#include "common/RequestManager.hpp"
-#include "common/StreamPool.hpp"
-#include "common/TaskingModel.hpp"
-
-using namespace tahip;
-
-#pragma GCC visibility push(default)
-
-extern "C" {
-
-hipError_t
-tahipCreateStreams(size_t count)
-{
-	if (count == TAHIP_STREAMS_AUTO)
-		count = TaskingModel::getNumCPUs();
-	assert(count > 0);
-
-	StreamPool::initialize(count);
-
-	return hipSuccess;
-}
-
-hipError_t
-tahipDestroyStreams()
-{
-	StreamPool::finalize();
-
-	return hipSuccess;
-}
-
-hipError_t
-tahipGetStream(hipStream_t *stream)
-{
-	assert(stream != nullptr);
-
-	*stream = StreamPool::getStream(TaskingModel::getCurrentCPU());
-
-	return hipSuccess;
-}
-
-hipError_t
-tahipReturnStream(hipStream_t)
-{
-	return hipSuccess;
-}
-
-hipError_t
-tahipSynchronizeStreamAsync(hipStream_t stream)
-{
-	RequestManager::generateRequest(stream, true);
-
-	return hipSuccess;
-}
-
-} // extern C
-
-#pragma GCC visibility pop
+/*
+This file is part of Task-Aware HIP and is licensed under the terms contained in the COPYING and COPYING.LESSER files.
+
+Copyright (C) 2021-2023 Barcelona Supercomputing Center (BSC)
+*/
+
+#include <TAHIP.h>
+
+#include "common/RequestManager.hpp"
+#include "common/StreamPool.hpp"
+#include "common/TaskingModel.hpp"
+
+using namespace tahip;
+
+#pragma GCC visibility push(default)
+
+extern "C" {
+
+hipError_t
+tahipCreateStreams(size_t count)
+{
+if (count == TAHIP_STREAMS_AUTO)
+count = TaskingModel::getNumCPUs();
+assert(count > 0);
+
+StreamPool::initialize(count);
+
+return hipSuccess;
+}
+
+hipError_t
+tahipDestroyStreams()
+{
+StreamPool::finalize();
+
+return hipSuccess;
+}
+
+hipError_t
+tahipGetStream(hipStream_t *stream)
+{
+assert(stream != nullptr);
+
+*stream = StreamPool::getStream(TaskingModel::getCurrentCPU());
+
+return hipSuccess;
+}
+
+hipError_t
+tahipReturnStream(hipStream_t)
+{
+return hipSuccess;
+}
+
+hipError_t
+tahipSynchronizeStreamAsync(hipStream_t stream)
+{
+RequestManager::generateRequest(stream, true);
+
+return hipSuccess;
+}
+
+} // extern C
+
+#pragma GCC visibility pop

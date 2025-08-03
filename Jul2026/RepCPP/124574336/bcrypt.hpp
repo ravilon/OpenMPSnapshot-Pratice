@@ -1,9 +1,9 @@
 /*
- * Copyright 2017 James E. King, III
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2017 James E. King, III
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_BCRYPT_HPP_INCLUDED_
 #define BOOST_WINAPI_BCRYPT_HPP_INCLUDED_
@@ -40,24 +40,24 @@ extern "C" {
 
 boost::winapi::NTSTATUS_ BOOST_WINAPI_WINAPI_CC
 BCryptCloseAlgorithmProvider(
-    boost::winapi::BCRYPT_ALG_HANDLE_ hAlgorithm,
-    boost::winapi::ULONG_             dwFlags
+boost::winapi::BCRYPT_ALG_HANDLE_ hAlgorithm,
+boost::winapi::ULONG_             dwFlags
 );
 
 boost::winapi::NTSTATUS_ BOOST_WINAPI_WINAPI_CC
 BCryptGenRandom(
-    boost::winapi::BCRYPT_ALG_HANDLE_ hAlgorithm,
-    boost::winapi::PUCHAR_            pbBuffer,
-    boost::winapi::ULONG_             cbBuffer,
-    boost::winapi::ULONG_             dwFlags
+boost::winapi::BCRYPT_ALG_HANDLE_ hAlgorithm,
+boost::winapi::PUCHAR_            pbBuffer,
+boost::winapi::ULONG_             cbBuffer,
+boost::winapi::ULONG_             dwFlags
 );
 
 boost::winapi::NTSTATUS_ BOOST_WINAPI_WINAPI_CC
 BCryptOpenAlgorithmProvider(
-    boost::winapi::BCRYPT_ALG_HANDLE_ *phAlgorithm,
-    boost::winapi::LPCWSTR_           pszAlgId,
-    boost::winapi::LPCWSTR_           pszImplementation,
-    boost::winapi::DWORD_             dwFlags
+boost::winapi::BCRYPT_ALG_HANDLE_ *phAlgorithm,
+boost::winapi::LPCWSTR_           pszAlgId,
+boost::winapi::LPCWSTR_           pszImplementation,
+boost::winapi::DWORD_             dwFlags
 );
 
 } // extern "C"

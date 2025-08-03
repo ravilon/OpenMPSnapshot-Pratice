@@ -6,75 +6,75 @@ double step;
 
 double serial()
 {
-	int i;
-	double x,pi,sum=0.0;
-	step = 1.0/(double)number_of_steps;
-	for(i=0;i<number_of_steps;i++)
-	{
-		x = (i+0.5)*step;
-		sum = sum + 4.0/(1.0 + x*x);
-	}
-	pi = step*sum;
+int i;
+double x,pi,sum=0.0;
+step = 1.0/(double)number_of_steps;
+for(i=0;i<number_of_steps;i++)
+{
+x = (i+0.5)*step;
+sum = sum + 4.0/(1.0 + x*x);
+}
+pi = step*sum;
 
-	return pi;
+return pi;
 }
 
 // Synchronization
 double parallel()
 {
-	int i, nthreads;
-	double  pi = 0.0;
-	step = 1.0/(double)number_of_steps;
+int i, nthreads;
+double  pi = 0.0;
+step = 1.0/(double)number_of_steps;
 
-	omp_set_num_threads(NUMBER_OF_THREADS);
+omp_set_num_threads(NUMBER_OF_THREADS);
 
-	int id,nthrds;
-	double x,sum;
-	#pragma omp parallel private(sum,x,i,id,nthrds) shared(step, nthreads, number_of_steps)
-	{
-		id = omp_get_thread_num();
-		nthrds = omp_get_num_threads();
+int id,nthrds;
+double x,sum;
+#pragma omp parallel private(sum,x,i,id,nthrds) shared(step, nthreads, number_of_steps)
+{
+id = omp_get_thread_num();
+nthrds = omp_get_num_threads();
 
-		if(id == 0)
-		{
-			nthreads = nthrds;
-		}
-		sum = 0.0;
-		for(i=id; i<number_of_steps; i+=nthreads)
-		{
-			x = (i+0.5)*step;
-			sum += 4.0/(1.0 + x*x);
-		}
-		// incremenent value of pie, for only one thread at a time
-		#pragma omp critical
-			pi += sum*step;
-	}
+if(id == 0)
+{
+nthreads = nthrds;
+}
+sum = 0.0;
+for(i=id; i<number_of_steps; i+=nthreads)
+{
+x = (i+0.5)*step;
+sum += 4.0/(1.0 + x*x);
+}
+// incremenent value of pie, for only one thread at a time
+#pragma omp critical
+pi += sum*step;
+}
 
-	return pi;
+return pi;
 }
 
 int main()
 {
-	// Serial Code
-	double serial_start_time, serial_end_time;
-	double parallel_start_time, parallel_end_time;
-	serial_start_time = omp_get_wtime();
-	double pi_serial = serial();
-	serial_end_time = omp_get_wtime();
+// Serial Code
+double serial_start_time, serial_end_time;
+double parallel_start_time, parallel_end_time;
+serial_start_time = omp_get_wtime();
+double pi_serial = serial();
+serial_end_time = omp_get_wtime();
 
-	// Parallel Code (Synchronization)
-	parallel_start_time = omp_get_wtime();
-	double pi_parallel = parallel();
-	parallel_end_time = omp_get_wtime();
+// Parallel Code (Synchronization)
+parallel_start_time = omp_get_wtime();
+double pi_parallel = parallel();
+parallel_end_time = omp_get_wtime();
 
-	// Output
-	printf("Type     | Value of pi  | Time\n");
-	for(int i=0;i<35;i++)
-	{
-		printf("-");
-	}
-	printf("\n");
-	printf("Serial   | %lf \t| %lf\n", pi_serial , (serial_end_time - serial_start_time)*1000);
-	printf("Parallel | %lf \t| %lf\n", pi_parallel , (parallel_end_time - parallel_start_time)*1000);
+// Output
+printf("Type     | Value of pi  | Time\n");
+for(int i=0;i<35;i++)
+{
+printf("-");
+}
+printf("\n");
+printf("Serial   | %lf \t| %lf\n", pi_serial , (serial_end_time - serial_start_time)*1000);
+printf("Parallel | %lf \t| %lf\n", pi_parallel , (parallel_end_time - parallel_start_time)*1000);
 
-}
+}

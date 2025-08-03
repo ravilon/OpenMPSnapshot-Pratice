@@ -14,10 +14,10 @@
 
 namespace boost { namespace spirit { namespace lex
 {
-    ///////////////////////////////////////////////////////////////////////////
-    //  Define a more convenient name for an omitted token attribute type
-    typedef spirit::omit_type omit;
-    using spirit::omit_type;
+///////////////////////////////////////////////////////////////////////////
+//  Define a more convenient name for an omitted token attribute type
+typedef spirit::omit_type omit;
+using spirit::omit_type;
 }}}
 
 #endif

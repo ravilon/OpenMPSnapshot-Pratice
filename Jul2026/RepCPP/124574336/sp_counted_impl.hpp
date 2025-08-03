@@ -54,7 +54,7 @@ template<class D> class local_sp_deleter;
 
 template<class D> D * get_local_deleter( D * /*p*/ ) BOOST_SP_NOEXCEPT
 {
-    return 0;
+return 0;
 }
 
 template<class D> D * get_local_deleter( local_sp_deleter<D> * p ) BOOST_SP_NOEXCEPT;
@@ -65,70 +65,70 @@ template<class X> class BOOST_SYMBOL_VISIBLE sp_counted_impl_p: public sp_counte
 {
 private:
 
-    X * px_;
+X * px_;
 
-    sp_counted_impl_p( sp_counted_impl_p const & );
-    sp_counted_impl_p & operator= ( sp_counted_impl_p const & );
+sp_counted_impl_p( sp_counted_impl_p const & );
+sp_counted_impl_p & operator= ( sp_counted_impl_p const & );
 
-    typedef sp_counted_impl_p<X> this_type;
+typedef sp_counted_impl_p<X> this_type;
 
 public:
 
-    explicit sp_counted_impl_p( X * px ): px_( px )
-    {
+explicit sp_counted_impl_p( X * px ): px_( px )
+{
 #if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
-        boost::sp_scalar_constructor_hook( px, sizeof(X), this );
+boost::sp_scalar_constructor_hook( px, sizeof(X), this );
 #endif
-    }
+}
 
-    void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
+void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
 #if defined(BOOST_SP_ENABLE_DEBUG_HOOKS)
-        boost::sp_scalar_destructor_hook( px_, sizeof(X), this );
+boost::sp_scalar_destructor_hook( px_, sizeof(X), this );
 #endif
-        boost::checked_delete( px_ );
-    }
+boost::checked_delete( px_ );
+}
 
-    void * get_deleter( sp_typeinfo_ const & ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return 0;
-    }
+void * get_deleter( sp_typeinfo_ const & ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return 0;
+}
 
-    void * get_local_deleter( sp_typeinfo_ const & ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return 0;
-    }
+void * get_local_deleter( sp_typeinfo_ const & ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return 0;
+}
 
-    void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return 0;
-    }
+void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return 0;
+}
 
 #if defined(BOOST_SP_USE_STD_ALLOCATOR)
 
-    void * operator new( std::size_t )
-    {
-        return std::allocator<this_type>().allocate( 1, static_cast<this_type *>(0) );
-    }
+void * operator new( std::size_t )
+{
+return std::allocator<this_type>().allocate( 1, static_cast<this_type *>(0) );
+}
 
-    void operator delete( void * p )
-    {
-        std::allocator<this_type>().deallocate( static_cast<this_type *>(p), 1 );
-    }
+void operator delete( void * p )
+{
+std::allocator<this_type>().deallocate( static_cast<this_type *>(p), 1 );
+}
 
 #endif
 
 #if defined(BOOST_SP_USE_QUICK_ALLOCATOR)
 
-    void * operator new( std::size_t )
-    {
-        return quick_allocator<this_type>::alloc();
-    }
+void * operator new( std::size_t )
+{
+return quick_allocator<this_type>::alloc();
+}
 
-    void operator delete( void * p )
-    {
-        quick_allocator<this_type>::dealloc( p );
-    }
+void operator delete( void * p )
+{
+quick_allocator<this_type>::dealloc( p );
+}
 
 #endif
 };
@@ -144,81 +144,81 @@ template<class P, class D> class BOOST_SYMBOL_VISIBLE sp_counted_impl_pd: public
 {
 private:
 
-    P ptr; // copy constructor must not throw
-    D del; // copy/move constructor must not throw
+P ptr; // copy constructor must not throw
+D del; // copy/move constructor must not throw
 
-    sp_counted_impl_pd( sp_counted_impl_pd const & );
-    sp_counted_impl_pd & operator= ( sp_counted_impl_pd const & );
+sp_counted_impl_pd( sp_counted_impl_pd const & );
+sp_counted_impl_pd & operator= ( sp_counted_impl_pd const & );
 
-    typedef sp_counted_impl_pd<P, D> this_type;
+typedef sp_counted_impl_pd<P, D> this_type;
 
 public:
 
-    // pre: d(p) must not throw
+// pre: d(p) must not throw
 
 #if !defined( BOOST_NO_CXX11_RVALUE_REFERENCES )
 
-    sp_counted_impl_pd( P p, D & d ): ptr( p ), del( static_cast< D&& >( d ) )
-    {
-    }
+sp_counted_impl_pd( P p, D & d ): ptr( p ), del( static_cast< D&& >( d ) )
+{
+}
 
 #else
 
-    sp_counted_impl_pd( P p, D & d ): ptr( p ), del( d )
-    {
-    }
+sp_counted_impl_pd( P p, D & d ): ptr( p ), del( d )
+{
+}
 
 #endif
 
-    sp_counted_impl_pd( P p ): ptr( p ), del()
-    {
-    }
+sp_counted_impl_pd( P p ): ptr( p ), del()
+{
+}
 
-    void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        del( ptr );
-    }
+void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+del( ptr );
+}
 
-    void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return ti == BOOST_SP_TYPEID_(D)? &reinterpret_cast<char&>( del ): 0;
-    }
+void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return ti == BOOST_SP_TYPEID_(D)? &reinterpret_cast<char&>( del ): 0;
+}
 
-    void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return ti == BOOST_SP_TYPEID_(D)? boost::detail::get_local_deleter( boost::addressof( del ) ): 0;
-    }
+void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return ti == BOOST_SP_TYPEID_(D)? boost::detail::get_local_deleter( boost::addressof( del ) ): 0;
+}
 
-    void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return &reinterpret_cast<char&>( del );
-    }
+void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return &reinterpret_cast<char&>( del );
+}
 
 #if defined(BOOST_SP_USE_STD_ALLOCATOR)
 
-    void * operator new( std::size_t )
-    {
-        return std::allocator<this_type>().allocate( 1, static_cast<this_type *>(0) );
-    }
+void * operator new( std::size_t )
+{
+return std::allocator<this_type>().allocate( 1, static_cast<this_type *>(0) );
+}
 
-    void operator delete( void * p )
-    {
-        std::allocator<this_type>().deallocate( static_cast<this_type *>(p), 1 );
-    }
+void operator delete( void * p )
+{
+std::allocator<this_type>().deallocate( static_cast<this_type *>(p), 1 );
+}
 
 #endif
 
 #if defined(BOOST_SP_USE_QUICK_ALLOCATOR)
 
-    void * operator new( std::size_t )
-    {
-        return quick_allocator<this_type>::alloc();
-    }
+void * operator new( std::size_t )
+{
+return quick_allocator<this_type>::alloc();
+}
 
-    void operator delete( void * p )
-    {
-        quick_allocator<this_type>::dealloc( p );
-    }
+void operator delete( void * p )
+{
+quick_allocator<this_type>::dealloc( p );
+}
 
 #endif
 };
@@ -227,75 +227,75 @@ template<class P, class D, class A> class BOOST_SYMBOL_VISIBLE sp_counted_impl_p
 {
 private:
 
-    P p_; // copy constructor must not throw
-    D d_; // copy/move constructor must not throw
-    A a_; // copy constructor must not throw
+P p_; // copy constructor must not throw
+D d_; // copy/move constructor must not throw
+A a_; // copy constructor must not throw
 
-    sp_counted_impl_pda( sp_counted_impl_pda const & );
-    sp_counted_impl_pda & operator= ( sp_counted_impl_pda const & );
+sp_counted_impl_pda( sp_counted_impl_pda const & );
+sp_counted_impl_pda & operator= ( sp_counted_impl_pda const & );
 
-    typedef sp_counted_impl_pda<P, D, A> this_type;
+typedef sp_counted_impl_pda<P, D, A> this_type;
 
 public:
 
-    // pre: d( p ) must not throw
+// pre: d( p ) must not throw
 
 #if !defined( BOOST_NO_CXX11_RVALUE_REFERENCES )
 
-    sp_counted_impl_pda( P p, D & d, A a ): p_( p ), d_( static_cast< D&& >( d ) ), a_( a )
-    {
-    }
+sp_counted_impl_pda( P p, D & d, A a ): p_( p ), d_( static_cast< D&& >( d ) ), a_( a )
+{
+}
 
 #else
 
-    sp_counted_impl_pda( P p, D & d, A a ): p_( p ), d_( d ), a_( a )
-    {
-    }
+sp_counted_impl_pda( P p, D & d, A a ): p_( p ), d_( d ), a_( a )
+{
+}
 
 #endif
 
-    sp_counted_impl_pda( P p, A a ): p_( p ), d_( a ), a_( a )
-    {
-    }
+sp_counted_impl_pda( P p, A a ): p_( p ), d_( a ), a_( a )
+{
+}
 
-    void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        d_( p_ );
-    }
+void dispose() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+d_( p_ );
+}
 
-    void destroy() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
+void destroy() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
 #if !defined( BOOST_NO_CXX11_ALLOCATOR )
 
-        typedef typename std::allocator_traits<A>::template rebind_alloc< this_type > A2;
+typedef typename std::allocator_traits<A>::template rebind_alloc< this_type > A2;
 
 #else
 
-        typedef typename A::template rebind< this_type >::other A2;
+typedef typename A::template rebind< this_type >::other A2;
 
 #endif
 
-        A2 a2( a_ );
+A2 a2( a_ );
 
-        this->~this_type();
+this->~this_type();
 
-        a2.deallocate( this, 1 );
-    }
+a2.deallocate( this, 1 );
+}
 
-    void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return ti == BOOST_SP_TYPEID_( D )? &reinterpret_cast<char&>( d_ ): 0;
-    }
+void * get_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return ti == BOOST_SP_TYPEID_( D )? &reinterpret_cast<char&>( d_ ): 0;
+}
 
-    void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return ti == BOOST_SP_TYPEID_( D )? boost::detail::get_local_deleter( boost::addressof( d_ ) ): 0;
-    }
+void * get_local_deleter( sp_typeinfo_ const & ti ) BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return ti == BOOST_SP_TYPEID_( D )? boost::detail::get_local_deleter( boost::addressof( d_ ) ): 0;
+}
 
-    void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
-    {
-        return &reinterpret_cast<char&>( d_ );
-    }
+void * get_untyped_deleter() BOOST_SP_NOEXCEPT BOOST_OVERRIDE
+{
+return &reinterpret_cast<char&>( d_ );
+}
 };
 
 #ifdef __CODEGUARD__

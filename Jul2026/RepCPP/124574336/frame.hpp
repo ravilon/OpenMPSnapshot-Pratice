@@ -34,7 +34,7 @@ BOOST_CONSTEXPR inline bool operator!=(const frame& lhs, const frame& rhs) BOOST
 
 /// Fast hashing support, O(1) complexity; Async-Handler-Safe.
 inline std::size_t hash_value(const frame& f) BOOST_NOEXCEPT {
-    return reinterpret_cast<std::size_t>(f.address());
+return reinterpret_cast<std::size_t>(f.address());
 }
 
 /// Outputs stacktrace::frame in a human readable format to string; unsafe to use in async handlers.
@@ -43,7 +43,7 @@ BOOST_STACKTRACE_FUNCTION std::string to_string(const frame& f);
 /// Outputs stacktrace::frame in a human readable format to output stream; unsafe to use in async handlers.
 template <class CharT, class TraitsT>
 std::basic_ostream<CharT, TraitsT>& operator<<(std::basic_ostream<CharT, TraitsT>& os, const frame& f) {
-    return os << boost::stacktrace::to_string(f);
+return os << boost::stacktrace::to_string(f);
 }
 
 }} // namespace boost::stacktrace

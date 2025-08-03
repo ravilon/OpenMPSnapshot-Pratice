@@ -31,17 +31,17 @@ namespace detail
 
 inline void yield( unsigned k )
 {
-    // Experiments on Windows and Fedora 32 show that a single pause,
-    // followed by an immediate sp_thread_sleep(), is best.
+// Experiments on Windows and Fedora 32 show that a single pause,
+// followed by an immediate sp_thread_sleep(), is best.
 
-    if( k == 0 )
-    {
-        sp_thread_pause();
-    }
-    else
-    {
-        sp_thread_sleep();
-    }
+if( k == 0 )
+{
+sp_thread_pause();
+}
+else
+{
+sp_thread_sleep();
+}
 }
 
 } // namespace detail

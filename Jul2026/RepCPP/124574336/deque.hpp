@@ -30,43 +30,43 @@ namespace serialization {
 
 template<class Archive, class U, class Allocator>
 inline void save(
-    Archive & ar,
-    const std::deque<U, Allocator> &t,
-    const unsigned int /* file_version */
+Archive & ar,
+const std::deque<U, Allocator> &t,
+const unsigned int /* file_version */
 ){
-    boost::serialization::stl::save_collection<
-        Archive, std::deque<U, Allocator>
-    >(ar, t);
+boost::serialization::stl::save_collection<
+Archive, std::deque<U, Allocator>
+>(ar, t);
 }
 
 template<class Archive, class U, class Allocator>
 inline void load(
-    Archive & ar,
-    std::deque<U, Allocator> &t,
-    const unsigned int /* file_version */
+Archive & ar,
+std::deque<U, Allocator> &t,
+const unsigned int /* file_version */
 ){
-    const boost::serialization::library_version_type library_version(
-        ar.get_library_version()
-    );
-    // retrieve number of elements
-    item_version_type item_version(0);
-    collection_size_type count;
-    ar >> BOOST_SERIALIZATION_NVP(count);
-    if(boost::serialization::library_version_type(3) < library_version){
-        ar >> BOOST_SERIALIZATION_NVP(item_version);
-    }
-    stl::collection_load_impl(ar, t, count, item_version);
+const boost::serialization::library_version_type library_version(
+ar.get_library_version()
+);
+// retrieve number of elements
+item_version_type item_version(0);
+collection_size_type count;
+ar >> BOOST_SERIALIZATION_NVP(count);
+if(boost::serialization::library_version_type(3) < library_version){
+ar >> BOOST_SERIALIZATION_NVP(item_version);
+}
+stl::collection_load_impl(ar, t, count, item_version);
 }
 
 // split non-intrusive serialization function member into separate
 // non intrusive save/load member functions
 template<class Archive, class U, class Allocator>
 inline void serialize(
-    Archive & ar,
-    std::deque<U, Allocator> &t,
-    const unsigned int file_version
+Archive & ar,
+std::deque<U, Allocator> &t,
+const unsigned int file_version
 ){
-    boost::serialization::split_free(ar, t, file_version);
+boost::serialization::split_free(ar, t, file_version);
 }
 
 } // namespace serialization

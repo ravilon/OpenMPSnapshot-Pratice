@@ -38,31 +38,31 @@ class atomic_count
 {
 public:
 
-    explicit atomic_count( long v ): value_( static_cast< boost::int_least32_t >( v ) )
-    {
-    }
+explicit atomic_count( long v ): value_( static_cast< boost::int_least32_t >( v ) )
+{
+}
 
-    long operator++()
-    {
-        return __sync_add_and_fetch( &value_, 1 );
-    }
+long operator++()
+{
+return __sync_add_and_fetch( &value_, 1 );
+}
 
-    long operator--()
-    {
-        return __sync_add_and_fetch( &value_, -1 );
-    }
+long operator--()
+{
+return __sync_add_and_fetch( &value_, -1 );
+}
 
-    operator long() const
-    {
-        return __sync_fetch_and_add( &value_, 0 );
-    }
+operator long() const
+{
+return __sync_fetch_and_add( &value_, 0 );
+}
 
 private:
 
-    atomic_count(atomic_count const &);
-    atomic_count & operator=(atomic_count const &);
+atomic_count(atomic_count const &);
+atomic_count & operator=(atomic_count const &);
 
-    mutable boost::int_least32_t value_;
+mutable boost::int_least32_t value_;
 };
 
 } // namespace detail

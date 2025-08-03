@@ -20,28 +20,28 @@
 
 namespace
 boost
-    {
-    template <class E>
-    inline
-    E *
-    current_exception_cast()
-        {
-        try
-            {
-            throw;
-            }
-        catch(
-        E & e )
-            {
-            return &e;
-            }
-        catch(
-        ...)
-            {
-            return 0;
-            }
-        }
-    }
+{
+template <class E>
+inline
+E *
+current_exception_cast()
+{
+try
+{
+throw;
+}
+catch(
+E & e )
+{
+return &e;
+}
+catch(
+...)
+{
+return 0;
+}
+}
+}
 
 #if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
 #pragma warning(pop)

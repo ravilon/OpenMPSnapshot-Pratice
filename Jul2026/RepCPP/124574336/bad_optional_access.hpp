@@ -27,9 +27,9 @@ namespace boost {
 class bad_optional_access : public std::logic_error
 {
 public:
-  bad_optional_access()
-    : std::logic_error("Attempted to access the value of an uninitialized optional object.")
-    {}
+bad_optional_access()
+: std::logic_error("Attempted to access the value of an uninitialized optional object.")
+{}
 };
 
 #if defined(__clang__)

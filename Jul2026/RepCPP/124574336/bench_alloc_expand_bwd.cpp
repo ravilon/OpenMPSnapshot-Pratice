@@ -32,27 +32,27 @@ using boost::move_detail::nanosecond_type;
 
 class MyInt
 {
-   int int_;
+int int_;
 
-   public:
-   MyInt(int i = 0)
-      : int_(i)
-   {}
+public:
+MyInt(int i = 0)
+: int_(i)
+{}
 
-   MyInt(const MyInt &other)
-      :  int_(other.int_)
-   {}
+MyInt(const MyInt &other)
+:  int_(other.int_)
+{}
 
-   MyInt & operator=(const MyInt &other)
-   {
-      int_ = other.int_;
-      return *this;
-   }
+MyInt & operator=(const MyInt &other)
+{
+int_ = other.int_;
+return *this;
+}
 
-   ~MyInt()
-   {
-      int_ = 0;
-   }
+~MyInt()
+{
+int_ = 0;
+}
 };
 namespace boost{
 
@@ -62,8 +62,8 @@ struct has_trivial_destructor_after_move;
 template<>
 struct has_trivial_destructor_after_move<MyInt>
 {
-   static const bool value = true;
-   //static const bool value = false;
+static const bool value = true;
+//static const bool value = false;
 };
 
 }  //namespace boost{
@@ -95,136 +95,136 @@ template<> struct get_allocator_name<AllocatorPlusV1>
 
 void print_header()
 {
-   std::cout   << "Allocator" << ";" << "Iterations" << ";" << "Size" << ";"
-               << "Capacity" << ";" << "push_back(ns)" << ";" << "Allocator calls" << ";"
-               << "New allocations" << ";" << "Bwd expansions" << std::endl;
+std::cout   << "Allocator" << ";" << "Iterations" << ";" << "Size" << ";"
+<< "Capacity" << ";" << "push_back(ns)" << ";" << "Allocator calls" << ";"
+<< "New allocations" << ";" << "Bwd expansions" << std::endl;
 }
 
 template<class Allocator>
 void vector_test_template(std::size_t num_iterations, std::size_t num_elements, bool csv_output)
 {
-   typedef Allocator IntAllocator;
-   std::size_t numalloc = 0, numexpand = 0;
+typedef Allocator IntAllocator;
+std::size_t numalloc = 0, numexpand = 0;
 
-   cpu_timer timer;
-   timer.resume();
+cpu_timer timer;
+timer.resume();
 
-   std::size_t capacity = 0;
-   for(std::size_t r = 0; r != num_iterations; ++r){
-      bc::vector<MyInt, IntAllocator> v;
-      v.reset_alloc_stats();
-      void *first_mem = 0;
-      BOOST_TRY{
-         first_mem = bc::dlmalloc_malloc(sizeof(MyInt)*num_elements*3/2);
-         v.push_back(MyInt(0));
-         bc::dlmalloc_free(first_mem);
+std::size_t capacity = 0;
+for(std::size_t r = 0; r != num_iterations; ++r){
+bc::vector<MyInt, IntAllocator> v;
+v.reset_alloc_stats();
+void *first_mem = 0;
+BOOST_TRY{
+first_mem = bc::dlmalloc_malloc(sizeof(MyInt)*num_elements*3/2);
+v.push_back(MyInt(0));
+bc::dlmalloc_free(first_mem);
 
-         for(std::size_t e = 0; e != num_elements; ++e){
-            v.push_back(MyInt((int)e));
-         }
-         numalloc  += v.num_alloc;
-         numexpand += v.num_expand_bwd;
-         capacity = static_cast<std::size_t>(v.capacity());
-      }
-      BOOST_CATCH(...){
-         bc::dlmalloc_free(first_mem);
-         BOOST_RETHROW;
-      }
-      BOOST_CATCH_END
-   }
+for(std::size_t e = 0; e != num_elements; ++e){
+v.push_back(MyInt((int)e));
+}
+numalloc  += v.num_alloc;
+numexpand += v.num_expand_bwd;
+capacity = static_cast<std::size_t>(v.capacity());
+}
+BOOST_CATCH(...){
+bc::dlmalloc_free(first_mem);
+BOOST_RETHROW;
+}
+BOOST_CATCH_END
+}
 
-   assert(bc::dlmalloc_allocated_memory() == 0);
+assert(bc::dlmalloc_allocated_memory() == 0);
 
-   timer.stop();
-   nanosecond_type nseconds = timer.elapsed().wall;
+timer.stop();
+nanosecond_type nseconds = timer.elapsed().wall;
 
-   if(csv_output){
-      std::cout   << get_allocator_name<Allocator>::get()
-                  << ";"
-                  << num_iterations
-                  << ";"
-                  << num_elements
-                  << ";"
-                  << capacity
-                  << ";"
-                  << float(nseconds)/float(num_iterations*num_elements)
-                  << ";"
-                  << (float(numalloc) + float(numexpand))/float(num_iterations)
-                  << ";"
-                  << float(numalloc)/float(num_iterations)
-                  << ";"
-                  << float(numexpand)/float(num_iterations)
-                  << std::endl;
-   }
-   else{
-      std::cout   << std::endl
-                  << "Allocator: " << get_allocator_name<Allocator>::get()
-                  << std::endl
-                  << "  push_back ns:              "
-                  << float(nseconds)/float(num_iterations*num_elements)
-                  << std::endl
-                  << "  capacity  -  alloc calls (new/expand):  "
-                     << (std::size_t)capacity << "  -  "
-                     << (float(numalloc) + float(numexpand))/float(num_iterations)
-                     << "(" << float(numalloc)/float(num_iterations) << "/" << float(numexpand)/float(num_iterations) << ")"
-                  << std::endl;
-      std::cout   << '\n'
-                  << "    -----------------------------------    "
-                  << std::endl;
-   }
-   bc::dlmalloc_trim(0);
+if(csv_output){
+std::cout   << get_allocator_name<Allocator>::get()
+<< ";"
+<< num_iterations
+<< ";"
+<< num_elements
+<< ";"
+<< capacity
+<< ";"
+<< float(nseconds)/float(num_iterations*num_elements)
+<< ";"
+<< (float(numalloc) + float(numexpand))/float(num_iterations)
+<< ";"
+<< float(numalloc)/float(num_iterations)
+<< ";"
+<< float(numexpand)/float(num_iterations)
+<< std::endl;
+}
+else{
+std::cout   << std::endl
+<< "Allocator: " << get_allocator_name<Allocator>::get()
+<< std::endl
+<< "  push_back ns:              "
+<< float(nseconds)/float(num_iterations*num_elements)
+<< std::endl
+<< "  capacity  -  alloc calls (new/expand):  "
+<< (std::size_t)capacity << "  -  "
+<< (float(numalloc) + float(numexpand))/float(num_iterations)
+<< "(" << float(numalloc)/float(num_iterations) << "/" << float(numexpand)/float(num_iterations) << ")"
+<< std::endl;
+std::cout   << '\n'
+<< "    -----------------------------------    "
+<< std::endl;
+}
+bc::dlmalloc_trim(0);
 }
 
 int main(int argc, const char *argv[])
 {
-   //#define SINGLE_TEST
-   #define SIMPLE_IT
-   #ifdef SINGLE_TEST
-      #ifdef NDEBUG
-      std::size_t numit [] = { 10 };
-      #else
-      std::size_t numit [] = { 10 };
-      #endif
-      std::size_t numele [] = { 10000 };
-   #elif defined(SIMPLE_IT)
-      std::size_t numit [] = { 3 };
-      std::size_t numele[] = { 10000 };
-   #else
-      #ifdef NDEBUG
-      std::size_t numit [] = { 2000, 20000, 200000, 2000000 };
-      #else
-      std::size_t numit [] = { 100, 1000, 10000, 100000 };
-      #endif
-      std::size_t numele [] = { 10000, 1000,   100,     10       };
-   #endif
+//#define SINGLE_TEST
+#define SIMPLE_IT
+#ifdef SINGLE_TEST
+#ifdef NDEBUG
+std::size_t numit [] = { 10 };
+#else
+std::size_t numit [] = { 10 };
+#endif
+std::size_t numele [] = { 10000 };
+#elif defined(SIMPLE_IT)
+std::size_t numit [] = { 3 };
+std::size_t numele[] = { 10000 };
+#else
+#ifdef NDEBUG
+std::size_t numit [] = { 2000, 20000, 200000, 2000000 };
+#else
+std::size_t numit [] = { 100, 1000, 10000, 100000 };
+#endif
+std::size_t numele [] = { 10000, 1000,   100,     10       };
+#endif
 
-   bool csv_output = argc == 2 && (strcmp(argv[1], "--csv-output") == 0);
+bool csv_output = argc == 2 && (strcmp(argv[1], "--csv-output") == 0);
 
-   if(csv_output){
-      print_header();
-      for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
-         vector_test_template<StdAllocator>(numit[i], numele[i], csv_output);
-      }
-      for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
-         vector_test_template<AllocatorPlusV1>(numit[i], numele[i], csv_output);
-      }
-      for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
-         vector_test_template<AllocatorPlusV2Mask>(numit[i], numele[i], csv_output);
-      }
-      for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
-         vector_test_template<AllocatorPlusV2>(numit[i], numele[i], csv_output);
-      }
-   }
-   else{
-      for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
-         std::cout   << "\n    -----------------------------------    \n"
-                     <<   "  Iterations/Elements:         " << numit[i] << "/" << numele[i]
-                     << "\n    -----------------------------------    \n";
-         vector_test_template<StdAllocator>(numit[i], numele[i], csv_output);
-         vector_test_template<AllocatorPlusV1>(numit[i], numele[i], csv_output);
-         vector_test_template<AllocatorPlusV2Mask>(numit[i], numele[i], csv_output);
-         vector_test_template<AllocatorPlusV2>(numit[i], numele[i], csv_output);
-      }
-   }
-   return 0;
+if(csv_output){
+print_header();
+for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
+vector_test_template<StdAllocator>(numit[i], numele[i], csv_output);
+}
+for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
+vector_test_template<AllocatorPlusV1>(numit[i], numele[i], csv_output);
+}
+for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
+vector_test_template<AllocatorPlusV2Mask>(numit[i], numele[i], csv_output);
+}
+for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
+vector_test_template<AllocatorPlusV2>(numit[i], numele[i], csv_output);
+}
+}
+else{
+for(std::size_t i = 0; i < sizeof(numele)/sizeof(numele[0]); ++i){
+std::cout   << "\n    -----------------------------------    \n"
+<<   "  Iterations/Elements:         " << numit[i] << "/" << numele[i]
+<< "\n    -----------------------------------    \n";
+vector_test_template<StdAllocator>(numit[i], numele[i], csv_output);
+vector_test_template<AllocatorPlusV1>(numit[i], numele[i], csv_output);
+vector_test_template<AllocatorPlusV2Mask>(numit[i], numele[i], csv_output);
+vector_test_template<AllocatorPlusV2>(numit[i], numele[i], csv_output);
+}
+}
+return 0;
 }

@@ -1,11 +1,11 @@
 /*
- * Copyright 2010 Vicente J. Botet Escriba
- * Copyright 2015 Andrey Semashev
- * Copyright 2016 Jorge Lodos
- *
- * Distributed under the Boost Software License, Version 1.0.
- * See http://www.boost.org/LICENSE_1_0.txt
- */
+* Copyright 2010 Vicente J. Botet Escriba
+* Copyright 2015 Andrey Semashev
+* Copyright 2016 Jorge Lodos
+*
+* Distributed under the Boost Software License, Version 1.0.
+* See http://www.boost.org/LICENSE_1_0.txt
+*/
 
 #ifndef BOOST_WINAPI_ERROR_HANDLING_HPP_INCLUDED_
 #define BOOST_WINAPI_ERROR_HANDLING_HPP_INCLUDED_
@@ -24,24 +24,24 @@ extern "C" {
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_WINAPI_IMPORT boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 FormatMessageA(
-    boost::winapi::DWORD_ dwFlags,
-    boost::winapi::LPCVOID_ lpSource,
-    boost::winapi::DWORD_ dwMessageId,
-    boost::winapi::DWORD_ dwLanguageId,
-    boost::winapi::LPSTR_ lpBuffer,
-    boost::winapi::DWORD_ nSize,
-    va_list *Arguments);
+boost::winapi::DWORD_ dwFlags,
+boost::winapi::LPCVOID_ lpSource,
+boost::winapi::DWORD_ dwMessageId,
+boost::winapi::DWORD_ dwLanguageId,
+boost::winapi::LPSTR_ lpBuffer,
+boost::winapi::DWORD_ nSize,
+va_list *Arguments);
 #endif
 
 BOOST_WINAPI_IMPORT_EXCEPT_WM boost::winapi::DWORD_ BOOST_WINAPI_WINAPI_CC
 FormatMessageW(
-    boost::winapi::DWORD_ dwFlags,
-    boost::winapi::LPCVOID_ lpSource,
-    boost::winapi::DWORD_ dwMessageId,
-    boost::winapi::DWORD_ dwLanguageId,
-    boost::winapi::LPWSTR_ lpBuffer,
-    boost::winapi::DWORD_ nSize,
-    va_list *Arguments);
+boost::winapi::DWORD_ dwFlags,
+boost::winapi::LPCVOID_ lpSource,
+boost::winapi::DWORD_ dwMessageId,
+boost::winapi::DWORD_ dwLanguageId,
+boost::winapi::LPWSTR_ lpBuffer,
+boost::winapi::DWORD_ nSize,
+va_list *Arguments);
 
 #if BOOST_WINAPI_PARTITION_DESKTOP || BOOST_WINAPI_PARTITION_SYSTEM
 BOOST_WINAPI_IMPORT boost::winapi::UINT_ BOOST_WINAPI_WINAPI_CC
@@ -73,7 +73,7 @@ BOOST_CONSTEXPR_OR_CONST WORD_ SUBLANG_DEFAULT_=               SUBLANG_DEFAULT; 
 
 BOOST_FORCEINLINE BOOST_CONSTEXPR WORD_ MAKELANGID_(WORD_ p, WORD_ s) BOOST_NOEXCEPT
 {
-    return static_cast< WORD_ >(MAKELANGID(p, s));
+return static_cast< WORD_ >(MAKELANGID(p, s));
 }
 
 #if BOOST_WINAPI_PARTITION_DESKTOP
@@ -102,7 +102,7 @@ BOOST_CONSTEXPR_OR_CONST WORD_ SUBLANG_DEFAULT_=               0x01;    // user 
 
 BOOST_FORCEINLINE BOOST_CONSTEXPR WORD_ MAKELANGID_(WORD_ p, WORD_ s) BOOST_NOEXCEPT
 {
-    return static_cast< WORD_ >((static_cast< DWORD_ >(s) << 10u) | p);
+return static_cast< WORD_ >((static_cast< DWORD_ >(s) << 10u) | p);
 }
 
 #if BOOST_WINAPI_PARTITION_DESKTOP
@@ -124,28 +124,28 @@ using ::SetErrorMode;
 
 #if !defined( BOOST_NO_ANSI_APIS )
 BOOST_FORCEINLINE DWORD_ format_message(
-    DWORD_ dwFlags,
-    LPCVOID_ lpSource,
-    DWORD_ dwMessageId,
-    DWORD_ dwLanguageId,
-    LPSTR_ lpBuffer,
-    DWORD_ nSize,
-    va_list *Arguments)
+DWORD_ dwFlags,
+LPCVOID_ lpSource,
+DWORD_ dwMessageId,
+DWORD_ dwLanguageId,
+LPSTR_ lpBuffer,
+DWORD_ nSize,
+va_list *Arguments)
 {
-    return ::FormatMessageA(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, Arguments);
+return ::FormatMessageA(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, Arguments);
 }
 #endif
 
 BOOST_FORCEINLINE DWORD_ format_message(
-    DWORD_ dwFlags,
-    LPCVOID_ lpSource,
-    DWORD_ dwMessageId,
-    DWORD_ dwLanguageId,
-    LPWSTR_ lpBuffer,
-    DWORD_ nSize,
-    va_list *Arguments)
+DWORD_ dwFlags,
+LPCVOID_ lpSource,
+DWORD_ dwMessageId,
+DWORD_ dwLanguageId,
+LPWSTR_ lpBuffer,
+DWORD_ nSize,
+va_list *Arguments)
 {
-    return ::FormatMessageW(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, Arguments);
+return ::FormatMessageW(dwFlags, lpSource, dwMessageId, dwLanguageId, lpBuffer, nSize, Arguments);
 }
 
 }

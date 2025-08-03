@@ -37,40 +37,40 @@ namespace boost{ namespace math{ namespace tools{
 //
 template <class T>
 boost::numeric::ublas::vector<T> solve(
-          const boost::numeric::ublas::matrix<T>& A_,
-          const boost::numeric::ublas::vector<T>& b_)
+const boost::numeric::ublas::matrix<T>& A_,
+const boost::numeric::ublas::vector<T>& b_)
 {
-   //BOOST_MATH_ASSERT(A_.size() == b_.size());
+//BOOST_MATH_ASSERT(A_.size() == b_.size());
 
-   boost::numeric::ublas::matrix<T> A(A_);
-   boost::numeric::ublas::vector<T> b(b_);
-   boost::numeric::ublas::permutation_matrix<> piv(b.size());
-   lu_factorize(A, piv);
-   lu_substitute(A, piv, b);
-   //
-   // iterate to reduce error:
-   //
-   boost::numeric::ublas::vector<T> delta(b.size());
-   for(unsigned k = 0; k < 1; ++k)
-   {
-      noalias(delta) = prod(A_, b);
-      delta -= b_;
-      lu_substitute(A, piv, delta);
-      b -= delta;
+boost::numeric::ublas::matrix<T> A(A_);
+boost::numeric::ublas::vector<T> b(b_);
+boost::numeric::ublas::permutation_matrix<> piv(b.size());
+lu_factorize(A, piv);
+lu_substitute(A, piv, b);
+//
+// iterate to reduce error:
+//
+boost::numeric::ublas::vector<T> delta(b.size());
+for(unsigned k = 0; k < 1; ++k)
+{
+noalias(delta) = prod(A_, b);
+delta -= b_;
+lu_substitute(A, piv, delta);
+b -= delta;
 
-      T max_error = 0;
+T max_error = 0;
 
-      for(unsigned i = 0; i < delta.size(); ++i)
-      {
-         using std::abs;
-         T err = abs(delta[i] / b[i]);
-         if(err > max_error)
-            max_error = err;
-      }
-      //std::cout << "Max change in LU error correction: " << max_error << std::endl;
-   }
+for(unsigned i = 0; i < delta.size(); ++i)
+{
+using std::abs;
+T err = abs(delta[i] / b[i]);
+if(err > max_error)
+max_error = err;
+}
+//std::cout << "Max change in LU error correction: " << max_error << std::endl;
+}
 
-   return b;
+return b;
 }
 
 }}} // namespaces

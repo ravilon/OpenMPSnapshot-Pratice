@@ -1,21 +1,21 @@
 /*
- *
- * Copyright (c) 1998-2002
- * John Maddock
- *
- * Use, modification and distribution are subject to the
- * Boost Software License, Version 1.0. (See accompanying file
- * LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
- *
- */
+*
+* Copyright (c) 1998-2002
+* John Maddock
+*
+* Use, modification and distribution are subject to the
+* Boost Software License, Version 1.0. (See accompanying file
+* LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+*
+*/
 
- /*
-  *   LOCATION:    see http://www.boost.org for most recent version.
-  *   FILE         cregex.cpp
-  *   VERSION      see <boost/version.hpp>
-  *   DESCRIPTION: Declares POSIX API functions
-  *                + boost::RegEx high level wrapper.
-  */
+/*
+*   LOCATION:    see http://www.boost.org for most recent version.
+*   FILE         cregex.cpp
+*   VERSION      see <boost/version.hpp>
+*   DESCRIPTION: Declares POSIX API functions
+*                + boost::RegEx high level wrapper.
+*/
 
 #ifndef BOOST_RE_CREGEX_HPP_INCLUDED
 #define BOOST_RE_CREGEX_HPP_INCLUDED
@@ -59,82 +59,82 @@ typedef size_t regsize_t;
 
 typedef struct
 {
-   unsigned int re_magic;
+unsigned int re_magic;
 #ifdef __cplusplus
-   std::size_t  re_nsub;      /* number of parenthesized subexpressions */
+std::size_t  re_nsub;      /* number of parenthesized subexpressions */
 #else
-   size_t re_nsub; 
+size_t re_nsub; 
 #endif
-   const char*  re_endp;       /* end pointer for REG_PEND */
-   void* guts;                /* none of your business :-) */
-   match_flag_type eflags;        /* none of your business :-) */
+const char*  re_endp;       /* end pointer for REG_PEND */
+void* guts;                /* none of your business :-) */
+match_flag_type eflags;        /* none of your business :-) */
 } regex_tA;
 
 #ifndef BOOST_NO_WREGEX
 typedef struct
 {
-   unsigned int re_magic;
+unsigned int re_magic;
 #ifdef __cplusplus
-   std::size_t  re_nsub;         /* number of parenthesized subexpressions */
+std::size_t  re_nsub;         /* number of parenthesized subexpressions */
 #else
-   size_t re_nsub;
+size_t re_nsub;
 #endif
-   const wchar_t* re_endp;       /* end pointer for REG_PEND */
-   void* guts;                   /* none of your business :-) */
-   match_flag_type eflags;           /* none of your business :-) */
+const wchar_t* re_endp;       /* end pointer for REG_PEND */
+void* guts;                   /* none of your business :-) */
+match_flag_type eflags;           /* none of your business :-) */
 } regex_tW;
 #endif
 
 typedef struct
 {
-   regoff_t rm_so;      /* start of match */
-   regoff_t rm_eo;      /* end of match */
+regoff_t rm_so;      /* start of match */
+regoff_t rm_eo;      /* end of match */
 } regmatch_t;
 
 /* regcomp() flags */
 typedef enum{
-   REG_BASIC = 0000,
-   REG_EXTENDED = 0001,
-   REG_ICASE = 0002,
-   REG_NOSUB = 0004,
-   REG_NEWLINE = 0010,
-   REG_NOSPEC = 0020,
-   REG_PEND = 0040,
-   REG_DUMP = 0200,
-   REG_NOCOLLATE = 0400,
-   REG_ESCAPE_IN_LISTS = 01000,
-   REG_NEWLINE_ALT = 02000,
-   REG_PERLEX = 04000,
+REG_BASIC = 0000,
+REG_EXTENDED = 0001,
+REG_ICASE = 0002,
+REG_NOSUB = 0004,
+REG_NEWLINE = 0010,
+REG_NOSPEC = 0020,
+REG_PEND = 0040,
+REG_DUMP = 0200,
+REG_NOCOLLATE = 0400,
+REG_ESCAPE_IN_LISTS = 01000,
+REG_NEWLINE_ALT = 02000,
+REG_PERLEX = 04000,
 
-   REG_PERL = REG_EXTENDED | REG_NOCOLLATE | REG_ESCAPE_IN_LISTS | REG_PERLEX,
-   REG_AWK = REG_EXTENDED | REG_ESCAPE_IN_LISTS,
-   REG_GREP = REG_BASIC | REG_NEWLINE_ALT,
-   REG_EGREP = REG_EXTENDED | REG_NEWLINE_ALT,
+REG_PERL = REG_EXTENDED | REG_NOCOLLATE | REG_ESCAPE_IN_LISTS | REG_PERLEX,
+REG_AWK = REG_EXTENDED | REG_ESCAPE_IN_LISTS,
+REG_GREP = REG_BASIC | REG_NEWLINE_ALT,
+REG_EGREP = REG_EXTENDED | REG_NEWLINE_ALT,
 
-   REG_ASSERT = 15,
-   REG_INVARG = 16,
-   REG_ATOI = 255,   /* convert name to number (!) */
-   REG_ITOA = 0400   /* convert number to name (!) */
+REG_ASSERT = 15,
+REG_INVARG = 16,
+REG_ATOI = 255,   /* convert name to number (!) */
+REG_ITOA = 0400   /* convert number to name (!) */
 } reg_comp_flags;
 
 /* regexec() flags */
 typedef enum{
-   REG_NOTBOL =    00001,
-   REG_NOTEOL =    00002,
-   REG_STARTEND =  00004
+REG_NOTBOL =    00001,
+REG_NOTEOL =    00002,
+REG_STARTEND =  00004
 } reg_exec_flags;
 
 /*
- * POSIX error codes:
- */
+* POSIX error codes:
+*/
 typedef unsigned reg_error_t;
 typedef reg_error_t reg_errcode_t;  /* backwards compatibility */
 
 static const reg_error_t REG_NOERROR = 0;   /* Success.  */
 static const reg_error_t REG_NOMATCH = 1;   /* Didn't find a match (for regexec).  */
 
-  /* POSIX regcomp return error codes.  (In the order listed in the
-     standard.)  */
+/* POSIX regcomp return error codes.  (In the order listed in the
+standard.)  */
 static const reg_error_t REG_BADPAT = 2;    /* Invalid pattern.  */
 static const reg_error_t REG_ECOLLATE = 3;  /* Undefined collating element.  */
 static const reg_error_t REG_ECTYPE = 4;    /* Invalid character class name.  */

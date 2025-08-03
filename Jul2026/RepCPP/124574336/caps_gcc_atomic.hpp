@@ -1,15 +1,15 @@
 /*
- * Distributed under the Boost Software License, Version 1.0.
- * (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
- *
- * Copyright (c) 2014, 2020 Andrey Semashev
- */
+* Distributed under the Boost Software License, Version 1.0.
+* (See accompanying file LICENSE_1_0.txt or copy at
+* http://www.boost.org/LICENSE_1_0.txt)
+*
+* Copyright (c) 2014, 2020 Andrey Semashev
+*/
 /*!
- * \file   atomic/detail/caps_gcc_atomic.hpp
- *
- * This header defines feature capabilities macros
- */
+* \file   atomic/detail/caps_gcc_atomic.hpp
+*
+* This header defines feature capabilities macros
+*/
 
 #ifndef BOOST_ATOMIC_DETAIL_CAPS_GCC_ATOMIC_HPP_INCLUDED_
 #define BOOST_ATOMIC_DETAIL_CAPS_GCC_ATOMIC_HPP_INCLUDED_
@@ -82,10 +82,10 @@
 // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=80878
 // Both clang and gcc do generate cmpxchg16b for __sync_val_compare_and_swap though.
 #if defined(BOOST_ATOMIC_DETAIL_X86_HAS_CMPXCHG16B) &&\
-    (\
-        (defined(BOOST_CLANG) && (__clang_major__ < 3 || (__clang_major__ == 3 && __clang_minor__ < 5))) ||\
-        (defined(BOOST_GCC) && BOOST_GCC >= 70000)\
-    )
+(\
+(defined(BOOST_CLANG) && (__clang_major__ < 3 || (__clang_major__ == 3 && __clang_minor__ < 5))) ||\
+(defined(BOOST_GCC) && BOOST_GCC >= 70000)\
+)
 #undef BOOST_ATOMIC_DETAIL_GCC_ATOMIC_INT128_LOCK_FREE
 #define BOOST_ATOMIC_DETAIL_GCC_ATOMIC_INT128_LOCK_FREE 0
 #endif

@@ -13,7 +13,7 @@
 
 #include <boost/config.hpp>
 #ifdef BOOST_MSVC
-    #pragma warning(disable:4996)
+#pragma warning(disable:4996)
 #endif
 
 #define BOOST_TEST_MODULE odeint_nt2_copy
@@ -33,14 +33,14 @@ BOOST_AUTO_TEST_SUITE( nt2_norm_inf )
 
 BOOST_AUTO_TEST_CASE_TEMPLATE( test_norm_inf, T, fp_types )
 {
-  nt2::table<T> x = nt2::ones(10,1, nt2::meta::as_<T>() );
-  x(4) = 55;
+nt2::table<T> x = nt2::ones(10,1, nt2::meta::as_<T>() );
+x(4) = 55;
 
-  nt2::table<T> y = nt2::zeros(8,8, nt2::meta::as_<T>() );
-  y(6,4) = -42;
+nt2::table<T> y = nt2::zeros(8,8, nt2::meta::as_<T>() );
+y(6,4) = -42;
 
-  BOOST_CHECK_SMALL(vector_space_norm_inf<nt2::table<T> >()(x) - T(55), T(1e-10));
-  BOOST_CHECK_SMALL(vector_space_norm_inf<nt2::table<T> >()(y) - T(42), T(1e-10));
+BOOST_CHECK_SMALL(vector_space_norm_inf<nt2::table<T> >()(x) - T(55), T(1e-10));
+BOOST_CHECK_SMALL(vector_space_norm_inf<nt2::table<T> >()(y) - T(42), T(1e-10));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

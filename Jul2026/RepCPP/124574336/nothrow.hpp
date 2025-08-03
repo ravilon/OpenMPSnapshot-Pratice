@@ -29,13 +29,13 @@ namespace boost{ namespace interprocess {
 template <int Dummy = 0>
 struct nothrow
 {
-   static const std::nothrow_t &get()   {  return *pnothrow;  }
-   static std::nothrow_t *pnothrow;
+static const std::nothrow_t &get()   {  return *pnothrow;  }
+static std::nothrow_t *pnothrow;
 };
 
 template <int Dummy>
 std::nothrow_t *nothrow<Dummy>::pnothrow =
-   reinterpret_cast<std::nothrow_t *>(0x1234);  //Avoid sanitizer warnings on references to null
+reinterpret_cast<std::nothrow_t *>(0x1234);  //Avoid sanitizer warnings on references to null
 
 }}  //namespace boost{ namespace interprocess {
 

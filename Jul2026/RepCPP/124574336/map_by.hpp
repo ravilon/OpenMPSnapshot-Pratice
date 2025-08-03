@@ -47,11 +47,11 @@ struct map_by( Bimap & b );
 
 See also member_at, value_type_of.
 \ingroup bimap_group
-                                                                        **/
+**/
 
 template< class Tag, class Bimap >
 BOOST_DEDUCED_TYPENAME result_of::map_by<Tag,Bimap>::type
-    map_by( Bimap & b );
+map_by( Bimap & b );
 
 } // namespace support
 } // namespace bimaps
@@ -84,22 +84,22 @@ namespace support {
 // Result of
 // -------------------------------------------------------------------------
 /*
-    namespace result_of {
+namespace result_of {
 
-    template< class Tag, class Bimap >
-    struct map_by<Tag,Bimap>;
-    {
-        typedef -unspecified- type;
-    };
+template< class Tag, class Bimap >
+struct map_by<Tag,Bimap>;
+{
+typedef -unspecified- type;
+};
 
-    } // namespace result_of
+} // namespace result_of
 
 */
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_RESULT_OF_BUILDER
 (
-    map_by,
-    map_type_by
+map_by,
+map_type_by
 )
 
 // Implementation
@@ -107,11 +107,11 @@ BOOST_BIMAP_SYMMETRIC_ACCESS_RESULT_OF_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_IMPLEMENTATION_BUILDER
 (
-    map_by,
-    Bimap,
-    b,
-    return b.left,
-    return b.right
+map_by,
+Bimap,
+b,
+return b.left,
+return b.right
 )
 
 // Interface
@@ -119,7 +119,7 @@ BOOST_BIMAP_SYMMETRIC_ACCESS_IMPLEMENTATION_BUILDER
 
 BOOST_BIMAP_SYMMETRIC_ACCESS_INTERFACE_BUILDER
 (
-    map_by
+map_by
 )
 
 } // namespace support

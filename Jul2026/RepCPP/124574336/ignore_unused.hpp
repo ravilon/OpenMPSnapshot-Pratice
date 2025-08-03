@@ -17,7 +17,7 @@
 
 namespace boost { namespace xpressive { namespace detail
 {
-  using boost::proto::detail::ignore_unused;
+using boost::proto::detail::ignore_unused;
 }}}
 
 #endif

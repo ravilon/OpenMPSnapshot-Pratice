@@ -19,12 +19,12 @@
 #include <boost/asio/detail/type_traits.hpp>
 
 #if defined(BOOST_ASIO_HAS_DECLTYPE) \
-  && defined(BOOST_ASIO_HAS_NOEXCEPT) \
-  && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
+&& defined(BOOST_ASIO_HAS_NOEXCEPT) \
+&& defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
 # define BOOST_ASIO_HAS_DEDUCED_REQUIRE_MEMBER_TRAIT 1
 #endif // defined(BOOST_ASIO_HAS_DECLTYPE)
-       //   && defined(BOOST_ASIO_HAS_NOEXCEPT)
-       //   && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
+//   && defined(BOOST_ASIO_HAS_NOEXCEPT)
+//   && defined(BOOST_ASIO_HAS_WORKING_EXPRESSION_SFINAE)
 
 #include <boost/asio/detail/push_options.hpp>
 
@@ -43,8 +43,8 @@ namespace detail {
 
 struct no_require_member
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = false);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = false);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = false);
 };
 
 #if defined(BOOST_ASIO_HAS_DEDUCED_REQUIRE_MEMBER_TRAIT)
@@ -56,31 +56,31 @@ struct require_member_trait : no_require_member
 
 template <typename T, typename Property>
 struct require_member_trait<T, Property,
-  typename void_type<
-    decltype(declval<T>().require(declval<Property>()))
-  >::type>
+typename void_type<
+decltype(declval<T>().require(declval<Property>()))
+>::type>
 {
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_valid = true);
 
-  using result_type = decltype(
-    declval<T>().require(declval<Property>()));
+using result_type = decltype(
+declval<T>().require(declval<Property>()));
 
-  BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = noexcept(
-    declval<T>().require(declval<Property>())));
+BOOST_ASIO_STATIC_CONSTEXPR(bool, is_noexcept = noexcept(
+declval<T>().require(declval<Property>())));
 };
 
 #else // defined(BOOST_ASIO_HAS_DEDUCED_REQUIRE_MEMBER_TRAIT)
 
 template <typename T, typename Property, typename = void>
 struct require_member_trait :
-  conditional<
-    is_same<T, typename decay<T>::type>::value
-      && is_same<Property, typename decay<Property>::type>::value,
-    no_require_member,
-    traits::require_member<
-      typename decay<T>::type,
-      typename decay<Property>::type>
-  >::type
+conditional<
+is_same<T, typename decay<T>::type>::value
+&& is_same<Property, typename decay<Property>::type>::value,
+no_require_member,
+traits::require_member<
+typename decay<T>::type,
+typename decay<Property>::type>
+>::type
 {
 };
 
@@ -91,13 +91,13 @@ namespace traits {
 
 template <typename T, typename Property, typename>
 struct require_member_default :
-  detail::require_member_trait<T, Property>
+detail::require_member_trait<T, Property>
 {
 };
 
 template <typename T, typename Property, typename>
 struct require_member :
-  require_member_default<T, Property>
+require_member_default<T, Property>
 {
 };
 
