@@ -1,9 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
-REPC_DIR="Jul2026/RepC"
-REP_CPP_DIR="Jul2026/RepCPP"
-OUT_DIR="Jul2026PartialData"
+#REPC_DIR="Jul2026/RepC"
+#REP_CPP_DIR="Jul2026/RepCPP"
+#OUT_DIR="Jul2026PartialData"
+REPC_DIR="May2023/RepC"
+REP_CPP_DIR="May2023/RepCPP"
+OUT_DIR="May2023PartialData"
+
 AWK_DIR="AWK"
 
 mkdir -p "$OUT_DIR"
