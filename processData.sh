@@ -1,7 +1,7 @@
 #!/bin/bash
 #2.1 Count directives:
- awk -f AWK/CountingDirectives.awk Jul2026/RepC/*/*.* > PartialData/Jul2026/CountRepC.csv
- awk -f AWK/CountingDirectives.awk Jul2026/RepCPP/*/*.* > PartialData/Jul2026/CountRepCPP.csv
+ awk -f AWK/CountingDirectives.awk Jul2026/RepC/*/*.* > Jul2026PartialData/CountRepC.csv
+ awk -f AWK/CountingDirectives.awk Jul2026/RepCPP/*/*.* > Jul2026PartialData/CountRepCPP.csv
 #2.2 Count atomic clauses:
  awk -f AWK/CountingClausesAtomic.awk Jul2026/RepC/*/*.* Jul2026/RepCPP/*/*.*
 #2.3 Count "Critical" with label:
