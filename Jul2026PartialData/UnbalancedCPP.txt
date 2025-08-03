@@ -1,0 +1,2 @@
+None & static & dynamic & guided & auto & runtime \\
+1656 & 216 & 205 & 96 & 17 & 38\\

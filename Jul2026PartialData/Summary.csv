@@ -1,0 +1,9 @@
+Categoria,RepC,RepCPP,Total
+Diretivas totais,37,37,74
+Labeled criticals,84,200,284
+Atomic critical candidates,413,374,787
+Clauses schedule for,13,13,26
+parallel for sem schedule,3754,5373,9127
+for sem schedule,2,1,3
+Laços desbalanceados,2,2,4
+Blocos parallel for em sequência,287,204,491

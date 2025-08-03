@@ -1,0 +1,413 @@
+Jul2026/RepC/1001924254/crawler.c:1083:int total_extracted = 0; Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:1084:int min_urls = INT_MAX; Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:1085:int max_urls = 0; Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:1086:int empty_threads = 0; Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:1684:queue_empty = 1; Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:1935:int max_to_add = 20;  // Default limit URLs per page to prevent single-thread dominance Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/crawler.c:2041:int added_urls = mpi_share_urls( Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/super_hybrid_ranking.c:300:double openmp_end = get_current_time(); Leitura ou Escrita Simples
+Jul2026/RepC/1001924254/super_hybrid_ranking.c:301:g_ranking_metrics.openmp_ranking_time += (openmp_end - openmp_start); Atribuição Composta
+Jul2026/RepC/1001924254/super_hybrid_ranking.c:302:g_ranking_metrics.documents_scored_openmp = total_docs; Leitura ou Escrita Simples
+Jul2026/RepC/106407740/sudoku_parallel.c:367:current = removeItem(); Leitura ou Escrita Simples
+Jul2026/RepC/106407740/sudoku_parallel.c:410:current = removeItem(); Leitura ou Escrita Simples
+Jul2026/RepC/106476798/Problem1LargeDataSet.c:146:int *array = (int *)(-store); Leitura ou Escrita Simples
+Jul2026/RepC/111514856/histogram.c:130:for (i = 0; i < histogram_size; i++) histogram[i] += hist_temp[current_thread][i]; Leitura ou Escrita Simples
+Jul2026/RepC/121361183/reduction-omp-carte.c:20:sum=sum+sum_part; Leitura ou Escrita Simples
+Jul2026/RepC/122663460/app2For_vSched-omp.C:361:sum += mySum; // the vSched library could support reductions too. However, better would be to just use user-defined schedules being proposed for OpenMP and then use OpenMP's reductions. Code is kept like this to make an illustrative point about this software design tradeoff. Atribuição Composta
+Jul2026/RepC/122663460/appFor_omp-lols.C:98:sum += mySum; // the vSched library could support reductions too. However, better would be to just use user-defined schedules being proposed for OpenMP and then use OpenMP's reductions. Code is kept like this to make an illustrative point about this software design tradeoff. Atribuição Composta
+Jul2026/RepC/122663460/appFor_vSched-omp.C:90:sum += mySum; // the vSched library could support reductions too. However, better would be to just use user-defined schedules being proposed for OpenMP and then use OpenMP's reductions. Code is kept like this to make an illustrative point about this software design tradeoff. Atribuição Composta
+Jul2026/RepC/122663460/appFor-OpenMP-vSched.C:119:sum += mySum; // the vSched library can support reductions too, but better would be too just have user-defined schedules. Kept like this to make an illustrative point about this software design tradeoff. Atribuição Composta
+Jul2026/RepC/122663460/appFor-OpenMP-vSched.C:124:totalTime += nont_vSched_get_wtime(); // set this to 0 because we are not in a threaded computation region Atribuição Composta
+Jul2026/RepC/122663460/testOneFor_omp-lols.C:101:sum += mySum; // the vSched library could support reductions too. However, better would be to just use user-defined schedules being proposed for OpenMP and then use OpenMP's reductions. Code is kept like this to make an illustrative point about this software design tradeoff. Atribuição Composta
+Jul2026/RepC/124218055/critical_region.c:12:p*=2; Atribuição Composta
+Jul2026/RepC/124218055/cuda+multi-gpu+openmp.c:151:for (f = 0;f<num_gpus;f++) Leitura ou Escrita Simples
+Jul2026/RepC/124218055/omp_bug3.c:73:j++; Incremento
+Jul2026/RepC/124218055/omp_bug3.c:80:j = 1; Leitura ou Escrita Simples
+Jul2026/RepC/124247514/reduction-clauseModificado7.c:24:suma+=a[omp_get_thread_num()]; Atribuição Composta
+Jul2026/RepC/124247514/reduction-clauseModificado7.c:27:printf("Tras 'parallel' suma=%d\n",suma); Leitura ou Escrita Simples
+Jul2026/RepC/131722549/critical.c:54:pi += sum*step; Atribuição Composta
+Jul2026/RepC/13330867/refcount.c:445:error = MAX(error,num_error); Leitura ou Escrita Simples
+Jul2026/RepC/136107867/task3_1.c:43:N1++; // reach to the limit of iteration, N1++ Incremento
+Jul2026/RepC/136107867/task3_1.c:44:N0++; // did not reach to the limit, N0++ Incremento
+Jul2026/RepC/136107867/task3_1.c:55://printf("N0 = %d, N1 = %d\n", N0, N1); Leitura ou Escrita Simples
+Jul2026/RepC/136107867/task3_2.c:42:N1++; // reach to the limit of iteration, N1++ Incremento
+Jul2026/RepC/136107867/task3_2.c:43:N0++; // did not reach to the limit, N0++ Incremento
+Jul2026/RepC/136107867/task3_2.c:54://printf("N0 = %d, N1 = %d\n", N0, N1); Leitura ou Escrita Simples
+Jul2026/RepC/136107867/task3_3.c:42:N1++; // reach to the limit of iteration, N1++ Incremento
+Jul2026/RepC/136107867/task3_3.c:43:N0++; // did not reach to the limit, N0++ Incremento
+Jul2026/RepC/138425568/process.cpp:129:totalG+=avgImage[imgI+1]; Atribuição Composta
+Jul2026/RepC/138425568/process.cpp:130:totalB+=avgImage[imgI+2]; Atribuição Composta
+Jul2026/RepC/138425568/process.cpp:135:totalG= totalG/imgHeight/imgWidth; Leitura ou Escrita Simples
+Jul2026/RepC/138425568/process.cpp:136:totalB= totalB/imgHeight/imgWidth; Leitura ou Escrita Simples
+Jul2026/RepC/139055661/thread4_4.c:19:if(prime==1) Leitura ou Escrita Simples
+Jul2026/RepC/146155120/omp_bug3.c:73:j++; Incremento
+Jul2026/RepC/146155120/omp_bug3.c:80:j = 1; Leitura ou Escrita Simples
+Jul2026/RepC/161077928/sdd.c:154:min_row=i; Leitura ou Escrita Simples
+Jul2026/RepC/161077928/sdd.c:155:min_column=j; Leitura ou Escrita Simples
+Jul2026/RepC/161696083/test_task_critical.c:89:idx = count - 1; Leitura ou Escrita Simples
+Jul2026/RepC/163540180/fig4.55-critical-region.c:90:printf("TID=%d: sumLocal = %d sum = %d\n",TID,sumLocal,sum); Leitura ou Escrita Simples
+Jul2026/RepC/165330523/map_reduce.c:54:res = f(res, e); Leitura ou Escrita Simples
+Jul2026/RepC/165330523/pi_spmd_final.c:82:full_sum += partial_sum; Atribuição Composta
+Jul2026/RepC/165330523/pi_spmd_final.c:85:pi = step * full_sum; Leitura ou Escrita Simples
+Jul2026/RepC/165330523/pi_spmd_final.c:86:run_time = omp_get_wtime() - start_time; Leitura ou Escrita Simples
+Jul2026/RepC/166030797/main.c:284:num++; Incremento
+Jul2026/RepC/166300666/pi.c:37:sonuc += sum; Atribuição Composta
+Jul2026/RepC/166300666/pi.c:40:sonuc *= h; Atribuição Composta
+Jul2026/RepC/166300666/shared.c:9:toplam++; Incremento
+Jul2026/RepC/166300666/shared.c:14:printf("Toplam = %d\n", toplam); Leitura ou Escrita Simples
+Jul2026/RepC/166926477/raytracer.cpp:40:const auto cur_ms = milli_time(); Leitura ou Escrita Simples
+Jul2026/RepC/166926477/raytracer.cpp:43:const float percent = num_processed * 100. / num_pixels; Leitura ou Escrita Simples
+Jul2026/RepC/171899553/mcOmp.c:43:state2 = rand_r(&state1); Leitura ou Escrita Simples
+Jul2026/RepC/171899553/mcOmp.c:44://printf("THR[%d] state1/state2 = %u/%u\n", omp_get_thread_num(), state1, state2); Leitura ou Escrita Simples
+Jul2026/RepC/176131462/sudoku_solver_parallel_c.c:44:*found = 1;  Leitura ou Escrita Simples
+Jul2026/RepC/176131462/sudoku_solver_parallel_c.c:66:if(*found == 0) Leitura ou Escrita Simples
+Jul2026/RepC/176131462/sudoku_solver_parallel_c.c:72:*found = 1; Leitura ou Escrita Simples
+Jul2026/RepC/176131462/test.c:28:found = 1; Leitura ou Escrita Simples
+Jul2026/RepC/178010771/vectorSum.c:18:sum+=v[i]; Atribuição Composta
+Jul2026/RepC/182564675/tnested.c:17:total++; Incremento
+Jul2026/RepC/182564675/tsynch.c:11:result_even++; Incremento
+Jul2026/RepC/182564675/tsynch.c:26:result += (result_even + result_odd); Atribuição Composta
+Jul2026/RepC/182564675/tworkshare.c:30:result++; Incremento
+Jul2026/RepC/193826361/pi_spmd_final.c:82:full_sum += partial_sum; Atribuição Composta
+Jul2026/RepC/193826361/pi_spmd_final.c:85:pi = step * full_sum; Leitura ou Escrita Simples
+Jul2026/RepC/193826361/pi_spmd_final.c:86:run_time = omp_get_wtime() - start_time; Leitura ou Escrita Simples
+Jul2026/RepC/195330528/knapsack.c:311:bots_number_of_tasks += number_of_tasks; Atribuição Composta
+Jul2026/RepC/195330528/knapsack.c:318:number_of_tasks = 0; Leitura ou Escrita Simples
+Jul2026/RepC/199429937/parallel_pi_critical.c:30:pi += sum * step; Atribuição Composta
+Jul2026/RepC/199429937/parallel_pi_critical.c:33:clock_t end_time = clock(); Leitura ou Escrita Simples
+Jul2026/RepC/21635382/octree_openmp.c:206:temp_parent = box[temp_box.parent - 1]; Leitura ou Escrita Simples
+Jul2026/RepC/21635382/octree_openmp.c:247:leaf = (Box*)realloc(leaf, leaf_counter * sizeof(Box)); Leitura ou Escrita Simples
+Jul2026/RepC/21635382/octree_openmp.c:278:box = (Box*)realloc(box, (8 + box_counter) * sizeof(Box)); Leitura ou Escrita Simples
+Jul2026/RepC/221556305/mandelbrot_secuencial.c:119:value = mandel_val(x, y, MAX_ITER); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:297:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:338:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:370:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:408:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:444:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:476:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:514:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:567:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:584:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:601:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:618:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:638:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:655:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:671:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:714:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:748:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:787:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:803:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:841:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:891:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:932:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:977:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:1014:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:1055:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:1089:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/affinity-1.c:1105:int thr = omp_get_thread_num (); Leitura ou Escrita Simples
+Jul2026/RepC/228656264/critical-2.c:26:for (i = 0; i < N; i++) Leitura ou Escrita Simples
+Jul2026/RepC/228656264/ctor-3.C:59:e_inner = this; Leitura ou Escrita Simples
+Jul2026/RepC/228656264/ctor-4.C:60:e_inner = this; Leitura ou Escrita Simples
+Jul2026/RepC/228656264/pr35549.c:24:i += 1; Atribuição Composta
+Jul2026/RepC/228656264/pr35549.c:27:if (n == 0 && i != 6 + 3 * 4) Leitura ou Escrita Simples
+Jul2026/RepC/228656264/pr36802-2.c:36:i += 1; Atribuição Composta
+Jul2026/RepC/228656264/pr36802-2.c:39:if (n == 0 && i != 6 + 3 * 4) Leitura ou Escrita Simples
+Jul2026/RepC/228656264/pr36802-3.c:33:i += 1; Atribuição Composta
+Jul2026/RepC/228656264/target-critical-1.c:25:for (i = 0; i < N; i++) Leitura ou Escrita Simples
+Jul2026/RepC/228656264/target-critical-1.c:58:for (i = 0; i < N; i++) Leitura ou Escrita Simples
+Jul2026/RepC/228656264/task-2.c:18:l += k; Atribuição Composta
+Jul2026/RepC/228656264/task-2.c:16:i++; Incremento
+Jul2026/RepC/228656264/task-2.c:27:l += k; Atribuição Composta
+Jul2026/RepC/228656264/task-2.c:20:i++; Incremento
+Jul2026/RepC/228656264/task-2.c:36:l += k; Atribuição Composta
+Jul2026/RepC/228656264/task-2.c:24:i++; Incremento
+Jul2026/RepC/228656264/task-2.c:45:l += k; Atribuição Composta
+Jul2026/RepC/228656264/task-2.c:28:i++; Incremento
+Jul2026/RepC/229640188/pathtracer_MPI_OMP.c:501:fp=I1[0]; Leitura ou Escrita Simples
+Jul2026/RepC/229640188/pathtracer_MPI_OMP.c:502:lp=I1[1]; Leitura ou Escrita Simples
+Jul2026/RepC/235702162/DRB074-flush-orig-yes.c:60:*q = 1; Leitura ou Escrita Simples
+Jul2026/RepC/241424068/reduction-modificado.c:29:suma = suma + suma_local; Leitura ou Escrita Simples
+Jul2026/RepC/241424068/reduction-modificado.c:32:printf("Tras 'parallel' suma=%d\n",suma); Leitura ou Escrita Simples
+Jul2026/RepC/241908038/example2.c:47:sum += private_sum; Atribuição Composta
+Jul2026/RepC/242248042/criticalConstruct.c:9:localX -= 10; Atribuição Composta
+Jul2026/RepC/242248042/criticalOne.c:15:s2 = s1; Leitura ou Escrita Simples
+Jul2026/RepC/242248042/criticalOne.c:27:s1 = s1 + 2; Leitura ou Escrita Simples
+Jul2026/RepC/242248042/criticalOne.c:28:s2 = s1; Leitura ou Escrita Simples
+Jul2026/RepC/242248042/enforcer.c:32:x++; Incremento
+Jul2026/RepC/242248042/ft-orig.c:880:sums[i].imag += chk.imag; Atribuição Composta
+Jul2026/RepC/242248042/ll.c:75:head += size; Atribuição Composta
+Jul2026/RepC/242248042/mst.c:303:payload* v_data = v->data; Leitura ou Escrita Simples
+Jul2026/RepC/242248042/test37.c:8:b = a; Leitura ou Escrita Simples
+Jul2026/RepC/242248042/test37.c:9:a++; Incremento
+Jul2026/RepC/242248042/test51.c:16:s2 += tid; Atribuição Composta
+Jul2026/RepC/242289757/2_parallel_pi_v3.c:45:pi = pi + sum; Leitura ou Escrita Simples
+Jul2026/RepC/242289757/2_parallel_pi_v3.c:48:pi = pi * step; Leitura ou Escrita Simples
+Jul2026/RepC/242289757/2_parallel_pi_v3.c:49:run_time = omp_get_wtime() - start_time; Leitura ou Escrita Simples
+Jul2026/RepC/252666983/rdf.c:129:for(i = 0; i < res; i++) bins[i] += p_bins[i]; Leitura ou Escrita Simples
+Jul2026/RepC/254446151/main.c:50:count += 1; Atribuição Composta
+Jul2026/RepC/255312505/nqueens-p1.c:64:SOLUTION_EXISTS = true; Leitura ou Escrita Simples
+Jul2026/RepC/255312505/nqueens-p2.c:64:SOLUTION_EXISTS = true; Leitura ou Escrita Simples
+Jul2026/RepC/255312505/nqueens-p3.c:56:check = SOLUTION_EXISTS; Leitura ou Escrita Simples
+Jul2026/RepC/255312505/nqueens-p3.c:69:SOLUTION_EXISTS = true; Leitura ou Escrita Simples
+Jul2026/RepC/256562535/Critical.c:26:sum+=localsum;			 Atribuição Composta
+Jul2026/RepC/256562535/fast.c:22:sum += localSum; Atribuição Composta
+Jul2026/RepC/256562535/fast.c:25:double endTime = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepC/256562535/slow.c:13:sum++; Incremento
+Jul2026/RepC/256562535/slow.c:18:double endTime = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepC/260114459/laplace_acc.c:97:dt_global = fmax(dt,dt_global); Leitura ou Escrita Simples
+Jul2026/RepC/260114459/laplace_mp.c:102:dt_global = MAX(dt,dt_global); Leitura ou Escrita Simples
+Jul2026/RepC/269991796/pi_mc_omp.c:73:pi = nIn / j * 4.0; Leitura ou Escrita Simples
+Jul2026/RepC/274632175/task_dot.c:49:sync->create = id; Leitura ou Escrita Simples
+Jul2026/RepC/274632175/task_dot.c:52:sync->pcnt = ready? 0: pcnt; Leitura ou Escrita Simples
+Jul2026/RepC/274632175/task_dot.c:53:sync->ready += ready? 1: 0; Atribuição Composta
+Jul2026/RepC/274632175/task_dot_async.c:382:pcnt = dotid->pcnt; Leitura ou Escrita Simples
+Jul2026/RepC/276759666/Ejemplo_4_2_OpenMP.c:17:if(tid==2) sleep(1); Leitura ou Escrita Simples
+Jul2026/RepC/276759666/Ejemplo_4_2_OpenMP.c:18:if(tid==1) sleep(3); Leitura ou Escrita Simples
+Jul2026/RepC/282853714/kahnAlgorithm.c:62:headL = insertNode(headL, headS->data); Leitura ou Escrita Simples
+Jul2026/RepC/282853714/kahnAlgorithm.c:60:count++; Incremento
+Jul2026/RepC/284826364/disposable.c:102:MIN_DSV = LOCAL_MIN_DSV; Leitura ou Escrita Simples
+Jul2026/RepC/284826364/disposable.c:107:MAX_DSV = LOCAL_MAX_DSV; Leitura ou Escrita Simples
+Jul2026/RepC/291746844/prime_num_sum.c:28:primesum = primesum + num; Leitura ou Escrita Simples
+Jul2026/RepC/298456736/bruteforce-omp.c:56:result = FOUND; Leitura ou Escrita Simples
+Jul2026/RepC/298456736/bruteforce-omp.c:61:j=nextStep; Leitura ou Escrita Simples
+Jul2026/RepC/298456736/dictionary-omp.c:108:result = FOUND; Leitura ou Escrita Simples
+Jul2026/RepC/300633305/prog5.c:22:sum = sum + aux; Leitura ou Escrita Simples
+Jul2026/RepC/300633305/prog5.c:25:end = omp_get_wtime();  Leitura ou Escrita Simples
+Jul2026/RepC/300633305/prog6.c:23:sum = sum + aux; Leitura ou Escrita Simples
+Jul2026/RepC/300633305/prog6.c:26:pi = step * sum; Leitura ou Escrita Simples
+Jul2026/RepC/300633305/q5.c:20:sum = sum + aux; Leitura ou Escrita Simples
+Jul2026/RepC/301893557/omp_prim.c:118:edges = insert_node(edge, edges); Leitura ou Escrita Simples
+Jul2026/RepC/302674724/openmp_petle.c:128:suma_parallel += tmp; Atribuição Composta
+Jul2026/RepC/302674724/openmp_petle_simple.c:34:suma_parallel += a[i]; Atribuição Composta
+Jul2026/RepC/302674724/openmp_watki_zmienne.c:44:a_shared ++; Incremento
+Jul2026/RepC/302674724/openmp_watki_zmienne.c:57:f_threadprivate = omp_get_thread_num(); Leitura ou Escrita Simples
+Jul2026/RepC/302674724/search_max_openmp.c:95:if(a_max < a_max_local) a_max = a_max_local; Leitura ou Escrita Simples
+Jul2026/RepC/307084800/bugged3.c:70:for (i = 0; i < N; i++) Leitura ou Escrita Simples
+Jul2026/RepC/307084800/bugged3.c:68:j++; Incremento
+Jul2026/RepC/307084800/bugged3.c:74:if (j == 6) Leitura ou Escrita Simples
+Jul2026/RepC/307084800/bugged3.c:77:j = 1; Leitura ou Escrita Simples
+Jul2026/RepC/356685186/fs03.c:171:for (int w=0; w<N; w++)  Leitura ou Escrita Simples
+Jul2026/RepC/356685186/gen04.c:293:*solversGenerations = generation; Leitura ou Escrita Simples
+Jul2026/RepC/356685186/gen05.c:279:*solversGenerations = generation; Leitura ou Escrita Simples
+Jul2026/RepC/356685186/gen05.c:280:for (int i=0; i<N; i++) fittestGene[i] = genes[bestGene][i]; Leitura ou Escrita Simples
+Jul2026/RepC/356685186/gen06.c:209:seed = rand(); Leitura ou Escrita Simples
+Jul2026/RepC/356685186/tsp_rnd07.c:198:B = 1 + (int)(  ((float) rand())*(N-2)/((float)RAND_MAX)  ); Leitura ou Escrita Simples
+Jul2026/RepC/380775248/monte_carlo_omp.c:37:P += A; Atribuição Composta
+Jul2026/RepC/382028151/palindrome.c:47:flag = 1; Leitura ou Escrita Simples
+Jul2026/RepC/384698669/cpu_funcs.c:250:*return_mutant = _best_mutant; Leitura ou Escrita Simples
+Jul2026/RepC/389226143/dlaebz2.c:357:if (Control->error == 0) Control->error = ret; Leitura ou Escrita Simples
+Jul2026/RepC/404792976/SUDOKU_SOLVER_OpenMP.c:131:*original_sudoku = sudoku; //si modifica il sudoku iniziale con le celle opportunamente riempite Leitura ou Escrita Simples
+Jul2026/RepC/404792976/SUDOKU_SOLVER_OpenMP.c:131:new_index_list++; //si aumenta l'indice della nuova lista Incremento
+Jul2026/RepC/404792976/SUDOKU_SOLVER_OpenMP.c:139:new_list = (Sudoku *) realloc(new_list, (new_index_list+1)*sizeof(Sudoku));  Leitura ou Escrita Simples
+Jul2026/RepC/408823577/04_order_of_threads_wrong.c:77:if ( order == my_thread_id ) Leitura ou Escrita Simples
+Jul2026/RepC/408823577/04_order_of_threads_wrong.c:76:order++;		    Incremento
+Jul2026/RepC/408823577/05_order_of_threads.c:81:if ( order == my_thread_id ) Leitura ou Escrita Simples
+Jul2026/RepC/408823577/05_order_of_threads.c:80:order++; Incremento
+Jul2026/RepC/408823577/05_order_of_threads.c:85:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:452:nz_counter += block_nz; Atribuição Composta
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:455:C_i_process = (unsigned int *)realloc(C_i_process, nz_counter*sizeof(unsigned int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:456:C_j_process = (unsigned int *)realloc(C_j_process, nz_counter*sizeof(unsigned int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:565:nz_counter += block_nz; Atribuição Composta
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:568:C_i_process = (unsigned int *)realloc(C_i_process, nz_counter*sizeof(unsigned int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_MPI_OMP.c:569:C_j_process = (unsigned int *)realloc(C_j_process, nz_counter*sizeof(unsigned int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_OMP.c:362:*C_nz += nz_counter; Atribuição Composta
+Jul2026/RepC/415019749/pad4_OMP.c:367:C_j = (int *)realloc(C_j, *C_nz*sizeof(int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_OMP.c:368:printf("NZ_C = %d\n", *C_nz); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_OMP.c:430:*C_nz += nz_counter; Atribuição Composta
+Jul2026/RepC/415019749/pad4_OMP.c:435:C_j = (int *)realloc(C_j, *C_nz*sizeof(int)); Leitura ou Escrita Simples
+Jul2026/RepC/415019749/pad4_OMP.c:436:printf("NZ_C = %d\n", *C_nz); Leitura ou Escrita Simples
+Jul2026/RepC/424335383/Questao02.c:22:x += 2;	 Atribuição Composta
+Jul2026/RepC/424335383/Questao02.c:30:resultado += operacao; Atribuição Composta
+Jul2026/RepC/424335383/Questao03.c:28:x += 2;	 Atribuição Composta
+Jul2026/RepC/424335383/Questao03.c:36:resultado += operacao; Atribuição Composta
+Jul2026/RepC/449672678/multistart_hooke_mpi_omp.c:349:best_jj = jj; Leitura ou Escrita Simples
+Jul2026/RepC/449672678/multistart_hooke_mpi_omp.c:350:best_fx = fx; Leitura ou Escrita Simples
+Jul2026/RepC/449672678/multistart_hooke_mpi_omp.c:351:for (i = 0; i < nvars; i++) Leitura ou Escrita Simples
+Jul2026/RepC/449672678/multistart_hooke_omp_tasks.c:345:t1 = get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepC/457797436/omp_main_lock.c:33:x = y + 1; Leitura ou Escrita Simples
+Jul2026/RepC/457797436/omp_main_lock.c:30:y++; Incremento
+Jul2026/RepC/458852673/list_primes.c:86:end_list = concat(temp_list, end_list); Leitura ou Escrita Simples
+Jul2026/RepC/458852673/numerical-integration-critical.c:29:pi += parcialSum * step; Atribuição Composta
+Jul2026/RepC/458852673/numerical-integration-inside-critical.c:27:pi += 4.0 / (1.0 + x * x); Atribuição Composta
+Jul2026/RepC/458852673/numerical-integration-inside-critical.c:32:pi *= step; Atribuição Composta
+Jul2026/RepC/458852673/OmpCritical.c:18:sum += list[i]; Atribuição Composta
+Jul2026/RepC/458852673/riemman_sum.c:52:rsum += psum; Atribuição Composta
+Jul2026/RepC/458852673/SelectionSort.c:47:if(v[min_local] < v[min]) min = min_local; Leitura ou Escrita Simples
+Jul2026/RepC/458852673/SelectionSort.c:50:tmp = v[i]; Leitura ou Escrita Simples
+Jul2026/RepC/483750905/matrix.c:272:adder += matrix_A[i][j] * matrix_B[j][a]; Atribuição Composta
+Jul2026/RepC/483750905/menuUltimoJuan.c:302:sum = sum + x; Leitura ou Escrita Simples
+Jul2026/RepC/483750905/menuUltimoJuan.c:305:pi = step * sum; Leitura ou Escrita Simples
+Jul2026/RepC/483750905/pi.c:215:sum = sum + x; Leitura ou Escrita Simples
+Jul2026/RepC/483750905/pi.c:218:pi = step * sum; Leitura ou Escrita Simples
+Jul2026/RepC/489751910/char_freq_parallel.c:74:time = omp_get_wtime() - time; Leitura ou Escrita Simples
+Jul2026/RepC/489751910/string_matching_parallel.c:71:time = omp_get_wtime() - time; Leitura ou Escrita Simples
+Jul2026/RepC/512870337/pi_parallel_for.cpp:29:xi += h; // xi: centro del siguiente intervalo  Atribuição Composta
+Jul2026/RepC/512870337/pi_parallel_for2.cpp:48:xi += h; // xi: centro del siguiente intervalo  Atribuição Composta
+Jul2026/RepC/521918365/main.c:108:if (iteration > shared_max) shared_max = iteration; Leitura ou Escrita Simples
+Jul2026/RepC/525765292/multistart_hooke_omp.c:214:best_jj = jj; Leitura ou Escrita Simples
+Jul2026/RepC/525765292/multistart_hooke_omp.c:215:best_fx = fx; Leitura ou Escrita Simples
+Jul2026/RepC/531045827/pi_critical.c:27:pi += sum * step; Atribuição Composta
+Jul2026/RepC/531045827/pi_critical2.c:25:pi +=  4.0 / (1.0 + x*x); Atribuição Composta
+Jul2026/RepC/537445644/long_message_attack.c:306:idx = idx_priv;  Leitura ou Escrita Simples
+Jul2026/RepC/555688434/sum_for.c:33:sum+=partial_sum; Atribuição Composta
+Jul2026/RepC/566282964/omp-cat-map-rectime.c:130:rectime = lcm(rectime, k); Leitura ou Escrita Simples
+Jul2026/RepC/566282964/omp-sat.c:162:const int NLIT = p->nlit; Leitura ou Escrita Simples
+Jul2026/RepC/566282964/omp-sat.c:163:int mask = 1; Leitura ou Escrita Simples
+Jul2026/RepC/566282964/omp-sat.c:166:mask = mask << 1; Leitura ou Escrita Simples
+Jul2026/RepC/566282964/omp-schedule.c:243:idx += chunk_size; Atribuição Composta
+Jul2026/RepC/572223235/main.c:131:sum_matrix = matrix_sum(sum_matrix, temp_sum); Leitura ou Escrita Simples
+Jul2026/RepC/576375980/gengrupos_p.c:129:cluster_data[grupo].nelems++; Incremento
+Jul2026/RepC/576375980/gengrupos_p.c:137:sil = silhouette_simple(elem, cluster_data, cent, a); Leitura ou Escrita Simples
+Jul2026/RepC/578563146/ask3.c:78:d_total += d; Atribuição Composta
+Jul2026/RepC/578563146/ask3.c:80:r_total += r; Atribuição Composta
+Jul2026/RepC/58348790/max.c:26:max = a[i]; Leitura ou Escrita Simples
+Jul2026/RepC/58348790/max.c:31:printf("max = %d\n", max); Leitura ou Escrita Simples
+Jul2026/RepC/587538036/dotp.c:13:global_sum += x[i] * y[i]; Atribuição Composta
+Jul2026/RepC/596098733/14-SharedVariables-OpenMP.c:32:printf("Thread %d: shared_counter = %d\n", id, shared_counter); Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_01.c:53:sol = 1; Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_01.c:61:sol = 1; Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_01.c:88:sol = 1; Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_01.c:100:sol = 1; Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_critical_03.c:53:assert(x == 44); Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_priority_01.c:28:*var = 0; Leitura ou Escrita Simples
+Jul2026/RepC/60191570/success_priority_01.c:29:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/610749801/parallel1.c:32:f[i].y += mag * dir.y / dist; Atribuição Composta
+Jul2026/RepC/610749801/parallel1.c:33:f[i].z += mag * dir.z / dist; Atribuição Composta
+Jul2026/RepC/610749801/parallel1.c:34:f[j].x -= mag * dir.x / dist; Atribuição Composta
+Jul2026/RepC/610749801/parallel1.c:35:f[j].y -= mag * dir.y / dist; Atribuição Composta
+Jul2026/RepC/610749801/parallel1.c:36:f[j].z -= mag * dir.z / dist; Atribuição Composta
+Jul2026/RepC/61401280/timer.h:130:seconds_per_unit = (info.numer / info.denom) / 1e9; Leitura ou Escrita Simples
+Jul2026/RepC/636093179/41.c:16:sum+= psum; Atribuição Composta
+Jul2026/RepC/646456808/parallel_trap_rule_critical.c:66:integration_result = integration_result + local_sum; Leitura ou Escrita Simples
+Jul2026/RepC/646456808/parallel_trap_rule_critical.c:69:printf("\nThe integration for the given function between limits %lf and %lf = %lf.\n", a, b, integration_result);	 Leitura ou Escrita Simples
+Jul2026/RepC/64853404/metamorph_openmp.c:320:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:415:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:489:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:563:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:637:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:709:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:781:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:853:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:925:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp.c:997:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:119:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:202:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:264:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:326:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:388:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:450:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:511:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:572:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:633:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/64853404/metamorph_openmp_mic.c:694:*reduction_var += sum; Atribuição Composta
+Jul2026/RepC/658289002/solver2.c:136:double h = interval.right - interval.left; Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:137:double c = (interval.left + interval.right) / 2.0; Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:138:double d = (interval.left + c) / 2.0; Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:139:double e = (c + interval.right) / 2.0; Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:140:double fd = func(d); Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:141:double fe = func(e); Leitura ou Escrita Simples
+Jul2026/RepC/658289002/solver2.c:153:quad += q2 + (q2 - q1) / 15.0; Atribuição Composta
+Jul2026/RepC/668662716/firstp.c:299:count3Found++; Incremento
+Jul2026/RepC/679554252/cFunctions.c:371:res = (int)dyn; Leitura ou Escrita Simples
+Jul2026/RepC/679554252/cFunctions.c:372:for (int j = 0; j < sizeO; j++) Leitura ou Escrita Simples
+Jul2026/RepC/679554252/cFunctions.c:375:res = (int)dyn; Leitura ou Escrita Simples
+Jul2026/RepC/68946407/sudoku.c:434:soln_matrix = curr_grid->matrix; Leitura ou Escrita Simples
+Jul2026/RepC/691134485/04_order_of_threads_wrong.c:77:if ( order == my_thread_id ) Leitura ou Escrita Simples
+Jul2026/RepC/691134485/04_order_of_threads_wrong.c:76:order++;		    Incremento
+Jul2026/RepC/691134485/05a_order_of_threads.c:81:if ( order == my_thread_id ) Leitura ou Escrita Simples
+Jul2026/RepC/691134485/05a_order_of_threads.c:80:order++; Incremento
+Jul2026/RepC/691134485/05a_order_of_threads.c:85:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/697028985/omp_error_2.c:32:total = total + i*1.0; Leitura ou Escrita Simples
+Jul2026/RepC/697028985/omp_error_2.c:35:printf ("Thread %d is done! Total= %e\n", tid, total); Leitura ou Escrita Simples
+Jul2026/RepC/699129036/5_6.c:140:*queue_tail = tmp_node; Leitura ou Escrita Simples
+Jul2026/RepC/699129036/5_6.c:143:*queue_tail = tmp_node; Leitura ou Escrita Simples
+Jul2026/RepC/699129036/5_6.c:181:curr_p = curr_p->next; Leitura ou Escrita Simples
+Jul2026/RepC/699129036/omp_trap1.c:35:global_result += Local_Trap(a, b, n); Atribuição Composta
+Jul2026/RepC/699129036/omp_trap2a.c:49:global_result += my_result; Atribuição Composta
+Jul2026/RepC/699129036/q_dois_e_tres.c:44:global_result += Local_Trap(a, b, n); Atribuição Composta
+Jul2026/RepC/699129036/q_dois_e_tres.c:75:global_result += my_result; Atribuição Composta
+Jul2026/RepC/704135030/rotpar.cpp:188:tam_fila = fila.size(); Leitura ou Escrita Simples
+Jul2026/RepC/704135030/rotpar.cpp:235:tam_fila = fila.size(); Leitura ou Escrita Simples
+Jul2026/RepC/71593983/barrier.c:20:s = s + extra;  Leitura ou Escrita Simples
+Jul2026/RepC/71593983/subfun.c:67:*value += val; Atribuição Composta
+Jul2026/RepC/723896678/grupopal_p.c:112:listag[grupo].nvecg++; Incremento
+Jul2026/RepC/725543082/kmeans_openmp.c:63:cluster = c; Leitura ou Escrita Simples
+Jul2026/RepC/725543082/kmeans_openmp.c:66:centroid += dim; Atribuição Composta
+Jul2026/RepC/745664035/1-sum_prime_numbers.c:83:end = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepC/745664035/1-sum_prime_numbers.c:84:time = end - start; Leitura ou Escrita Simples
+Jul2026/RepC/745664035/1-sum_prime_numbers.c:85:printf("Done. total = %d\n", total); Leitura ou Escrita Simples
+Jul2026/RepC/745664035/2-dot_product.c:53:printf("sum = %g\n", sum); Leitura ou Escrita Simples
+Jul2026/RepC/745664035/3-kmeans_parallel.c:152:stable = 0; // set stable to 0 if instability is found Leitura ou Escrita Simples
+Jul2026/RepC/772006453/1-2.c:41:sum += (i * i * i) - (j * j * j); Atribuição Composta
+Jul2026/RepC/77235735/knapsack.c:310:bots_number_of_tasks += number_of_tasks; Atribuição Composta
+Jul2026/RepC/77235735/knapsack.c:317:number_of_tasks = 0; Leitura ou Escrita Simples
+Jul2026/RepC/777871711/main.c:315:local_max = global_max; Leitura ou Escrita Simples
+Jul2026/RepC/777871711/main.c:316:short *thresholded = threshold(non_max, part->height, part->width, Leitura ou Escrita Simples
+Jul2026/RepC/781166933/05_regiones_criticas.c:20:printf("Valores var_sh = %d y t_id = %d\n", var_sh, t_id); Leitura ou Escrita Simples
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:22:n_2 = *puntero; Leitura ou Escrita Simples
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:23:puntero-=1; Atribuição Composta
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:24:n_3 = *puntero; Leitura ou Escrita Simples
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:25:puntero+=3; Atribuição Composta
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:26:*puntero = n_2+n_3; Leitura ou Escrita Simples
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_02_sucesión_padován.c:29:total += *puntero; Atribuição Composta
+Jul2026/RepC/781166933/guía_nro_04_ejercicio_04_mínima_diferencia.c:67:minimo = diferencia; Leitura ou Escrita Simples
+Jul2026/RepC/794449351/length_parallel.c:81:d = pq[0][0]; Leitura ou Escrita Simples
+Jul2026/RepC/794449351/path_parallel.c:244:pq[pqSize].distance = distance[v]; Leitura ou Escrita Simples
+Jul2026/RepC/794449351/path_parallel.c:239:pqSize++; Incremento
+Jul2026/RepC/836493916/ecosystem.c:69:grid[ni][nj].herbivores++; Incremento
+Jul2026/RepC/836493916/ecosystem.c:75:grid[i][j].herbivores_consumed = 0; Leitura ou Escrita Simples
+Jul2026/RepC/836493916/ecosystem.c:78:grid[i][j].carnivores_consumed = 0; Leitura ou Escrita Simples
+Jul2026/RepC/836493916/ecosystem.c:113:grid[i][j].herbivores--; Incremento
+Jul2026/RepC/836493916/ecosystem.c:120:grid[i][j].carnivores--; Incremento
+Jul2026/RepC/836493916/ecosystem.c:165:grid[i][j].carnivore_energy = 0; Leitura ou Escrita Simples
+Jul2026/RepC/843494869/cudampilib.c:238:scalingDone = __cudampi__cpuBatchSizeScalingDone; Leitura ou Escrita Simples
+Jul2026/RepC/843494869/cudampilib.c:279:asyncMsgCounter += D_MSG_TAG; Atribuição Composta
+Jul2026/RepC/844720518/bloom_filter_parallel.c:196:numDistinctWords++; Incremento
+Jul2026/RepC/848760574/pi_par3.c:13:sum += 4.0/(1.0+x*x); Atribuição Composta
+Jul2026/RepC/848760574/pi_par4.c:18:sum += aux; Atribuição Composta
+Jul2026/RepC/853787063/omp_trapezoidal_area.c:48:*global_result += my_result; Atribuição Composta
+Jul2026/RepC/867057381/parallel_kmeans_1.c:120:for (j=0; j<numCoords; j++) Leitura ou Escrita Simples
+Jul2026/RepC/867057381/parallel_kmeans_2.c:121:for (j=0; j<numCoords; j++) Leitura ou Escrita Simples
+Jul2026/RepC/875572735/Clase Critical.c:22:resultado += suma; Atribuição Composta
+Jul2026/RepC/87818992/tsp-main.c:186://printf ("found path len = %3d :", minimum) ; Leitura ou Escrita Simples
+Jul2026/RepC/87818992/tsp-main.c:187://for (i=0; i < NrTowns; i++) Leitura ou Escrita Simples
+Jul2026/RepC/88261066/tsp_openmp.c:53:final_res = curr_res; Leitura ou Escrita Simples
+Jul2026/RepC/901429824/openMP_parallel.c:129:double exec_end_time = omp_get_wtime();  // End timing execution Leitura ou Escrita Simples
+Jul2026/RepC/902655761/critical.c:29:dot += aux_dot; Atribuição Composta
+Jul2026/RepC/90575672/mg.c:980:max_rnmu = (my_rnmu > max_rnmu) ? my_rnmu : max_rnmu; Leitura ou Escrita Simples
+Jul2026/RepC/90575672/mg.c:985:*rnmu = max_rnmu; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB074-flush-orig-yes.c:60:*q = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB142-acquirerelease-orig-yes.c:36:y = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB142-acquirerelease-orig-yes.c:41:tmp = y; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB144-critical-missingreduction-orig-gpu-yes.c:100:var++; Incremento
+Jul2026/RepC/92494521/DRB148-critical1-orig-gpu-yes.c:29:var++; Incremento
+Jul2026/RepC/92494521/DRB148-critical1-orig-gpu-yes.c:34:var -= 2; Atribuição Composta
+Jul2026/RepC/92494521/DRB181-SmithWaterman-yes.c:179:*maxPos = index; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB184-barrier1-no.c:37:*f = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB184-barrier1-no.c:47:if (*f == 1) Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB184-barrier1-no.c:50:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB185-barrier1-yes.c:38:*f = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB185-barrier1-yes.c:48:if (*f == 1) Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB185-barrier1-yes.c:51:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB190-critical-section2-no.c:30:packages--; // produced a package Incremento
+Jul2026/RepC/92494521/DRB190-critical-section2-no.c:35:printf("Produced! size=%d\n", size); Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB190-critical-section2-no.c:41:packages--; // consumed a package Incremento
+Jul2026/RepC/92494521/DRB190-critical-section2-no.c:51:printf("Consumed! size=%d\n", size); Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB191-critical-section2-yes.c:35:printf("Produced! size=%d\n", size); Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB191-critical-section2-yes.c:50:printf("Consumed! size=%d\n", size); Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB192-critical-section3-no.c:39:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB192-critical-section3-no.c:42:x = 2; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB193-critical-section3-yes.c:41:done = 1; Leitura ou Escrita Simples
+Jul2026/RepC/92494521/DRB193-critical-section3-yes.c:44:x = 2; Leitura ou Escrita Simples
+Jul2026/RepC/93849114/pi_omp.c:48:sum += sumlocal; Atribuição Composta
+Jul2026/RepC/93849114/pi_omp_critical.c:45:sum += 4.0/(1.0+x*x); Atribuição Composta
+Jul2026/RepC/93849114/pi_omp_critical.c:48:pi = step * sum; Leitura ou Escrita Simples
+Jul2026/RepC/93849114/pi-v4.c:49:sum += 4.0/(1.0+x*x); Atribuição Composta
+Jul2026/RepC/955593032/parallel.c:48:int upperBound = (myPos + 1) * grainSize; Leitura ou Escrita Simples
+Jul2026/RepC/955593032/parallel.c:49:upperBound = upperBound > width ? width : upperBound; Leitura ou Escrita Simples
+Total de Incrementos: 41
+Total de Atribuições Compostas: 110
+Total de Leituras ou Escritas Simples: 256
+Total de While em Bloco: 4
+Total de For em Bloco: 14
+Total de If em Bloco: 17

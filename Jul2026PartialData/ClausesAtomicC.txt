@@ -1,0 +1,4 @@
+Update & write & read & compare & capture & hint\\ 
+962 & 208 & 201 & 5 & 187 & 0\\
+Default: 758
+Total: 1563

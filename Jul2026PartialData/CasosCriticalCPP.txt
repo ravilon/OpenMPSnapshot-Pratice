@@ -1,0 +1,374 @@
+Jul2026/RepCPP/1013409931/matmat_threadcount.cpp:43:for (int k = 0; k<N; k++) Leitura ou Escrita Simples
+Jul2026/RepCPP/1013409931/omp_hello_critical.cpp:18:std::cout << "Hello World from thread = " << tid << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/1013409931/omp_hello_critical.cpp:21:if (tid == 0)  Leitura ou Escrita Simples
+Jul2026/RepCPP/1013409931/omp_hello_critical.cpp:24:std::cout << "Number of threads = " << nthreads << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/1013409931/omp_hello_critical2.cpp:18:std::cout << "Hello World from thread = " << tid << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/1013409931/omp_hello_critical2.cpp:21:if (tid == 0)  Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/grid_decomposition.cxx:2673:expanding_fail = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/grid_decomposition.cxx:2674:else if (local_ret == -1) Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/grid_decomposition.cxx:2675:goon = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/grid_decomposition.cxx:2680:int global_expanding_fail = 0; Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/patcc.cxx:397:if (x_buckets[idx].max < coord_values[PDLN_LAT][i]) x_buckets[idx].max = coord_values[PDLN_LAT][i]; Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/patcc.cxx:392:x_buckets[idx].num++; Incremento
+Jul2026/RepCPP/106249716/patcc.cxx:410:if (y_buckets[idx].max < coord_values[PDLN_LON][i]) y_buckets[idx].max = coord_values[PDLN_LON][i]; Leitura ou Escrita Simples
+Jul2026/RepCPP/106249716/patcc.cxx:400:y_buckets[idx].num++; Incremento
+Jul2026/RepCPP/106309967/dtc_openmp.cpp:291:root->numOfChildren++; Incremento
+Jul2026/RepCPP/108110961/OpenMP_Report1.cpp:59:cout << "average = " << average << endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/108110961/OpenMP_Report1.cpp:60:cout << "Time= " << omp_get_wtime() - time1 << endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/110288415/implementations.cpp:257:result += f(x); Atribuição Composta
+Jul2026/RepCPP/110288415/implementations.cpp:260:result *= step; Atribuição Composta
+Jul2026/RepCPP/110288415/implementations.cpp:294:result += f(x); Atribuição Composta
+Jul2026/RepCPP/110288415/implementations.cpp:297:result *= step; Atribuição Composta
+Jul2026/RepCPP/116842157/sqs.cpp:322:BOOST_LOG_TRIVIAL(debug) << "do_pair_iterations::rank::" << mpi_rank << "::thread::" << thread_id << "::num_iterations = " << (end_it - start_it); Leitura ou Escrita Simples
+Jul2026/RepCPP/116842157/sqs.cpp:323:BOOST_LOG_TRIVIAL(debug) << "do_pair_iterations::rank::" << mpi_rank << "::thread::" << thread_id << "::iteration_end = " << end_it; Leitura ou Escrita Simples
+Jul2026/RepCPP/116842157/sqs.cpp:415:best_objective = objective_local; Leitura ou Escrita Simples
+Jul2026/RepCPP/116965614/ft.cpp:840:sums[i].imag += chk.imag; Atribuição Composta
+Jul2026/RepCPP/116965614/mg.cpp:836:if (p_a > *rnmu) *rnmu = p_a; Leitura ou Escrita Simples
+Jul2026/RepCPP/121857435/online_EM_funcs.hpp:162:S_ipk += S_ipk_local; Atribuição Composta
+Jul2026/RepCPP/121857435/online_EM_funcs.hpp:163:S_ppk += S_ppk_local; Atribuição Composta
+Jul2026/RepCPP/121857435/online_EM_funcs.hpp:338:res.S_ipk += S_ipk; Atribuição Composta
+Jul2026/RepCPP/121857435/online_EM_funcs.hpp:339:S_ppk += S_ppk_local; Atribuição Composta
+Jul2026/RepCPP/121857435/online_EM_funcs.hpp:340:delta_log_PS += delta_log_PS_local; Atribuição Composta
+Jul2026/RepCPP/124574336/nvector_openmp.c:749:max = tmax; Leitura ou Escrita Simples
+Jul2026/RepCPP/142172127/critical.cpp:50:pi += sum*step; Atribuição Composta
+Jul2026/RepCPP/148962559/rabbit_order.hpp:622:if (u == v) tops.push_back(v); Leitura ou Escrita Simples
+Jul2026/RepCPP/149614655/bf-omp.cpp:152:has_change = has_change || my_has_change;             Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:98:cout <<  "Total = " << total  << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:294:<< ", my athp =" << athp << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:308:<< ", my athp=" << athp << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:323:<< ", my athp=" << athp << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:341:<< ", my bthp =" << bthp << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/154528299/cpp_omp_sample.cpp:363:<< "and bthp=" << bthp  << endl ; Leitura ou Escrita Simples
+Jul2026/RepCPP/157382526/openmp_bellman_ford.cpp:134:has_change = true; Leitura ou Escrita Simples
+Jul2026/RepCPP/157857606/tsp.cpp:237:minCycle = min(make_pair(localMin,initPopl[0]),minCycle); Leitura ou Escrita Simples
+Jul2026/RepCPP/160418114/bnb_hybrid.cpp:164:for (int i = 0; i < v.size(); i++) Leitura ou Escrita Simples
+Jul2026/RepCPP/170941811/openmp.cpp:245:if (dmin < absmin) absmin = dmin; Leitura ou Escrita Simples
+Jul2026/RepCPP/175065265/driver.cpp:69:std::cout << std::endl << "Failed for i_task=" << i_task << ". Probably out of memory." << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/188832080/kmeans.cpp:296:for (color_t c = 0; c < cn; ++c) Leitura ou Escrita Simples
+Jul2026/RepCPP/188832080/kmeans.cpp:302:for (color_t c = 0; c < cn; ++c) Leitura ou Escrita Simples
+Jul2026/RepCPP/188832080/kmeans.cpp:305:converge &= local_converge; Atribuição Composta
+Jul2026/RepCPP/189645273/ParallelNeedlemanWunsch.cpp:84:auto t_diff = chrono::duration_cast<chrono::seconds>(t_after - t_before).count(); Leitura ou Escrita Simples
+Jul2026/RepCPP/197342552/primsomp.h:38:index = index_local; Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:44:current = *address; Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:53:*address = desired; Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:64:*address = desired; Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:77:*address = (old == expected) ? desired : old; Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:175:*address = std::min(old, arg); Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:188:*address = std::max(old, arg); Leitura ou Escrita Simples
+Jul2026/RepCPP/202712923/atomic_detail.h:201:*address = (old >= arg) ? T(0) : old + T(1); Atribuição Composta
+Jul2026/RepCPP/202712923/atomic_detail.h:214:*address = (old == T(0) || old > arg) ? arg : old - T(1); Leitura ou Escrita Simples
+Jul2026/RepCPP/209143275/main.cpp:93:if(tid==0) usleep(1e6); Leitura ou Escrita Simples
+Jul2026/RepCPP/209143275/main.cpp:94:y=x[0]; Leitura ou Escrita Simples
+Jul2026/RepCPP/211799119/lemon-tc.cpp:37:actual_num_threads = actual_num_threads + 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/23245147/DfEriX.cpp:342:// elapsetime_calc_eri += time_calc_eri.getElapseTime(); Atribuição Composta
+Jul2026/RepCPP/23245147/DfEriX.cpp:343:// elapsetime_store    += time_store.getElapseTime(); Atribuição Composta
+Jul2026/RepCPP/23245147/DfEriX.cpp:535:assert(local_size == static_cast<int>(local_indexP.size())); Leitura ou Escrita Simples
+Jul2026/RepCPP/23245147/DfEriX.cpp:536:assert(local_size == static_cast<int>(local_indexQ.size())); Leitura ou Escrita Simples
+Jul2026/RepCPP/23245147/DfEriX.cpp:541:// elapsetime_calc_eri += time_calc_eri.getElapseTime(); Atribuição Composta
+Jul2026/RepCPP/23245147/DfEriX.cpp:542:// elapsetime_store    += time_store.getElapseTime(); Atribuição Composta
+Jul2026/RepCPP/23245147/TlCommunicate.cpp:2784:for (std::vector<uintptr_t>::iterator req = Leitura ou Escrita Simples
+Jul2026/RepCPP/239794367/open_mp_tests.cpp:175:pi += sum *step; Atribuição Composta
+Jul2026/RepCPP/239794367/open_mp_tests.cpp:199:approx_pi += sum *step; Atribuição Composta
+Jul2026/RepCPP/240264505/vtk_import.cpp:404:merged_image_data = Importer::mergeImageData(merged_image_data, single_image_data); Leitura ou Escrita Simples
+Jul2026/RepCPP/248028642/labirynt_omp.cpp:70:currentThreadIndex = threadCounter; Leitura ou Escrita Simples
+Jul2026/RepCPP/249790277/prob_1.cpp:121:integralValue += my_value; Atribuição Composta
+Jul2026/RepCPP/249790277/prob_1.cpp:122:endwtime = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/267597733/9.norace1.c:9:sum += i; Atribuição Composta
+Jul2026/RepCPP/268889840/omp_critical.cpp:38:dot_prod +=  aux_dot; Atribuição Composta
+Jul2026/RepCPP/277556169/ObservablesLQubit.hpp:232:ex = std::current_exception(); Leitura ou Escrita Simples
+Jul2026/RepCPP/277556169/ObservablesLQubit.hpp:277:ex = std::current_exception(); Leitura ou Escrita Simples
+Jul2026/RepCPP/277556169/ObservablesLQubit.hpp:293:ex = std::current_exception(); Leitura ou Escrita Simples
+Jul2026/RepCPP/277890040/ft.cpp:593:chk = dcomplex_add(chk, chk_worker); Leitura ou Escrita Simples
+Jul2026/RepCPP/279765353/main.cpp:113:int finish = complete * 100.0 / subproblems.size(); Leitura ou Escrita Simples
+Jul2026/RepCPP/285634219/cuBool_gpu.h:388:seed = fast_kiss32(state); Leitura ou Escrita Simples
+Jul2026/RepCPP/285634219/cuBool_gpu.h:390:config_i.seed = fast_kiss32(state); Leitura ou Escrita Simples
+Jul2026/RepCPP/31732163/matching.cpp:152:*count += local_matched; Atribuição Composta
+Jul2026/RepCPP/31732163/matching.cpp:196:param.found |= found; Atribuição Composta
+Jul2026/RepCPP/31732163/metric.cpp:183:field.complexity += phi; Atribuição Composta
+Jul2026/RepCPP/31732163/rmat.cpp:99:deg.avg += deg_sum_local; Atribuição Composta
+Jul2026/RepCPP/344840838/dijkstra_openmp.cpp:246:v = min_node; Leitura ou Escrita Simples
+Jul2026/RepCPP/345031193/main1.cpp:158:countIt++; Incremento
+Jul2026/RepCPP/353094036/main.cpp:106:count++; Incremento
+Jul2026/RepCPP/356992498/calculatePI.cpp:58:sum += temp; Atribuição Composta
+Jul2026/RepCPP/365493075/main.cpp:44:nonce++; Incremento
+Jul2026/RepCPP/36948145/buddhabrot_omp1.cpp:567:const size_t n = iCel; Leitura ou Escrita Simples
+Jul2026/RepCPP/36948145/buddhabrot_omp1.cpp:568:const double percent = (100.0 * n) / nCel; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/Bloom.h:94:good = in >> seq; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/Bloom.h:97:bufferSize += seq.length(); Atribuição Composta
+Jul2026/RepCPP/3769753/Bloom.h:108:if (count % LOAD_PROGRESS_STEP == 0) Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/bloom-dbg.h:602:rec.coverage = getSeqAbsoluteKmerCoverage(seq, solidKmerSet); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/bloom-dbg.h:1021:good = in >> rec; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/bloom-dbg.h:1046:if (params.verbose && counters.readsProcessed % READS_PROGRESS_STEP == 0) Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/BloomIO.h:71:good = in >> seq; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/BloomIO.h:74:bufferSize += seq.length(); Atribuição Composta
+Jul2026/RepCPP/3769753/BloomIO.h:85:if (readCount % LOAD_PROGRESS_STEP == 0) Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/DistanceEst.cpp:274:g_recMA = min(g_recMA, ma); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/MergePaths.cpp:307:added = true; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/MergePaths.cpp:462:inserted = out.insert(*pathIt); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/MergePaths.cpp:481:for (deque<ContigNode>::const_iterator it = mergeQ.begin(); it != mergeQ.end(); ++it) Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/MergePaths.cpp:823:out = it == last ? it : it++; Incremento
+Jul2026/RepCPP/3769753/ParallelFilter.cpp:114:good = static_cast<bool>(getline(uFile, line)); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/ParallelFilter.cpp:115:// good = getline(uFile, hline); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/ParallelFilter.cpp:116:// good = getline(uFile, hline); Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/PopBubbles.cpp:349:for (adjacency_iterator it = adj.first; it != adj.second; ++it) Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:151:batch->sampleCount += i.second; Atribuição Composta
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:152:/*auto& qualHist = batch->qualThresholdPositions; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:165:ReadSize::readsSampleSize = 0; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:562:maxSupport = support; Leitura ou Escrita Simples
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:726:inHistSample = (repeats <= HIST_SAMPLE_SIZE); Atribuição Composta
+Jul2026/RepCPP/3769753/RAlgorithmsShort.cpp:727:skip = (repeats > REPEAT_CASES_LIMIT); Leitura ou Escrita Simples
+Jul2026/RepCPP/384615566/tsp-node-par.cpp:288:Node *node_tmp = new Node; Leitura ou Escrita Simples
+Jul2026/RepCPP/384615566/tsp-node-par.cpp:289:node_tmp->path = min->path; Leitura ou Escrita Simples
+Jul2026/RepCPP/389341661/main.cpp:66:dest = dest + 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/389341661/main.cpp:69:dest = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/392927467/main.cpp:84:count+=dist; Atribuição Composta
+Jul2026/RepCPP/394157680/task1.cpp:12:temp++; Incremento
+Jul2026/RepCPP/394157680/task1.cpp:16:count = temp;		// storing changed data in global Leitura ou Escrita Simples
+Jul2026/RepCPP/394157680/task1.cpp:19:cout<<"Thread Count = "<<count<<endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/394157680/task1.cpp:20:cout<<"Name = Hassan Shahzad"<<endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/394157680/task1.cpp:21:cout<<"Roll No = 18i-0441"<<endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/402750164/main.cpp:77:if(current_node->right == nullptr) Leitura ou Escrita Simples
+Jul2026/RepCPP/402750164/main.cpp:80:flag = false; Leitura ou Escrita Simples
+Jul2026/RepCPP/402750164/main.cpp:93:if(current_node->left == nullptr) Leitura ou Escrita Simples
+Jul2026/RepCPP/402750164/main.cpp:96:flag = false; Leitura ou Escrita Simples
+Jul2026/RepCPP/405455996/code.cpp:25:solutions++; Incremento
+Jul2026/RepCPP/417862355/quids.hpp:230:avg += local_avg; Atribuição Composta
+Jul2026/RepCPP/419120644/main.cpp:48:result += thread_result; Atribuição Composta
+Jul2026/RepCPP/419120644/main.cpp:55:auto s_time = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/419120644/test.cpp:70:result += tmp; Atribuição Composta
+Jul2026/RepCPP/419120644/test.cpp:77:auto result = func(first_array, second_array); Leitura ou Escrita Simples
+Jul2026/RepCPP/419120644/test.cpp:78:auto result_time = omp_get_wtime() - begin_time; Leitura ou Escrita Simples
+Jul2026/RepCPP/434676452/Bruteforce.cpp:34:std::string filename = "probably_key" + std::to_string(key) + ".out"; Leitura ou Escrita Simples
+Jul2026/RepCPP/438852969/scalar_product.cpp:64:scalar_product = scalar_product + prod; Leitura ou Escrita Simples
+Jul2026/RepCPP/438852969/scalar_product.cpp:67:auto end = chrono::system_clock::now(); Leitura ou Escrita Simples
+Jul2026/RepCPP/438852969/scalar_product.cpp:68:long int total_time = chrono::duration_cast<chrono::milliseconds>(end - start).count(); Leitura ou Escrita Simples
+Jul2026/RepCPP/438852969/scalar_product.cpp:136:long int total_time = chrono::duration_cast<chrono::milliseconds>(end - start).count(); Leitura ou Escrita Simples
+Jul2026/RepCPP/449282076/h5_problem2.c:34:ptr->idata++; Incremento
+Jul2026/RepCPP/449282076/h5_problem2.c:55:q->tail->next = _new; Leitura ou Escrita Simples
+Jul2026/RepCPP/449282076/h5_problem2.c:56:q->tail = _new; Leitura ou Escrita Simples
+Jul2026/RepCPP/449727160/math_functions.cpp:290:x = x + inc; Leitura ou Escrita Simples
+Jul2026/RepCPP/472427720/demo.hpp:26:double temp_val = 0.0; Leitura ou Escrita Simples
+Jul2026/RepCPP/472427720/demo.hpp:57:double temp_val = 0.0; Leitura ou Escrita Simples
+Jul2026/RepCPP/472427720/parallel_openmp_csr_Advanced.hpp:180:local_end = local_start + work_chunk; Leitura ou Escrita Simples
+Jul2026/RepCPP/472427720/parallel_openmp_csr_Advanced.hpp:181:global_start_p += work_chunk; Atribuição Composta
+Jul2026/RepCPP/482460652/datarace.cpp:20:sum += a[i]; Atribuição Composta
+Jul2026/RepCPP/488716055/3_pi_spmd_sync.cpp:28:sum += sum_p; Atribuição Composta
+Jul2026/RepCPP/488716055/3_pi_spmd_sync.cpp:31:double end_time = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/500140678/ConsistencyCheck.cpp:250:any_same_position_k2 = other; Leitura ou Escrita Simples
+Jul2026/RepCPP/514630869/chess.cpp:807:min_score = score; Leitura ou Escrita Simples
+Jul2026/RepCPP/514630869/chess.cpp:952:min_score = score; Leitura ou Escrita Simples
+Jul2026/RepCPP/524786911/q1.cpp:31:loc = i; Leitura ou Escrita Simples
+Jul2026/RepCPP/537831675/bfs.cpp:70:new_frontier->count += local_count; Atribuição Composta
+Jul2026/RepCPP/537831675/bfs.cpp:174:new_frontier->count += local_count; Atribuição Composta
+Jul2026/RepCPP/546806621/omp_critical.c:69:num_n0++; Incremento
+Jul2026/RepCPP/546806621/parallel.c:55:maxval = numbers[i]; Leitura ou Escrita Simples
+Jul2026/RepCPP/548297608/task09.cpp:32:min = d[i][j]; Leitura ou Escrita Simples
+Jul2026/RepCPP/548297608/task11.cpp:28:isChanged = true; Leitura ou Escrita Simples
+Jul2026/RepCPP/549299227/random_generator.cpp:40:if (turn == current_thread && sum <= 1000) Leitura ou Escrita Simples
+Jul2026/RepCPP/552451427/task11.cpp:49:double time = omp_get_wtime() - start; Leitura ou Escrita Simples
+Jul2026/RepCPP/552451427/task9.cpp:54:double time = omp_get_wtime() - start; Leitura ou Escrita Simples
+Jul2026/RepCPP/56463083/openmp.cpp:82:if (dmin < absmin) absmin = dmin; Leitura ou Escrita Simples
+Jul2026/RepCPP/571082615/OpenWP.cpp:106:s += m_arr[i]; Atribuição Composta
+Jul2026/RepCPP/589215327/optimization.cpp:249:next_factor += new_factor; Atribuição Composta
+Jul2026/RepCPP/609689737/Lab2023.OpenMP.cpp:38:rez += rez2; Atribuição Composta
+Jul2026/RepCPP/609689737/Lab2023.OpenMP.cpp:41:rez = 0; Leitura ou Escrita Simples
+Jul2026/RepCPP/609689737/Lab2023.OpenMP.cpp:42:time = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/61810048/Laser.cpp:574:magnitude   =NULL; Leitura ou Escrita Simples
+Jul2026/RepCPP/61810048/Laser.cpp:579:phase       =NULL; Leitura ou Escrita Simples
+Jul2026/RepCPP/61810048/Laser.cpp:584:extraProfile=NULL; Leitura ou Escrita Simples
+Jul2026/RepCPP/632256249/Z02.cpp:42:result_parallel += a[i] * b[i]; Atribuição Composta
+Jul2026/RepCPP/632256249/Z02.cpp:45:end = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/632256249/Z03.cpp:45:num_parallel++; Incremento
+Jul2026/RepCPP/632256249/Z04.cpp:45:sum += vec[i]; Atribuição Composta
+Jul2026/RepCPP/632256249/Z05.cpp:46:if (vec[i] > max_serial) max_serial = vec[i]; Leitura ou Escrita Simples
+Jul2026/RepCPP/632256249/Z05.cpp:49:end = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/632610376/main.cpp:141:end = std::chrono::steady_clock::now(); Leitura ou Escrita Simples
+Jul2026/RepCPP/632610376/main.cpp:142:elapsed_seconds = end-start; Leitura ou Escrita Simples
+Jul2026/RepCPP/641750895/fern_train.cpp:142:ind1 = idx1; Leitura ou Escrita Simples
+Jul2026/RepCPP/641750895/fern_train.cpp:143:ind2 = idx2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/affinity_display.1.c:73:max_req_store = nchars; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/critical-unrelated.c:25:var++; Incremento
+Jul2026/RepCPP/651694832/omp_critical.c:20:sum = mysum +sum; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_critical.c:23:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_critical_with_hint.c:25:sum = mysum + sum; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_critical_with_hint.c:29:sum = mysum + sum; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_critical_with_hint.c:33:sum = mysum + sum; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_critical_with_hint.c:37:sum = mysum + sum; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_collapse.c:35:is_larger = is_larger && my_islarger; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_firstprivate.c:40:known_sum = 12345* threadsnum+ (LOOPCOUNT * (LOOPCOUNT + 1)) / 2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_firstprivate.c:41:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_private.c:48:known_sum = (LOOPCOUNT * (LOOPCOUNT + 1)) / 2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_private.c:49:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_for_schedule_runtime.c:55:sum+=i; Atribuição Composta
+Jul2026/RepCPP/651694832/omp_for_schedule_runtime.c:60:error = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_get_num_threads.c:25:return (nthreads == nthreads_lib); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_master.c:24:return ((nthreads == 1) && (executing_thread == 0)); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_master_3.c:30:return ((nthreads == 1) && (executing_thread == 0) && (tid_result == 0)); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_nested.c:26:counter++; Incremento
+Jul2026/RepCPP/651694832/omp_nested.c:28:counter--; Incremento
+Jul2026/RepCPP/651694832/omp_parallel_copyin.c:26:num_threads++; Incremento
+Jul2026/RepCPP/651694832/omp_parallel_copyin.c:32:known_sum = (999 * 1000) / 2 + 7 * num_threads; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_copyin.c:33:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_firstprivate.c:25:num_threads++; Incremento
+Jul2026/RepCPP/651694832/omp_parallel_firstprivate.c:31:known_sum = (999 * 1000) / 2 + 7 * num_threads; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_firstprivate.c:32:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_if.c:27:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_private.c:25:num_threads++; Incremento
+Jul2026/RepCPP/651694832/omp_parallel_private.c:31:known_sum = (999 * 1000) / 2 + 7 * num_threads; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_private.c:32:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_firstprivate.c:39:known_sum=11*3+7; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_firstprivate.c:40:return (known_sum==sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_lastprivate.c:56:known_sum=(999*1000)/2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_lastprivate.c:57:return ((known_sum==sum) && (i0==999) ); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_private.c:49:known_sum=(999*1000)/2+7; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_parallel_sections_private.c:50:return (known_sum==sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_firstprivate.c:40:known_sum = 11 * 3 + 7; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_firstprivate.c:41:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_lastprivate.c:61:known_sum = (999 * 1000) / 2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_lastprivate.c:62:return ((known_sum == sum) && (i0 == 999) ); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_private.c:51:known_sum = (999 * 1000) / 2 + 7; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_section_private.c:52:return (known_sum == sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_single_copyprivate.c:39:printf ("thread = %d, j = %d, i = %d\n", thread, j, i); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_single_private.c:40:nr_iterations += myit; Atribuição Composta
+Jul2026/RepCPP/651694832/omp_single_private.c:43:return ((result == 0) && (nr_iterations == LOOPCOUNT)); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_task_firstprivate.c:37:return (result == 0); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_task_if.c:23:result = (0 == count); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_task_if.c:26:count = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/omp_task_private.c:31:result++; Incremento
+Jul2026/RepCPP/651694832/omp_threadprivate.c:44:known_sum = (LOOPCOUNT * (LOOPCOUNT + 1)) / 2; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/repeated_calls.c:20:x++; Incremento
+Jul2026/RepCPP/651694832/repeated_calls.c:29:y = foo(y); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/repeated_calls.c:30:y = bar(y); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/repeated_calls.c:31:y = foo(y); Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/root-threads-affinity.c:114:flag = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/651694832/teams-distr-on-host.c:32:for(i = 0; i < size; i++) Leitura ou Escrita Simples
+Jul2026/RepCPP/69469951/window.cpp:2483:if( currentTime == myTrace->getEndTime() ) Leitura ou Escrita Simples
+Jul2026/RepCPP/69469951/window.cpp:2484:currentTime += timeStep; Atribuição Composta
+Jul2026/RepCPP/6987353/builtin.hpp:818:radius = std::max(radius, emax); Leitura ou Escrita Simples
+Jul2026/RepCPP/6987353/builtin.hpp:848:b0_norm += loc_norm; Atribuição Composta
+Jul2026/RepCPP/6987353/builtin.hpp:892:radius  += loc_radi; Atribuição Composta
+Jul2026/RepCPP/6987353/distributed_matrix.hpp:1187:radius = std::max(radius, emax); Leitura ou Escrita Simples
+Jul2026/RepCPP/6987353/distributed_matrix.hpp:1224:b0_loc_norm += t_norm; Atribuição Composta
+Jul2026/RepCPP/6987353/distributed_matrix.hpp:1227:scalar_type b0_norm = comm.reduce(MPI_SUM, b0_loc_norm); Leitura ou Escrita Simples
+Jul2026/RepCPP/6987353/distributed_matrix.hpp:1281:loc_radius  += t_radi; Atribuição Composta
+Jul2026/RepCPP/6987353/spgemm.hpp:435:max_row_width = std::max(max_row_width, my_max); Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/Count_occurence_OMP.cpp:77:word_counts[num_words].count = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/Count_occurence_OMP.cpp:59:num_words++; Incremento
+Jul2026/RepCPP/713215819/openmp.cpp:32:stop = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/pi_estimation_simpson2.cpp:60:sum += 4.0 / (1.0 + x * x); Atribuição Composta
+Jul2026/RepCPP/713215819/pi_estimation_simpson2.cpp:63:double end = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/pi_estimation_simpsons.cpp:55:sum += 4.0 / (1.0 + x * x); Atribuição Composta
+Jul2026/RepCPP/713215819/pi_estimation_simpsons.cpp:58:double end = omp_get_wtime(); Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/pi_estimation_simpsons.cpp:59:std::cout << "pi = " << pi << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/713215819/pi_estimation_simpsons.cpp:60:std::cout << "time = " << end - start << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/726810079/histogram-equalization.cpp:39:d = img_size - min; Leitura ou Escrita Simples
+Jul2026/RepCPP/72936111/server.h:287:int idxClient=SearchClient(data.dest); Leitura ou Escrita Simples
+Jul2026/RepCPP/73482458/sum.cpp:34:sum += vecA[i]; Atribuição Composta
+Jul2026/RepCPP/73482458/sum.cpp:49:sum += psum; Atribuição Composta
+Jul2026/RepCPP/744605241/dotProduct.cpp:89:alpha_parallel += a[i] * b[i]; Atribuição Composta
+Jul2026/RepCPP/744605241/dotProduct.cpp:92:time_critical = wall_time() - time_start; Leitura ou Escrita Simples
+Jul2026/RepCPP/744605241/hist_omp_benchmark.cpp:75:double time_end = wall_time(); Leitura ou Escrita Simples
+Jul2026/RepCPP/744605241/omp_bug3.c:66:j++; Incremento
+Jul2026/RepCPP/744605241/omp_bug3.c:73:j = 1; Leitura ou Escrita Simples
+Jul2026/RepCPP/755493705/dijkstra.cpp:73:d = pq.top().first; Leitura ou Escrita Simples
+Jul2026/RepCPP/75643695/Pi.hpp:54:integral += fa + fb; Atribuição Composta
+Jul2026/RepCPP/75787342/IUH_OL.cpp:93:tmp_qsSub = nullptr; Leitura ou Escrita Simples
+Jul2026/RepCPP/75787342/IUH_SED_OL.cpp:93:tmp_sed2ch = nullptr; Leitura ou Escrita Simples
+Jul2026/RepCPP/75787342/SSR_DA.cpp:200:tmp_qiSubbsn = nullptr; Leitura ou Escrita Simples
+Jul2026/RepCPP/758209404/shared_value.cpp:12:shared_value++; Incremento
+Jul2026/RepCPP/775047697/openmp_solver.cpp:98:bestCombination = currentCombination; Leitura ou Escrita Simples
+Jul2026/RepCPP/790690862/open-mp.cpp:70:pivot_row = local_pivot_row; Leitura ou Escrita Simples
+Jul2026/RepCPP/790690862/open-mp.cpp:71:pivot_value = local_pivot_value; Leitura ou Escrita Simples
+Jul2026/RepCPP/801069112/global_algorithm.cpp:204:closestNode = candidate; Leitura ou Escrita Simples
+Jul2026/RepCPP/801069112/global_algorithm.cpp:300:current = nearestNode; Leitura ou Escrita Simples
+Jul2026/RepCPP/801069112/global_algorithm.cpp:311:capacity = 0; Leitura ou Escrita Simples
+Jul2026/RepCPP/801069112/global_parallelization.cpp:109:localBestPath = threadBestPath; Leitura ou Escrita Simples
+Jul2026/RepCPP/806252091/video_filter_openmp.cpp:51:stop = true; Leitura ou Escrita Simples
+Jul2026/RepCPP/806252091/video_filter_openmp.cpp:83:counter++; Incremento
+Jul2026/RepCPP/806252091/video_filter_openmp.cpp:103:Mat filteredFrame = tabelaHash[i].filtered_h2; Leitura ou Escrita Simples
+Jul2026/RepCPP/806252091/video_filter_openmp.cpp:158:isReadingComplete = true; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/apply_chimera_process.cpp:393:removed_counter++; Incremento
+Jul2026/RepCPP/81815495/apply_constant_interpolate_line_pressure_process.hpp:391:MaxNodeID = std::max<int>(MaxNodeID, rNode.Id()); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/apply_periodic_boundary_condition_process.cpp:213:auto constraint1 = r_clone_constraint.Create(++current_num_constraint, master_node, r_var_x, rSlaveNode, r_var_x, master_weight * mTransformationMatrixVariable(0,0), constant_x); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/apply_periodic_boundary_condition_process.cpp:214:auto constraint2 = r_clone_constraint.Create(++current_num_constraint, master_node, r_var_y, rSlaveNode, r_var_x, master_weight * mTransformationMatrixVariable(0,1), constant_x); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/apply_periodic_boundary_condition_process.cpp:215:auto constraint3 = r_clone_constraint.Create(++current_num_constraint, master_node, r_var_z, rSlaveNode, r_var_x, master_weight * mTransformationMatrixVariable(0,2), constant_x); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/apply_periodic_boundary_condition_process.cpp:261:auto constraint = r_clone_constraint.Create(++current_num_constraint,master_node, r_var, rSlaveNode, r_var, master_weight, 0.0); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/builtin.hpp:818:radius = std::max(radius, emax); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/builtin.hpp:848:b0_norm += loc_norm; Atribuição Composta
+Jul2026/RepCPP/81815495/builtin.hpp:892:radius  += loc_radi; Atribuição Composta
+Jul2026/RepCPP/81815495/calculate_water_fraction.h:245:all_threads_max_courant *= delta_t * 1.414; Atribuição Composta
+Jul2026/RepCPP/81815495/calculate_water_fraction.h:295://all_threads_max_courant *= delta_t * 1.414; Atribuição Composta
+Jul2026/RepCPP/81815495/cluster3D.cpp:169:max_Id = *p_max_Id; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/create_and_destroy.cpp:497:array_1d<double, 3> null_vector = ZeroVector(3); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/DEM_KDEM_soft_torque_with_noise_CL.cpp:26:mPerturbedInternalFriction = rand_normal(DEM_KDEM::GetInternalFricc(element1), (*mpProperties)[KDEM_STANDARD_DEVIATION_FRICTION]); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/DEM_parallel_bond_CL.cpp:51:mBondSigmaMax = rand_normal((*mpProperties)[BOND_SIGMA_MAX], (*mpProperties)[BOND_SIGMA_MAX_DEVIATION]); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/distributed_matrix.hpp:1190:radius = std::max(radius, emax); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/distributed_matrix.hpp:1227:b0_loc_norm += t_norm; Atribuição Composta
+Jul2026/RepCPP/81815495/distributed_matrix.hpp:1230:scalar_type b0_norm = comm.reduce(MPI_SUM, b0_loc_norm); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/distributed_matrix.hpp:1284:loc_radius  += t_radi; Atribuição Composta
+Jul2026/RepCPP/81815495/explicit_integration_utilities.cpp:196:if (stable_delta_time < delta_time) delta_time = stable_delta_time; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/explicit_integration_utilities.cpp:203:stable_delta_time = delta_time * SafetyFactor; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/explicit_solver_continuum.cpp:405:used_bonds_counter++; Incremento
+Jul2026/RepCPP/81815495/explicit_solver_strategy.cpp:1551:used_bonds_counter++; Incremento
+Jul2026/RepCPP/81815495/find_global_nodal_neighbours_for_entities_process.cpp:287:GlobalPointersVector<NodeType> all_global_pointers = Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/fracture_propagation_2D_utilities.hpp:552:unsigned int NumInterfaceSubModelPartsOld = rParameters["fracture_data"]["interface_domain_sub_model_part_old_list"].size(); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/graph_utilities.cpp:344:if (temp < particle_temp_min) particle_temp_min = temp; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/graph_utilities.cpp:345:if (temp > particle_temp_max) particle_temp_max = temp; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/graph_utilities.cpp:346:particle_temp_avg     += temp; Atribuição Composta
+Jul2026/RepCPP/81815495/graph_utilities.cpp:347:particle_temp_avg_vol += temp * vol; Atribuição Composta
+Jul2026/RepCPP/81815495/graph_utilities.cpp:348:particle_temp_dev     += temp * temp; Atribuição Composta
+Jul2026/RepCPP/81815495/mapping_variables_2D_utilities.hpp:166:for(int k = Row_top; k <= Row_bot; k++) Atribuição Composta
+Jul2026/RepCPP/81815495/mass_conservation_check_process.cpp:194:r_dist = aux_dist; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/mass_conservation_check_process.cpp:197:r_dist = -aux_dist; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility.h:1089:keep_looking=false; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility.h:1092:if (keep_looking==false) Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility.h:1231:keep_looking=false; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility.h:1234:if (keep_looking==false) Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:539:keep_looking=false; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:542:if (keep_looking==false) Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:1609:keep_looking=false; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:1612:if (keep_looking==false) Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:1853:keep_looking=false; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/move_particle_utility_pfem2.h:1856:if (keep_looking==false) Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/python_outfitted_constitutive_law.cpp:172:Matrix& ConstitutiveMatrix          = rValues.GetConstitutiveMatrix(); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/python_outfitted_constitutive_law.cpp:214:Matrix& ConstitutiveMatrix          = rValues.GetConstitutiveMatrix(); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/rans_apply_exact_nodal_periodic_condition_process.cpp:191:auto p_condition = r_base_model_part.CreateNewCondition( Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/simple_mortar_mapper_process.cpp:277:auto& r_origin_elements_array = mOriginModelPart.Elements(); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/simple_mortar_mapper_process.cpp:278:const auto it_elem_begin = r_origin_elements_array.begin(); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:104:global_sum = rModelPart.GetCommunicator().GetDataCommunicator().SumAll(global_sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:186:global_sum = rModelPart.GetCommunicator().GetDataCommunicator().SumAll(global_sum); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:187:const double number_of_items = Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:315:global_variance = Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:418:global_id = current_id; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:423:const DataCommunicator& r_data_communicator = Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:484:global_id = current_id; Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spatial_methods.h:489:const DataCommunicator& r_data_communicator = Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/spgemm.hpp:435:max_row_width = std::max(max_row_width, my_max); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/test_parallel_utilities.cpp:441:this->max_abs   = std::max(this->max_abs,std::abs(rOther.max_abs)); Leitura ou Escrita Simples
+Jul2026/RepCPP/81815495/test_parallel_utilities.cpp:446:auto partition = IndexPartition<unsigned int>(data_vector.size()); Leitura ou Escrita Simples
+Jul2026/RepCPP/82070754/task12.cpp:26:n++; Incremento
+Jul2026/RepCPP/84542403/testsuite_parallel.hpp:76:m_stats.m_num_errs += errs; Atribuição Composta
+Jul2026/RepCPP/84927230/summation.cpp:32:sum += i; Atribuição Composta
+Jul2026/RepCPP/871738423/Critical_Section.cpp:17:std::cout << "Counter = " << counter << std::endl; Leitura ou Escrita Simples
+Jul2026/RepCPP/872043558/Alireza's-Code.cpp:112:solutions++; Incremento
+Jul2026/RepCPP/88884801/odd_even_sort.c:151:i++; Incremento
+Jul2026/RepCPP/88884801/trapezoidal_integral.cpp:26:integral += local_integral; Atribuição Composta
+Jul2026/RepCPP/899086934/equalizer.cpp:102:end = std::chrono::high_resolution_clock::now(); Leitura ou Escrita Simples
+Jul2026/RepCPP/899086934/equalizer.cpp:103:result.parHistTime = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count(); Leitura ou Escrita Simples
+Jul2026/RepCPP/940147978/critical.cpp:30:res += consume(B); Atribuição Composta
+Jul2026/RepCPP/940147978/simple_pi_parallel_synced.cpp:30:pi += sum * step; Atribuição Composta
+Jul2026/RepCPP/940147978/simple_pi_parallel_synced.cpp:33:double end_time = omp_get_wtime();  // End timer Leitura ou Escrita Simples
+Jul2026/RepCPP/940147978/simple_pi_parallel_synced_inside.cpp:27:pi += 4.0 / (1.0 + x * x); Atribuição Composta
+Jul2026/RepCPP/940147978/simple_pi_parallel_synced_inside.cpp:30:pi *= step; Atribuição Composta
+Jul2026/RepCPP/940147978/simple_pi_parallel_synced_inside.cpp:33:double end_time = omp_get_wtime();  // End timer Leitura ou Escrita Simples
+Jul2026/RepCPP/952211798/task7.cpp:43:p = p->proximo;                        Leitura ou Escrita Simples
+Jul2026/RepCPP/960357388/1_parallel_regions.cpp:34:std::cout << "Thread " << thread_id << " passed the barrier with private_var = " Leitura ou Escrita Simples
+Jul2026/RepCPP/960357388/3_data_scoping_clauses.cpp:37:<< ": shared_var = " << shared_var // Reads the shared value Leitura ou Escrita Simples
+Jul2026/RepCPP/960357388/3_data_scoping_clauses.cpp:38:<< ", firstpriv_var = " << firstpriv_var // Reads thread's initialized copy Leitura ou Escrita Simples
+Jul2026/RepCPP/960357388/3_data_scoping_clauses.cpp:39:<< ", private_var_outside = " << private_var_outside // Reads thread's copy Leitura ou Escrita Simples
+Total de Incrementos: 30
+Total de Atribuições Compostas: 75
+Total de Leituras ou Escritas Simples: 263
+Total de While em Bloco: 1
+Total de For em Bloco: 17
+Total de If em Bloco: 20
