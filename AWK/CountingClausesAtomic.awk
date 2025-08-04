@@ -1,7 +1,6 @@
-    #!/usr/bin/awk -f
+#!/usr/bin/awk -f
 
 BEGIN {
-    # Inicializa os contadores para cada padrão
     semNada = 0
     update = 0
     write = 0
@@ -9,61 +8,60 @@ BEGIN {
     hint = 0
     capture = 0
     compare = 0
-    outros = 0  # Contador para outros padrões
+    outros = 0
 }
 
-# Procura por linhas que começam com "#pragma omp atomic"
-/^#pragma omp atomic/ { 
-    # Verifica se a linha termina logo após o "atomic"
-    if ($0 == "^#pragma omp atomic") { 
-        semNada++
-    } else {
-        # Divide a linha em palavras para analisar o que vem depois de "atomic"
-        split($0, palavras, " ")
+# Captura qualquer linha que começa com "#pragma omp atomic"
+{
+    if ($0 ~ /^#pragma[ \t]+omp[ \t]+atomic([ \t]|$)/) {
+        # Remove comentários de linha e bloco (simples, sem tratar multi-linha)
+        linha = $0
+        sub("//.*", "", linha)
+        sub("/\\*.*\\*/", "", linha)
 
-        # Inicializa uma flag para indicar se algum padrão conhecido foi encontrado
-        encontrouPadrao = 0 
+        # Normaliza espaços
+        gsub(/[ \t]+/, " ", linha)
 
-        # Verifica cada palavra para identificar os padrões
-        for (i in palavras) {
-            if (palavras[i] == "update") { 
-                update++
-                encontrouPadrao = 1
-            }
-            if (palavras[i] == "write") { 
-                write++
-                encontrouPadrao = 1
-            }
-            if (palavras[i] == "read") { 
-                read++
-                encontrouPadrao = 1
-            }
-            if (palavras[i] == "hint") { 
-                hint++
-                encontrouPadrao = 1
-            }
-            if (palavras[i] == "capture") { 
-                capture++
-                encontrouPadrao = 1
-            }
-            if (palavras[i] == "compare") { 
-                compare++
-                encontrouPadrao = 1
+        # Separa as palavras da linha
+        split(linha, palavras, " ")
+        tipo = ""
+        for (i = 1; i <= length(palavras); i++) {
+            if (palavras[i] == "atomic") {
+                # tipo é a próxima palavra após "atomic", se houver
+                tipo = palavras[i+1]
+                break
             }
         }
 
-        # Se nenhum padrão conhecido foi encontrado, incrementa o contador "outros"
-        if (!encontrouPadrao) { 
+        # Classificação dos tipos
+        if (tipo == "" || tipo ~ /^$/) {
+            semNada++
+        } else if (tipo == "update") {
+            update++
+        } else if (tipo == "write") {
+            write++
+        } else if (tipo == "read") {
+            read++
+        } else if (tipo == "hint") {
+            hint++
+        } else if (tipo == "capture") {
+            capture++
+        } else if (tipo == "compare") {
+            compare++
+        } else {
             outros++
         }
     }
 }
 
-# Imprime os resultados no formato solicitado
 END {
-    printf("Update & write & read & compare & capture & hint\\\\ \n")
-    printf("%d & %d & %d & %d & %d & %d\\\\\n", outros+update, write, read, compare, capture, hint)
-    printf("Default: %d\n", outros)
-    printf("Total: %d\n", outros+semNada+update + write + read + compare + capture + hint);
+    print "update: " update
+    print "write: " write
+    print "read: " read
+    print "compare: " compare
+    print "capture: " capture
+    print "hint: " hint
+    print "atomic puro: " semNada
+    print "outros: " outros
+    print "TOTAL: " semNada + update + write + read + compare + capture + hint + outros
 }
-

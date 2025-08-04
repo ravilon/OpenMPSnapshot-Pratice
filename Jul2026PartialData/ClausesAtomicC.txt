@@ -1,4 +1,9 @@
-Update & write & read & compare & capture & hint\\ 
-962 & 208 & 201 & 5 & 187 & 0\\
-Default: 758
-Total: 1563
+update: 199
+write: 208
+read: 195
+compare: 5
+capture: 171
+hint: 0
+atomic puro: 734
+outros: 47
+TOTAL: 1559
