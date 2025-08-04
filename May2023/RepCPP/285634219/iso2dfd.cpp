@@ -158,8 +158,7 @@ std::cout << std::endl;
 
 std::cout << "Computing wavefield in device .." << std::endl;
 
-#pragma omp target data map(next_base[0:nsize], prev_base[0:nsize]) \
-map(to: vel_base[0:nsize])
+#pragma omp target data map(next_base[0:nsize], prev_base[0:nsize])  map(to: vel_base[0:nsize])
 {
 auto kstart = std::chrono::steady_clock::now();
 

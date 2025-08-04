@@ -294,9 +294,7 @@ VlDoubleVectorComparisonFunction distFn = vl_get_vector_comparison_function_d(se
 #endif
 
 #ifdef _OPENMP
-#pragma omp parallel default(none) \
-shared(self, distances, assignments, numData, distFn, data) \
-num_threads(numThreads)
+#pragma omp parallel default(none)  shared(self, distances, assignments, numData, distFn, data)  num_threads(numThreads)
 #endif
 {
 
@@ -351,9 +349,7 @@ vl_kdforest_set_thresholding_method(forest,VL_KDTREE_MEDIAN);
 vl_kdforest_build(forest,self->numCenters,self->centers);
 
 #ifdef _OPENMP
-#pragma omp parallel default(none) \
-num_threads(vl_get_max_threads()) \
-shared(self, forest, update, assignments, distances, data, numData, distFn)
+#pragma omp parallel default(none)  num_threads(vl_get_max_threads())  shared(self, forest, update, assignments, distances, data, numData, distFn)
 #endif
 {
 VlKDForestNeighbor neighbor ;
@@ -1074,15 +1070,7 @@ cc, xx, a, b, assignments[xx]) ;
 allDone = VL_TRUE ;
 
 #if defined(_OPENMP)
-#pragma omp parallel for \
-default(none) \
-shared(self,numData, \
-pointToClosestCenterUB,pointToCenterLB, \
-nextCenterDistances,pointToClosestCenterUBIsStrict, \
-assignments,data,distFn,allDone) \
-private(c,x) \
-reduction(+:numDistanceComputationsToRefreshUB,numDistanceComputationsToRefreshLB) \
-num_threads(vl_get_max_threads())
+#pragma omp parallel for  default(none)  shared(self,numData,  pointToClosestCenterUB,pointToCenterLB,  nextCenterDistances,pointToClosestCenterUBIsStrict,  assignments,data,distFn,allDone)  private(c,x)  reduction(+:numDistanceComputationsToRefreshUB,numDistanceComputationsToRefreshLB)  num_threads(vl_get_max_threads())
 #endif
 for (x = 0 ; x < (signed)numData ; ++ x) {
 

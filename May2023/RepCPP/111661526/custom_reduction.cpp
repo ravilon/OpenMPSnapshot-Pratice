@@ -23,9 +23,7 @@ int main () {
 const uint64_t num_iters = 1UL << 20;
 int64_t result = binop<int64_t>::neutral;
 
-#pragma omp declare reduction(custom_op : int64_t : \
-omp_out = binop<int64_t>()(omp_out, omp_in))        \
-initializer (omp_priv=binop<int64_t>::neutral)
+#pragma omp declare reduction(custom_op : int64_t :  omp_out = binop<int64_t>()(omp_out, omp_in))         initializer (omp_priv=binop<int64_t>::neutral)
 
 
 # pragma omp parallel for reduction(custom_op:result)

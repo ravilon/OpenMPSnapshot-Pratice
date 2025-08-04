@@ -43,12 +43,7 @@ int *aboveThresholdAccumulator = (int*) malloc (sizeof(int) * blocksPerGrid_Gen)
 
 int *dotProductResult = (int*) malloc (sizeof(int) * blocksPerGrid_Gene);
 
-#pragma omp target data map (alloc: randomValues[0:signatureByRNGs], \
-arraysAdded[0:nRandomGenerations],\
-refRegValues[0: nGenesTotal],\
-aboveThresholdAccumulator[0: blocksPerGrid_Gen], \
-dotProductResult[0: blocksPerGrid_Gene]) \
-map (to: qIndex[0:nGenesTotal])
+#pragma omp target data map (alloc: randomValues[0:signatureByRNGs],  arraysAdded[0:nRandomGenerations], refRegValues[0: nGenesTotal], aboveThresholdAccumulator[0: blocksPerGrid_Gen],  dotProductResult[0: blocksPerGrid_Gene])  map (to: qIndex[0:nGenesTotal])
 {
 
 int setSize = 0;

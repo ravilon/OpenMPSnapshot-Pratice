@@ -47,8 +47,7 @@ memcpy(ck, kValsTile, numElems * sizeof(kValues));
 
 int kGlobalIndex = QGridBase;
 
-#pragma omp target teams distribute parallel for \
-num_teams(QBlocks) thread_limit(KERNEL_Q_THREADS_PER_BLOCK)
+#pragma omp target teams distribute parallel for  num_teams(QBlocks) thread_limit(KERNEL_Q_THREADS_PER_BLOCK)
 for (int xIndex = 0; xIndex < numX; xIndex++) {
 float sX = x[xIndex];
 float sY = y[xIndex];

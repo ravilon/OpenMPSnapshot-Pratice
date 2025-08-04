@@ -64,11 +64,7 @@ float vy_float = (float) vy;
 float e_float = (float) e;
 float cutoff_float = (float) cutoff;
 
-#pragma omp target data map(to: host_I_offsets[0:num_cells],\
-host_m_array[0:num_cells], \
-host_n_array[0:num_cells], \
-host_I_all[0:total_size]) \
-map(tofrom: host_IMGVF_all[0:total_size])
+#pragma omp target data map(to: host_I_offsets[0:num_cells], host_m_array[0:num_cells],  host_n_array[0:num_cells],  host_I_all[0:total_size])  map(tofrom: host_IMGVF_all[0:total_size])
 {
 auto start = std::chrono::steady_clock::now();
 

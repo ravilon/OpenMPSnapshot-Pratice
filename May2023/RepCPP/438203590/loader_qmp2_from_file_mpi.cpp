@@ -165,9 +165,7 @@ double coeff[nao * nmo];
 load_array_from_file(msrc_folder+mfname_coeff, dim_coeff, 
 coeff, ' ', 1);
 
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(nmo, nao, fock_ao, coeff, mat_fock)\
-collapse(2)
+#pragma omp parallel for schedule(dynamic) default(none) shared(nmo, nao, fock_ao, coeff, mat_fock) collapse(2)
 for (size_t q = 0; q < nmo; q++){
 for (size_t p = 0; p < nmo; p++){
 mat_fock[q * nmo + p] = 0;
@@ -310,9 +308,7 @@ MPI_COMM_WORLD, &status);
 
 
 timings.start_new_clock("    -- Tranforming Batch: ", 3, 0);
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(npts_to_proc, nmo, nao, nocc, nvirt, cgto_ao_node, coeff, mat_cgto, offset)\
-collapse(2)
+#pragma omp parallel for schedule(dynamic) default(none) shared(npts_to_proc, nmo, nao, nocc, nvirt, cgto_ao_node, coeff, mat_cgto, offset) collapse(2)
 for (size_t p = 0; p < npts_to_proc; p++){
 for (size_t q = 0; q < nmo; q++){
 size_t p_offset = p + offset;
@@ -474,9 +470,7 @@ MPI_COMM_WORLD, &status);
 }
 
 timings.start_new_clock("    -- Transforming Batch: ", 2, 0);
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(offset, npts_to_proc, nocc, nvirt, nao, nmo, coul_ao_node, coeff, cube_coul)\
-collapse(3)
+#pragma omp parallel for schedule(dynamic) default(none) shared(offset, npts_to_proc, nocc, nvirt, nao, nmo, coul_ao_node, coeff, cube_coul) collapse(3)
 for (size_t p = 0; p < npts_to_proc; p++){
 for (size_t i = 0; i < nocc; i++){
 for (size_t a = 0; a < nvirt; a++){

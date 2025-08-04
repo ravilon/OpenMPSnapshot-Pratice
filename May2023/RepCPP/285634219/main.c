@@ -145,23 +145,18 @@ blocks_work_size = blocks_x;
 
 time5 = get_time();
 
-#pragma omp target data map(to: image[0:Ne])\
-map(to: iN[0:Nr], iS[0:Nr], jE[0:Nc], jW[0:Nc])\
-map(alloc: dN[0:Ne], dS[0:Ne], dW[0:Ne], dE[0:Ne], \
-c[0:Ne], sums[0:Ne], sums2[0:Ne])
+#pragma omp target data map(to: image[0:Ne]) map(to: iN[0:Nr], iS[0:Nr], jE[0:Nc], jW[0:Nc]) map(alloc: dN[0:Ne], dS[0:Ne], dW[0:Ne], dE[0:Ne],  c[0:Ne], sums[0:Ne], sums2[0:Ne])
 {
 time6 = get_time();
 
-#pragma omp target teams distribute parallel for \
-num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
+#pragma omp target teams distribute parallel for  num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
 for (int ei = 0; ei < Ne; ei++)
 image[ei] = expf(image[ei]/(fp)255); 
 
 time7 = get_time();
 
 for (iter=0; iter<niter; iter++){ 
-#pragma omp target teams distribute parallel for \
-num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
+#pragma omp target teams distribute parallel for  num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
 for (int ei = 0; ei < Ne; ei++) {
 sums[ei] = image[ei];
 sums2[ei] = image[ei]*image[ei];
@@ -270,8 +265,7 @@ meanROI2 = meanROI * meanROI;
 varROI = (sums2[0] / (fp)(NeROI)) - meanROI2; 
 q0sqr = varROI / meanROI2; 
 
-#pragma omp target teams distribute parallel for \
-num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
+#pragma omp target teams distribute parallel for  num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
 for (int ei = 0; ei < Ne; ei++) {
 int row = (ei+1) % Nr - 1; 
 int col = (ei+1) / Nr + 1 - 1; 
@@ -312,8 +306,7 @@ dE[ei] = E_loc;
 c[ei] = d_c_loc;
 }
 
-#pragma omp target teams distribute parallel for \
-num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
+#pragma omp target teams distribute parallel for  num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
 for (int ei = 0; ei < Ne; ei++){              
 int row = (ei+1) % Nr - 1;  
 int col = (ei+1) / Nr ;     
@@ -336,8 +329,7 @@ image[ei] += (fp)0.25*lambda*d_D;
 time8 = get_time();
 
 
-#pragma omp target teams distribute parallel for \
-num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
+#pragma omp target teams distribute parallel for  num_teams(blocks_work_size) thread_limit(NUMBER_THREADS)
 for (int ei = 0; ei < Ne; ei++)
 image[ei] = logf(image[ei])*(fp)255; 
 

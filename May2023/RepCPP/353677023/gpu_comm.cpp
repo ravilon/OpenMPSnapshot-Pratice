@@ -93,9 +93,7 @@ const auto nnz = get_nnz();
 if (gpu_status == true) {
 #pragma omp target update to(vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
 } else {
-#pragma omp target enter data map(to                                           \
-:                                            \
-vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
+#pragma omp target enter data map(to                                            :                                             vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
 gpu_status = true;
 }
 #endif
@@ -114,8 +112,7 @@ auto *rowd = row_ptr.data();
 auto N = get_row();
 auto nnz = get_nnz();
 
-#pragma omp target exit data map(from                                          \
-: vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
+#pragma omp target exit data map(from                                           : vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
 gpu_status = false;
 }
 #endif
@@ -152,8 +149,7 @@ const auto *rowd = row_ptr.data();
 const auto N = get_row();
 const auto nnz = get_nnz();
 
-#pragma omp target exit data map(release                                       \
-: vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
+#pragma omp target exit data map(release                                        : vald [0:nnz], cold [0:nnz], rowd [0:N + 1])
 
 gpu_status = false;
 }

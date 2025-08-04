@@ -27,12 +27,7 @@ record *ans)
 
 int threads = order < 256 ? order : 256;
 
-#pragma omp target data map(to: knodes[0: knodes_mem],\
-records[0: records_mem],\
-keys[0: count], \
-currKnode[0: count],\
-offset[0: count])\
-map(from: ans[0: count])
+#pragma omp target data map(to: knodes[0: knodes_mem], records[0: records_mem], keys[0: count],  currKnode[0: count], offset[0: count]) map(from: ans[0: count])
 {
 long long kernel_start = get_time();
 

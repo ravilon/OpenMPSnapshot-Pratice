@@ -141,9 +141,7 @@ phi_min   = particles_phi[0];
 theta_max_ref = theta_min_ref;
 phi_max   = phi_min;
 
-#pragma omp simd \
-reduction(min:mr_min) reduction(min:theta_min_ref) reduction(min:phi_min) \
-reduction(max:mr_max) reduction(max:theta_max_ref) reduction(max:phi_max)
+#pragma omp simd  reduction(min:mr_min) reduction(min:theta_min_ref) reduction(min:phi_min)  reduction(max:mr_max) reduction(max:theta_max_ref) reduction(max:phi_max)
 for (ipr=1 ; ipr < number_of_particles; ipr++ ) {
 mr_min = std::min(mr_min,momentum_norm[ipr]);
 mr_max = std::max(mr_max,momentum_norm[ipr]);

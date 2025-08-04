@@ -50,8 +50,7 @@ real_type trans_x(0);
 real_type trans_y(0);
 real_type trans_z(0);
 
-#pragma omp parallel for reduction(+:m_tot) \
-reduction(+:trans_x) reduction(+:trans_y) reduction(+:trans_z)
+#pragma omp parallel for reduction(+:m_tot)  reduction(+:trans_x) reduction(+:trans_y) reduction(+:trans_z)
 for(std::size_t i=0; i<sys.size(); ++i)
 {
 m_tot += sys.mass(i);
@@ -76,8 +75,7 @@ real_type com_x(0);
 real_type com_y(0);
 real_type com_z(0);
 
-#pragma omp parallel for reduction(+:m_tot) \
-reduction(+:com_x) reduction(+:com_y) reduction(+:com_z)
+#pragma omp parallel for reduction(+:m_tot)  reduction(+:com_x) reduction(+:com_y) reduction(+:com_z)
 for(std::size_t i=0; i<sys.size(); ++i)
 {
 m_tot += sys.mass(i);
@@ -100,9 +98,7 @@ real_type I01(0);
 real_type I02(0);
 real_type I12(0);
 
-#pragma omp parallel for reduction(+:Lx)  reduction(+:Ly)  reduction(+:Lz)  \
-reduction(+:I00) reduction(+:I11) reduction(+:I22) \
-reduction(+:I01) reduction(+:I02) reduction(+:I12)
+#pragma omp parallel for reduction(+:Lx)  reduction(+:Ly)  reduction(+:Lz)   reduction(+:I00) reduction(+:I11) reduction(+:I22)  reduction(+:I01) reduction(+:I02) reduction(+:I12)
 for(std::size_t i=0; i<sys.size(); ++i)
 {
 const auto  m = sys.mass(i);

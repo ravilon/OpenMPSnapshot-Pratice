@@ -139,9 +139,7 @@ momentum_min[2] = momentum_z[istart];
 momentum_max[2] = momentum_z[istart];
 
 #if __INTEL_COMPILER > 18000
-#pragma omp simd \
-reduction(min:momentum_min)  \
-reduction(max:momentum_max)
+#pragma omp simd  reduction(min:momentum_min)   reduction(max:momentum_max)
 #endif
 for (ip=(unsigned int) (istart) ; ip < (unsigned int) (iend); ip++ ) {
 momentum_min[0] = std::min(momentum_min[0],momentum_x[ip]);
@@ -225,8 +223,7 @@ momentum_cell_particle_index[ic] = 0;
 particles_per_momentum_cells[ic] = 0;
 }
 
-#pragma omp simd \
-private(ipr,mx_i,my_i,mz_i) 
+#pragma omp simd  private(ipr,mx_i,my_i,mz_i) 
 for (ip=(unsigned int) (istart) ; ip < (unsigned int) (iend); ip++ ) {
 
 ipr = ip - istart;

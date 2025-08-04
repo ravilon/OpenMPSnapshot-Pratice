@@ -201,8 +201,7 @@ PhaseChange& phch = *var.phch;
 MarkerSet& ms = *(var.markersets[0]);
 int_vec2D& elemmarkers = *var.elemmarkers;
 
-#pragma omp parallel for default(none)          \
-shared(ms, elemmarkers, phch)
+#pragma omp parallel for default(none)           shared(ms, elemmarkers, phch)
 for (int m=0; m<ms.get_nmarkers(); m++) {
 int current_mt = ms.get_mattype(m);
 int new_mt = phch(m);

@@ -29,10 +29,8 @@ double value = HUGE_VAL;
 int index = 0;
 };
 
-#pragma omp declare reduction(find_min:Min_Updated \
-: omp_out = omp_in.value < omp_out.value ? omp_in : omp_out)
-#pragma omp declare reduction(find_max:Max_Updated \
-: omp_out = omp_in.value > omp_out.value ? omp_in : omp_out)
+#pragma omp declare reduction(find_min:Min_Updated  : omp_out = omp_in.value < omp_out.value ? omp_in : omp_out)
+#pragma omp declare reduction(find_max:Max_Updated  : omp_out = omp_in.value > omp_out.value ? omp_in : omp_out)
 
 
 struct timespec My_diff(struct timespec start, struct timespec end)
@@ -153,8 +151,7 @@ double simplex_pivot1, simplex_pivot2, simplex_pivot3;
 int i, j;
 
 
-#pragma omp for schedule(guided, chunk_size) reduction(find_max \
-: max)
+#pragma omp for schedule(guided, chunk_size) reduction(find_max  : max)
 for (j = 0; j <= column_num; j++)
 if (standard_simplex_tableau[constraint_num][j] < 0.0 && max.value < (-standard_simplex_tableau[constraint_num][j]))
 {
@@ -168,10 +165,7 @@ do
 {
 
 
-#pragma omp for reduction(+         \
-: count), \
-reduction(find_min                \
-: min) schedule(guided, chunk_size)
+#pragma omp for reduction(+          : count),  reduction(find_min                 : min) schedule(guided, chunk_size)
 for (i = 0; i < constraint_num; i++)
 {
 if (standard_simplex_tableau[i][max.index] > 0.0)
@@ -229,10 +223,7 @@ standard_simplex_tableau[i][j] = (simplex_pivot2 * standard_simplex_tableau[min.
 
 
 #pragma omp barrier
-#pragma omp for reduction(+             \
-: count_neg), \
-reduction(find_max                    \
-: max) schedule(guided, chunk_size)
+#pragma omp for reduction(+              : count_neg),  reduction(find_max                     : max) schedule(guided, chunk_size)
 for (j = 0; j <= column_num; j++)
 {
 standard_simplex_tableau[constraint_num][j] = (simplex_pivot3 * standard_simplex_tableau[min.index][j]) + standard_simplex_tableau[constraint_num][j];

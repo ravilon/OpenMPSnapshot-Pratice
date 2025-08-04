@@ -452,14 +452,7 @@ for(int k = 0; k < NDIM; k++) h_normals[last + (j + k*NNB)*nelr] = h_normals[las
 double kernel_start, kernel_end;
 double offload_start = get_time();
 
-#pragma omp target data map(to: h_ff_variable[0:NVAR], \
-h_areas[0:nelr],\
-h_elements_surrounding_elements[0:nelr*NNB], \
-h_normals[0:nelr*NDIM*NNB]) \
-map(alloc: h_fluxes[0:nelr*NVAR], \
-h_old_variables[0:nelr*NVAR], \
-h_step_factors [0:nelr] ) \
-map(from: h_variables[0:nelr*NVAR])
+#pragma omp target data map(to: h_ff_variable[0:NVAR],  h_areas[0:nelr], h_elements_surrounding_elements[0:nelr*NNB],  h_normals[0:nelr*NDIM*NNB])  map(alloc: h_fluxes[0:nelr*NVAR],  h_old_variables[0:nelr*NVAR],  h_step_factors [0:nelr] )  map(from: h_variables[0:nelr*NVAR])
 {
 kernel_start = get_time();
 

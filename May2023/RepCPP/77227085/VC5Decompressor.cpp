@@ -158,8 +158,7 @@ dst(2 * row + 1, col) = static_cast<int16_t>(odd);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #ifdef HAVE_OPENMP
-#pragma omp taskloop default(none) firstprivate(dst, process) num_tasks(       \
-roundUpDivision(rawspeed_get_number_of_processor_cores(), numChannels))
+#pragma omp taskloop default(none) firstprivate(dst, process) num_tasks(        roundUpDivision(rawspeed_get_number_of_processor_cores(), numChannels))
 #endif
 for (int row = 0; row < dst.height / 2; ++row) {
 #pragma GCC diagnostic pop
@@ -212,10 +211,7 @@ dst(row, 2 * col + 1) = static_cast<int16_t>(odd);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wsign-compare"
 #ifdef HAVE_OPENMP
-#pragma omp taskloop if (finalWavelet) default(none) firstprivate(dst,         \
-process)     \
-num_tasks(roundUpDivision(rawspeed_get_number_of_processor_cores(), 2))    \
-mergeable
+#pragma omp taskloop if (finalWavelet) default(none) firstprivate(dst,          process)      num_tasks(roundUpDivision(rawspeed_get_number_of_processor_cores(), 2))     mergeable
 #endif
 for (int row = 0; row < dst.height; ++row) {
 #pragma GCC diagnostic pop
@@ -237,11 +233,7 @@ auto& lowlow = wavelet.bands[0]->data;
 auto& lowpass = intermediates.lowpass;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-shared(exceptionThrown, highlow, lowlow, lowpass)                          \
-depend(in                                                              \
-: highlow, lowlow) depend(out                                   \
-: lowpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, highlow, lowlow, lowpass)                           depend(in                                                               : highlow, lowlow) depend(out                                    : lowpass)
 #endif
 {
 if (!readValue(exceptionThrown)) {
@@ -261,11 +253,7 @@ auto& lowhigh = wavelet.bands[1]->data;
 auto& highpass = intermediates.highpass;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-shared(exceptionThrown, highhigh, lowhigh, highpass)                       \
-depend(in                                                              \
-: highhigh, lowhigh) depend(out                                 \
-: highpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, highhigh, lowhigh, highpass)                        depend(in                                                               : highhigh, lowhigh) depend(out                                  : highpass)
 #endif
 {
 if (!readValue(exceptionThrown)) {
@@ -290,11 +278,7 @@ auto& reconstructedLowpass = data;
 wavelet.bands.clear();
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none)                                                 \
-shared(exceptionThrown, lowpass, highpass, reconstructedLowpass)           \
-depend(in                                                              \
-: lowpass, highpass) depend(out                                 \
-: reconstructedLowpass)
+#pragma omp task default(none)                                                  shared(exceptionThrown, lowpass, highpass, reconstructedLowpass)            depend(in                                                               : lowpass, highpass) depend(out                                  : reconstructedLowpass)
 #endif
 {
 if (!readValue(exceptionThrown)) {
@@ -548,9 +532,7 @@ ErrorLog& errLog, bool& exceptionThrown) noexcept {
 auto& decodedData = data;
 
 #ifdef HAVE_OPENMP
-#pragma omp task default(none) shared(decodedData, errLog, exceptionThrown)    \
-depend(out                                                                 \
-: decodedData)
+#pragma omp task default(none) shared(decodedData, errLog, exceptionThrown)     depend(out                                                                  : decodedData)
 #endif
 {
 if (!readValue(exceptionThrown)) {
@@ -767,8 +749,7 @@ initVC5LogTable();
 alignas(RAWSPEED_CACHELINESIZE) bool exceptionThrown = false;
 
 #ifdef HAVE_OPENMP
-#pragma omp parallel default(none) shared(exceptionThrown)                     \
-num_threads(rawspeed_get_number_of_processor_cores())
+#pragma omp parallel default(none) shared(exceptionThrown)                      num_threads(rawspeed_get_number_of_processor_cores())
 #endif
 decodeThread(exceptionThrown);
 

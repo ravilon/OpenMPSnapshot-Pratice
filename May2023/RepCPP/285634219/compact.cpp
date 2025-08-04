@@ -79,26 +79,7 @@ double *Vf_compact_list = ccc.Vf_compact_list;
 double *n = ccc.n;
 double *rho_ave_compact = ccc.rho_ave_compact;
 
-#pragma omp target data map(to: imaterial[:sizex*sizey],\
-matids[:mm_len], \
-nextfrac[:mm_len], \
-mmc_index[:mmc_cells+1], \
-mmc_i[:mmc_cells+1], \
-mmc_j[:mmc_cells+1]) \
-map(tofrom: x[:sizex*sizey], \
-y[:sizex*sizey], \
-rho_compact[:sizex*sizey], \
-rho_compact_list[:mm_len], \
-rho_mat_ave_compact[:sizex*sizey], \
-rho_mat_ave_compact_list[:mm_len], \
-p_compact[:sizex*sizey], \
-p_compact_list[:mm_len], \
-t_compact[:sizex*sizey], \
-t_compact_list[:mm_len], \
-V[:sizex*sizey], \
-Vf_compact_list[:mm_len], \
-n[:Nmats], \
-rho_ave_compact[:sizex*sizey])
+#pragma omp target data map(to: imaterial[:sizex*sizey], matids[:mm_len],  nextfrac[:mm_len],  mmc_index[:mmc_cells+1],  mmc_i[:mmc_cells+1],  mmc_j[:mmc_cells+1])  map(tofrom: x[:sizex*sizey],  y[:sizex*sizey],  rho_compact[:sizex*sizey],  rho_compact_list[:mm_len],  rho_mat_ave_compact[:sizex*sizey],  rho_mat_ave_compact_list[:mm_len],  p_compact[:sizex*sizey],  p_compact_list[:mm_len],  t_compact[:sizex*sizey],  t_compact_list[:mm_len],  V[:sizex*sizey],  Vf_compact_list[:mm_len],  n[:Nmats],  rho_ave_compact[:sizex*sizey])
 {
 
 const int thx = 32;

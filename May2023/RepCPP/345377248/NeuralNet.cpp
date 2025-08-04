@@ -49,8 +49,7 @@ outputs_[i][j] = activationFunction(acc + bias);
 }
 else if (p_mode == 1) 
 {
-#pragma omp parallel for num_threads(omp_get_max_threads())\
-schedule(static) shared(outputs_, weights_, i, bias) default(none)
+#pragma omp parallel for num_threads(omp_get_max_threads()) schedule(static) shared(outputs_, weights_, i, bias) default(none)
 for (unsigned int j = 0; j < topology_[i]; j++)
 {
 float acc = 0;
@@ -66,8 +65,7 @@ else
 for (unsigned int j = 0; j < topology_[i]; j++)
 {
 float acc = 0;
-#pragma omp parallel for reduction(+: acc) num_threads(omp_get_max_threads())\
-schedule(static) shared(outputs_, weights_, i, j) default(none)
+#pragma omp parallel for reduction(+: acc) num_threads(omp_get_max_threads()) schedule(static) shared(outputs_, weights_, i, j) default(none)
 for (unsigned int offset = 0; offset < R; offset++)
 {
 acc += outputs_[i - 1][j + offset] * weights_[i - 1][j * R + offset];

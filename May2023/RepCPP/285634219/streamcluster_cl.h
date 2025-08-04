@@ -62,11 +62,7 @@ double t4 = gettime();
 *serial += t4 - t3;
 #endif
 
-#pragma omp target enter data map(alloc: coord_h[0:dim*num],\
-center_table[0:num],\
-work_mem_h[0:(kmax+1)*num], \
-switch_membership[0:num], \
-p_h[0:num])
+#pragma omp target enter data map(alloc: coord_h[0:dim*num], center_table[0:num], work_mem_h[0:(kmax+1)*num],  switch_membership[0:num],  p_h[0:num])
 
 #ifdef PROFILE_TMP
 double t5 = gettime();

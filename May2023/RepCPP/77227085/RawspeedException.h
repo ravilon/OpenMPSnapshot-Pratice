@@ -21,8 +21,7 @@ static thread_local std::array<char, bufSize> buf;
 #elif defined(HAVE_GCC_THREAD_LOCAL)
 static __thread char buf[bufSize];
 #else
-#pragma message                                                                \
-"Don't have thread-local-storage! Exception text may be garbled if used multithreaded"
+#pragma message                                                                 "Don't have thread-local-storage! Exception text may be garbled if used multithreaded"
 static char buf[bufSize];
 #endif
 

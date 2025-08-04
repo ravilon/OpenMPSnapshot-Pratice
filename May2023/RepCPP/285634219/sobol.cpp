@@ -60,8 +60,7 @@ initSobolDirectionVectors(n_dimensions, h_directions);
 
 std::cout << "Executing QRNG on GPU..." << std::endl;
 
-#pragma omp target data map(to: h_directions[0:n_dimensions * n_directions]) \
-map(from: h_outputGPU[0:n_dimensions * n_vectors])
+#pragma omp target data map(to: h_directions[0:n_dimensions * n_directions])  map(from: h_outputGPU[0:n_dimensions * n_vectors])
 {
 double ktime = sobolGPU(repeat, n_vectors, n_dimensions, h_directions, h_outputGPU);
 

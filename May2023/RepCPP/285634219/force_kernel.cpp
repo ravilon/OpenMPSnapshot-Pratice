@@ -335,8 +335,7 @@ double *d_basis;
 double *d_rbasis;
 d_atom *d_atom_list;
 
-#pragma omp target data map (to: h_basis[0:9], h_rbasis[0:9]) \
-map (tofrom: h_atom_list[0:total_atoms])
+#pragma omp target data map (to: h_basis[0:9], h_rbasis[0:9])  map (tofrom: h_atom_list[0:total_atoms])
 {
 calculateForceKernel(
 h_atom_list, total_atoms, cutoff, h_basis, h_rbasis, pform, 

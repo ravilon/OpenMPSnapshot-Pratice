@@ -1480,8 +1480,7 @@ ModelPart &rModelPart = BaseType::GetModelPart();
 double NormV = 0.00;
 errorNormDv = 0;
 
-#pragma omp parallel reduction(+ \
-: NormV)
+#pragma omp parallel reduction(+  : NormV)
 {
 ModelPart::NodeIterator NodeBegin;
 ModelPart::NodeIterator NodeEnd;
@@ -1531,8 +1530,7 @@ ModelPart &rModelPart = BaseType::GetModelPart();
 
 double NormV = 0.00;
 
-#pragma omp parallel reduction(+ \
-: NormV)
+#pragma omp parallel reduction(+  : NormV)
 {
 ModelPart::NodeIterator NodeBegin;
 ModelPart::NodeIterator NodeEnd;
@@ -1567,8 +1565,7 @@ ModelPart &rModelPart = BaseType::GetModelPart();
 
 double NormP = 0.00;
 
-#pragma omp parallel reduction(+ \
-: NormP)
+#pragma omp parallel reduction(+  : NormP)
 {
 ModelPart::NodeIterator NodeBegin;
 ModelPart::NodeIterator NodeEnd;

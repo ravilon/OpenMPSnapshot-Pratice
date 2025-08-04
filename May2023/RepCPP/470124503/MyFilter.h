@@ -44,8 +44,7 @@ uchar *dstData = (uchar *)dstImg.data;
 
 float wei, tmp, sum;
 
-#pragma omp parallel for reduction(+ \
-: wei, tmp, sum)
+#pragma omp parallel for reduction(+  : wei, tmp, sum)
 for (int c = rad_w + 1; c < wd - rad_w; c++)
 {
 for (int r = rad_h + 1; r < hg - rad_h; r++)

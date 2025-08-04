@@ -31,8 +31,7 @@ case 0:
 #pragma omp target data  device(0) map(to:a, n, x[0:n]) map(tofrom:y[0:n])
 {
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp target teams distribute parallel for device(0) \
-num_teams(128) num_threads(128) dist_schedule(static, 128) shared(a, n, x, y)
+#pragma omp target teams distribute parallel for device(0)  num_teams(128) num_threads(128) dist_schedule(static, 128) shared(a, n, x, y)
 for (int i = 0; i < n; ++i) {
 y[i] = a * x[i] + y[i];
 }
@@ -41,12 +40,10 @@ clock_gettime(CLOCK_REALTIME, rt + 1);
 break;
 case 1:
 
-#pragma omp target data  device(0) \
-map(to:a, n, x[0:n]) map(tofrom:y[0:n])
+#pragma omp target data  device(0)  map(to:a, n, x[0:n]) map(tofrom:y[0:n])
 {
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp target teams distribute parallel for device(0) \
-num_teams(65536) num_threads(1024) dist_schedule(static, 1024) shared(a, n, x, y)
+#pragma omp target teams distribute parallel for device(0)  num_teams(65536) num_threads(1024) dist_schedule(static, 1024) shared(a, n, x, y)
 for (int i = 0; i < n; ++i) {
 y[i] = a * x[i] + y[i];
 }
@@ -55,12 +52,10 @@ clock_gettime(CLOCK_REALTIME, rt + 1);
 break;
 case 2:
 
-#pragma omp target data  device(0) \
-map(to:a, m, x[0:n]) map(tofrom:y[0:n])
+#pragma omp target data  device(0)  map(to:a, m, x[0:n]) map(tofrom:y[0:n])
 {
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp target teams distribute parallel for device(0) \
-num_teams(65536/2) num_threads(128) dist_schedule(static, 128) shared(a, m, x, y)
+#pragma omp target teams distribute parallel for device(0)  num_teams(65536/2) num_threads(128) dist_schedule(static, 128) shared(a, m, x, y)
 for (int i = 0; i < m; ++i) {
 y[i          ] = a * x[i          ] + y[i          ];
 y[i +       m] = a * x[i +       m] + y[i +       m];
@@ -84,12 +79,10 @@ clock_gettime(CLOCK_REALTIME, rt + 1);
 break;
 case 3:
 
-#pragma omp target data  device(0) \
-map(to:a, m, x[0:n]) map(tofrom:y[0:n])
+#pragma omp target data  device(0)  map(to:a, m, x[0:n]) map(tofrom:y[0:n])
 {
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp target teams distribute parallel for device(0) \
-num_teams(4096) num_threads(128) dist_schedule(static, 128) shared(a, m, x, y)
+#pragma omp target teams distribute parallel for device(0)  num_teams(4096) num_threads(128) dist_schedule(static, 128) shared(a, m, x, y)
 for (int i = 0; i < m; ++i) {
 y[i          ] = a * x[i          ] + y[i          ];
 y[i +       m] = a * x[i +       m] + y[i +       m];
@@ -113,13 +106,10 @@ clock_gettime(CLOCK_REALTIME, rt + 1);
 break;
 case 4:
 
-#pragma omp target data  device(0) \
-map(to:a, x[0:n]) map(tofrom:y[0:n])
+#pragma omp target data  device(0)  map(to:a, x[0:n]) map(tofrom:y[0:n])
 {
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp target teams distribute parallel for device(0) \
-num_teams(65536) thread_limit(512) dist_schedule(static, 512) \
-collapse(2) shared(a, x, y)
+#pragma omp target teams distribute parallel for device(0)  num_teams(65536) thread_limit(512) dist_schedule(static, 512)  collapse(2) shared(a, x, y)
 for (int j = 0; j < 65536; ++j) {
 for (int i = 0; i < 512; ++i) { 
 y[j * 1024 + i      ] += a * x[j * 1024 + i      ];

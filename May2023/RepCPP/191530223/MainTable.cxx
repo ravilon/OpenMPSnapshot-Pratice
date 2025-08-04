@@ -357,8 +357,7 @@ printf("\r%lu/%lu", realisation + 1, fNRealizations);
 uint64_t cNumberOfDifferentWords = 0;
 long double cVocabularySize = VocabularySize[realisation];
 
-#pragma omp parallel for reduction(+ \
-: cNumberOfDifferentWords)
+#pragma omp parallel for reduction(+  : cNumberOfDifferentWords)
 for (uint64_t component = 0; component < fNComponents; component++)
 {
 if (get(component, realisation) != 0)

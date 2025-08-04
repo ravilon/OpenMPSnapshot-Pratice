@@ -106,13 +106,7 @@ printf("Find: local_work_size = %zu, global_work_size = %zu \n" ,work_group_size
 #endif
 
 
-#pragma omp target data map(to: host_sin_angle[0:NPOINTS],\
-host_cos_angle[0:NPOINTS],\
-host_grad_x[0:grad_m*grad_n],\
-host_grad_y[0:grad_m*grad_n],\
-host_tX[0: NCIRCLES*NPOINTS],\
-host_tY[0: NCIRCLES*NPOINTS])\
-map(tofrom:host_gicov[0:grad_m*grad_n])
+#pragma omp target data map(to: host_sin_angle[0:NPOINTS], host_cos_angle[0:NPOINTS], host_grad_x[0:grad_m*grad_n], host_grad_y[0:grad_m*grad_n], host_tX[0: NCIRCLES*NPOINTS], host_tY[0: NCIRCLES*NPOINTS]) map(tofrom:host_gicov[0:grad_m*grad_n])
 {
 auto start = std::chrono::steady_clock::now();
 
@@ -154,9 +148,7 @@ printf("image dilate: local_work_size = %zu, global_work_size = %zu \n",
 local_work_size, global_work_size);
 #endif
 
-#pragma omp target data map(to: host_strel[0:strel_m * strel_n], \
-host_gicov[0:grad_m*grad_n]) \
-map(from: host_dilated[0:max_gicov_m * max_gicov_n])
+#pragma omp target data map(to: host_strel[0:strel_m * strel_n],  host_gicov[0:grad_m*grad_n])  map(from: host_dilated[0:max_gicov_m * max_gicov_n])
 {
 auto start = std::chrono::steady_clock::now();
 

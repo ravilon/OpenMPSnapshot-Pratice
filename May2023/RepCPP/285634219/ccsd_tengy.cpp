@@ -21,25 +21,7 @@ double *emp4i_p = &emp4i;
 double *emp5k_p = &emp5k;
 double *emp4k_p = &emp4k;
 
-#pragma omp target data map (to: f1n[0:nvir*nvir],\
-f2n[0:nvir*nvir],\
-f3n[0:nvir*nvir],\
-f4n[0:nvir*nvir],\
-f1t[0:nvir*nvir],\
-f2t[0:nvir*nvir],\
-f3t[0:nvir*nvir],\
-f4t[0:nvir*nvir],\
-dintc1[0:nvir],\
-dintc2[0:nvir],\
-dintx1[0:nvir],\
-dintx2[0:nvir],\
-t1v1[0:nvir],\
-t1v2[0:nvir],\
-eorb[0:ncor+nocc+nvir]) \
-map(tofrom: emp5i_p[0:1],\
-emp4i_p[0:1],\
-emp5k_p[0:1],\
-emp4k_p[0:1])
+#pragma omp target data map (to: f1n[0:nvir*nvir], f2n[0:nvir*nvir], f3n[0:nvir*nvir], f4n[0:nvir*nvir], f1t[0:nvir*nvir], f2t[0:nvir*nvir], f3t[0:nvir*nvir], f4t[0:nvir*nvir], dintc1[0:nvir], dintc2[0:nvir], dintx1[0:nvir], dintx2[0:nvir], t1v1[0:nvir], t1v2[0:nvir], eorb[0:ncor+nocc+nvir])  map(tofrom: emp5i_p[0:1], emp4i_p[0:1], emp5k_p[0:1], emp4k_p[0:1])
 {
 #pragma omp target teams distribute parallel for collapse(2) thread_limit(BLOCK_SIZE*BLOCK_SIZE)
 for (int b = 0; b < nvir; b++) {

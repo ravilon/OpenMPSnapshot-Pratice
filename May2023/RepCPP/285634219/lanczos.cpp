@@ -38,8 +38,7 @@ T device_dot_product(const int n, const T *x, const T *y) {
 T result = 0;
 const int blocks = (n + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
 
-#pragma omp target teams distribute parallel for reduction(+:result) \
-num_teams(blocks) thread_limit(THREADS_PER_BLOCK)
+#pragma omp target teams distribute parallel for reduction(+:result)  num_teams(blocks) thread_limit(THREADS_PER_BLOCK)
 for (int index = 0; index < n; index++) 
 result += x[index] * y[index];
 
@@ -76,11 +75,7 @@ group_size = row_nonzeros > 4 ? group_size : 4;
 group_size = row_nonzeros > 2 ? group_size : 2;
 
 
-#pragma omp target data map (to: row_ptr[0:rows+1], \
-col_ind[0:nonzeros], \
-values[0:nonzeros], \
-x[0:cols]) \
-map (alloc: y[0:cols], x_prev[0:cols])
+#pragma omp target data map (to: row_ptr[0:rows+1],  col_ind[0:nonzeros],  values[0:nonzeros],  x[0:cols])  map (alloc: y[0:cols], x_prev[0:cols])
 {
 start_time = cycle_timer::current_seconds();
 for (int i = 0; i < steps; i++) {

@@ -71,14 +71,11 @@ route_cost find_best_route(int const* distances)
 
 int64_t num_routes = factorial(N);
 
-#pragma omp declare reduction                                           \
-(route_min : route_cost : omp_out = route_cost::min(omp_out, omp_in)) \
-initializer(omp_priv = route_cost())
+#pragma omp declare reduction                                            (route_min : route_cost : omp_out = route_cost::min(omp_out, omp_in))  initializer(omp_priv = route_cost())
 
 route_cost best_route;
 
-#pragma omp target teams distribute parallel for\
-map(to:distances[0:N*N]) reduction(route_min : best_route)
+#pragma omp target teams distribute parallel for map(to:distances[0:N*N]) reduction(route_min : best_route)
 for (int64_t i = 0; i < num_routes; ++i)
 {
 int cost = 0;

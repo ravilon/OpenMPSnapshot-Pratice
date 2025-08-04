@@ -99,8 +99,7 @@ cpu_global_size = (1 + cpu_global_size / wg_size) * wg_size;
 size_t gpu_global_size = globalWorkSize - cpu_global_size;
 
 if (gpu_global_size > 0) {
-#pragma omp target data map (to: dataset[0:size])\
-map (alloc: results[0:wg_count])
+#pragma omp target data map (to: dataset[0:size]) map (alloc: results[0:wg_count])
 {
 const int nTeams = gpu_global_size / wg_size;
 
@@ -156,8 +155,7 @@ gpu_global_size = globalWorkSize - cpu_global_size;
 
 if (gpu_global_size > 0) {
 
-#pragma omp target data map (to: dataset[0:size])\
-map (alloc: results[0:wg_count])
+#pragma omp target data map (to: dataset[0:size]) map (alloc: results[0:wg_count])
 {
 const int nTeams = gpu_global_size / wg_size;
 

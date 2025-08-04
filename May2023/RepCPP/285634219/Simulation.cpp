@@ -37,14 +37,7 @@ NuclideGridPoint *SD_nuclide_grid  = SD.nuclide_grid;
 double *SD_unionized_energy_array = SD.unionized_energy_array;
 int *SD_index_grid = SD.index_grid;
 
-#pragma omp target data \
-map(to: SD_num_nucs[:SD.length_num_nucs])\
-map(to: SD_concs[:SD.length_concs])\
-map(to: SD_mats[:SD.length_mats])\
-map(to: SD_unionized_energy_array[:SD.length_unionized_energy_array])\
-map(to: SD_index_grid[:SD.length_index_grid])\
-map(to: SD_nuclide_grid[:SD.length_nuclide_grid])\
-map(from: verification[:in.lookups])
+#pragma omp target data  map(to: SD_num_nucs[:SD.length_num_nucs]) map(to: SD_concs[:SD.length_concs]) map(to: SD_mats[:SD.length_mats]) map(to: SD_unionized_energy_array[:SD.length_unionized_energy_array]) map(to: SD_index_grid[:SD.length_index_grid]) map(to: SD_nuclide_grid[:SD.length_nuclide_grid]) map(from: verification[:in.lookups])
 {
 
 double kstart = get_time();

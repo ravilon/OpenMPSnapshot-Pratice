@@ -58,14 +58,7 @@ const float _lio_31 = 100000.0f;
 const float _lio_32 = 5000000000.0f; 
 const float _lio_33 = expf(-100.0f*dt);
 
-#pragma omp target data map(tofrom: _ptr_array_neurongroup_h[0:_N],\
-_ptr_array_neurongroup_m[0:_N], \
-_ptr_array_neurongroup_n[0:_N], \
-_ptr_array_neurongroup_ge[0:_N], \
-_ptr_array_neurongroup_v[0:_N], \
-_ptr_array_neurongroup_gi[0:_N] ) \
-map(to: _ptr_array_neurongroup_lastspike[0:_N]) \
-map(from: _ptr_array_neurongroup_not_refractory[0:_N])
+#pragma omp target data map(tofrom: _ptr_array_neurongroup_h[0:_N], _ptr_array_neurongroup_m[0:_N],  _ptr_array_neurongroup_n[0:_N],  _ptr_array_neurongroup_ge[0:_N],  _ptr_array_neurongroup_v[0:_N],  _ptr_array_neurongroup_gi[0:_N] )  map(to: _ptr_array_neurongroup_lastspike[0:_N])  map(from: _ptr_array_neurongroup_not_refractory[0:_N])
 {
 auto start = std::chrono::steady_clock::now();
 

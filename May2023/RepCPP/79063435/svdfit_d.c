@@ -58,9 +58,7 @@ double wmax,tmp,thresh,sum,*b,*afunc;
 b=dvector(1,ndata);
 afunc=dvector(1,ma);
 
-#pragma omp parallel for if(ndata > 100)\
-shared(funcs, x, afunc, ma, u, sig, b, y) \
-private(i, j)
+#pragma omp parallel for if(ndata > 100) shared(funcs, x, afunc, ma, u, sig, b, y)  private(i, j)
 for (i=1;i<=ndata;i++) {	
 (*funcs)(x[i],afunc,ma);
 for (j=1;j<=ma;j++) u[i][j]=afunc[j]/sig[i];
@@ -81,9 +79,7 @@ if (*(wptr) < thresh) *(wptr)=0.0;
 svbksb_d(u,w,v,ndata,ma,b,a);
 
 *chisq=0.0;
-#pragma omp parallel for if(ndata > 100)\
-shared(funcs, x, afunc, ma, a, chisq, y, sig) \
-private(i, j, sum, tmp)
+#pragma omp parallel for if(ndata > 100) shared(funcs, x, afunc, ma, a, chisq, y, sig)  private(i, j, sum, tmp)
 for (i=1; i<=ndata; i++) {
 (*funcs)(x[i],afunc,ma);
 for (sum=0.0,j=1;j<=ma;j++) sum += a[j] * afunc[j];

@@ -433,8 +433,7 @@ const int n_nodes = rModelPart.NumberOfNodes();
 double NormV = 0.00;
 errorNormDv = 0;
 
-#pragma omp parallel for reduction(+ \
-: NormV)
+#pragma omp parallel for reduction(+  : NormV)
 for (int i_node = 0; i_node < n_nodes; ++i_node)
 {
 const auto it_node = rModelPart.NodesBegin() + i_node;

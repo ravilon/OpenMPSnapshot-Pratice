@@ -24,8 +24,7 @@ int gridsize = ((uint32_t)num_kvs + threadblocksize - 1) / threadblocksize;
 
 auto start = std::chrono::steady_clock::now();
 
-#pragma omp target teams distribute parallel for \
-num_teams(gridsize) thread_limit(threadblocksize)
+#pragma omp target teams distribute parallel for  num_teams(gridsize) thread_limit(threadblocksize)
 for (unsigned int tid = 0; tid < num_kvs; tid++) {
 uint32_t key = kvs[tid].key;
 uint32_t value = kvs[tid].value;
@@ -63,8 +62,7 @@ int gridsize = ((uint32_t)num_kvs + threadblocksize - 1) / threadblocksize;
 
 auto start = std::chrono::steady_clock::now();
 
-#pragma omp target teams distribute parallel for \
-num_teams(gridsize) thread_limit(threadblocksize)
+#pragma omp target teams distribute parallel for  num_teams(gridsize) thread_limit(threadblocksize)
 for (unsigned int tid = 0; tid < num_kvs; tid++) {
 uint32_t key = kvs[tid].key;
 uint32_t slot = hash(key);
@@ -98,8 +96,7 @@ int gridsize = (kHashTableCapacity + threadblocksize - 1) / threadblocksize;
 
 auto start = std::chrono::steady_clock::now();
 
-#pragma omp target teams distribute parallel for \
-num_teams(gridsize) thread_limit(threadblocksize) map(tofrom: kvs_size)
+#pragma omp target teams distribute parallel for  num_teams(gridsize) thread_limit(threadblocksize) map(tofrom: kvs_size)
 for (unsigned int tid = 0; tid < kHashTableCapacity; tid++) 
 {
 if (pHashTable[tid].key != kEmpty) 

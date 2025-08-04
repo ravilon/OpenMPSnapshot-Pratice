@@ -19,8 +19,7 @@ bool converged = false;
 double global_diff = 0.0;
 double sum_no_out = 0.0;
 
-#pragma omp parallel for reduction(+ \
-: sum_no_out)
+#pragma omp parallel for reduction(+  : sum_no_out)
 for (int i = 0; i < numNodes; ++i)
 {
 solution[i] = equal_prob;
@@ -46,8 +45,7 @@ score_new[vi] += damping * sum_no_out / numNodes;
 
 global_diff = 0.0;
 sum_no_out = 0.0;
-#pragma omp parallel for reduction(+ \
-: global_diff, sum_no_out)
+#pragma omp parallel for reduction(+  : global_diff, sum_no_out)
 for (int vi = 0; vi < numNodes; vi++)
 {
 global_diff += abs(score_new[vi] - solution[vi]);

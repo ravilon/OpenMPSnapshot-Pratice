@@ -51,8 +51,7 @@ free(x);     free(y);
 free(yhost); free(yaccl);
 exit(EXIT_FAILURE);
 }
-#pragma omp parallel for default(none) \
-shared(a, x, y, yhost, yaccl, n) private(i)
+#pragma omp parallel for default(none)  shared(a, x, y, yhost, yaccl, n) private(i)
 for (i = 0; i < n; ++i) {
 x[i]     = rand() % 32 / 32.0f;
 y[i]     = rand() % 32 / 32.0f;

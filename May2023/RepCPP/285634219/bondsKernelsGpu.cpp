@@ -1001,17 +1001,7 @@ dataType* accruedAmountCurrDate = resultsFromGpu.accruedAmountCurrDate;
 dataType* cleanPrice = resultsFromGpu.cleanPrice;
 dataType* bondForwardVal = resultsFromGpu.bondForwardVal;
 
-#pragma omp target data map(to: discountCurve[0:numBonds], \
-repoCurve[0:numBonds], \
-currDate[0:numBonds], \
-maturityDate[0:numBonds], \
-bondCleanPrice[0:numBonds], \
-bond[0:numBonds], \
-dummyStrike[0:numBonds]) \
-map(from: dirtyPrice[0:numBonds], \
-accruedAmountCurrDate[0:numBonds], \
-cleanPrice[0:numBonds], \
-bondForwardVal[0:numBonds]) 
+#pragma omp target data map(to: discountCurve[0:numBonds],  repoCurve[0:numBonds],  currDate[0:numBonds],  maturityDate[0:numBonds],  bondCleanPrice[0:numBonds],  bond[0:numBonds],  dummyStrike[0:numBonds])  map(from: dirtyPrice[0:numBonds],  accruedAmountCurrDate[0:numBonds],  cleanPrice[0:numBonds],  bondForwardVal[0:numBonds]) 
 {
 #pragma omp target teams distribute parallel for thread_limit(256) 
 for (int bondNum = 0; bondNum < numBonds; bondNum++)

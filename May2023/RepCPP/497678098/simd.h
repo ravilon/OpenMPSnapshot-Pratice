@@ -45,8 +45,7 @@
 
 #if defined(SEQAN_SEQANSIMD_ENABLED) && defined(COMPILER_GCC) && (__GNUC__ <= 4)
 #if !(defined(NDEBUG) || defined(SEQAN_ENABLE_TESTING))
-#pragma message("SIMD acceleration was disabled for <=gcc4.9, because of known performance issues " \
-"https:
+#pragma message("SIMD acceleration was disabled for <=gcc4.9, because of known performance issues "  "https:
 #endif
 #undef SEQAN_SIMD_ENABLED
 #undef SEQAN_SEQANSIMD_ENABLED
@@ -57,8 +56,7 @@
 #define SEQAN_SIZEOF_MAX_VECTOR 64
 #elif defined(SEQAN_SEQANSIMD_ENABLED) && defined(__AVX512F__)
 #if !(defined(NDEBUG) || defined(SEQAN_ENABLE_TESTING))
-#pragma message("SEQAN_SIMD doesn't support AVX512 (except gcc), thus falling back to AVX2 " \
-"(we are using some back ported instruction for AVX2 which where introduced since AVX512)")
+#pragma message("SEQAN_SIMD doesn't support AVX512 (except gcc), thus falling back to AVX2 "  "(we are using some back ported instruction for AVX2 which where introduced since AVX512)")
 #endif
 #define SEQAN_SIZEOF_MAX_VECTOR 32
 #elif defined(__AVX512F__)

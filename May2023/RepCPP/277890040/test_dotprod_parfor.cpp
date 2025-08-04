@@ -58,10 +58,7 @@ A[j]=j*3.14; B[j]=2.1*j;
 ff::ffTime(ff::START_TIME);
 for(int z=0;z<NTIMES;++z) {
 
-#pragma omp parallel for default(shared)                                \
-schedule(runtime)                                                   \
-reduction(+:sum)                                                    \
-num_threads(nworkers)
+#pragma omp parallel for default(shared)                                 schedule(runtime)                                                    reduction(+:sum)                                                     num_threads(nworkers)
 for(long i=0;i<arraySize;++i)
 sum += A[i]*B[i];
 

@@ -145,8 +145,7 @@ const int offset_r = 0;
 const int offset_c = 0;
 const int block_width = worksize/BLOCK_SIZE ;
 
-#pragma omp target data map(tofrom: input_itemsets[0:max_cols * max_rows]) \
-map(to: reference[0:max_cols * max_rows])
+#pragma omp target data map(tofrom: input_itemsets[0:max_cols * max_rows])  map(to: reference[0:max_cols * max_rows])
 {
 #ifdef DEBUG
 printf("Processing upper-left matrix\n");

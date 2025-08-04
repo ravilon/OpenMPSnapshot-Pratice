@@ -75,8 +75,7 @@ int i, j;
 for (int j = 0; j < countMatrix[1].size(); j++)
 {
 float den1 = 0, den2 = 0, num = 0;
-#pragma omp parallel for reduction(+ \
-: num, den1, den2)
+#pragma omp parallel for reduction(+  : num, den1, den2)
 
 for (int i = 0; i < countMatrix.size(); i++)
 {

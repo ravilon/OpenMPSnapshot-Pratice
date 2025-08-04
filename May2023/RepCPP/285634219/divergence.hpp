@@ -13,8 +13,7 @@ __declspec(align(boundary)) vardec
 #define NOVECDEP _Pragma("GCC ivdep")
 #define ALWAYSVECTORIZE _Pragma("GCC vector always")
 #else
-#pragma message( \
-"G++ <4.9 Does not support vectorization pragmas")
+#pragma message(  "G++ <4.9 Does not support vectorization pragmas")
 #define NOVECDEP
 #define ALWAYSVECTORIZE
 #endif

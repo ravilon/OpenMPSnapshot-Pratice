@@ -97,14 +97,7 @@ const MINIFE_LOCAL_ORDINAL* MINIFE_RESTRICT const Arowoffsets = &A.row_offsets[0
 const MINIFE_GLOBAL_ORDINAL* MINIFE_RESTRICT const Acols    = &A.packed_cols[0];
 const MINIFE_SCALAR* MINIFE_RESTRICT const Acoefs            = &A.packed_coefs[0];
 
-#pragma omp target data map(to: r_ptr[0:r.coefs.size()],  \
-p_ptr[0:p.coefs.size()],  \
-Ap_ptr[0:Ap.coefs.size()], \
-b_ptr[0:b.coefs.size()],  \
-Arowoffsets[0:A.row_offsets.size()], \
-Acols[0:A.packed_cols.size()], \
-Acoefs[0:A.packed_coefs.size()]) \
-map(tofrom: x_ptr[0:x.coefs.size()])  
+#pragma omp target data map(to: r_ptr[0:r.coefs.size()],   p_ptr[0:p.coefs.size()],   Ap_ptr[0:Ap.coefs.size()],  b_ptr[0:b.coefs.size()],   Arowoffsets[0:A.row_offsets.size()],  Acols[0:A.packed_cols.size()],  Acoefs[0:A.packed_coefs.size()])  map(tofrom: x_ptr[0:x.coefs.size()])  
 {
 
 TICK(); waxpby(one, x, zero, x, p); TOCK(tWAXPY);

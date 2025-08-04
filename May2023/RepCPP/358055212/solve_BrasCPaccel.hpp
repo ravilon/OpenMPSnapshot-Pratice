@@ -462,27 +462,9 @@ cout << AO_iter << "   " << " --- " << f_value/frob_X << "   " << " --- " << f_v
 auto t1 = high_resolution_clock::now();
 omp_set_nested(0);
 #if USE_COST_FUN
-#pragma omp parallel \
-num_threads(threads_num) \
-proc_bind(spread)\
-default(none)\
-private(current_mode, Est_Tensor_from_factors)\
-shared(Factors_prev, Y_Factors, cout, X_mat_0, MTTKRP_0, gram_cwise_prod,\
-t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d,\
-t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP,\
-stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order,\
-tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
+#pragma omp parallel  num_threads(threads_num)  proc_bind(spread) default(none) private(current_mode, Est_Tensor_from_factors) shared(Factors_prev, Y_Factors, cout, X_mat_0, MTTKRP_0, gram_cwise_prod, t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d, t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP, stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order, tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
 #else
-#pragma omp parallel\
-num_threads(threads_num) \
-proc_bind(spread)\
-default(none)\
-private(current_mode, Est_Tensor_from_factors)\
-shared(Factors_prev, Y_Factors, cout,\
-t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d,\
-t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP,\
-stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order,\
-tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
+#pragma omp parallel num_threads(threads_num)  proc_bind(spread) default(none) private(current_mode, Est_Tensor_from_factors) shared(Factors_prev, Y_Factors, cout, t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d, t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP, stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order, tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
 #endif                    
 {
 std::array<MatrixXd, TNS_ORDER> local_Factors       = Factors;
@@ -770,27 +752,9 @@ auto t1 = high_resolution_clock::now();
 omp_set_nested(1);
 
 #if USE_COST_FUN
-#pragma omp parallel \
-num_threads(threads_num) \
-proc_bind(spread)\
-default(none)\
-private(current_mode)\
-shared(Factors_prev, Y_Factors, cout, X_mat_0, MTTKRP_0, gram_cwise_prod,\
-t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d,\
-t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP,\
-stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order,\
-tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
+#pragma omp parallel  num_threads(threads_num)  proc_bind(spread) default(none) private(current_mode) shared(Factors_prev, Y_Factors, cout, X_mat_0, MTTKRP_0, gram_cwise_prod, t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d, t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP, stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order, tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
 #else
-#pragma omp parallel\
-num_threads(threads_num) \
-proc_bind(spread)\
-default(none)\
-private(current_mode, Est_Tensor_from_factors)\
-shared(Factors_prev, Y_Factors, cout,\
-t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d,\
-t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP,\
-stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order,\
-tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
+#pragma omp parallel num_threads(threads_num)  proc_bind(spread) default(none) private(current_mode, Est_Tensor_from_factors) shared(Factors_prev, Y_Factors, cout, t1_struct, t1_Ts, t1_KRs, t1_cal_grad, t1_cpdgen, t1_struct_d, frob_X_sq_d, t1_NAG, t1_fval, stop_t_cal_grad, stop_t_cpdgen, stop_t_fval, stop_t_KRs, stop_t_MTTKRP, stop_t_NAG, stop_t_struct, stop_t_Ts, Factors, Tensor_pointer, tns_order, tns_dims, block_size, AO_iter, print_iter, True_Tensor, f_value, mttkrp_counter)
 #endif                
 {
 std::array<MatrixXd, TNS_ORDER> local_Factors       = Factors;

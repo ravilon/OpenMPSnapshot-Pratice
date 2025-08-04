@@ -1366,9 +1366,7 @@ size_t thread_sz[nthreads];
 
 const unsigned char *data = (const unsigned char*) input;
 
-#pragma omp target data map(from: thread_sz[0:nthreads], thread_cs[0:nthreads]) \
-map(to: data[0:nbytes], crc64_table[0:4][0:256], \
-crc64_interleaved_table[0:4][0:256])
+#pragma omp target data map(from: thread_sz[0:nthreads], thread_cs[0:nthreads])  map(to: data[0:nbytes], crc64_table[0:4][0:256],  crc64_interleaved_table[0:4][0:256])
 {
 #pragma omp target teams distribute parallel for num_teams(nthreads/64) thread_limit(64)
 for (int tid = 0; tid < nthreads; tid++) {

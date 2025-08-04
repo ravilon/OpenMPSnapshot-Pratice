@@ -15,43 +15,19 @@
 
 #if defined(_DEBUG)
 #if defined(_M_IX86)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "      \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='x86' "                                  \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "       "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='x86' "                                   "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #elif defined(_M_X64)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "      \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='amd64' "                                \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "       "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='amd64' "                                 "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #elif defined(_M_IA64)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "      \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='ia64' "                                 \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".DebugOpenMP' "       "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='ia64' "                                  "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #endif
 #else   
 #if defined(_M_IX86)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "           \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='x86' "                                  \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "            "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='x86' "                                   "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #elif defined(_M_X64)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "           \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='amd64' "                                \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "            "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='amd64' "                                 "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #elif defined(_M_IA64)
-#pragma comment(linker,"/manifestdependency:\"type='win32' "        \
-"name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "           \
-"version='" _CRT_ASSEMBLY_VERSION "' "                          \
-"processorArchitecture='ia64' "                                 \
-"publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
+#pragma comment(linker,"/manifestdependency:\"type='win32' "         "name='" __LIBRARIES_ASSEMBLY_NAME_PREFIX ".OpenMP' "            "version='" _CRT_ASSEMBLY_VERSION "' "                           "processorArchitecture='ia64' "                                  "publicKeyToken='" _VC_ASSEMBLY_PUBLICKEYTOKEN "'\"")
 #endif
 #endif  
 #define _OPENMP_NOFORCE_MANIFEST

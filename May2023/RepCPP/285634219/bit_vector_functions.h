@@ -59,10 +59,7 @@ size_t true_negatives = 0;
 size_t false_positives = 0;
 size_t false_negatives = 0;
 
-#pragma omp parallel for reduction(+:true_positives) \
-reduction(+:true_negatives) \
-reduction(+:false_positives) \
-reduction(+:false_negatives)
+#pragma omp parallel for reduction(+:true_positives)  reduction(+:true_negatives)  reduction(+:false_positives)  reduction(+:false_negatives)
 for(index_t j=0; j < width; ++j) {
 uint32_t B_j = Bb[j];
 for(index_t i=0; i < height; ++i) {

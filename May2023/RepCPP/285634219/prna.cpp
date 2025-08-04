@@ -852,10 +852,7 @@ ALLOC(wl,2*n);
 ALLOC(xl,2*n);
 ALLOC(x,5*n);
 
-#pragma omp target data map(to: dev_par[0:1], dev_s[0:n], dev_bcp[0:n*(n-1)/2]) \
-map(from: v[0:n*n], w5[0:n+1], w3[0:n+1]) \
-map(alloc: z[0:n*n], y[0:n*n], yl[0:n*n], wq[0:n*(n-1)/2], \
-w[0:2*n], wl[0:2*n], xl[0:2*n], x[0:5*n])
+#pragma omp target data map(to: dev_par[0:1], dev_s[0:n], dev_bcp[0:n*(n-1)/2])  map(from: v[0:n*n], w5[0:n+1], w3[0:n+1])  map(alloc: z[0:n*n], y[0:n*n], yl[0:n*n], wq[0:n*(n-1)/2],  w[0:2*n], wl[0:2*n], xl[0:2*n], x[0:5*n])
 {
 
 init_w5_and_w3(n,w5+1,w3);

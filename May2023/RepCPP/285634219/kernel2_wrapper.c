@@ -31,15 +31,7 @@ int *reclength)
 size_t threads;
 threads = order < 256 ? order : 256;
 
-#pragma omp target data map(to: knodes[0: knodes_mem],\
-start[0: count],\
-end[0: count],\
-currKnode[0: count],\
-offset[0: count],\
-lastKnode[0: count],\
-offset_2[0: count])\
-map(tofrom: recstart[0: count])\
-map(from: reclength[0: count])
+#pragma omp target data map(to: knodes[0: knodes_mem], start[0: count], end[0: count], currKnode[0: count], offset[0: count], lastKnode[0: count], offset_2[0: count]) map(tofrom: recstart[0: count]) map(from: reclength[0: count])
 {
 long long kernel_start = get_time();
 

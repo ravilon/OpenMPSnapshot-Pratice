@@ -7,8 +7,7 @@ const conn_t &connectivity,
 const double_vec &volume)
 : coeff_(connectivity.size())
 {
-#pragma omp parallel for default(none) \
-shared(coord, connectivity, volume)
+#pragma omp parallel for default(none)  shared(coord, connectivity, volume)
 for (std::size_t e=0; e<connectivity.size(); ++e) {
 int n0 = connectivity[e][0];
 int n1 = connectivity[e][1];

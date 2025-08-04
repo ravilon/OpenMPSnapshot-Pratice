@@ -88,8 +88,7 @@ break;
 
 #ifndef HAVE_ZLIB
 case 8: 
-#pragma message                                                                \
-"ZLIB is not present! Deflate compression will not be supported!"
+#pragma message                                                                 "ZLIB is not present! Deflate compression will not be supported!"
 writeLog(DEBUG_PRIO::WARNING, "DNG Decoder: found Deflate-encoded chunk, "
 "but the deflate support was disabled at "
 "build!");
@@ -97,8 +96,7 @@ writeLog(DEBUG_PRIO::WARNING, "DNG Decoder: found Deflate-encoded chunk, "
 #endif
 #ifndef HAVE_JPEG
 case 0x884c: 
-#pragma message                                                                \
-"JPEG is not present! Lossy JPEG compression will not be supported!"
+#pragma message                                                                 "JPEG is not present! Lossy JPEG compression will not be supported!"
 writeLog(DEBUG_PRIO::WARNING, "DNG Decoder: found lossy JPEG-encoded "
 "chunk, but the jpeg support was "
 "disabled at build!");

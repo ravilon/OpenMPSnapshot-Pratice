@@ -69,11 +69,7 @@ float  sum_euclid = 0.0;
 float  ret;						
 
 
-#pragma omp parallel for \
-shared(feature,cluster_centres) \
-firstprivate(npoints,nfeatures,nclusters) \
-private(i, nearest_cluster_index) \
-schedule (static)	
+#pragma omp parallel for  shared(feature,cluster_centres)  firstprivate(npoints,nfeatures,nclusters)  private(i, nearest_cluster_index)  schedule (static)	
 for (i=0; i<npoints; i++) {
 nearest_cluster_index = find_nearest_point(feature[i], 
 nfeatures, 

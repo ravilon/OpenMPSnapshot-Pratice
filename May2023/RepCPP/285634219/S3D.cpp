@@ -102,14 +102,7 @@ int thrds2 = BLOCK_SIZE2;
 
 unsigned int passes = op.getOptionInt("passes");
 
-#pragma omp target data map(to: T[0:n], P[0:n], Y[0:Y_SIZE*n], molwt[0:WDOT_SIZE]) \
-map(alloc:RF[0:RF_SIZE*n], \
-RB[0:RB_SIZE*n], \
-RKLOW[0:RKLOW_SIZE*n], \
-C[0:C_SIZE*n], \
-A[0:A_SIZE*n], \
-EG[0:EG_SIZE*n]) \
-map(from: WDOT[0:WDOT_SIZE*n])
+#pragma omp target data map(to: T[0:n], P[0:n], Y[0:Y_SIZE*n], molwt[0:WDOT_SIZE])  map(alloc:RF[0:RF_SIZE*n],  RB[0:RB_SIZE*n],  RKLOW[0:RKLOW_SIZE*n],  C[0:C_SIZE*n],  A[0:A_SIZE*n],  EG[0:EG_SIZE*n])  map(from: WDOT[0:WDOT_SIZE*n])
 {
 auto start = std::chrono::high_resolution_clock::now();
 

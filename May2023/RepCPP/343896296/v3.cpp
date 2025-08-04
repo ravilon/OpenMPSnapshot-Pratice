@@ -45,9 +45,7 @@ noodleF.LoadNoodleFromCSC(F, 0);
 Block64 block;
 COOMatrix coo;
 
-#pragma omp parallel for \
-shared(noodleA,noodleB,noodleF,C) \
-private(block,coo) 
+#pragma omp parallel for  shared(noodleA,noodleB,noodleF,C)  private(block,coo) 
 for(int i=0; i<A->H; i+=BLOCK_HEIGHT){      
 
 coo.Reset();

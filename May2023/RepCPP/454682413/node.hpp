@@ -43,8 +43,7 @@ pnt[0] = data[mdn][0];
 pnt[1] = data[mdn][1];
 
 #if defined(_OPENMP)
-#pragma omp task shared(data)                                                  \
-firstprivate(size, axis, first, mdn) 
+#pragma omp task shared(data)                                                   firstprivate(size, axis, first, mdn) 
 #endif
 if (size > 2) {
 #if defined(_OPENMP)

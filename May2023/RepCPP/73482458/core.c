@@ -44,8 +44,7 @@ ny = curr->ny;
 
 dx2 = prev->dx * prev->dx;
 dy2 = prev->dy * prev->dy;
-#pragma acc parallel loop private(i,j) \
-present(prevdata[0:nx+2][0:ny+2], currdata[0:nx+2][0:ny+2]) collapse(2)
+#pragma acc parallel loop private(i,j)  present(prevdata[0:nx+2][0:ny+2], currdata[0:nx+2][0:ny+2]) collapse(2)
 for (i = 1; i < nx + 1; i++) {
 for (j = 1; j < ny + 1; j++) {
 currdata[i][j] = prevdata[i][j] + a * dt *
@@ -73,8 +72,7 @@ prevdata = prev->data;
 nx = curr->nx;
 ny = curr->ny;
 
-#pragma acc enter data \
-copyin(currdata[0:nx+2][0:ny+2], prevdata[0:nx+2][0:ny+2])
+#pragma acc enter data  copyin(currdata[0:nx+2][0:ny+2], prevdata[0:nx+2][0:ny+2])
 }
 
 
@@ -88,8 +86,7 @@ prevdata = prev->data;
 nx = curr->nx;
 ny = curr->ny;
 
-#pragma acc exit data \
-copyout(currdata[0:nx+2][0:ny+2], prevdata[0:nx+2][0:ny+2])
+#pragma acc exit data  copyout(currdata[0:nx+2][0:ny+2], prevdata[0:nx+2][0:ny+2])
 }
 
 

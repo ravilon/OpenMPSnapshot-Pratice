@@ -58,8 +58,7 @@ int timing) {
 
 LatLong* p_locations = locations.data();
 
-#pragma omp target data map(to: p_locations[0:numRecords]) \
-map(from: distances[0:numRecords])
+#pragma omp target data map(to: p_locations[0:numRecords])  map(from: distances[0:numRecords])
 {
 auto start = std::chrono::steady_clock::now();
 

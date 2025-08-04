@@ -386,10 +386,7 @@ for (int i = 0; i < num_trees; ++i) {
 trees.push_back(nullptr);
 }
 
-#pragma omp parallel for default(none)\
-firstprivate(num_trees)\
-schedule(dynamic)\
-num_threads(NUM_THREADS)
+#pragma omp parallel for default(none) firstprivate(num_trees) schedule(dynamic) num_threads(NUM_THREADS)
 for (int i = 0; i < num_trees; ++i) 
 {    
 trees[i] = createTree();
@@ -416,10 +413,7 @@ std::vector<int> temp;
 tree_predictions.push_back(temp);
 }
 
-#pragma omp parallel for default(none)\
-shared(data, tree_predictions) \
-schedule(dynamic)\
-num_threads(NUM_THREADS)
+#pragma omp parallel for default(none) shared(data, tree_predictions)  schedule(dynamic) num_threads(NUM_THREADS)
 for (int i = 0; i < n_trees; ++i) 
 {
 tree_predictions[i] = trees[i]->predict(data);
@@ -431,11 +425,7 @@ for (int i = 0; i < num_samples; ++i) {
 predictions.push_back(0);
 }
 
-#pragma omp parallel for default(none)\
-firstprivate(num_samples) \
-shared(predictions, tree_predictions) \
-schedule(static)\
-num_threads(NUM_THREADS)
+#pragma omp parallel for default(none) firstprivate(num_samples)  shared(predictions, tree_predictions)  schedule(static) num_threads(NUM_THREADS)
 for (int i = 0; i < num_samples; ++i) 
 {
 std::vector<int> predictions_count(num_of_classes, 0);

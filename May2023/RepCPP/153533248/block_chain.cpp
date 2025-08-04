@@ -64,8 +64,7 @@ _hash = local_hash;
 const auto thread_num = _thread_num;
 cout << "Running using " << thread_num << " threads" << endl;
 
-#pragma omp parallel num_threads(thread_num) default(none) \
-shared(concurrent_calculate_hash)
+#pragma omp parallel num_threads(thread_num) default(none)  shared(concurrent_calculate_hash)
 { std::invoke(concurrent_calculate_hash); }
 
 cout << "Block mined: " << _hash << endl;

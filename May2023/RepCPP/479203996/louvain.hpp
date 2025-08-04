@@ -321,14 +321,11 @@ const GraphElem nv = g.get_nv();
 GraphWeight le_xx = 0.0, la2_x = 0.0;
 
 #if defined(USE_OMP_OFFLOAD)
-#pragma omp target teams distribute parallel for \
-reduction(+: le_xx), reduction(+: la2_x)
+#pragma omp target teams distribute parallel for  reduction(+: le_xx), reduction(+: la2_x)
 #elif defined(OMP_SCHEDULE_RUNTIME)
-#pragma omp parallel for shared(clusterWeight, localCinfo), \
-reduction(+: le_xx), reduction(+: la2_x) schedule(runtime)
+#pragma omp parallel for shared(clusterWeight, localCinfo),  reduction(+: le_xx), reduction(+: la2_x) schedule(runtime)
 #else
-#pragma omp parallel for shared(clusterWeight, localCinfo), \
-reduction(+: le_xx), reduction(+: la2_x) schedule(static)
+#pragma omp parallel for shared(clusterWeight, localCinfo),  reduction(+: le_xx), reduction(+: la2_x) schedule(static)
 #endif
 for (GraphElem i = 0L; i < nv; i++) {
 le_xx += clusterWeight[i];
@@ -427,19 +424,14 @@ numIters++;
 time_start[1] = omp_get_wtime();
 #if defined(USE_OMP_OFFLOAD)
 #else
-#pragma omp parallel default(shared) shared(clusterWeight, localCupdate, currComm, targetComm, \
-vDegree, localCinfo, pastComm, g), \
-firstprivate(constantForSecondTerm)
+#pragma omp parallel default(shared) shared(clusterWeight, localCupdate, currComm, targetComm,  vDegree, localCinfo, pastComm, g),  firstprivate(constantForSecondTerm)
 #endif
 {
 cleanCWandCU(nv, d_clusterWeight, d_localCupdate);
 time_end[1] += (omp_get_wtime() - time_start[1]);
 time_start[2] = omp_get_wtime();
 #if defined(USE_OMP_OFFLOAD)
-#pragma omp target teams distribute parallel for \
-map(to: d_currComm [0:nv]) \
-map(from: d_targetComm [0:nv])\
-thread_limit(TEAM_SIZE)
+#pragma omp target teams distribute parallel for  map(to: d_currComm [0:nv])  map(from: d_targetComm [0:nv]) thread_limit(TEAM_SIZE)
 #elif defined(OMP_SCHEDULE_RUNTIME)
 #pragma omp for schedule(runtime)
 #else
@@ -474,13 +466,9 @@ prevMod = lower;
 
 time_start[5] = omp_get_wtime();
 #ifdef OMP_SCHEDULE_RUNTIME
-#pragma omp parallel for \
-shared(pastComm, d_currComm, d_targetComm) \
-schedule(runtime)
+#pragma omp parallel for  shared(pastComm, d_currComm, d_targetComm)  schedule(runtime)
 #else
-#pragma omp parallel for \
-shared(pastComm, d_currComm, d_targetComm) firstprivate(nv) \
-schedule(static)
+#pragma omp parallel for  shared(pastComm, d_currComm, d_targetComm) firstprivate(nv)  schedule(static)
 #endif
 for (GraphElem i = 0; i < nv; i++) {
 GraphElem tmp = pastComm[i];

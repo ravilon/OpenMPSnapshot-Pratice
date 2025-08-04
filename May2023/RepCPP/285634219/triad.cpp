@@ -34,12 +34,7 @@ float *C1 = (float*) malloc (sizeof(float) * maxBlockSize);
 const float scalar = 1.75f;
 const int blockSize = 128;
 
-#pragma omp target data map(alloc: A0[0:maxBlockSize],\
-B0[0:maxBlockSize],\
-C0[0:maxBlockSize],\
-A1[0:maxBlockSize],\
-B1[0:maxBlockSize],\
-C1[0:maxBlockSize])
+#pragma omp target data map(alloc: A0[0:maxBlockSize], B0[0:maxBlockSize], C0[0:maxBlockSize], A1[0:maxBlockSize], B1[0:maxBlockSize], C1[0:maxBlockSize])
 {
 for (int i = 0; i < nSizes; ++i)
 {

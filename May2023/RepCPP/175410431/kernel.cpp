@@ -257,9 +257,7 @@ int cloudHeight = pointcloud2.height;
 int cloudWidth = pointcloud2.width;
 int cloudStepSize = pointcloud2.point_step;
 
-#pragma omp target \
-is_device_ptr(distanceArr, imagePointArr, cloud) \
-map(to:distCoeff,cameraMat,invT,invR,cloudHeight,cloudWidth,cloudStepSize)
+#pragma omp target  is_device_ptr(distanceArr, imagePointArr, cloud)  map(to:distCoeff,cameraMat,invT,invR,cloudHeight,cloudWidth,cloudStepSize)
 {
 #pragma omp teams distribute parallel for collapse(2)
 for (uint32_t x = 0; x < cloudWidth; ++x) {

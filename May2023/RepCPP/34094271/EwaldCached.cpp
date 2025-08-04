@@ -104,8 +104,7 @@ double lambdaCoef = GetLambdaCoef(*thisMol, box);
 uint startAtom = mols.MolStart(*thisMol);
 
 #ifdef _OPENMP
-#pragma omp parallel for default(none) shared(box, lambdaCoef, molCoords, \
-startAtom, thisKind, thisMol)
+#pragma omp parallel for default(none) shared(box, lambdaCoef, molCoords,  startAtom, thisKind, thisMol)
 #endif
 for (int i = 0; i < (int) imageSize[box]; i++) {
 cosMolRef[*thisMol][i] = 0.0;
@@ -154,8 +153,7 @@ double lambdaCoef = GetLambdaCoef(*thisMol, box);
 uint startAtom = mols.MolStart(*thisMol);
 
 #ifdef _OPENMP
-#pragma omp parallel for default(none) shared(box, lambdaCoef, molCoords, \
-startAtom, thisKind, thisMol)
+#pragma omp parallel for default(none) shared(box, lambdaCoef, molCoords,  startAtom, thisKind, thisMol)
 #endif
 for (int i = 0; i < (int) imageSizeRef[box]; i++) {
 cosMolRef[*thisMol][i] = 0.0;
@@ -198,8 +196,7 @@ prefactPtr = prefactRef[box];
 imageSzVal = static_cast<int>(imageSizeRef[box]);
 }
 #ifdef _OPENMP
-#pragma omp parallel for default(none) shared(box, imageSzVal, prefactPtr) \
-reduction(+:energyRecip)
+#pragma omp parallel for default(none) shared(box, imageSzVal, prefactPtr)  reduction(+:energyRecip)
 #endif
 for (int i = 0; i < imageSzVal; i++) {
 energyRecip += ((sumRnew[box][i] * sumRnew[box][i] +
@@ -226,13 +223,9 @@ double lambdaCoef = GetLambdaCoef(molIndex, box);
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(lambdaCoef, length, molCoords, \
-startAtom, thisKind, box, molIndex) \
-reduction(+:energyRecipNew)
+#pragma omp parallel for default(none) shared(lambdaCoef, length, molCoords,  startAtom, thisKind, box, molIndex)  reduction(+:energyRecipNew)
 #else
-#pragma omp parallel for default(none) shared(lambdaCoef, length, molCoords, \
-startAtom, thisKind) \
-reduction(+:energyRecipNew)
+#pragma omp parallel for default(none) shared(lambdaCoef, length, molCoords,  startAtom, thisKind)  reduction(+:energyRecipNew)
 #endif
 #endif
 for (int i = 0; i < (int) imageSizeRef[box]; i++) {
@@ -299,13 +292,9 @@ uint startAtom = mols.MolStart(molIndex);
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(length, molCoords, startAtom, \
-thisKind, box, molIndex) \
-reduction(+:energyRecipNew)
+#pragma omp parallel for default(none) shared(length, molCoords, startAtom,  thisKind, box, molIndex)  reduction(+:energyRecipNew)
 #else
-#pragma omp parallel for default(none) shared(length, molCoords, startAtom, \
-thisKind) \
-reduction(+:energyRecipNew)
+#pragma omp parallel for default(none) shared(length, molCoords, startAtom,  thisKind)  reduction(+:energyRecipNew)
 #endif
 #endif
 for (int i = 0; i < (int) imageSizeRef[box]; i++) {
@@ -401,12 +390,9 @@ std::fill_n(energyRecip, lambdaSize, 0.0);
 
 #if defined _OPENMP && _OPENMP >= 201511 
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(lambda_Coul, lambdaSize, box, \
-iState, molIndex) \
-reduction(+:energyRecip[:lambdaSize])
+#pragma omp parallel for default(none) shared(lambda_Coul, lambdaSize, box,  iState, molIndex)  reduction(+:energyRecip[:lambdaSize])
 #else
-#pragma omp parallel for default(none) shared(lambda_Coul, lambdaSize) \
-reduction(+:energyRecip[:lambdaSize])
+#pragma omp parallel for default(none) shared(lambda_Coul, lambdaSize)  reduction(+:energyRecip[:lambdaSize])
 #endif
 #endif
 for (uint i = 0; i < imageSizeRef[box]; i++) {

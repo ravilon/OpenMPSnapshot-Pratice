@@ -85,10 +85,7 @@ clock_gettime(CLOCK_BOOTTIME, &start);
 score_dt max_tracker_g[PE_NUM][BACK_SEARCH_COUNT_GPU];
 parent_dt j_tracker_g[PE_NUM][BACK_SEARCH_COUNT_GPU];
 
-#pragma omp target data map(to: h_control[0:cont.size()], h_arg[0:arg.size()]) \
-map(alloc: max_tracker_g[0:PE_NUM][0:BACK_SEARCH_COUNT_GPU], \
-j_tracker_g[0:PE_NUM][0:BACK_SEARCH_COUNT_GPU]) \
-map(from: h_ret[0:batch_count * TILE_SIZE * PE_NUM])
+#pragma omp target data map(to: h_control[0:cont.size()], h_arg[0:arg.size()])  map(alloc: max_tracker_g[0:PE_NUM][0:BACK_SEARCH_COUNT_GPU],  j_tracker_g[0:PE_NUM][0:BACK_SEARCH_COUNT_GPU])  map(from: h_ret[0:batch_count * TILE_SIZE * PE_NUM])
 {
 auto k_start = std::chrono::steady_clock::now();
 

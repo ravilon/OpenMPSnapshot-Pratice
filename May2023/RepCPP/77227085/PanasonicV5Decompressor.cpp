@@ -190,8 +190,7 @@ processPixelPacket<dsc>(bs, row, col);
 template <const PanasonicV5Decompressor::PacketDsc& dsc>
 void PanasonicV5Decompressor::decompressInternal() const noexcept {
 #ifdef HAVE_OPENMP
-#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores()) \
-schedule(static) default(none)
+#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores())  schedule(static) default(none)
 #endif
 for (auto block = blocks.cbegin(); block < blocks.cend();
 ++block) { 

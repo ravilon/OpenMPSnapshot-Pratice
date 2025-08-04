@@ -4,9 +4,7 @@
 
 
 
-#pragma omp declare reduction (add_func : int : \
-omp_out = omp_in + omp_out \
-)
+#pragma omp declare reduction (add_func : int :  omp_out = omp_in + omp_out  )
 
 int main()
 {

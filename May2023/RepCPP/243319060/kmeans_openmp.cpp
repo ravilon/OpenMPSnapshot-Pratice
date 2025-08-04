@@ -7,8 +7,7 @@
 double KmeansOpenMP::costFunction(const std::vector<Observation> &points, const std::vector<Observation> &centroids)
 {
 double totalDistance = 0;
-#pragma omp parallel for reduction(+ \
-: totalDistance)
+#pragma omp parallel for reduction(+  : totalDistance)
 for (const auto &p : points)
 for (const auto &c : centroids)
 totalDistance += Point::distance(p, c);
@@ -36,8 +35,7 @@ for (auto &centroid : centroids)
 {
 double x = 0, y = 0;
 int counter = 0;
-#pragma omp parallel for default(shared) reduction(+ \
-: x, y, counter)
+#pragma omp parallel for default(shared) reduction(+  : x, y, counter)
 for (const auto &p : initPoints)
 {
 if (p.getClusterId() == centroid.getClusterId())

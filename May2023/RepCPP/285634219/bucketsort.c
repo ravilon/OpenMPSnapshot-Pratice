@@ -41,12 +41,7 @@ local = HISTO_WG_SIZE_0;
 local = 96;
 #endif
 
-#pragma omp target data map(to: h_offsets[0:DIVISIONS],\
-d_input[0:listsize + DIVISIONS*4]) \
-map(alloc: d_indice[0:listsize], \
-d_prefixoffsets[0:blocks * BUCKET_BLOCK_MEMORY],\
-pivotPoints[0:DIVISIONS] ) \
-map(tofrom: d_output[0:listsize + DIVISIONS*4])
+#pragma omp target data map(to: h_offsets[0:DIVISIONS], d_input[0:listsize + DIVISIONS*4])  map(alloc: d_indice[0:listsize],  d_prefixoffsets[0:blocks * BUCKET_BLOCK_MEMORY], pivotPoints[0:DIVISIONS] )  map(tofrom: d_output[0:listsize + DIVISIONS*4])
 {
 #include "kernel_histogram.h"
 

@@ -1105,8 +1105,7 @@ xd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(X[i]);
 
 
 if ((X[0] == z) && (c[0] == ONE)) {
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=1; i<nvec; i++) {
@@ -1125,16 +1124,14 @@ return(0);
 
 
 if (X[0] == z) {
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,zd_dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,zd_dev)
 {
 #pragma omp teams distribute parallel for schedule(static,1)
 for (j=0; j<N; j++)
 zd_dev[j] *= c[0];
 }
 
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,zd_dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,zd_dev)
 #pragma omp teams distribute
 {
 for (i=1; i<nvec; i++) {
@@ -1153,8 +1150,7 @@ return(0);
 
 
 xd_dev = NV_DATA_DEV_OMPDEV(X[0]);
-#pragma omp target map(to:N,c[:nvec]) \
-is_device_ptr(xd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,c[:nvec])  is_device_ptr(xd_dev, zd_dev) device(dev)
 {
 #pragma omp teams distribute parallel for schedule(static, 1)
 for (j=0; j<N; j++) {
@@ -1162,8 +1158,7 @@ zd_dev[j] = c[0] * xd_dev[j];
 }
 }
 
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=1; i<nvec; i++) {
@@ -1213,8 +1208,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 
 
 if (Y == Z) {
-#pragma omp target map(to:N,nvec,a[:nvec],yd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, yd_dev) device(dev)
+#pragma omp target map(to:N,nvec,a[:nvec],yd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, yd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1234,8 +1228,7 @@ for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
 
-#pragma omp target map(to:N,nvec,a[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,a[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1287,8 +1280,7 @@ for (i=0; i<nvec; i++)
 yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 
 
-#pragma omp target map(to:N,nvec,yd_dev_ptrs[:nvec]) map(tofrom:dotprods[:nvec]) \
-is_device_ptr(xd_dev,yd_dev) device(dev)
+#pragma omp target map(to:N,nvec,yd_dev_ptrs[:nvec]) map(tofrom:dotprods[:nvec])  is_device_ptr(xd_dev,yd_dev) device(dev)
 #pragma omp teams distribute
 for (i=0; i<nvec; i++) {
 yd_dev = yd_dev_ptrs[i];
@@ -1407,8 +1399,7 @@ for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
 
-#pragma omp target map(to:N,nvec,a,b,xd_dev_ptrs[:nvec], yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,a,b,xd_dev_ptrs[:nvec], yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1459,8 +1450,7 @@ xd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(X[i]);
 
 
 if (X == Z) {
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec])  is_device_ptr(xd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1480,8 +1470,7 @@ for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
 
-#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nvec],xd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1525,8 +1514,7 @@ for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
 
-#pragma omp target map(to:N,nvec,zd_dev_ptrs[:nvec]) \
-is_device_ptr(zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,zd_dev_ptrs[:nvec])  is_device_ptr(zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1579,8 +1567,7 @@ for (i=0; i<nvec; i++)
 xd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(X[i]);
 
 
-#pragma omp target map(to:N,nvec,xd_dev_ptrs[:nvec],wd_dev_ptrs[:nvec]) map(tofrom:nrm[:nvec]) \
-is_device_ptr(xd_dev, wd_dev) device(dev)
+#pragma omp target map(to:N,nvec,xd_dev_ptrs[:nvec],wd_dev_ptrs[:nvec]) map(tofrom:nrm[:nvec])  is_device_ptr(xd_dev, wd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1643,8 +1630,7 @@ for (i=0; i<nvec; i++)
 wd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(W[i]);
 
 
-#pragma omp target map(to:N,nvec,xd_dev_ptrs[:nvec],wd_dev_ptrs[:nvec]) map(tofrom:nrm[:nvec]) \
-is_device_ptr(idd_dev,xd_dev,wd_dev) device(dev)
+#pragma omp target map(to:N,nvec,xd_dev_ptrs[:nvec],wd_dev_ptrs[:nvec]) map(tofrom:nrm[:nvec])  is_device_ptr(idd_dev,xd_dev,wd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1741,8 +1727,7 @@ yd_dev_ptrs[i * nsum + j] = NV_DATA_DEV_OMPDEV(Y[j][i]);
 
 
 if (Y == Z) {
-#pragma omp target map(to:N,nvec,nsum,a[:nsum],xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec*nsum]) \
-is_device_ptr(xd_dev, yd_dev) device(dev)
+#pragma omp target map(to:N,nvec,nsum,a[:nsum],xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec*nsum])  is_device_ptr(xd_dev, yd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1768,8 +1753,7 @@ zd_dev_ptrs[i * nsum + j] = NV_DATA_DEV_OMPDEV(Z[j][i]);
 }
 
 
-#pragma omp target map(to:N,nvec,nsum,a[:nsum],xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec*nsum]) \
-is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,nsum,a[:nsum],xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec*nsum])  is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -1884,8 +1868,7 @@ xd_dev_ptrs[j * nsum + i] = NV_DATA_DEV_OMPDEV(X[i][j]);
 
 
 if ((X[0] == Z) && (c[0] == ONE)) {
-#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (j=0; j<nvec; j++) {
@@ -1905,8 +1888,7 @@ return(0);
 
 
 if (X[0] == Z) {
-#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec]) \
-is_device_ptr(zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec])  is_device_ptr(zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (j=0; j<nvec; j++) {
@@ -1929,8 +1911,7 @@ return(0);
 }
 
 
-#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec]) \
-is_device_ptr(zd_dev) device(dev)
+#pragma omp target map(to:N,nvec,c[:nsum],xd_dev_ptrs[:nvec*nsum],zd_dev_ptrs[:nvec])  is_device_ptr(zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (j=0; j<nvec; j++) {
@@ -2269,8 +2250,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev, yd_dev, zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2316,8 +2296,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2363,8 +2342,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2410,8 +2388,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2457,8 +2434,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2504,8 +2480,7 @@ yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 for (i=0; i<nvec; i++)
 zd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Z[i]);
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec],zd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev,zd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2547,8 +2522,7 @@ for (i=0; i<nvec; i++)
 yd_dev_ptrs[i] = NV_DATA_DEV_OMPDEV(Y[i]);
 
 if (a == ONE) {
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2565,8 +2539,7 @@ return(0);
 }
 
 if (a == -ONE) {
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {
@@ -2582,8 +2555,7 @@ free(yd_dev_ptrs);
 return(0);
 }
 
-#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec]) \
-is_device_ptr(xd_dev,yd_dev) device(dev)
+#pragma omp target map(to:N,xd_dev_ptrs[:nvec],yd_dev_ptrs[:nvec])  is_device_ptr(xd_dev,yd_dev) device(dev)
 #pragma omp teams distribute
 {
 for (i=0; i<nvec; i++) {

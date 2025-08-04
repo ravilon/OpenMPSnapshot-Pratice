@@ -42,8 +42,7 @@ int blocks=std::min((arrayLength+threads-1)/threads,2048u);
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i++) {
 sum += array[i];
 }
@@ -53,8 +52,7 @@ t1 = std::chrono::high_resolution_clock::now();
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i++) {
 sum += array[i];
 }
@@ -76,8 +74,7 @@ t1 = std::chrono::high_resolution_clock::now();
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks/2) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks/2) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i=i+2) { 
 sum += array[i] + array[i+1];
 }
@@ -97,8 +94,7 @@ t1 = std::chrono::high_resolution_clock::now();
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks/4) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks/4) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i=i+4) { 
 sum += array[i] + array[i+1] + array[i+2] + array[i+3];
 }
@@ -118,8 +114,7 @@ t1 = std::chrono::high_resolution_clock::now();
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks/8) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks/8) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i=i+8) { 
 sum += array[i] + array[i+1] + array[i+2] + array[i+3] + 
 array[i+4] + array[i+5] + array[i+6] + array[i+7];
@@ -140,8 +135,7 @@ t1 = std::chrono::high_resolution_clock::now();
 for(int n=0;n<N;n++) {
 sum = 0;
 #pragma omp target update to(sum)
-#pragma omp target teams distribute parallel for \
-num_teams(blocks/16) thread_limit(threads) reduction(+:sum)
+#pragma omp target teams distribute parallel for  num_teams(blocks/16) thread_limit(threads) reduction(+:sum)
 for (int i = 0; i < arrayLength; i=i+16) { 
 sum += array[i] + array[i+1] + array[i+2] + array[i+3] + 
 array[i+4] + array[i+5] + array[i+6] + array[i+7] +

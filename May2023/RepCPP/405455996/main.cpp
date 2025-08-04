@@ -34,8 +34,7 @@ total = 0.0;
 #pragma omp parallel num_threads(4) private(sumx, sumy, k)
 {
 thread_start_times[omp_get_thread_num()] = timeGetTime();
-#pragma omp for reduction(+ \
-: sum, total) schedule(runtime) nowait
+#pragma omp for reduction(+  : sum, total) schedule(runtime) nowait
 for (int j = 0; j < VERYBIG; j++)
 {
 sum += 1;

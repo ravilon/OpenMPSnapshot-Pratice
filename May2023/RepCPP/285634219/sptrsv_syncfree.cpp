@@ -60,12 +60,7 @@ matrix_warp4(m,n,nnz,csrRowPtr,csrColIdx,csrVal,10,&Len,warp_num,&warp_occupy,&e
 }
 
 
-#pragma omp target data map(to: csrRowPtr[0:m+1],\
-csrColIdx[0:nnz],\
-csrVal[0:nnz],\
-b[0:m],\
-warp_num[0:Len])\
-map(alloc: x[0:n], get_value[0:m]) 
+#pragma omp target data map(to: csrRowPtr[0:m+1], csrColIdx[0:nnz], csrVal[0:nnz], b[0:m], warp_num[0:Len]) map(alloc: x[0:n], get_value[0:m]) 
 {
 int num_threads = WARP_PER_BLOCK * WARP_SIZE;
 int num_blocks = ceil ((double)((Len-1)*WARP_SIZE) / (double)(num_threads));

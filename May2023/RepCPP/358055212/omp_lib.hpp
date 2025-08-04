@@ -5,10 +5,7 @@
 #include "master_library.hpp"
 
 
-#pragma omp declare reduction(sum                           \
-: Eigen::MatrixXd             \
-: omp_out = omp_out + omp_in) \
-initializer(omp_priv = Eigen::MatrixXd::Zero(omp_orig.rows(), omp_orig.cols()))
+#pragma omp declare reduction(sum                            : Eigen::MatrixXd              : omp_out = omp_out + omp_in)  initializer(omp_priv = Eigen::MatrixXd::Zero(omp_orig.rows(), omp_orig.cols()))
 
 
 

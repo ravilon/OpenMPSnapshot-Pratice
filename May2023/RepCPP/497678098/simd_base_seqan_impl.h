@@ -12,10 +12,7 @@
 
 #include <x86intrin.h>
 #elif defined(SEQAN_SIMD_ENABLED)
-#pragma message "You are trying to build with -DSEQAN_SIMD_ENABLED, which might be " \
-"auto-defined if AVX or SSE was enabled (e.g. -march=native, -msse4, ...), " \
-"but we only support x86/x86-64 architectures for SIMD vectorization! " \
-"You might want to use UME::SIMD (https:
+#pragma message "You are trying to build with -DSEQAN_SIMD_ENABLED, which might be "  "auto-defined if AVX or SSE was enabled (e.g. -march=native, -msse4, ...), "  "but we only support x86/x86-64 architectures for SIMD vectorization! "  "You might want to use UME::SIMD (https:
 "with -DSEQAN_UMESIMD_ENABLED for a different SIMD backend."
 #endif
 

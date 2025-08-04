@@ -271,8 +271,7 @@ for(auto const& level : m_levels)
 std::size_t const size = level.size();
 std::vector<scalar_t> delta(size);
 
-#pragma omp parallel default(none) \
-shared(delta, level, dir, hamiltonian, viscosity, diff, size)
+#pragma omp parallel default(none)  shared(delta, level, dir, hamiltonian, viscosity, diff, size)
 {
 #pragma omp for schedule(static) nowait
 for(auto i = 0ul; i < size; ++i)

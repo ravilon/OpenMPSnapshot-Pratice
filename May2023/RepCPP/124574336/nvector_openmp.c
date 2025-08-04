@@ -437,8 +437,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,a,b,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,a,b,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = (a*xd[i])+(b*yd[i]);
 
@@ -459,8 +458,7 @@ zd = NULL;
 N  = NV_LENGTH_OMP(z);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,c,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(z))
+#pragma omp parallel for default(none) private(i) shared(N,c,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(z))
 for (i = 0; i < N; i++) zd[i] = c;
 
 return;
@@ -482,8 +480,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i]*yd[i];
 
@@ -506,8 +503,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i]/yd[i];
 
@@ -539,8 +535,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,c,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,c,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = c*xd[i];
 }
@@ -585,8 +580,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = ONE/xd[i];
 
@@ -608,8 +602,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,b,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,b,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i]+b;
 
@@ -632,8 +625,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd) \
-reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd)  reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 sum += xd[i]*yd[i];
 }
@@ -656,8 +648,7 @@ xd  = NULL;
 N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 
-#pragma omp parallel default(none) private(i,tmax) shared(N,max,xd) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel default(none) private(i,tmax) shared(N,max,xd)  num_threads(NV_NUM_THREADS_OMP(x))
 {
 tmax = ZERO;
 #pragma omp for schedule(static)
@@ -706,8 +697,7 @@ xd = NV_DATA_OMP(x);
 
 min = xd[0];
 
-#pragma omp parallel default(none) private(i,tmin) shared(N,min,xd) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel default(none) private(i,tmin) shared(N,min,xd)  num_threads(NV_NUM_THREADS_OMP(x))
 {
 tmin = xd[0];
 #pragma omp for schedule(static)
@@ -741,8 +731,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 wd = NV_DATA_OMP(w);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,wd) \
-reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,wd)  reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 sum += SUNSQR(xd[i]*wd[i]);
 }
@@ -765,8 +754,7 @@ xd  = NULL;
 N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd) \
-reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd)  reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i<N; i++)
 sum += SUNRabs(xd[i]);
 
@@ -788,8 +776,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,c,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,c,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 zd[i] = (SUNRabs(xd[i]) >= c) ? ONE : ZERO;
 }
@@ -814,8 +801,7 @@ zd = NV_DATA_OMP(z);
 
 val = ZERO;
 
-#pragma omp parallel for default(none) private(i) shared(N,val,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,val,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 if (xd[i] == ZERO)
 val = ONE;
@@ -849,8 +835,7 @@ md = NV_DATA_OMP(m);
 
 temp = ZERO;
 
-#pragma omp parallel for default(none) private(i,test) shared(N,xd,cd,md,temp) \
-schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i,test) shared(N,xd,cd,md,temp)  schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 md[i] = ZERO;
 
@@ -886,8 +871,7 @@ dd = NV_DATA_OMP(denom);
 
 min = BIG_REAL;
 
-#pragma omp parallel default(none) private(i,tmin,val) shared(N,min,nd,dd) \
-num_threads(NV_NUM_THREADS_OMP(num))
+#pragma omp parallel default(none) private(i,tmin,val) shared(N,min,nd,dd)  num_threads(NV_NUM_THREADS_OMP(num))
 {
 tmin = BIG_REAL;
 #pragma omp for schedule(static)
@@ -924,8 +908,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 wd = NV_DATA_OMP(w);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,wd) \
-reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,wd)  reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 sum += SUNSQR(xd[i]*wd[i]);
 }
@@ -950,8 +933,7 @@ xd  = NV_DATA_OMP(x);
 wd  = NV_DATA_OMP(w);
 idd = NV_DATA_OMP(id);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,wd,idd) \
-reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,wd,idd)  reduction(+:sum) schedule(static) num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++) {
 if (idd[i] > ZERO) {
 sum += SUNSQR(xd[i]*wd[i]);
@@ -996,8 +978,7 @@ zd = NV_DATA_OMP(z);
 
 
 if ((X[0] == z) && (c[0] == ONE)) {
-#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd) \
-num_threads(NV_NUM_THREADS_OMP(z))
+#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd)  num_threads(NV_NUM_THREADS_OMP(z))
 {
 for (i=1; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1012,8 +993,7 @@ return(0);
 
 
 if (X[0] == z) {
-#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd) \
-num_threads(NV_NUM_THREADS_OMP(z))
+#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd)  num_threads(NV_NUM_THREADS_OMP(z))
 {
 #pragma omp for schedule(static)
 for (j=0; j<N; j++) {
@@ -1032,8 +1012,7 @@ return(0);
 }
 
 
-#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd) \
-num_threads(NV_NUM_THREADS_OMP(z))
+#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c,zd)  num_threads(NV_NUM_THREADS_OMP(z))
 {
 xd = NV_DATA_OMP(X[0]);
 #pragma omp for schedule(static)
@@ -1079,8 +1058,7 @@ xd = NV_DATA_OMP(x);
 
 
 if (Y == Z) {
-#pragma omp parallel default(none) private(i,j,yd) shared(nvec,Y,N,a,xd) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel default(none) private(i,j,yd) shared(nvec,Y,N,a,xd)  num_threads(NV_NUM_THREADS_OMP(x))
 {
 for (i=0; i<nvec; i++) {
 yd = NV_DATA_OMP(Y[i]);
@@ -1094,8 +1072,7 @@ return(0);
 }
 
 
-#pragma omp parallel default(none) private(i,j,yd,zd) shared(nvec,Y,Z,N,a,xd) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel default(none) private(i,j,yd,zd) shared(nvec,Y,Z,N,a,xd)  num_threads(NV_NUM_THREADS_OMP(x))
 {
 for (i=0; i<nvec; i++) {
 yd = NV_DATA_OMP(Y[i]);
@@ -1140,8 +1117,7 @@ dotprods[i] = ZERO;
 }
 
 
-#pragma omp parallel default(none) private(i,j,yd,sum) shared(nvec,Y,N,xd,dotprods) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel default(none) private(i,j,yd,sum) shared(nvec,Y,N,xd,dotprods)  num_threads(NV_NUM_THREADS_OMP(x))
 {
 for (i=0; i<nvec; i++) {
 yd = NV_DATA_OMP(Y[i]);
@@ -1250,8 +1226,7 @@ return(VScaleDiffVectorArray_OpenMP(nvec, a, X, Y, Z));
 N = NV_LENGTH_OMP(Z[0]);
 
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a,b) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a,b)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1292,8 +1267,7 @@ N = NV_LENGTH_OMP(Z[0]);
 
 
 if (X == Z) {
-#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,xd) shared(nvec,X,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1307,8 +1281,7 @@ return(0);
 }
 
 
-#pragma omp parallel default(none) private(i,j,xd,zd) shared(nvec,X,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,xd,zd) shared(nvec,X,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1345,8 +1318,7 @@ return(0);
 N = NV_LENGTH_OMP(Z[0]);
 
 
-#pragma omp parallel default(none) private(i,j,zd) shared(nvec,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,zd) shared(nvec,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (i=0; i<nvec; i++) {
 zd = NV_DATA_OMP(Z[i]);
@@ -1390,8 +1362,7 @@ nrm[i] = ZERO;
 }
 
 
-#pragma omp parallel default(none) private(i,j,xd,wd,sum) shared(nvec,X,W,N,nrm) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,wd,sum) shared(nvec,X,W,N,nrm)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1448,8 +1419,7 @@ nrm[i] = ZERO;
 }
 
 
-#pragma omp parallel default(none) private(i,j,xd,wd,sum) shared(nvec,X,W,N,idd,nrm) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,wd,sum) shared(nvec,X,W,N,idd,nrm)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1536,8 +1506,7 @@ N  = NV_LENGTH_OMP(X[0]);
 
 
 if (Y == Z) {
-#pragma omp parallel default(none) private(i,j,k,xd,yd) shared(nvec,nsum,X,Y,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,k,xd,yd) shared(nvec,nsum,X,Y,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1554,8 +1523,7 @@ return(0);
 }
 
 
-#pragma omp parallel default(none) private(i,j,k,xd,yd,zd) shared(nvec,nsum,X,Y,Z,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,k,xd,yd,zd) shared(nvec,nsum,X,Y,Z,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -1654,8 +1622,7 @@ N = NV_LENGTH_OMP(Z[0]);
 
 
 if ((X[0] == Z) && (c[0] == ONE)) {
-#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (j=0; j<nvec; j++) {
 zd = NV_DATA_OMP(Z[j]);
@@ -1673,8 +1640,7 @@ return(0);
 
 
 if (X[0] == Z) {
-#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (j=0; j<nvec; j++) {
 zd = NV_DATA_OMP(Z[j]);
@@ -1695,8 +1661,7 @@ return(0);
 }
 
 
-#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(Z[0]))
+#pragma omp parallel default(none) private(i,j,k,xd,zd) shared(nvec,nsum,X,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(Z[0]))
 {
 for (j=0; j<nvec; j++) {
 
@@ -1788,8 +1753,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i];
 
@@ -1812,8 +1776,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i]+yd[i];
 
@@ -1836,8 +1799,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = xd[i]-yd[i];
 
@@ -1859,8 +1821,7 @@ N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = -xd[i];
 
@@ -1883,8 +1844,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,c,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,c,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = c*(xd[i]+yd[i]);
 
@@ -1907,8 +1867,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,c,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,c,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = c*(xd[i]-yd[i]);
 
@@ -1931,8 +1890,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = (a*xd[i])+yd[i];
 
@@ -1955,8 +1913,7 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 zd = NV_DATA_OMP(z);
 
-#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd,zd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd,zd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 zd[i] = (a*xd[i])-yd[i];
 
@@ -1979,23 +1936,20 @@ xd = NV_DATA_OMP(x);
 yd = NV_DATA_OMP(y);
 
 if (a == ONE) {
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 yd[i] += xd[i];
 return;
 }
 
 if (a == -ONE) {
-#pragma omp parallel for default(none) private(i) shared(N,xd,yd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,xd,yd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 yd[i] -= xd[i];
 return;
 }
 
-#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,a,xd,yd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 yd[i] += a*xd[i];
 
@@ -2016,8 +1970,7 @@ xd = NULL;
 N  = NV_LENGTH_OMP(x);
 xd = NV_DATA_OMP(x);
 
-#pragma omp parallel for default(none) private(i) shared(N,a,xd) schedule(static) \
-num_threads(NV_NUM_THREADS_OMP(x))
+#pragma omp parallel for default(none) private(i) shared(N,a,xd) schedule(static)  num_threads(NV_NUM_THREADS_OMP(x))
 for (i = 0; i < N; i++)
 xd[i] *= a;
 
@@ -2040,8 +1993,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2069,8 +2021,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2098,8 +2049,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2127,8 +2077,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,c) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,c)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2156,8 +2105,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2185,8 +2133,7 @@ j = 0;
 
 N = NV_LENGTH_OMP(X[0]);
 
-#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd,zd) shared(nvec,X,Y,Z,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2214,8 +2161,7 @@ j = 0;
 N = NV_LENGTH_OMP(X[0]);
 
 if (a == ONE) {
-#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2229,8 +2175,7 @@ return(0);
 }
 
 if (a == -ONE) {
-#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);
@@ -2243,8 +2188,7 @@ yd[j] -= xd[j];
 return(0);
 }
 
-#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a) \
-num_threads(NV_NUM_THREADS_OMP(X[0]))
+#pragma omp parallel default(none) private(i,j,xd,yd) shared(nvec,X,Y,N,a)  num_threads(NV_NUM_THREADS_OMP(X[0]))
 {
 for (i=0; i<nvec; i++) {
 xd = NV_DATA_OMP(X[i]);

@@ -26,11 +26,7 @@ uint8_t *Ndata = (uint8_t *) malloc (Nlen);
 uint8_t *bNdata = (uint8_t*) malloc (Nblen);
 
 
-#pragma omp target data map (to: data[0:len], \
-results[0:18], \
-counts[0:54]) \
-map (alloc: Ndata[0:Nlen], \
-bNdata[0:Nblen])
+#pragma omp target data map (to: data[0:len],  results[0:18],  counts[0:54])  map (alloc: Ndata[0:Nlen],  bNdata[0:Nblen])
 {
 
 auto start = std::chrono::steady_clock::now();

@@ -1615,9 +1615,7 @@ double *y = (double*) malloc (dat_size);
 double *p1 = (double*) malloc (tmp_size);
 double *p2 = (double*) malloc (tmp_size);
 
-#pragma omp target data map (to: x[0:n], d[0:512]) \
-map (from: y[0:n]) \
-map (alloc: p1[0:t], p2[0:t])
+#pragma omp target data map (to: x[0:n], d[0:512])  map (from: y[0:n])  map (alloc: p1[0:t], p2[0:t])
 {
 auto start = std::chrono::steady_clock::now();
 

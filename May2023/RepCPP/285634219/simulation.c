@@ -6,18 +6,7 @@ void run_event_based_simulation(Input input, SimulationData data, unsigned long 
 printf("Beginning event based simulation ...\n");
 unsigned long verification = 0;
 
-#pragma omp target data map(to:data.n_poles[:data.length_n_poles])\
-map(to:data.n_windows[:data.length_n_windows])\
-map(to:data.poles[:data.length_poles])\
-map(to:data.windows[:data.length_windows])\
-map(to:data.pseudo_K0RS[:data.length_pseudo_K0RS])\
-map(to:data.num_nucs[:data.length_num_nucs])\
-map(to:data.mats[:data.length_mats])\
-map(to:data.concs[:data.length_concs])\
-map(to:data.max_num_nucs)\
-map(to:data.max_num_poles)\
-map(to:data.max_num_windows)\
-map(tofrom:verification)
+#pragma omp target data map(to:data.n_poles[:data.length_n_poles]) map(to:data.n_windows[:data.length_n_windows]) map(to:data.poles[:data.length_poles]) map(to:data.windows[:data.length_windows]) map(to:data.pseudo_K0RS[:data.length_pseudo_K0RS]) map(to:data.num_nucs[:data.length_num_nucs]) map(to:data.mats[:data.length_mats]) map(to:data.concs[:data.length_concs]) map(to:data.max_num_nucs) map(to:data.max_num_poles) map(to:data.max_num_windows) map(tofrom:verification)
 {
 double start = get_time();
 

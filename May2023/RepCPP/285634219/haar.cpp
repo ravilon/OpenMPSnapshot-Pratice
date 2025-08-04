@@ -90,8 +90,7 @@ factor = 1;
 int *d_rectangles_array = rectangles_array;
 int **d_scaled_rectangles_array = scaled_rectangles_array;
 
-#pragma omp target data map(to: d_rectangles_array[0:total_nodes*12]) \
-map(alloc: d_scaled_rectangles_array[0:total_nodes*12])
+#pragma omp target data map(to: d_rectangles_array[0:total_nodes*12])  map(alloc: d_scaled_rectangles_array[0:total_nodes*12])
 {
 #endif
 

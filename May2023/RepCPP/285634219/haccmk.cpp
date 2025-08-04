@@ -20,8 +20,7 @@ T*__restrict vx2,
 T*__restrict vy2,
 T*__restrict vz2 ) 
 {
-#pragma omp target data map(to: xx[0:ilp], yy[0:ilp], zz[0:ilp], mass[0:ilp]) \
-map(from: vx2[0:n], vy2[0:n], vz2[0:n])
+#pragma omp target data map(to: xx[0:ilp], yy[0:ilp], zz[0:ilp], mass[0:ilp])  map(from: vx2[0:n], vy2[0:n], vz2[0:n])
 {
 float total_time = 0.f;
 

@@ -18,8 +18,7 @@ typedef Array2D<double,NODES_PER_ELEM> brc_t;
 void interpolate_field(const brc_t &brc, const int_vec &el, const conn_t &connectivity,
 const double_vec &source, double_vec &target)
 {
-#pragma omp parallel for default(none)          \
-shared(brc, el, connectivity, source, target)
+#pragma omp parallel for default(none)           shared(brc, el, connectivity, source, target)
 for (std::size_t i=0; i<target.size(); i++) {
 int e = el[i];
 const int *conn = connectivity[e];
@@ -35,8 +34,7 @@ target[i] = result;
 void interpolate_field(const brc_t &brc, const int_vec &el, const conn_t &connectivity,
 const array_t &source, array_t &target)
 {
-#pragma omp parallel for default(none)          \
-shared(brc, el, connectivity, source, target)
+#pragma omp parallel for default(none)           shared(brc, el, connectivity, source, target)
 for (std::size_t i=0; i<target.size(); i++) {
 int e = el[i];
 const int *conn = connectivity[e];

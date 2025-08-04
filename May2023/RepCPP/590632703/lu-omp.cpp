@@ -160,8 +160,7 @@ double verify_result(int *&P, double **&A, double **&L, double **&U, int size)
 {
 double residual = 0;
 
-#pragma omp parallel for reduction(+ \
-: residual) schedule(static)
+#pragma omp parallel for reduction(+  : residual) schedule(static)
 for (int i = 0; i < size; ++i)
 for (int j = 0; j < size; ++j)
 {

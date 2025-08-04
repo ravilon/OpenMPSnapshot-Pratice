@@ -33,7 +33,6 @@ iPoint2D maxDim, iPoint2D dim, iPoint2D off);
 
 #else
 
-#pragma message                                                                \
-"ZLIB is not present! Deflate compression will not be supported!"
+#pragma message                                                                 "ZLIB is not present! Deflate compression will not be supported!"
 
 #endif

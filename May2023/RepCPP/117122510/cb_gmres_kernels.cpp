@@ -39,9 +39,7 @@ gko::cb_gmres::detail::has_3d_scaled_accessor<Accessor3d>::value;
 const rc_vtype eta = 1.0 / sqrt(2.0);
 #pragma omp declare reduction(add:ValueType : omp_out = omp_out + omp_in)
 #pragma omp declare reduction(addnc:rc_vtype : omp_out = omp_out + omp_in)
-#pragma omp declare reduction(infnc:rc_vtype \
-: omp_out =    \
-(omp_out >= omp_in ? omp_out : omp_in))
+#pragma omp declare reduction(infnc:rc_vtype  : omp_out =     (omp_out >= omp_in ? omp_out : omp_in))
 
 for (size_type i = 0; i < next_krylov_basis->get_size()[1]; ++i) {
 if (stop_status[i].has_stopped()) {
@@ -302,9 +300,7 @@ auto res_norm = zero<rc_vtype>();
 auto res_inf = zero<rc_vtype>();
 
 #pragma omp declare reduction(addnc:rc_vtype : omp_out = omp_out + omp_in)
-#pragma omp declare reduction(infnc:rc_vtype \
-: omp_out =    \
-(omp_out >= omp_in ? omp_out : omp_in))
+#pragma omp declare reduction(infnc:rc_vtype  : omp_out =     (omp_out >= omp_in ? omp_out : omp_in))
 
 #pragma omp parallel for reduction(addnc : res_norm) reduction(infnc : res_inf)
 for (size_type i = 0; i < residual->get_size()[0]; ++i) {

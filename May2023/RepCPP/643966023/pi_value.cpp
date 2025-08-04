@@ -31,8 +31,7 @@ auto nthreads = state.range(0);
 
 auto begin = omp_get_wtime();
 
-#pragma omp parallel for num_threads(nthreads) default(none) private(x,f) shared(intervals, dx) \
-reduction(+:sum)
+#pragma omp parallel for num_threads(nthreads) default(none) private(x,f) shared(intervals, dx)  reduction(+:sum)
 for (std::size_t i = 1; i <= intervals; i++) {
 x = dx * ((double) i - 0.5);
 f = 4.0 / (1.0 + x*x);
@@ -68,8 +67,7 @@ auto nthreads = state.range(0);
 
 auto begin = omp_get_wtime();
 
-#pragma omp parallel for num_threads(nthreads) default(none) private(x,f) shared(intervals, dx) \
-reduction(+:sum)
+#pragma omp parallel for num_threads(nthreads) default(none) private(x,f) shared(intervals, dx)  reduction(+:sum)
 for (std::size_t i = 1; i <= intervals; i++) {
 x = dx * ((double) i - 0.5);
 f = 4.0 / (1.0 + x*x);

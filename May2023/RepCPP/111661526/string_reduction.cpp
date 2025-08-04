@@ -12,9 +12,7 @@ std::vector<std::string> data {"p", "a", "r", "a", "l", "l",
 "n", "g", " ", "i", "s", " ",
 "f", "u", "n", "!"};
 
-#pragma omp declare reduction(custom_op : std::string : \
-omp_out = omp_out+omp_in)                           \
-initializer (omp_priv=std::string(""))
+#pragma omp declare reduction(custom_op : std::string :  omp_out = omp_out+omp_in)                            initializer (omp_priv=std::string(""))
 
 # pragma omp parallel for reduction(custom_op:result) num_threads(2)
 for (uint64_t i = 0; i < data.size(); i++)

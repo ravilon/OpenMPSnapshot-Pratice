@@ -76,8 +76,7 @@ float *positions,float *velocities,float *pBests,float *gBest)
 {
 int size = p*DIM;
 
-#pragma omp target data map(to: positions[0:size],velocities[0:size]) \
-map(tofrom: gBest[0:DIM], pBests[0:size])
+#pragma omp target data map(to: positions[0:size],velocities[0:size])  map(tofrom: gBest[0:DIM], pBests[0:size])
 {
 auto start = std::chrono::steady_clock::now();
 

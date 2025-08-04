@@ -86,8 +86,7 @@ lower = upper, tmp;
 int newRows, newCols, numOfDiags;
 
 struct Comparator { float val; Point p; } max;	
-#pragma omp declare reduction(max : struct Comparator : omp_out = (omp_in.val > omp_out.val || \
-(omp_in.val == omp_out.val && (omp_in.p.row < omp_out.p.row || omp_in.p.col < omp_out.p.col))) ? omp_in : omp_out)
+#pragma omp declare reduction(max : struct Comparator : omp_out = (omp_in.val > omp_out.val ||  (omp_in.val == omp_out.val && (omp_in.p.row < omp_out.p.row || omp_in.p.col < omp_out.p.col))) ? omp_in : omp_out)
 max.val = -numeric_limits<float>::infinity();
 
 gettimeofday(&StartTime, NULL);

@@ -76,8 +76,7 @@ for(int j = 0; j < img.width; j++)
 rayList[i*img.width + j] = viewer.pixelToWorld(j, i);
 }
 
-#pragma omp parallel for schedule(runtime) default(none) \
-shared(img, rayList) firstprivate(numReflection) collapse (2)
+#pragma omp parallel for schedule(runtime) default(none)  shared(img, rayList) firstprivate(numReflection) collapse (2)
 for(int lin = 0; lin < img.height; lin++)
 {
 for (int col = 0; col < img.width; col++)

@@ -109,11 +109,7 @@ size_t grid[3];
 
 
 
-#pragma omp target data map(to: d_origList[0:listsize/4],\
-origOffsets[0:divisions+1],\
-nullElements[0:divisions],\
-startaddr[0:divisions+1]), \
-map(alloc: d_resultList[0:listsize/4])
+#pragma omp target data map(to: d_origList[0:listsize/4], origOffsets[0:divisions+1], nullElements[0:divisions], startaddr[0:divisions+1]),  map(alloc: d_resultList[0:listsize/4])
 {
 #pragma omp target teams distribute parallel for thread_limit(THREADS)
 for (int i = 0; i < listsize/4; i++)

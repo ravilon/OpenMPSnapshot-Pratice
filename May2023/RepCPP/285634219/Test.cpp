@@ -110,9 +110,7 @@ memset(h_outBuffer, 0, OUTPUT_BLOCK_SIZE_B * NB_THREADS*NB_THREADS_BLOCKS );
 for(i=0;i<INPUT_BLOCK_SIZE_B/4 * NB_INPUT_BLOCK * NB_THREADS*NB_THREADS_BLOCKS;i++) h_inBuffer[i]=i;
 
 
-#pragma omp target enter data map(alloc: h_inBuffer[0:INPUT_BLOCK_SIZE_B/4 * NB_THREADS * NB_INPUT_BLOCK*NB_THREADS_BLOCKS]) \
-map(alloc: h_outBuffer[0:OUTPUT_BLOCK_SIZE_B/4 * NB_THREADS*NB_THREADS_BLOCKS]) \
-map(to: KeccakF_RoundConstants[0:22])
+#pragma omp target enter data map(alloc: h_inBuffer[0:INPUT_BLOCK_SIZE_B/4 * NB_THREADS * NB_INPUT_BLOCK*NB_THREADS_BLOCKS])  map(alloc: h_outBuffer[0:OUTPUT_BLOCK_SIZE_B/4 * NB_THREADS*NB_THREADS_BLOCKS])  map(to: KeccakF_RoundConstants[0:22])
 
 printf("GPU speed test started\n");
 
@@ -127,9 +125,7 @@ Keccak_top(Kstate,h_outBuffer,NB_THREADS*NB_THREADS_BLOCKS);
 
 t2=time(NULL);
 
-#pragma omp target exit data map(delete: h_inBuffer[0:INPUT_BLOCK_SIZE_B/4 * NB_THREADS * NB_INPUT_BLOCK*NB_THREADS_BLOCKS]) \
-map(delete: h_outBuffer[0:OUTPUT_BLOCK_SIZE_B/4 * NB_THREADS*NB_THREADS_BLOCKS]) \
-map(delete: KeccakF_RoundConstants[0:22])
+#pragma omp target exit data map(delete: h_inBuffer[0:INPUT_BLOCK_SIZE_B/4 * NB_THREADS * NB_INPUT_BLOCK*NB_THREADS_BLOCKS])  map(delete: h_outBuffer[0:OUTPUT_BLOCK_SIZE_B/4 * NB_THREADS*NB_THREADS_BLOCKS])  map(delete: KeccakF_RoundConstants[0:22])
 
 print_KS_256(Kstate);
 

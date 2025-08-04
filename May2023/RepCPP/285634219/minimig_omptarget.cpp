@@ -209,11 +209,7 @@ const llint ymin = 0;
 llint xmax = nx;
 llint ymax = ny;
 
-#pragma omp target data map(tofrom: u[0:size_u]) \
-map(to:  v[0:size_u],\
-vp[0:size_vp],\
-phi[0:size_phi],\
-eta[0:size_eta])
+#pragma omp target data map(tofrom: u[0:size_u])  map(to:  v[0:size_u], vp[0:size_vp], phi[0:size_phi], eta[0:size_eta])
 {
 #ifdef DEBUG
 const uint npo = 100;

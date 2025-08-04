@@ -49,9 +49,7 @@ const uint64_t num_bytes = num_entries*sizeof(float);
 auto data = static_cast<float*>(_mm_malloc(num_bytes , 32));
 init(data, num_entries);
 
-#pragma omp declare reduction(avx_max : __m256 :  \
-omp_out = avxop()(omp_out, omp_in))               \
-initializer (omp_priv=avxop().neutral)
+#pragma omp declare reduction(avx_max : __m256 :   omp_out = avxop()(omp_out, omp_in))                initializer (omp_priv=avxop().neutral)
 
 auto result = avxop().neutral;
 

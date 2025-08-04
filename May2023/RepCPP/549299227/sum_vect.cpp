@@ -12,8 +12,7 @@ template <typename T>
 T sum_vect(T x[], int n, int thread_count)
 {
 T sum{ };
-#pragma omp parallel for num_threads(thread_count) \
-reduction(+: sum)
+#pragma omp parallel for num_threads(thread_count)  reduction(+: sum)
 for (int i = 0; i < n; i++)
 sum += x[i];
 return sum;

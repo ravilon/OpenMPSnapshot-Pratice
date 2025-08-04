@@ -60,9 +60,7 @@ printf("[Info] Batch for MPI node %d: %d..%d\n", mpi.NodeIdx(), pStart, pEnd);
 #endif
 
 
-#pragma omp parallel for \
-shared(noodleA,noodleB,noodleF,C) \
-private(block,coo) 
+#pragma omp parallel for  shared(noodleA,noodleB,noodleF,C)  private(block,coo) 
 for(int i=pStart; i<=pEnd; i+=BLOCK_HEIGHT){      
 
 coo.Reset();

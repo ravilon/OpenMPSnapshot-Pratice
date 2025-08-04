@@ -230,8 +230,7 @@ array_offset += matrix_dim;
 }
 }
 
-#pragma omp target teams num_teams(((matrix_dim-i)/BLOCK_SIZE-1) * ((matrix_dim-i)/BLOCK_SIZE-1)) \
-thread_limit(BLOCK_SIZE*BLOCK_SIZE)
+#pragma omp target teams num_teams(((matrix_dim-i)/BLOCK_SIZE-1) * ((matrix_dim-i)/BLOCK_SIZE-1))  thread_limit(BLOCK_SIZE*BLOCK_SIZE)
 {
 float peri_row[BLOCK_SIZE * BLOCK_SIZE];
 float peri_col[BLOCK_SIZE * BLOCK_SIZE];

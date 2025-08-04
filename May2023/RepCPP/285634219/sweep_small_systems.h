@@ -106,13 +106,7 @@ int workSize = num_systems;
 double reorder_time = 0.0;
 double solver_time = 0.0;
 
-#pragma omp target data map(to: a[0:mem_size], \
-b[0:mem_size], \
-c[0:mem_size], \
-d[0:mem_size]) \
-map(alloc: x[0:mem_size], \
-t[0:mem_size], \
-w[0:mem_size])
+#pragma omp target data map(to: a[0:mem_size],  b[0:mem_size],  c[0:mem_size],  d[0:mem_size])  map(alloc: x[0:mem_size],  t[0:mem_size],  w[0:mem_size])
 {
 if (reorder)
 {

@@ -44,8 +44,7 @@ bool week = false;
 int success_order = 1;
 int failure_order = 0;
 
-#pragma omp target teams distribute parallel for \
-map(always, from: array_[0:n_]) 
+#pragma omp target teams distribute parallel for  map(always, from: array_[0:n_]) 
 for (int i = 0; i < n_; i++)
 {
 array_[i] = i;

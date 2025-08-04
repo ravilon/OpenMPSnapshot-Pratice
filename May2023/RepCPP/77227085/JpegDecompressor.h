@@ -30,7 +30,6 @@ void decode(uint32_t offsetX, uint32_t offsetY);
 
 #else
 
-#pragma message                                                                \
-"JPEG is not present! Lossy JPEG compression will not be supported!"
+#pragma message                                                                 "JPEG is not present! Lossy JPEG compression will not be supported!"
 
 #endif

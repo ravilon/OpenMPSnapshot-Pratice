@@ -157,15 +157,7 @@ char* clustered_pnts_mask = (char*) malloc (sizeof(char)*point_count);
 
 
 
-#pragma omp target data map(to: dist_source[0:dst_matrix_elems], \
-indr_mtrx_host[0:point_count*max_degree], \
-ungrpd_pnts_indr_host[0:point_count]) \
-map(alloc: degrees[0:point_count], \
-Ai_mask[0:thread_block_count*point_count], \
-dist_to_clust[0:max_degree*thread_block_count], \
-clustered_pnts_mask[0:point_count], \
-cardnl[0:thread_block_count*2], \
-result[0:point_count])
+#pragma omp target data map(to: dist_source[0:dst_matrix_elems],  indr_mtrx_host[0:point_count*max_degree],  ungrpd_pnts_indr_host[0:point_count])  map(alloc: degrees[0:point_count],  Ai_mask[0:thread_block_count*point_count],  dist_to_clust[0:max_degree*thread_block_count],  clustered_pnts_mask[0:point_count],  cardnl[0:thread_block_count*2],  result[0:point_count])
 {
 #pragma omp target teams distribute parallel for 
 for (int i = 0; i < point_count; i++)

@@ -158,10 +158,7 @@ assert (0 == memcmp(d_keys+d_length[i], keys[i], length[i]));
 }
 
 
-#pragma omp target data map(to: d_keys[0:total_length], \
-d_length[0:numKeys+1], \
-length[0:numKeys]) \
-map(from: d_out[0:2*numKeys])
+#pragma omp target data map(to: d_keys[0:total_length],  d_length[0:numKeys+1],  length[0:numKeys])  map(from: d_out[0:2*numKeys])
 {
 for (uint32_t n = 0; n < repeat; n++) {
 #pragma omp target teams distribute parallel for thread_limit(BLOCK_SIZE)

@@ -375,8 +375,7 @@ logCovariances[i_cl] = logSigma;
 } 
 
 #if defined(_OPENMP)
-#pragma omp parallel for private(i_cl,i_d) reduction(+:LL) \
-num_threads(vl_get_max_threads())
+#pragma omp parallel for private(i_cl,i_d) reduction(+:LL)  num_threads(vl_get_max_threads())
 #endif
 for (i_d = 0 ; i_d < (signed)numData ; ++ i_d) {
 TYPE clusterPosteriorsSum = 0;
@@ -654,8 +653,7 @@ memset(means, 0, sizeof(TYPE) * self->dimension * numClusters) ;
 memset(covariances, 0, sizeof(TYPE) * self->dimension * numClusters) ;
 
 #if defined(_OPENMP)
-#pragma omp parallel default(shared) private(i_d, i_cl, dim) \
-num_threads(vl_get_max_threads())
+#pragma omp parallel default(shared) private(i_d, i_cl, dim)  num_threads(vl_get_max_threads())
 #endif
 {
 TYPE * clusterPosteriorSum_, * means_, * covariances_ ;

@@ -29,13 +29,7 @@ double maxR = 0;
 double maxG = 0;
 double maxB = 0;
 
-#pragma omp parallel for schedule(static) \
-reduction(min:minR), \
-reduction(min:minG), \
-reduction(min:minB), \
-reduction(max:maxR), \
-reduction(max:maxG), \
-reduction(max:maxB)
+#pragma omp parallel for schedule(static)  reduction(min:minR),  reduction(min:minG),  reduction(min:minB),  reduction(max:maxR),  reduction(max:maxG),  reduction(max:maxB)
 for (unsigned int i = 0; i < area; i++) {
 
 const unsigned int index = i * 3;

@@ -90,8 +90,7 @@ molID.push_back(*thisMol);
 }
 
 #ifdef _OPENMP
-#pragma omp parallel for default(none) private(bondEnergy) shared(b, molID) \
-reduction(+:bondEn, nonbondEn, correction)
+#pragma omp parallel for default(none) private(bondEnergy) shared(b, molID)  reduction(+:bondEn, nonbondEn, correction)
 #endif
 for (int i = 0; i < (int) molID.size(); i++) {
 MoleculeIntra(molID[i], b, bondEnergy);
@@ -177,13 +176,9 @@ forcefield.sc_power, box);
 #else
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex, \
-cellVector, coords, mapParticleToCell, box, neighborList) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex,  cellVector, coords, mapParticleToCell, box, neighborList)  reduction(+:tempREn, tempLJEn)
 #else
-#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex, \
-cellVector, coords, mapParticleToCell, neighborList) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex,  cellVector, coords, mapParticleToCell, neighborList)  reduction(+:tempREn, tempLJEn)
 #endif
 #endif
 for(int currParticleIdx = 0; currParticleIdx < (int) cellVector.size(); currParticleIdx++) {
@@ -288,15 +283,9 @@ forcefield.sc_power, box);
 #else
 #if defined _OPENMP && _OPENMP >= 201511 
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex, \
-cellVector, coords, mapParticleToCell, box, neighborList) \
-reduction(+:tempREn, tempLJEn, aForcex[:atomCount], aForcey[:atomCount], \
-aForcez[:atomCount], mForcex[:molCount], mForcey[:molCount], mForcez[:molCount])
+#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex,  cellVector, coords, mapParticleToCell, box, neighborList)  reduction(+:tempREn, tempLJEn, aForcex[:atomCount], aForcey[:atomCount],  aForcez[:atomCount], mForcex[:molCount], mForcey[:molCount], mForcez[:molCount])
 #else
-#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex, \
-cellVector, coords, mapParticleToCell, neighborList) \
-reduction(+:tempREn, tempLJEn, aForcex[:atomCount], aForcey[:atomCount], \
-aForcez[:atomCount], mForcex[:molCount], mForcey[:molCount], mForcez[:molCount])
+#pragma omp parallel for default(none) shared(boxAxes, cellStartIndex,  cellVector, coords, mapParticleToCell, neighborList)  reduction(+:tempREn, tempLJEn, aForcex[:atomCount], aForcey[:atomCount],  aForcez[:atomCount], mForcex[:molCount], mForcey[:molCount], mForcez[:molCount])
 #endif
 #endif
 for(int currParticleIdx = 0; currParticleIdx < (int) cellVector.size(); currParticleIdx++) {
@@ -404,13 +393,9 @@ forcefield.sc_power, box);
 #else
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(cellStartIndex, cellVector, \
-mapParticleToCell, neighborList, box) \
-reduction(+:vT11, vT12, vT13, vT22, vT23, vT33, rT11, rT12, rT13, rT22, rT23, rT33)
+#pragma omp parallel for default(none) shared(cellStartIndex, cellVector,  mapParticleToCell, neighborList, box)  reduction(+:vT11, vT12, vT13, vT22, vT23, vT33, rT11, rT12, rT13, rT22, rT23, rT33)
 #else
-#pragma omp parallel for default(none) shared(cellStartIndex, cellVector, \
-mapParticleToCell, neighborList) \
-reduction(+:vT11, vT12, vT13, vT22, vT23, vT33, rT11, rT12, rT13, rT22, rT23, rT33)
+#pragma omp parallel for default(none) shared(cellStartIndex, cellVector,  mapParticleToCell, neighborList)  reduction(+:vT11, vT12, vT13, vT22, vT23, vT33, rT11, rT12, rT13, rT22, rT23, rT33)
 #endif
 #endif
 for(int currParticleIdx = 0; currParticleIdx < (int) cellVector.size(); currParticleIdx++) {
@@ -534,11 +519,9 @@ n.Next();
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(atom, nIndex, box, molIndex) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(atom, nIndex, box, molIndex)  reduction(+:tempREn, tempLJEn)
 #else
-#pragma omp parallel for default(none) shared(atom, nIndex) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(atom, nIndex)  reduction(+:tempREn, tempLJEn)
 #endif
 #endif
 for(int i = 0; i < (int) nIndex.size(); i++) {
@@ -574,11 +557,9 @@ n.Next();
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(atom, molCoords, nIndex, overlap, p, molIndex, box) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(atom, molCoords, nIndex, overlap, p, molIndex, box)  reduction(+:tempREn, tempLJEn)
 #else
-#pragma omp parallel for default(none) shared(atom, molCoords, nIndex, overlap, p) \
-reduction(+:tempREn, tempLJEn)
+#pragma omp parallel for default(none) shared(atom, molCoords, nIndex, overlap, p)  reduction(+:tempREn, tempLJEn)
 #endif
 #endif
 for(int i = 0; i < (int) nIndex.size(); i++) {
@@ -688,13 +669,9 @@ n.Next();
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(kindI, kindICharge, nIndex, \
-overlap, t, trialPos, box, molIndex) \
-reduction(+:tempLJ, tempReal)
+#pragma omp parallel for default(none) shared(kindI, kindICharge, nIndex,  overlap, t, trialPos, box, molIndex)  reduction(+:tempLJ, tempReal)
 #else
-#pragma omp parallel for default(none) shared(kindI, kindICharge, nIndex, \
-overlap, t, trialPos) \
-reduction(+:tempLJ, tempReal)
+#pragma omp parallel for default(none) shared(kindI, kindICharge, nIndex,  overlap, t, trialPos)  reduction(+:tempLJ, tempReal)
 #endif
 #endif
 for(int i = 0; i < (int) nIndex.size(); i++) {
@@ -1334,11 +1311,9 @@ double *torquez = molTorque.z;
 
 #if defined _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(atomForce, atomForceRec, com, coordinates,\
-moleculeIndex, torquex, torquey, torquez, box)
+#pragma omp parallel for default(none) shared(atomForce, atomForceRec, com, coordinates, moleculeIndex, torquex, torquey, torquez, box)
 #else
-#pragma omp parallel for default(none) shared(atomForce, atomForceRec, com, coordinates,\
-moleculeIndex, torquex, torquey, torquez)
+#pragma omp parallel for default(none) shared(atomForce, atomForceRec, com, coordinates, moleculeIndex, torquex, torquey, torquez)
 #endif
 #endif
 for(int m = 0; m < (int) moleculeIndex.size(); m++) {
@@ -1477,12 +1452,9 @@ n.Next();
 
 #ifdef _OPENMP
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(atom, nIndex, box, \
-lambdaNewCoulomb, lambdaOldCoulomb, lambdaOldVDW, lambdaNewVDW) \
-reduction(+:tempREnOld, tempLJEnOld, tempREnNew, tempLJEnNew)
+#pragma omp parallel for default(none) shared(atom, nIndex, box,  lambdaNewCoulomb, lambdaOldCoulomb, lambdaOldVDW, lambdaNewVDW)  reduction(+:tempREnOld, tempLJEnOld, tempREnNew, tempLJEnNew)
 #else
-#pragma omp parallel for default(none) shared(atom, nIndex) \
-reduction(+:tempREnOld, tempLJEnOld, tempREnNew, tempLJEnNew)
+#pragma omp parallel for default(none) shared(atom, nIndex)  reduction(+:tempREnOld, tempLJEnOld, tempREnNew, tempLJEnNew)
 #endif
 #endif
 for(int i = 0; i < (int) nIndex.size(); i++) {
@@ -1592,13 +1564,9 @@ n.Next();
 
 #if defined _OPENMP && _OPENMP >= 201511 
 #if GCC_VERSION >= 90000
-#pragma omp parallel for default(none) shared(atom, lambda_Coul, lambda_VDW, \
-lambdaSize, nIndex, box, iState) \
-reduction(+:dudl_VDW, dudl_Coul, tempREnDiff[:lambdaSize], tempLJEnDiff[:lambdaSize])
+#pragma omp parallel for default(none) shared(atom, lambda_Coul, lambda_VDW,  lambdaSize, nIndex, box, iState)  reduction(+:dudl_VDW, dudl_Coul, tempREnDiff[:lambdaSize], tempLJEnDiff[:lambdaSize])
 #else
-#pragma omp parallel for default(none) shared(atom, lambda_Coul, lambda_VDW, \
-lambdaSize, nIndex) \
-reduction(+:dudl_VDW, dudl_Coul, tempREnDiff[:lambdaSize], tempLJEnDiff[:lambdaSize])
+#pragma omp parallel for default(none) shared(atom, lambda_Coul, lambda_VDW,  lambdaSize, nIndex)  reduction(+:dudl_VDW, dudl_Coul, tempREnDiff[:lambdaSize], tempLJEnDiff[:lambdaSize])
 #endif
 #endif
 for(int i = 0; i < (int) nIndex.size(); i++) {

@@ -24,9 +24,7 @@ VecSizeT l = 0;
 VecSizeT r = sortedVec.size() - 1; 
 VecSizeT indexFound = -1;
 
-#pragma omp parallel \
-shared(sortedVec, val, l, r, isValToTheRight, indexFound) \
-default(none)	
+#pragma omp parallel  shared(sortedVec, val, l, r, isValToTheRight, indexFound)  default(none)	
 {
 const unsigned thrdID = omp_get_thread_num();
 
@@ -74,9 +72,7 @@ std::array<VecSizeT, MAX_THREAD_COUNT> thrdsPos;
 VecSizeT l = 0;	
 VecSizeT r = sortedVec.size() - 1; 
 
-#pragma omp parallel \
-shared(l, r, thrdsPos, isValToTheRight, sortedVec, val) \
-default(none)	
+#pragma omp parallel  shared(l, r, thrdsPos, isValToTheRight, sortedVec, val)  default(none)	
 {
 const unsigned thrdID = omp_get_thread_num();
 VecSizeT& currThrdPos = thrdsPos[thrdID];

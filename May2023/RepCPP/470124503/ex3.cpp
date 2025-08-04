@@ -67,8 +67,7 @@ isum += i;
 }
 printf("[LastPrivate Example] isum = %d\n", isum);
 isum = 0;
-#pragma omp parallel for reduction(+ \
-: isum)
+#pragma omp parallel for reduction(+  : isum)
 for (int i = 1; i <= 100; i++)
 {
 isum += a[i];

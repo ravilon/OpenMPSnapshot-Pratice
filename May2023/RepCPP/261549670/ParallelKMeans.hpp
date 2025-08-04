@@ -16,23 +16,17 @@
 
 namespace KMeans {
 
-#pragma omp declare reduction(FloatVectorMin : std::vector<float> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), std::min<>()))
+#pragma omp declare reduction(FloatVectorMin : std::vector<float> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), std::min<>()))
 
-#pragma omp declare reduction(DoubleVectorMin : std::vector<double> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), std::min<>()))
+#pragma omp declare reduction(DoubleVectorMin : std::vector<double> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), std::min<>()))
 
-#pragma omp declare reduction(FloatVectorDiv : std::vector<float> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(),  [](float& x, float& y){return x/=y; }))
+#pragma omp declare reduction(FloatVectorDiv : std::vector<float> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(),  [](float& x, float& y){return x/=y; }))
 
-#pragma omp declare reduction(DoubleVectorDiv : std::vector<double> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), [](double& x, double& y){return x/=y; }))
+#pragma omp declare reduction(DoubleVectorDiv : std::vector<double> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), [](double& x, double& y){return x/=y; }))
 
-#pragma omp declare reduction(FloatVectorSum : std::vector<float> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(),  [](float& x, float& y){return x+=y; }))
+#pragma omp declare reduction(FloatVectorSum : std::vector<float> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(),  [](float& x, float& y){return x+=y; }))
 
-#pragma omp declare reduction(DoubleVectorSum : std::vector<double> : \
-std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), [](double& x, double& y){return x+=y; }))
+#pragma omp declare reduction(DoubleVectorSum : std::vector<double> :  std::transform(omp_out.begin(), omp_out.end(), omp_in.begin(), omp_out.begin(), [](double& x, double& y){return x+=y; }))
 
 
 void initOpenMP(int num_threads) {
@@ -123,8 +117,7 @@ std::size_t nData      = data.size();
 std::size_t nClusters  = clusters.size();
 std::size_t nReasigned = 0;
 
-#pragma omp parallel for shared(data, clusters, nReasigned) firstprivate(nData, nClusters) \
-schedule(static) reduction(+:nReasigned)
+#pragma omp parallel for shared(data, clusters, nReasigned) firstprivate(nData, nClusters)  schedule(static) reduction(+:nReasigned)
 for (std::size_t i = 0; i < nData; i++) {
 auto &P = data[i];
 T minDist = ParSqEuclidianDist(P, clusters[0]);
@@ -172,8 +165,7 @@ auto pointsId = clusters[nCluster].GetPointsId();
 if constexpr (std::is_same<T, float>::value) {
 for(std::size_t i = 0; i < dim; i++) {
 
-#pragma omp parallel for shared(coord) firstprivate(size, data, pointsId) reduction(FloatVectorSum \
-: coord) schedule(static)
+#pragma omp parallel for shared(coord) firstprivate(size, data, pointsId) reduction(FloatVectorSum  : coord) schedule(static)
 for(std::size_t j = 0; j < size; j++) {
 auto &pCoord = data[pointsId[j]].GetCoord();
 coord[i] += pCoord[i];
@@ -185,8 +177,7 @@ reduceCoordDiv(dim, size, coord);
 } else {
 for(std::size_t i = 0; i < dim; i++) {
 
-#pragma omp parallel for shared(coord) firstprivate(size, data, pointsId) reduction(DoubleVectorSum \
-: coord) schedule(static)
+#pragma omp parallel for shared(coord) firstprivate(size, data, pointsId) reduction(DoubleVectorSum  : coord) schedule(static)
 for(std::size_t j = 0; j < size; j++) {
 auto &pCoord = data[pointsId[j]].GetCoord();
 coord[i] += pCoord[i];

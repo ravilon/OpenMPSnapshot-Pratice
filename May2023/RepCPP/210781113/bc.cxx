@@ -160,8 +160,7 @@ void apply_vbcs(const Param &param, const Variables &var, array_t &vel)
 
 const BC &bc = param.bc;
 
-#pragma omp parallel for default(none) \
-shared(bc, var, vel)
+#pragma omp parallel for default(none)  shared(bc, var, vel)
 for (int i=0; i<var.nnode; ++i) {
 
 if (! is_on_boundary(var, i)) continue;

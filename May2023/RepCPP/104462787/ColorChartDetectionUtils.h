@@ -44,13 +44,7 @@ double valueMaxR = 0;
 double valueMaxG = 0;
 double valueMaxB = 0;
 
-#pragma omp parallel for schedule(static) \
-reduction(min:valueMinR), \
-reduction(min:valueMinG), \
-reduction(min:valueMinB), \
-reduction(max:valueMaxR), \
-reduction(max:valueMaxG), \
-reduction(max:valueMaxB)
+#pragma omp parallel for schedule(static)  reduction(min:valueMinR),  reduction(min:valueMinG),  reduction(min:valueMinB),  reduction(max:valueMaxR),  reduction(max:valueMaxG),  reduction(max:valueMaxB)
 for (unsigned int i = 0; i < imageArea; i++) {
 const unsigned int index = i * 3;
 const double colorR = imageData[index + 0];

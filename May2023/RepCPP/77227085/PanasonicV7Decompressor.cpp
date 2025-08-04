@@ -63,8 +63,7 @@ outRow.getCrop(PixelsPerBlock * rblock, PixelsPerBlock));
 
 void PanasonicV7Decompressor::decompress() const {
 #ifdef HAVE_OPENMP
-#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores()) \
-schedule(static) default(none)
+#pragma omp parallel for num_threads(rawspeed_get_number_of_processor_cores())  schedule(static) default(none)
 #endif
 for (int row = 0; row < mRaw->dim.y;
 ++row) { 

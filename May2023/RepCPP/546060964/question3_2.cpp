@@ -30,9 +30,7 @@ starttime = timeGetTime();
 sum = 0;
 total = 0.0;
 
-#pragma omp parallel     \
-num_threads (4) \
-private( sumx, sumy, k ) shared(threadStarttime, threadElapsedtime) 
+#pragma omp parallel      num_threads (4)  private( sumx, sumy, k ) shared(threadStarttime, threadElapsedtime) 
 {
 threadStarttime[omp_get_thread_num()] = timeGetTime();
 

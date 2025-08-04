@@ -98,8 +98,7 @@ mRaw->setError(err.what());
 
 void SonyArw2Decompressor::decompress() const {
 #ifdef HAVE_OPENMP
-#pragma omp parallel default(none)                                             \
-num_threads(rawspeed_get_number_of_processor_cores())
+#pragma omp parallel default(none)                                              num_threads(rawspeed_get_number_of_processor_cores())
 #endif
 decompressThread();
 

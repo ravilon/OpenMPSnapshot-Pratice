@@ -303,8 +303,7 @@ int num_boundary_particles = params.number_boundary_particles;
 int num_particles = (num_fluid_particles < num_boundary_particles) ? 
 num_fluid_particles : num_boundary_particles;
 
-#pragma omp target data map(tofrom: fluid_particles[0:num_fluid_particles],\
-boundary_particles[0:num_boundary_particles]) 
+#pragma omp target data map(tofrom: fluid_particles[0:num_fluid_particles], boundary_particles[0:num_boundary_particles]) 
 {
 auto start = std::chrono::steady_clock::now();
 

@@ -887,10 +887,7 @@ __parsec_roi_end();
 gpu_free = gettime();
 #endif
 
-#pragma omp target exit data map(release: coord_h[0:dim*chunksize],\
-work_mem_h[0:(kmax+2)*chunksize], \
-switch_membership[0:chunksize], \
-p_h[0:chunksize])
+#pragma omp target exit data map(release: coord_h[0:dim*chunksize], work_mem_h[0:(kmax+2)*chunksize],  switch_membership[0:chunksize],  p_h[0:chunksize])
 
 free(coord_h);
 free(gl_lower);

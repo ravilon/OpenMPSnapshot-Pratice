@@ -46,9 +46,7 @@ shrLog(" set team size to %dx%d\n", teamSize[0], teamSize[1]);
 
 shrLog(" GPU FDTD loop\n");
 
-#pragma omp target data map(to: bufferIn[0:paddedVolumeSize], \
-bufferOut[0:paddedVolumeSize], \
-coeff[0:radius+1]) 
+#pragma omp target data map(to: bufferIn[0:paddedVolumeSize],  bufferOut[0:paddedVolumeSize],  coeff[0:radius+1]) 
 {
 auto start = std::chrono::steady_clock::now();
 

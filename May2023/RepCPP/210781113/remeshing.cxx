@@ -1009,8 +1009,7 @@ metric[n] += plstrain * volume[e];
 
 loop_all_elem(var.egroups, elemf);
 
-#pragma omp parallel for default(none)      \
-shared(var, metric, volume_n)
+#pragma omp parallel for default(none)       shared(var, metric, volume_n)
 for (int n=0; n<var.nnode; ++n)
 metric[n] /= volume_n[n];
 }

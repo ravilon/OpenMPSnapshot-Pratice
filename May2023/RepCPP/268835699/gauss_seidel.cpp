@@ -36,9 +36,7 @@ ae = (real*) malloc(a_size*sizeof(real));
 aw = (real*) malloc(a_size*sizeof(real));
 
 
-#pragma acc enter data copyin(v1[v_size], v2[v_size]),	\
-create(an[a_size], as[a_size],			\
-ae[a_size], aw[a_size])
+#pragma acc enter data copyin(v1[v_size], v2[v_size]),	 create(an[a_size], as[a_size],			 ae[a_size], aw[a_size])
 }
 
 
@@ -49,9 +47,7 @@ int iu = 0;
 int ju = 0;
 
 
-#pragma acc parallel present (v1[v_size], v2[v_size], \
-an[a_size], as[a_size], \
-ae[a_size], aw[a_size], this)
+#pragma acc parallel present (v1[v_size], v2[v_size],  an[a_size], as[a_size],  ae[a_size], aw[a_size], this)
 {
 
 #pragma acc loop independent gang, collapse(2)
@@ -129,9 +125,7 @@ GS::solve(nu, ncellx, ncelly, vo, vi, an, as, ae, aw);
 }
 
 
-#pragma acc exit data copyout(v1[v_size], v2[v_size]), \
-delete(an[a_size], as[a_size], \
-ae[a_size], aw[a_size])
+#pragma acc exit data copyout(v1[v_size], v2[v_size]),  delete(an[a_size], as[a_size],  ae[a_size], aw[a_size])
 
 
 vfinal = dims.niterations%2 ? v1 : v2;
@@ -180,9 +174,7 @@ for (wavefront=0; wavefront<nwavefronts; ++wavefront)
 int v_size = nu*ncellx*ncelly;
 int a_size = nu*nu*ncellx*ncelly;
 
-#pragma acc parallel present (vo[v_size], vi[v_size], \
-an[a_size], as[a_size], \
-ae[a_size], aw[a_size], this)
+#pragma acc parallel present (vo[v_size], vi[v_size],  an[a_size], as[a_size],  ae[a_size], aw[a_size], this)
 {
 
 int ix;

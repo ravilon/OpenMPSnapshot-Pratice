@@ -50,8 +50,7 @@ cout<<endl;
 }
 void omp_gausseliminate()
 {
-#pragma omp parallel num_threads(thread_count)\
-shared(A)
+#pragma omp parallel num_threads(thread_count) shared(A)
 for(int k=0;k<n;k++)
 {
 #pragma omp for

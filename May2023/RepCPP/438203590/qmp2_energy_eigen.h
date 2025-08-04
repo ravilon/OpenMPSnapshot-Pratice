@@ -44,9 +44,7 @@ mmv(mv), mc_c(c_c), mm1Deps_o(m1Deps_o), mm1Deps_v(m1Deps_v),
 mm1Deps_ov(m1Deps_ov), mvf(vf), mv1Dpts(v1Dpts), 
 mv1Dwts(v1Dwts), mv3Dwts (v3Dwts), moffset(offset), 
 mnpts_to_proc(npts_to_proc){
-#pragma omp parallel for schedule(static) default(none)\
-shared(m3Dnpts, mnocc, mnvirt, mc_c, mv3Dwts)\
-collapse(2)
+#pragma omp parallel for schedule(static) default(none) shared(m3Dnpts, mnocc, mnvirt, mc_c, mv3Dwts) collapse(2)
 for (size_t p = 0; p < m3Dnpts; p++){
 for (size_t i = 0; i < mnocc; i++){
 for (size_t a = 0; a < mnvirt; a++){
@@ -82,12 +80,7 @@ VectorXd v_p;
 MatrixXd c2_p;
 
 double energy = 0;
-#pragma omp parallel for reduction(+:energy) schedule(dynamic) default(none)\
-private(o_p, v_p, c2_p)\
-shared(moffset, mnpts_to_proc, m1Dnpts, m3Dnpts, mnocc, mnvirt, \
-map_mv1Dwts, map_mmo, map_mm1Deps_o, map_mmv, \
-map_mm1Deps_v, mc_c, map_mm1Deps_ov)\
-collapse(2)
+#pragma omp parallel for reduction(+:energy) schedule(dynamic) default(none) private(o_p, v_p, c2_p) shared(moffset, mnpts_to_proc, m1Dnpts, m3Dnpts, mnocc, mnvirt,  map_mv1Dwts, map_mmo, map_mm1Deps_o, map_mmv,  map_mm1Deps_v, mc_c, map_mm1Deps_ov) collapse(2)
 for (int k = 0; k < m1Dnpts; k++){
 for (int p = moffset; p < moffset + mnpts_to_proc; p++){
 o_p = map_mmo.row(p)

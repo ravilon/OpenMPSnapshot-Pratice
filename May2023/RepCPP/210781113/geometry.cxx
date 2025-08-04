@@ -80,8 +80,7 @@ return std::sqrt(d0*d0 + d1*d1 + d2*d2) / 2;
 void compute_volume(const array_t &coord, const conn_t &connectivity,
 double_vec &volume)
 {
-#pragma omp parallel for default(none)      \
-shared(coord, connectivity, volume)
+#pragma omp parallel for default(none)       shared(coord, connectivity, volume)
 for (std::size_t e=0; e<volume.size(); ++e) {
 int n0 = connectivity[e][0];
 int n1 = connectivity[e][1];
@@ -134,8 +133,7 @@ dvoldt[n] += dj * volume[e];
 loop_all_elem(var.egroups, elemf);
 
 
-#pragma omp parallel for default(none)      \
-shared(var, dvoldt, volume_n)
+#pragma omp parallel for default(none)       shared(var, dvoldt, volume_n)
 for (int n=0; n<var.nnode; ++n)
 dvoldt[n] /= volume_n[n];
 
@@ -146,8 +144,7 @@ void compute_edvoldt(const Variables &var, double_vec &dvoldt,
 double_vec &edvoldt)
 {
 
-#pragma omp parallel for default(none)      \
-shared(var, dvoldt, edvoldt)
+#pragma omp parallel for default(none)       shared(var, dvoldt, edvoldt)
 for (int e=0; e<var.nelem; ++e) {
 const int *conn = (*var.connectivity)[e];
 double dj = 0;
@@ -190,15 +187,13 @@ dp_nd[n] += dp * volume[e];
 
 loop_all_elem(var.egroups, elemf);
 
-#pragma omp parallel for default(none)      \
-shared(var, dp_nd, volume_n)
+#pragma omp parallel for default(none)       shared(var, dp_nd, volume_n)
 for (int n=0; n<var.nnode; ++n)
 dp_nd[n] /= volume_n[n];
 
 
 
-#pragma omp parallel for default(none)      \
-shared(var, dp_nd, stress)
+#pragma omp parallel for default(none)       shared(var, dp_nd, stress)
 for (int e=0; e<var.nelem; ++e) {
 const int *conn = (*var.connectivity)[e];
 double dp = 0;

@@ -38,9 +38,7 @@ float *feature_swap = (float*) malloc(npoints * nfeatures * sizeof(float));
 
 float* feature = features[0];
 
-#pragma omp target data map(to: feature[0:npoints * nfeatures]) \
-map(alloc: feature_swap[0:npoints * nfeatures], \
-membership_OCL[0:npoints])
+#pragma omp target data map(to: feature[0:npoints * nfeatures])  map(alloc: feature_swap[0:npoints * nfeatures],  membership_OCL[0:npoints])
 {
 
 for(int nclusters = min_nclusters; nclusters <= max_nclusters; nclusters++)

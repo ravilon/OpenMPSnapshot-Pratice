@@ -64,8 +64,7 @@ int* d_table = (int*) malloc(table_size * sizeof(int));
 const char* d_sequence = sequence.c_str();
 char* d_transformed_sequence = (char*) malloc(n * sizeof(char));
 
-#pragma omp target data map(from: d_table[0:table_size], d_transformed_sequence[0:n]) \
-map(to: d_sequence[0:n])
+#pragma omp target data map(from: d_table[0:table_size], d_transformed_sequence[0:n])  map(to: d_sequence[0:n])
 {
 generate_table(d_table, table_size, n);
 

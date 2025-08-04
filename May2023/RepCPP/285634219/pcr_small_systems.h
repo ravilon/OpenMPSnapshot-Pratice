@@ -19,11 +19,7 @@ shrLog(" %s\n", pcrKernelNames[id]);
 double sum_time;
 const unsigned int mem_size = num_systems * system_size;
 
-#pragma omp target data map(to: a[0:mem_size], \
-b[0:mem_size], \
-c[0:mem_size], \
-d[0:mem_size]) \
-map(from: x[0:mem_size])
+#pragma omp target data map(to: a[0:mem_size],  b[0:mem_size],  c[0:mem_size],  d[0:mem_size])  map(from: x[0:mem_size])
 {
 
 size_t szTeams;

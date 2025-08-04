@@ -33,10 +33,7 @@ result = 0.0;
 populate_vector(a, 1, N);
 populate_vector(b, 3, N);
 
-#pragma omp parallel for \
-default(shared) private(i) \
-schedule(static,chunk) \
-reduction(+:result)
+#pragma omp parallel for  default(shared) private(i)  schedule(static,chunk)  reduction(+:result)
 
 for (i=0; i < N; i++)
 result = result + (a[i] * b[i]);

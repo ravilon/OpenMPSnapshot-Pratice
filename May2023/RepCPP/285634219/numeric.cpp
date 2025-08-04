@@ -391,15 +391,7 @@ unsigned *csr_diag_ptr_dev = &(A_sym.csr_diag_ptr[0]);
 int *level_idx_dev = &(A_sym.level_idx[0]);
 REAL *tmpMem = (REAL*) malloc (TMPMEMNUM*n*sizeof(REAL));
 
-#pragma omp target data map(to: sym_c_ptr_dev[0:n+1],\
-sym_r_idx_dev[0:nnz],\
-val_dev[0:nnz],\
-l_col_ptr_dev[0:n],\
-csr_r_ptr_dev[0:n+1],\
-csr_c_idx_dev[0:nnz],\
-csr_diag_ptr_dev[0:n],\
-level_idx_dev[0:n]) \
-map(alloc: tmpMem[0:TMPMEMNUM*n])
+#pragma omp target data map(to: sym_c_ptr_dev[0:n+1], sym_r_idx_dev[0:nnz], val_dev[0:nnz], l_col_ptr_dev[0:n], csr_r_ptr_dev[0:n+1], csr_c_idx_dev[0:nnz], csr_diag_ptr_dev[0:n], level_idx_dev[0:n])  map(alloc: tmpMem[0:TMPMEMNUM*n])
 {
 
 #pragma omp target teams distribute parallel for thread_limit(256)

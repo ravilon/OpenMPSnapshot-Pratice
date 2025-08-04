@@ -18,8 +18,7 @@ clock_gettime(CLOCK_MONOTONIC_RAW, &start);
 COOMatrix C = COOMatrix();
 COOMatrix coo = COOMatrix();
 
-#pragma omp parallel for \
-private(coo) shared(C)
+#pragma omp parallel for  private(coo) shared(C)
 for(int j=0; j<rt.B->W; j++){
 
 coo.Reset();

@@ -384,9 +384,7 @@ double_vec& delta_plstrain, tensor_t& strain_rate)
 {
 const int rheol_type = var.mat->rheol_type;
 
-#pragma omp parallel for default(none)                           \
-shared(var, stress, stressyy, dpressure, strain, plstrain, delta_plstrain, \
-strain_rate, rheol_type, std::cerr)
+#pragma omp parallel for default(none)                            shared(var, stress, stressyy, dpressure, strain, plstrain, delta_plstrain,  strain_rate, rheol_type, std::cerr)
 for (int e=0; e<var.nelem; ++e) {
 double* s = stress[e];
 double& syy = stressyy[e];

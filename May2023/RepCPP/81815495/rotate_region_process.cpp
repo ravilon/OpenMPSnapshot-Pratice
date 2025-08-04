@@ -304,8 +304,7 @@ auto &r_torque_model_part = r_model.HasModelPart(mParameters["torque_model_part_
 const int num_nodes = static_cast<int>(r_torque_model_part.NumberOfNodes());
 const NodeIteratorType it_node_begin = r_torque_model_part.NodesBegin();
 
-#pragma omp parallel for schedule(guided, 512) reduction(+ \
-: torque)
+#pragma omp parallel for schedule(guided, 512) reduction(+  : torque)
 for (int i_node = 0; i_node < num_nodes; ++i_node)
 {
 NodeIteratorType it_node = it_node_begin + i_node;

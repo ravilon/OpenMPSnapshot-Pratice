@@ -96,9 +96,7 @@ vector<size_t> dim_coeff = {nao, nmo, 1};
 double coeff[nao * nmo];
 load_array_from_file(msrc_folder+mfname_coeff, dim_coeff, coeff, ' ', 1);
 
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(nmo, nao, fock_ao, coeff, mat_fock)\
-collapse(2)
+#pragma omp parallel for schedule(dynamic) default(none) shared(nmo, nao, fock_ao, coeff, mat_fock) collapse(2)
 for (size_t q = 0; q < nmo; q++){
 for (size_t p = 0; p < nmo; p++){
 mat_fock[q * nmo + p] = 0;
@@ -164,10 +162,7 @@ timings.stop_clock(1);
 
 timings.start_new_clock("    -- Transformation: ", 2, 0);
 size_t pos = 0; 
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(npts, nmo, nao, nocc, nvirt, cgto_ao, coeff, mat_cgto)\
-private(pos) \
-collapse(2)
+#pragma omp parallel for schedule(dynamic) default(none) shared(npts, nmo, nao, nocc, nvirt, cgto_ao, coeff, mat_cgto) private(pos)  collapse(2)
 for (size_t p = 0; p < npts; p++){
 for (size_t q = 0; q < nmo; q++){
 mat_cgto[p * nmo + q] = 0;
@@ -217,9 +212,7 @@ load_array_from_file(msrc_folder+mfname_coul, dim_ao, coul_ao, ' ', 1);
 timings.stop_clock(1);
 
 timings.start_new_clock("    -- Transformation: ", 2, 0);
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(npts, nocc, nvirt, nao, nmo, coul_ao, coeff, cube_coul)\
-collapse(3)
+#pragma omp parallel for schedule(dynamic) default(none) shared(npts, nocc, nvirt, nao, nmo, coul_ao, coeff, cube_coul) collapse(3)
 for (size_t p = 0; p < npts; p++){
 for (size_t i = 0; i < nocc; i++){
 for (size_t a = 0; a < nvirt; a++){

@@ -54,13 +54,7 @@ char *d_graph_visited, int *d_cost) throw(std::string)
 {
 char d_over[1];
 
-#pragma omp target data map(to: d_graph_nodes[0:no_of_nodes], \
-d_graph_edges[0:edge_list_size], \
-d_graph_visited[0:no_of_nodes], \
-d_graph_mask[0:no_of_nodes], \
-d_updating_graph_mask[0:no_of_nodes]) \
-map(alloc: d_over[0:1])\
-map(tofrom: d_cost[0:no_of_nodes])
+#pragma omp target data map(to: d_graph_nodes[0:no_of_nodes],  d_graph_edges[0:edge_list_size],  d_graph_visited[0:no_of_nodes],  d_graph_mask[0:no_of_nodes],  d_updating_graph_mask[0:no_of_nodes])  map(alloc: d_over[0:1]) map(tofrom: d_cost[0:no_of_nodes])
 {
 long time = 0;
 do {

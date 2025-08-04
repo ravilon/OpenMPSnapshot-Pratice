@@ -172,8 +172,7 @@ double *pBuffer = buf.data();
 int structural_zero;
 int numerical_zero;
 
-#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,     \
-pBuffer)
+#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,      pBuffer)
 {
 cusparseScsric02_analysis(handle, M, nnz, descr_M, d_csrVal, d_csrRowPtr,
 d_csrColInd, info_M, policy_M, pBuffer);
@@ -229,8 +228,7 @@ double *pBuffer = buf.data();
 int structural_zero;
 int numerical_zero;
 
-#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,     \
-pBuffer)
+#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,      pBuffer)
 {
 cusparseDcsric02_analysis(handle, M, nnz, descr_M, d_csrVal, d_csrRowPtr,
 d_csrColInd, info_M, policy_M, pBuffer);
@@ -281,8 +279,7 @@ int *d_csrColInd = A.col_ind.data();
 double *pBuffer = buf.data();
 const float alpha = 1.0;
 
-#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,     \
-d_x, d_b, d_tmp, pBuffer)
+#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,      d_x, d_b, d_tmp, pBuffer)
 {
 cusparseScsrsv2_solve(handle, trans_L, M, nnz, &alpha, descr_L, d_csrVal,
 d_csrRowPtr, d_csrColInd, info_L, d_b, d_tmp,
@@ -317,8 +314,7 @@ int *d_csrColInd = A.col_ind.data();
 double *pBuffer = buf.data();
 const double alpha = 1.0;
 
-#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,     \
-d_x, d_b, d_tmp, pBuffer)
+#pragma omp target data use_device_ptr(d_csrVal, d_csrRowPtr, d_csrColInd,      d_x, d_b, d_tmp, pBuffer)
 {
 cusparseDcsrsv2_solve(handle, trans_L, M, nnz, &alpha, descr_L, d_csrVal,
 d_csrRowPtr, d_csrColInd, info_L, d_b, d_tmp,

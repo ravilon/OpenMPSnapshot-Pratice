@@ -12,10 +12,7 @@ const double* __restrict__ data_in,
 double* __restrict__ data_out)
 {
 
-#pragma omp target teams distribute thread_limit(256) nowait \
-depend(in:  data_in[:vol_a*vol_b], shape_a[:dim_a], shape_b[:dim_b], \
-stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b]) \
-depend(out: data_out[:vol_a*vol_b])
+#pragma omp target teams distribute thread_limit(256) nowait  depend(in:  data_in[:vol_a*vol_b], shape_a[:dim_a], shape_b[:dim_b],  stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])  depend(out: data_out[:vol_a*vol_b])
 for (int ib=0;ib<vol_b;ib++)
 {
 double s[tile_size_c];

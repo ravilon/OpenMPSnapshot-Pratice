@@ -141,8 +141,7 @@ tdot[conn[i]] += diffusion * kv;
 
 loop_all_elem(var.egroups, elemf);
 
-#pragma omp parallel for default(none)      \
-shared(var, param, tdot, temperature)
+#pragma omp parallel for default(none)       shared(var, param, tdot, temperature)
 for (int n=0; n<var.nnode; ++n) {
 if ((*var.bcflag)[n] & BOUNDZ1)
 temperature[n] = param.bc.surface_temperature;
@@ -156,8 +155,7 @@ void update_strain_rate(const Variables& var, tensor_t& strain_rate)
 {
 double *v[NODES_PER_ELEM];
 
-#pragma omp parallel for default(none) \
-shared(var, strain_rate) private(v)
+#pragma omp parallel for default(none)  shared(var, strain_rate) private(v)
 for (int e=0; e<var.nelem; ++e) {
 const int *conn = (*var.connectivity)[e];
 const double *shpdx = (*var.shpdx)[e];
@@ -225,8 +223,7 @@ switch (param.control.damping_option) {
 case 0:
 break;
 case 1:
-#pragma omp parallel for default(none)          \
-shared(var, param, ff, v)
+#pragma omp parallel for default(none)           shared(var, param, ff, v)
 for (int i=0; i<var.nnode*NDIMS; ++i) {
 if (std::fabs(v[i]) > small_vel) {
 ff[i] -= param.control.damping_factor * std::copysign(ff[i], v[i]);
@@ -234,15 +231,13 @@ ff[i] -= param.control.damping_factor * std::copysign(ff[i], v[i]);
 }
 break;
 case 2:
-#pragma omp parallel for default(none)          \
-shared(var, param, ff, v)
+#pragma omp parallel for default(none)           shared(var, param, ff, v)
 for (int i=0; i<var.nnode*NDIMS; ++i) {
 ff[i] -= param.control.damping_factor * ff[i];
 }
 break;
 case 3:
-#pragma omp parallel for default(none)          \
-shared(var, param, ff, v)
+#pragma omp parallel for default(none)           shared(var, param, ff, v)
 for (int i=0; i<var.nnode*NDIMS; ++i) {
 if ((ff[i]<0) == (v[i]<0)) {
 ff[i] -= param.control.damping_factor * ff[i], v[i];
@@ -318,8 +313,7 @@ void update_velocity(const Variables& var, array_t& vel)
 const double* m = &(*var.mass)[0];
 const double* f = var.force->data();
 double* v = vel.data();
-#pragma omp parallel for default(none) \
-shared(var, m, f, v)
+#pragma omp parallel for default(none)  shared(var, m, f, v)
 for (int i=0; i<var.nnode*NDIMS; ++i) {
 int n = i / NDIMS;
 v[i] += var.dt * f[i] / m[n];
@@ -332,8 +326,7 @@ void update_coordinate(const Variables& var, array_t& coord)
 double* x = var.coord->data();
 const double* v = var.vel->data();
 
-#pragma omp parallel for default(none) \
-shared(var, x, v)
+#pragma omp parallel for default(none)  shared(var, x, v)
 for (int i=0; i<var.nnode*NDIMS; ++i) {
 x[i] += v[i] * var.dt;
 }
@@ -383,8 +376,7 @@ s[i] += dt * s_inc[i];
 void rotate_stress(const Variables &var, tensor_t &stress, tensor_t &strain)
 {
 
-#pragma omp parallel for default(none) \
-shared(var, stress, strain)
+#pragma omp parallel for default(none)  shared(var, stress, strain)
 for (int e=0; e<var.nelem; ++e) {
 const int *conn = (*var.connectivity)[e];
 

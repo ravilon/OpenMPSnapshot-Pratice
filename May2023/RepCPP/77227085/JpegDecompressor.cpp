@@ -138,7 +138,6 @@ out(row + offY, dinfo.output_components * offX + col) = tmp(row, col);
 
 #else
 
-#pragma message                                                                \
-"JPEG is not present! Lossy JPEG compression will not be supported!"
+#pragma message                                                                 "JPEG is not present! Lossy JPEG compression will not be supported!"
 
 #endif

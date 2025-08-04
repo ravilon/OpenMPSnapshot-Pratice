@@ -35,9 +35,7 @@ double * __restrict n = cc.n;
 double * __restrict rho_mat_ave = cc.rho_mat_ave;
 
 #if defined(NACC)
-#pragma acc data copy(rho[0:sizex*sizey*Nmats], p[0:sizex*sizey*Nmats], t[0:sizex*sizey*Nmats], Vf[0:sizex*sizey*Nmats]) \
-copy(V[0:sizex*sizey],x[0:sizex*sizey],y[0:sizex*sizey],n[0:Nmats],rho_ave[0:sizex*sizey]) \
-copy(rho_mat_ave[0:sizex*sizey*Nmats])
+#pragma acc data copy(rho[0:sizex*sizey*Nmats], p[0:sizex*sizey*Nmats], t[0:sizex*sizey*Nmats], Vf[0:sizex*sizey*Nmats])  copy(V[0:sizex*sizey],x[0:sizex*sizey],y[0:sizex*sizey],n[0:Nmats],rho_ave[0:sizex*sizey])  copy(rho_mat_ave[0:sizex*sizey*Nmats])
 #endif
 {
 #if defined(OMP)
@@ -171,9 +169,7 @@ double * __restrict y = mc.y;
 double * __restrict n = mc.n;
 double * __restrict rho_mat_ave = mc.rho_mat_ave;
 #if defined(NACC)
-#pragma acc data copy(rho[0:sizex*sizey*Nmats], p[0:sizex*sizey*Nmats], t[0:sizex*sizey*Nmats], Vf[0:sizex*sizey*Nmats]) \
-copy(V[0:sizex*sizey],x[0:sizex*sizey],y[0:sizex*sizey],n[0:Nmats],rho_ave[0:sizex*sizey]) \
-copy(rho_mat_ave[0:sizex*sizey*Nmats])
+#pragma acc data copy(rho[0:sizex*sizey*Nmats], p[0:sizex*sizey*Nmats], t[0:sizex*sizey*Nmats], Vf[0:sizex*sizey*Nmats])  copy(V[0:sizex*sizey],x[0:sizex*sizey],y[0:sizex*sizey],n[0:Nmats],rho_ave[0:sizex*sizey])  copy(rho_mat_ave[0:sizex*sizey*Nmats])
 #endif
 {
 #if defined(OMP)

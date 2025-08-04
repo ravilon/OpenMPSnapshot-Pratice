@@ -16,8 +16,7 @@ struct timespec rt[2];
 
 
 clock_gettime(CLOCK_REALTIME, rt + 0);
-#pragma omp parallel for simd schedule(simd:static) \
-default(none) shared(a, n, x, y)
+#pragma omp parallel for simd schedule(simd:static)  default(none) shared(a, n, x, y)
 for (int i = 0; i < n; i++) {
 y[i] = a * x[i] + y[i];
 }

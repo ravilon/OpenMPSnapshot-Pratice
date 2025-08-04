@@ -45,9 +45,7 @@ COOMatrix coo;
 int tmpnnz = 0;
 
 
-#pragma omp parallel for \
-shared(A,B,F,C,tmpnnz) \
-private(block,coo)
+#pragma omp parallel for  shared(A,B,F,C,tmpnnz)  private(block,coo)
 for(int i=0; i<A->H; i+=BLOCK_HEIGHT){      
 
 coo.Reset();

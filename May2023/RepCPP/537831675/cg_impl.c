@@ -30,8 +30,7 @@ rho = rho + r[j] * r[j];
 
 for (cgit = 1; cgit <= cgitmax; cgit++)
 {
-#pragma omp parallel for private(k) reduction(+ \
-: sum)
+#pragma omp parallel for private(k) reduction(+  : sum)
 for (j = 0; j < lastrow - firstrow + 1; j++)
 {
 sum = 0.0;
@@ -43,8 +42,7 @@ q[j] = sum;
 }
 
 d = 0.0;
-#pragma omp parallel for reduction(+ \
-: d)
+#pragma omp parallel for reduction(+  : d)
 for (j = 0; j < lastcol - firstcol + 1; j++)
 {
 d = d + p[j] * q[j];
@@ -62,8 +60,7 @@ z[j] = z[j] + alpha * p[j];
 r[j] = r[j] - alpha * q[j];
 }
 
-#pragma omp parallel for reduction(+ \
-: rho)
+#pragma omp parallel for reduction(+  : rho)
 for (j = 0; j < lastcol - firstcol + 1; j++)
 {
 rho = rho + r[j] * r[j];
@@ -89,8 +86,7 @@ d = d + a[k] * z[colidx[k]];
 r[j] = d;
 }
 
-#pragma omp parallel for reduction(+ \
-: sum)
+#pragma omp parallel for reduction(+  : sum)
 for (j = 0; j < lastcol - firstcol + 1; j++)
 {
 d = x[j] - r[j];

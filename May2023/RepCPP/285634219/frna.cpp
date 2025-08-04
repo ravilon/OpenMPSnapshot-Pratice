@@ -908,10 +908,7 @@ fparam_t pm = par;
 fbase_t *s = p->seq;
 int_t *wca = p->wca;
 
-#pragma omp target data map(to: pm[0:1], s[0:n]) \
-map(tofrom: v[0:n*n], w[0:n*n], wm[0:n*n]) \
-map(from: w5[0:n+1], w3[0:n+1]) \
-map(alloc: wca[0:n*n])
+#pragma omp target data map(to: pm[0:1], s[0:n])  map(tofrom: v[0:n*n], w[0:n*n], wm[0:n*n])  map(from: w5[0:n+1], w3[0:n+1])  map(alloc: wca[0:n*n])
 {
 auto start = std::chrono::steady_clock::now();
 

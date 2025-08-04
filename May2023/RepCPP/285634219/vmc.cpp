@@ -197,17 +197,7 @@ FLOAT *statsum = (FLOAT*) malloc(4 * sizeof(FLOAT));
 FLOAT *blocksums = (FLOAT*) malloc(NBLOCK * sizeof(FLOAT));
 unsigned int *ranstates = (unsigned int*) malloc(Npoint * sizeof(unsigned int));
 
-#pragma omp target data map(alloc:x1[0:Npoint],\
-y1[0:Npoint],\
-z1[0:Npoint],\
-x2[0:Npoint],\
-y2[0:Npoint],\
-z2[0:Npoint],\
-psi[0:Npoint],\
-stats[0:4*Npoint],\
-statsum[0:4],\
-blocksums[0:NBLOCK],\
-ranstates[0:Npoint])
+#pragma omp target data map(alloc:x1[0:Npoint], y1[0:Npoint], z1[0:Npoint], x2[0:Npoint], y2[0:Npoint], z2[0:Npoint], psi[0:Npoint], stats[0:4*Npoint], statsum[0:4], blocksums[0:NBLOCK], ranstates[0:Npoint])
 {
 initran(Npoint, 5551212, ranstates);
 

@@ -72,8 +72,7 @@ vf[p] = mf[p * nmo + p];
 
 
 size_t pos = 0; 
-#pragma omp parallel for schedule(dynamic) default(none)\
-private(pos) shared(p3Dnpts, nmo, m_o, mcgto, nocc, nvirt, m_v)
+#pragma omp parallel for schedule(dynamic) default(none) private(pos) shared(p3Dnpts, nmo, m_o, mcgto, nocc, nvirt, m_v)
 for (size_t p = 0; p < p3Dnpts; p++){
 for (size_t q = 0; q < nmo; q++){
 if (q < nocc){
@@ -86,9 +85,7 @@ m_v[p * nvirt + pos] = mcgto[p * nmo + q];
 }
 }
 
-#pragma omp parallel for schedule(dynamic) default(none)\
-shared(p1Dnpts, nocc, nvirt, m1Deps_o, m1Deps_v, c1Deps_ov, \
-v1Dpts, vf)
+#pragma omp parallel for schedule(dynamic) default(none) shared(p1Dnpts, nocc, nvirt, m1Deps_o, m1Deps_v, c1Deps_ov,  v1Dpts, vf)
 for (size_t k = 0; k < p1Dnpts; k++){
 for (size_t i = 0; i < nocc; i++){
 m1Deps_o[k * nocc+ i] = 

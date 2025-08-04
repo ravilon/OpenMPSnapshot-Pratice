@@ -34,9 +34,7 @@ delete[] data;
 }
 
 data_type *KDTreeGreenhouse::grow_kd_tree(std::vector<DataPoint> &data_points) {
-#pragma omp parallel default(none)                                             \
-shared(n_parallel_workers, max_parallel_depth, surplus_workers, std::cout, \
-growing_tree, tree_size, data_points)
+#pragma omp parallel default(none)                                              shared(n_parallel_workers, max_parallel_depth, surplus_workers, std::cout,  growing_tree, tree_size, data_points)
 {
 #pragma omp single
 {

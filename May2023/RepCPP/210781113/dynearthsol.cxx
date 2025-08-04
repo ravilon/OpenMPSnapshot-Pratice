@@ -235,8 +235,7 @@ update_force(param, var, *var.force);
 update_velocity(var, *var.vel);
 
 
-#pragma omp parallel for default(none)          \
-shared(var, param)
+#pragma omp parallel for default(none)           shared(var, param)
 for (int i=0; i<var.nnode; ++i) {
 for (int j=0; j<NDIMS-1; ++j) {
 (*var.vel)[i][j] = 0;

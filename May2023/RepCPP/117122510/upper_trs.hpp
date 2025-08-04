@@ -5,11 +5,9 @@
 
 
 #ifdef __GNUC__
-#pragma message \
-"This file is deprecated and will be removed in a later major release."
+#pragma message  "This file is deprecated and will be removed in a later major release."
 #elif defined(_MSC_VER)
-#pragma message WARN( \
-"This file is deprecated and will be removed in a later major release.")
+#pragma message WARN(  "This file is deprecated and will be removed in a later major release.")
 #endif
 #include <ginkgo/core/solver/triangular.hpp>
 

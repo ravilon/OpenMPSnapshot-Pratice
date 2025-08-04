@@ -217,8 +217,7 @@ zero_pos.begin(), zero_pos.end());
 void PanasonicV4Decompressor::decompress() const noexcept {
 assert(!blocks.empty());
 #ifdef HAVE_OPENMP
-#pragma omp parallel default(none)                                             \
-num_threads(rawspeed_get_number_of_processor_cores())
+#pragma omp parallel default(none)                                              num_threads(rawspeed_get_number_of_processor_cores())
 #endif
 decompressThread();
 }

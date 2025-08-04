@@ -172,8 +172,7 @@ std::size_t const npts = bdry_idxs.size();
 std::vector<scalar_t> deltas(npts);
 scalar_t delta = 0;
 
-#pragma omp parallel default(none) \
-shared(boundary, npts, bdry_idxs, deltas, delta)
+#pragma omp parallel default(none)  shared(boundary, npts, bdry_idxs, deltas, delta)
 {
 #pragma omp for schedule(static) nowait
 for(std::size_t i = 0; i < npts; ++i)

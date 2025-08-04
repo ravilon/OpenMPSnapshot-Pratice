@@ -19,12 +19,7 @@ float maxProbNew[nState];
 int path[(nObs-1)*nState];
 float *maxProbOld = initProb;
 
-#pragma omp target data map(to:initProb[0:nState], \
-mtState[0:nState*nState], \
-mtEmit[0:nEmit*nState], \
-obs[0:nObs],\
-maxProbOld[0:nState]) \
-map(from: maxProbNew[0:nState], path[0:(nObs-1)*nState])
+#pragma omp target data map(to:initProb[0:nState],  mtState[0:nState*nState],  mtEmit[0:nEmit*nState],  obs[0:nObs], maxProbOld[0:nState])  map(from: maxProbNew[0:nState], path[0:(nObs-1)*nState])
 {
 auto start = std::chrono::steady_clock::now();
 

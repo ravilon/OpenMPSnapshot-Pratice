@@ -314,18 +314,7 @@ float *clusters_Rinv = clusters.Rinv;
 float *clusters_memberships = clusters.memberships; 
 float *likelihoods = (float*) malloc (sizeof(float)*NUM_BLOCKS); 
 
-#pragma omp target data map(alloc:  \
-clusters_N[0:original_num_clusters], \
-clusters_pi[0:original_num_clusters], \
-clusters_constant[0:original_num_clusters], \
-clusters_avgvar[0:original_num_clusters], \
-clusters_means[0:num_dimensions*original_num_clusters], \
-clusters_R[0:num_dimensions*num_dimensions*original_num_clusters], \
-clusters_Rinv[0:num_dimensions*num_dimensions*original_num_clusters], \
-clusters_memberships[0:num_events*(original_num_clusters+NUM_CLUSTERS_PER_BLOCK-original_num_clusters % NUM_CLUSTERS_PER_BLOCK)],\
-likelihoods[0:NUM_BLOCKS]), \
-map(to: fcs_data_by_event[0:num_dimensions*num_events], \
-fcs_data_by_dimension[0:num_dimensions*num_events])
+#pragma omp target data map(alloc:   clusters_N[0:original_num_clusters],  clusters_pi[0:original_num_clusters],  clusters_constant[0:original_num_clusters],  clusters_avgvar[0:original_num_clusters],  clusters_means[0:num_dimensions*original_num_clusters],  clusters_R[0:num_dimensions*num_dimensions*original_num_clusters],  clusters_Rinv[0:num_dimensions*num_dimensions*original_num_clusters],  clusters_memberships[0:num_events*(original_num_clusters+NUM_CLUSTERS_PER_BLOCK-original_num_clusters % NUM_CLUSTERS_PER_BLOCK)], likelihoods[0:NUM_BLOCKS]),  map(to: fcs_data_by_event[0:num_dimensions*num_events],  fcs_data_by_dimension[0:num_dimensions*num_events])
 {
 DEBUG("Invoking seed_clusters kernel.\n");
 
@@ -617,9 +606,7 @@ DEBUG("\n");
 
 
 
-#pragma omp target teams num_teams(num_dimensions*(num_dimensions+1)/2*\
-(num_clusters+NUM_CLUSTERS_PER_BLOCK-1)/NUM_CLUSTERS_PER_BLOCK) \
-thread_limit(NUM_THREADS_MSTEP)
+#pragma omp target teams num_teams(num_dimensions*(num_dimensions+1)/2* (num_clusters+NUM_CLUSTERS_PER_BLOCK-1)/NUM_CLUSTERS_PER_BLOCK)  thread_limit(NUM_THREADS_MSTEP)
 {
 float means_row [NUM_CLUSTERS_PER_BLOCK];
 float means_col [NUM_CLUSTERS_PER_BLOCK];

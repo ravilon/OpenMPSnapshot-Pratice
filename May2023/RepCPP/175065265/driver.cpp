@@ -96,19 +96,10 @@ auto const &   stride_b = task_list[i_task]->ib2g;
 auto const &    data_in = static_cast<double*>(task_list[i_task]->data_src);
 auto const &   data_out = static_cast<double*>(task_list[i_task]->data_dst);
 
-#pragma omp target enter data nowait                                    \
-map(to:     data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],    \
-stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b]) \
-map(alloc:  data_out[:vol_total])                                     \
-depend(out: data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],    \
-stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])
+#pragma omp target enter data nowait                                     map(to:     data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],     stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])  map(alloc:  data_out[:vol_total])                                      depend(out: data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],     stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])
 c_tt_mapped( dim_a, dim_b, vol_a, vol_b, shape_a, shape_b, 
 stride_a_l, stride_a_g, stride_b, data_in, data_out );
-#pragma omp target exit data nowait                                      \
-depend(in:   data_out[:vol_total])                                     \
-map(from:    data_out[:vol_total])                                     \
-map(release: data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],    \
-stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])
+#pragma omp target exit data nowait                                       depend(in:   data_out[:vol_total])                                      map(from:    data_out[:vol_total])                                      map(release: data_in[:vol_total], shape_a[:dim_a], shape_b[:dim_b],     stride_a_l[:dim_a], stride_a_g[:dim_a], stride_b[:dim_b])
 }
 #pragma omp taskwait
 te=omp_get_wtime();

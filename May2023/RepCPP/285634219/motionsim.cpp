@@ -51,11 +51,7 @@ randomY[i] = rand() % scale;
 
 const size_t MAP_SIZE = n_particles * grid_size * grid_size;
 
-#pragma omp target data map(to: randomX[0:n_particles * nIterations], \
-randomY[0:n_particles * nIterations]) \
-map(tofrom: particleX[0:n_particles], \
-particleY[0:n_particles], \
-map[0:MAP_SIZE])
+#pragma omp target data map(to: randomX[0:n_particles * nIterations],  randomY[0:n_particles * nIterations])  map(tofrom: particleX[0:n_particles],  particleY[0:n_particles],  map[0:MAP_SIZE])
 {
 std::cout << " The number of kernel execution is " << nRepeat << std::endl;
 std::cout << " The number of particles is " << n_particles << std::endl;

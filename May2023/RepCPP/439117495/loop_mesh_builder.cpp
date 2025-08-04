@@ -18,11 +18,7 @@ size_t totalCubesCount = mGridSize*mGridSize*mGridSize;
 
 unsigned totalTriangles = 0;
 
-#pragma omp parallel for \
-default(none) \
-schedule(static, 32) \
-shared(totalCubesCount, field) \
-reduction(+: totalTriangles)
+#pragma omp parallel for  default(none)  schedule(static, 32)  shared(totalCubesCount, field)  reduction(+: totalTriangles)
 for(size_t i = 0; i < totalCubesCount; ++i)
 {
 Vec3_t<float> cubeOffset( i % mGridSize,
